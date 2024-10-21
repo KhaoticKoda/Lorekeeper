@@ -1,19 +1,11 @@
-@php
-    if (!isset($earner)) {
-        $earner = 'User';
-        $rewardses = $object->objectRewards;
-    } elseif ($earner == 'Character') {
-        $rewardses = $object->objectRewardsCharacter;
-    }
-@endphp
 <hr class="my-4 w-75" />
 
-<h4>{{ ucfirst($type) }} Rewards ({!! $earner == 'User' ? 'User <i class="fas fa-user"></i>' : 'Character <i class="fas fa-paw"></i>' !!} )</h4>
+<h4>{{ ucfirst($type) }} Rewards ({!! $recipient == 'User' ? 'User <i class="fas fa-user"></i>' : 'Character <i class="fas fa-paw"></i>' !!} )</h4>
 
 @if (isset($info))
     <div class="alert alert-info">{!! $info !!}</div>
 @endif
-@if ($rewardses->count())
+@if ($object->$reward_key->count())
     <table class="table table-sm">
         <thead>
             <tr>
@@ -22,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($rewardses as $reward)
+            @foreach ($object->$reward_key as $reward)
                 <tr>
                     <td>{!! $reward->reward->displayName !!}</td>
                     <td>{{ $reward->quantity }}</td>
@@ -33,4 +25,6 @@
 @else
     <p>No rewards.</p>
 @endif
-<hr class="my-4 w-75" />
+@if (isset($showHr) && $showHr)
+    <hr class=" w-75" />
+@endif
