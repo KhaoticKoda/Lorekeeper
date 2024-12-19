@@ -118,7 +118,11 @@ class ShopLog extends Model {
      * Get the cost of the item.
      */
     public function getTotalCostAttribute() {
-        return mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character']));
+        if (isset($this->cost['user']) && isset($this->cost['character'])) {
+            return mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character']));
+        }
+
+        return parseAssetData($this->cost);
     }
 
     /**
