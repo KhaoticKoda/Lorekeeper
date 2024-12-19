@@ -131,7 +131,12 @@ class ShopLog extends Model {
      * @return string
      */
     public function getDisplayCostAttribute() {
-        return createRewardsString(mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character'])), true, true) == 'Nothing. :('
-            ? 'Free' : createRewardsString(mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character'])), true, true);
+        if (isset($this->cost['user']) && isset($this->cost['character'])) {
+            $assets = mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character']));
+        } else {
+            $assets = parseAssetData($this->cost);
+        }
+
+        return createRewardsString($assets, true, true) == 'Nothing. :(' ? 'Free' : createRewardsString($assets, true, true);
     }
 }
