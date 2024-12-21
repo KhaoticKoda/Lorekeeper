@@ -463,9 +463,11 @@ function createRewardsString($array, $useDisplayName = true, $absQuantities = fa
     foreach ($array as $key => $contents) {
         foreach ($contents as $asset) {
             if ($useDisplayName) {
-                $string[] = $asset['asset']->displayName.' x'.($absQuantities ? abs($asset['quantity']) : $asset['quantity']);
+                $name = $asset['asset']->displayName ?? ($asset['asset']->name ?? 'Deleted '. ucfirst(str_replace('_', ' ', $key)));
+                $string[] = $name.' x'.($absQuantities ? abs($asset['quantity']) : $asset['quantity']);
             } else {
-                $string[] = $asset['asset']->name.' x'.($absQuantities ? abs($asset['quantity']) : $asset['quantity']);
+                $name = $asset['asset']->name ?? 'Deleted '. ucfirst(str_replace('_', ' ', $key));
+                $string[] = $name.' x'.($absQuantities ? abs($asset['quantity']) : $asset['quantity']);
             }
         }
     }
