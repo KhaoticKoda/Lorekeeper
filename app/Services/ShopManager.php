@@ -197,7 +197,7 @@ class ShopManager extends Service {
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
                 ],
-                'stock_type'  => $shopStock->stock_type,
+                'stock_type'   => $shopStock->stock_type,
                 'item_id'      => $shopStock->item_id,
                 'quantity'     => $quantity,
             ]);
