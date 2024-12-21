@@ -171,13 +171,13 @@ class ShopManager extends Service {
 
             if ($character) {
                 if (!fillCharacterAssets($characterCostAssets, $character, null, 'Shop Purchase', [
-                    'data' => 'Purchased '.$shopStock->item->name.' from '.$shop->name,
+                    'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name,
                 ])) {
                     throw new \Exception('Failed to purchase item.');
                 }
             }
             if (!fillUserAssets($userCostAssets, $user, null, 'Shop Purchase', [
-                'data' => 'Purchased '.$shopStock->item->name.' from '.$shop->name,
+                'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name,
             ])) {
                 throw new \Exception('Failed to purchase item.');
             }
@@ -197,7 +197,7 @@ class ShopManager extends Service {
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
                 ],
-                'currency_id'  => $shopStock->stock_type,
+                'stock_type'  => $shopStock->stock_type,
                 'item_id'      => $shopStock->item_id,
                 'quantity'     => $quantity,
             ]);
