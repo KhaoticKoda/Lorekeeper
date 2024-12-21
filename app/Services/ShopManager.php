@@ -146,6 +146,8 @@ class ShopManager extends Service {
                         $new = $base - $minus;
                         $costQuantity = round($new);
                     }
+                } else {
+                    $costQuantity *= $quantity;
                 }
 
                 if ($cost->item->assetType == 'currency') {
