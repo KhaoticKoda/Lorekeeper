@@ -124,6 +124,7 @@ class ShopManager extends Service {
                 }
             }
 
+            $baseStockCost = mergeAssetsArrays(createAssetsArray(true), createAssetsArray());
             $userCostAssets = createAssetsArray();
             $characterCostAssets = createAssetsArray(true);
             foreach ($costs as $cost) {
@@ -167,6 +168,8 @@ class ShopManager extends Service {
                 } else {
                     addAsset($userCostAssets, $cost->item, -$costQuantity);
                 }
+
+                addAsset($baseStockCost, $cost->item, $cost->quantity);
             }
 
             if ($character) {
@@ -194,6 +197,7 @@ class ShopManager extends Service {
                 'character_id' => $character ? $character->id : null,
                 'user_id'      => $user->id,
                 'cost'         => [
+                    'base'  => getDataReadyAssets($baseStockCost),
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
                 ],
@@ -255,12 +259,12 @@ class ShopManager extends Service {
         // check the costs vs the user's purchase recorded costs
         $shopQuery = $shopQuery->get()->filter(function ($log) use ($shopStock) {
             // if there is no costs, then return true, since free items should also have limits
-            if (!count($shopStock->costGroups) && countAssets($log->totalCost) == 0) {
+            if (!count($shopStock->costGroups) && countAssets($log->baseCost) == 0) {
                 return true;
             }
 
             foreach ($shopStock->costGroups as $group => $costs) {
-                if (compareAssetArrays($log->totalCost, $costs, false, true)) {
+                if (compareAssetArrays($log->baseCost, $costs, false, true)) {
                     return true;
                 }
             }

@@ -126,6 +126,32 @@ class ShopLog extends Model {
     }
 
     /**
+     * Get the base cost of the item.
+     */
+    public function getBaseCostAttribute() {
+        if (isset($this->cost['base'])) {
+            return parseAssetData($this->cost['base']);
+        }
+
+        if (isset($this->cost['user']) && isset($this->cost['character'])) {
+            $assets = mergeAssetsArrays(parseAssetData($this->cost['user']), parseAssetData($this->cost['character']));
+        } else {
+            $assets = parseAssetData($this->cost);
+        }
+
+        foreach ($assets as $key=>$contents) {
+            if (count($contents) == 0) {
+                continue;
+            }
+            foreach ($contents as $asset) {
+                $assets[$key][$asset['asset']->id]['quantity'] = $asset['quantity'] / $this->quantity;
+            }
+        }
+
+        return $assets;
+    }
+
+    /**
      * Get the cost of the item in a readable format.
      *
      * @return string
@@ -138,5 +164,14 @@ class ShopLog extends Model {
         }
 
         return createRewardsString($assets, true, true) == 'Nothing. :(' ? 'Free' : createRewardsString($assets, true, true);
+    }
+
+    /**
+     * Get the cost of the item in a readable format.
+     *
+     * @return string
+     */
+    public function getDisplayBaseCostAttribute() {
+        return createRewardsString($this->baseCost, true, true) == 'Nothing. :(' ? 'Free' : createRewardsString($this->baseCost, true, true);
     }
 }
