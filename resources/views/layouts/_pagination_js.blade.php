@@ -17,7 +17,7 @@
 
         $('.paginator-btn').on('click', onPaginationClick);
         // so you can just hit enter after moving the range bar or entering a number
-        $('.paginationPageRange').on('keypress', (e) => e.which === 13 && onClick(e));
-        $('.paginationPageText').on('keypress', (e) => e.which === 13 ? onClick(e) : true);
+        $('.paginationPageRange').on('keypress', (e) => e.which === 13 && onPaginationClick(e));
+        $('.paginationPageText').on('keypress', (e) => e.which === 13 ? onPaginationClick(e) : true);
     });
 </script>
