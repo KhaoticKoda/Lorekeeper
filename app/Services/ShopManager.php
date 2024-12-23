@@ -197,7 +197,7 @@ class ShopManager extends Service {
                 'character_id' => $character ? $character->id : null,
                 'user_id'      => $user->id,
                 'cost'         => [
-                    'base'  => getDataReadyAssets($baseStockCost),
+                    'base'      => getDataReadyAssets($baseStockCost),
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
                 ],
