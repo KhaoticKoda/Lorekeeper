@@ -12,9 +12,9 @@
         $('.paginationPopoverContent').append($paginationPopoverClone);
         $paginationPopoverClone.removeClass('hide pagination-popover-origin');
         $paginationPopoverClone.addClass('pagination-popover');
-        
+
         $('.pageSelectPopover').popover('update')
-        
+
         $('.paginator-btn').on('click', onPaginationClick);
         // so you can just hit enter after moving the range bar or entering a number
         $('.paginationPageRange').on('keypress', (e) => e.which === 13 && onClick(e));
