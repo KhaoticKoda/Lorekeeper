@@ -111,7 +111,7 @@ class NewsController extends Controller {
 
         return redirect()->to('admin/news');
     }
-    
+
     /**
      * Gets the news regeneration modal.
      *

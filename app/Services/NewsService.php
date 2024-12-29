@@ -113,7 +113,7 @@ class NewsService extends Service {
 
         try {
             $news->parsed_text = parse($news->text);
-            
+
             $news->save();
 
             return $this->commitReturn($news);

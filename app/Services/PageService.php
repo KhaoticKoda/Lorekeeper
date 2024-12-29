@@ -114,7 +114,7 @@ class PageService extends Service {
 
         return $this->rollbackReturn(false);
     }
-    
+
     /**
      * Regenerates a site page.
      *
@@ -127,7 +127,7 @@ class PageService extends Service {
 
         try {
             $page->parsed_text = parse($page->text);
-            
+
             $page->save();
 
             return $this->commitReturn($page);

@@ -111,7 +111,7 @@ class PageController extends Controller {
 
         return redirect()->to('admin/pages');
     }
-    
+
     /**
      * Gets the page regeneration modal.
      *
