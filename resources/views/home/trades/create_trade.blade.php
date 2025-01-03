@@ -23,8 +23,8 @@
         {!! Form::select('recipient_id', $userOptions, old('recipient_id'), ['class' => 'form-control user-select', 'placeholder' => 'Select User']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('terms_link', 'Proof of Terms (URL)') !!} 
-        {!! add_help('Enter a link to proof of the terms of agreement for the trade. This field is not strictly required but is strongly recommended.') !!} 
+        {!! Form::label('terms_link', 'Proof of Terms (URL)') !!}
+        {!! add_help('Enter a link to proof of the terms of agreement for the trade. This field is not strictly required but is strongly recommended.') !!}
         {!! Form::text('terms_link', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
@@ -36,7 +36,7 @@
         'inventory' => $inventory,
         'categories' => $categories,
         'selected' => [],
-        'page' => $page
+        'page' => $page,
     ])
     @include('widgets._my_character_select', ['readOnly' => true, 'categories' => $characterCategories])
     @include('widgets._bank_select', ['owner' => Auth::user(), 'selected' => null, 'isTransferrable' => true])

@@ -5,16 +5,18 @@
         </h3>
     </div>
     <div class="card-body">
-        @if(isset($trade->terms_link) && $trade->terms_link)
+        @if (isset($trade->terms_link) && $trade->terms_link)
             <div class="row">
-                <div class="col-md-2 col-4"><h5>Proof of Terms</h5></div>
+                <div class="col-md-2 col-4">
+                    <h5>Proof of Terms</h5>
+                </div>
                 <div class="col-md-10 col-8"><a href="{{ $trade->terms_link }}">{{ $trade->terms_link }}</a></div>
             </div>
         @endif
-        @if($listing->comments)
+        @if ($listing->comments)
             <div class="mb-2">{!! nl2br(htmlentities($listing->comments)) !!}</div>
         @endif
-            <p><strong>Contact Via:</strong> {!! nl2br(htmlentities($listing->contact)) !!}
+        <p><strong>Contact Via:</strong> {!! nl2br(htmlentities($listing->contact)) !!}
             <hr />
         <div class="row">
             <div class="col-md-6">
@@ -25,7 +27,7 @@
                     'user' => $listing->user,
                     'data' => isset($listing->data['seeking']) ? parseAssetData($listing->data['seeking']) : null,
                     'listing' => $listing,
-                    'etc' => isset($listing->data['seeking_etc']) ? $listing->data['seeking_etc'] : null
+                    'etc' => isset($listing->data['seeking_etc']) ? $listing->data['seeking_etc'] : null,
                 ])
             </div>
             <div class="col-md-6">
@@ -36,18 +38,20 @@
                     'user' => $listing->user,
                     'data' => isset($listing->data['offering']) ? parseAssetData($listing->data['offering']) : null,
                     'listing' => $listing,
-                    'etc' => isset($listing->data['offering_etc']) ? $listing->data['offering_etc'] : null
+                    'etc' => isset($listing->data['offering_etc']) ? $listing->data['offering_etc'] : null,
                 ])
             </div>
         </div>
         <hr />
         @php
-            $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Trade\TradeListing')->where('commentable_id', $listing->id)->count();
+            $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Trade\TradeListing')
+                ->where('commentable_id', $listing->id)
+                ->count();
         @endphp
         <div class="text-right">
             <a href="{{ $listing->url }}" class="btn btn-outline-primary">
                 <i class="fas fa-comment"></i>
-                {{ $commentCount }} Comment{{$commentCount != 1 ? 's' : ''}} ・ View Details
+                {{ $commentCount }} Comment{{ $commentCount != 1 ? 's' : '' }} ・ View Details
             </a>
         </div>
     </div>
