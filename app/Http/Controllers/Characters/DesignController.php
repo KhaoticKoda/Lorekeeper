@@ -173,7 +173,7 @@ class DesignController extends Controller {
         $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
             return [
                 $item->id => json_encode([
-                    'name' => $item->name,
+                    'name'      => $item->name,
                     'image_url' => $item->image_url,
                 ]),
             ];

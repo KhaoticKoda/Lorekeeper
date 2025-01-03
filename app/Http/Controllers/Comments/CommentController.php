@@ -10,8 +10,8 @@ use App\Models\News;
 use App\Models\Report\Report;
 use App\Models\Sales\Sales;
 use App\Models\SitePage;
-use App\Models\User\User;
 use App\Models\Trade\TradeListing;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -135,7 +135,7 @@ class CommentController extends Controller {
                 $listing = TradeListing::find($comment->commentable_id);
                 $recipient = $listing->user;
                 $post = 'your trade listing';
-                $link = $listing->url . '/#comment-' . $comment->getKey();
+                $link = $listing->url.'/#comment-'.$comment->getKey();
                 break;
             case 'App\Models\Gallery\GallerySubmission':
                 $submission = GallerySubmission::find($comment->commentable_id);

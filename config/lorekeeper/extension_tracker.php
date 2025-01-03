@@ -1,4 +1,5 @@
 <?php
+
 return [
 
     // FORMAT EXAMPLE.
@@ -13,7 +14,7 @@ return [
     // ],
 
     'trade_listings' => [
-        'key' => 'Trade_Listings',
+        'key'      => 'Trade_Listings',
         'wiki_key' => 'Trade_Listings',
         'creators' => json_encode([
             'Mercury' => 'https://github.com/itinerare/',

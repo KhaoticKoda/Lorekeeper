@@ -48,7 +48,7 @@ class Trade extends Model {
      * @var array
      */
     public static $createRules = [
-        'status' => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
+        'status'     => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
         'terms_link' => 'nullable|url',
     ];
 
@@ -58,7 +58,7 @@ class Trade extends Model {
      * @var array
      */
     public static $updateRules = [
-        'status' => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
+        'status'     => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
         'terms_link' => 'nullable|url',
     ];
 

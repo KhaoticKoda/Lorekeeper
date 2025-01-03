@@ -2,16 +2,13 @@
 
 namespace App\Models\Trade;
 
-use Carbon\Carbon;
-use App\Facades\Settings;
-use App\Models\User\User;
-use App\Traits\Commentable;
-use Illuminate\Support\Facades\DB;
 use App\Models\Character\Character;
 use App\Models\Model;
+use App\Models\User\User;
+use App\Traits\Commentable;
+use Carbon\Carbon;
 
-class TradeListing extends Model
-{
+class TradeListing extends Model {
     use Commentable;
 
     /**
@@ -31,6 +28,16 @@ class TradeListing extends Model
     protected $table = 'trade_listings';
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data'       => 'array',
+        'expires_at' => 'datetime',
+    ];
+
+    /**
      * Whether the model contains timestamps to be saved and updated.
      *
      * @var string
@@ -38,25 +45,15 @@ class TradeListing extends Model
     public $timestamps = true;
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'data' => 'array',
-        'expires_at' => 'datetime',
-    ];
-
-    /**
      * Validation rules for character creation.
      *
      * @var array
      */
     public static $createRules = [
-        'title' => 'nullable|between:3,50',
-        'comments' => 'nullable',
-        'contact' => 'required',
-        'seeking_etc' => 'nullable|between:3,100',
+        'title'        => 'nullable|between:3,50',
+        'comments'     => 'nullable',
+        'contact'      => 'required',
+        'seeking_etc'  => 'nullable|between:3,100',
         'offering_etc' => 'nullable|between:3,100',
     ];
 
@@ -66,10 +63,10 @@ class TradeListing extends Model
      * @var array
      */
     public static $updateRules = [
-        'title' => 'nullable|between:3,50',
-        'comments' => 'nullable',
-        'contact' => 'required',
-        'seeking_etc' => 'nullable|between:3,100',
+        'title'        => 'nullable|between:3,50',
+        'comments'     => 'nullable',
+        'contact'      => 'required',
+        'seeking_etc'  => 'nullable|between:3,100',
         'offering_etc' => 'nullable|between:3,100',
     ];
 
@@ -95,30 +92,31 @@ class TradeListing extends Model
     /**
      * Scope a query to only include active trade listings.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query) {
-        return $query->where(function($query) {
-                $query->where('expires_at', '>', Carbon::now())->orWhere(function($query) {
-                    $query->where('expires_at', '>=', Carbon::now());
-                });
+        return $query->where(function ($query) {
+            $query->where('expires_at', '>', Carbon::now())->orWhere(function ($query) {
+                $query->where('expires_at', '>=', Carbon::now());
+            });
         });
     }
 
     /**
      * Scope a query to only include active trade listings.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExpired($query) {
-        return $query->where(function($query) {
-            $query->where('expires_at', '<', Carbon::now())->orWhere(function($query) {
+        return $query->where(function ($query) {
+            $query->where('expires_at', '<', Carbon::now())->orWhere(function ($query) {
                 $query->where('expires_at', '<=', Carbon::now());
             });
         });
-
     }
 
     /**********************************************************************************************
@@ -133,8 +131,11 @@ class TradeListing extends Model
      * @return string
      */
     public function getDisplayNameAttribute() {
-        if($this->title == null) return $this->user->displayName .'\'s <a href="'. $this->url. '">Trade Listing</a> (#' . $this->id .')';
-        else return '<a href="'.$this->url.'" data-toggle="tooltip" title="'.$this->user->name.'\'s trade listing.">'.$this->title.'</a> (Trade Listing #' . $this->id .')';
+        if ($this->title == null) {
+            return $this->user->displayName.'\'s <a href="'.$this->url.'">Trade Listing</a> (#'.$this->id.')';
+        } else {
+            return '<a href="'.$this->url.'" data-toggle="tooltip" title="'.$this->user->name.'\'s trade listing.">'.$this->title.'</a> (Trade Listing #'.$this->id.')';
+        }
     }
 
     /**
@@ -143,8 +144,11 @@ class TradeListing extends Model
      * @return string
      */
     public function getDisplayNameShortAttribute() {
-        if($this->title == null) return $this->user->displayName .'\'s <a href="'. $this->url. '">Trade Listing</a> (#' . $this->id .')';
-        else return '<a href="'.$this->url.'" data-toggle="tooltip" title="'.$this->user->name.'\'s trade listing.">'.$this->title.'</a>';
+        if ($this->title == null) {
+            return $this->user->displayName.'\'s <a href="'.$this->url.'">Trade Listing</a> (#'.$this->id.')';
+        } else {
+            return '<a href="'.$this->url.'" data-toggle="tooltip" title="'.$this->user->name.'\'s trade listing.">'.$this->title.'</a>';
+        }
     }
 
     /**
@@ -187,37 +191,40 @@ class TradeListing extends Model
     /**
      * Gets the inventory of the user for selection.
      *
+     * @param mixed $user
+     *
      * @return array
      */
-    public function getInventory($user)
-    {
+    public function getInventory($user) {
         return $this->data && isset($this->data['user']['user_items']) ? $this->data['user']['user_items'] : [];
+
         return $inventory;
     }
 
     /**
      * Gets the currencies of the given user for selection.
      *
-     * @param  \App\Models\User\User $user
+     * @param User $user
+     *
      * @return array
      */
-    public function getCurrencies($user)
-    {
+    public function getCurrencies($user) {
         return $this->data && isset($this->data['user']) && isset($this->data['user']['currencies']) ? $this->data['user']['currencies'] : [];
     }
 
     /**
      * Gets the characters of the given user for selection.
      *
-     * @param  \App\Models\User\User $user
+     * @param User $user
+     *
      * @return array
      */
-    public function getCharacters($user)
-    {
-
+    public function getCharacters($user) {
         $characters = $this->data && isset($this->data['user']) && isset($this->data['user']['characters']) ? $this->data['user']['characters'] : [];
-        if($characters) $characters = array_keys($characters);
+        if ($characters) {
+            $characters = array_keys($characters);
+        }
+
         return $characters;
     }
-
 }

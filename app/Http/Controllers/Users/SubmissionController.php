@@ -103,7 +103,7 @@ class SubmissionController extends Controller {
         $item_filter = Item::released()->orderBy('name')->get()->mapWithKeys(function ($item) {
             return [
                 $item->id => json_encode([
-                    'name' => $item->name,
+                    'name'      => $item->name,
                     'image_url' => $item->image_url,
                 ]),
             ];
@@ -155,7 +155,7 @@ class SubmissionController extends Controller {
         $item_filter = Item::released()->orderBy('name')->get()->mapWithKeys(function ($item) {
             return [
                 $item->id => json_encode([
-                    'name' => $item->name,
+                    'name'      => $item->name,
                     'image_url' => $item->image_url,
                 ]),
             ];
@@ -413,7 +413,7 @@ class SubmissionController extends Controller {
         $item_filter = Item::released()->orderBy('name')->get()->mapWithKeys(function ($item) {
             return [
                 $item->id => json_encode([
-                    'name' => $item->name,
+                    'name'      => $item->name,
                     'image_url' => $item->image_url,
                 ]),
             ];
@@ -455,7 +455,7 @@ class SubmissionController extends Controller {
         $item_filter = Item::released()->orderBy('name')->get()->mapWithKeys(function ($item) {
             return [
                 $item->id => json_encode([
-                    'name' => $item->name,
+                    'name'      => $item->name,
                     'image_url' => $item->image_url,
                 ]),
             ];

@@ -1,26 +1,19 @@
-<?php namespace App\Services;
+<?php
 
-use App\Services\Service;
+namespace App\Services;
 
-use Carbon\Carbon;
-
-use App\Facades\Notifications;
 use App\Facades\Settings;
-use App\Models\User\User;
-use App\Models\User\UserItem;
 use App\Models\Character\Character;
 use App\Models\Character\CharacterTransfer;
-use App\Models\Submission\Submission;
-use App\Models\Submission\SubmissionCharacter;
 use App\Models\Currency\Currency;
-use App\Models\Item\Item;
 use App\Models\Trade\TradeListing;
+use App\Models\User\User;
+use App\Models\User\UserItem;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Image;
 use Illuminate\Support\Facades\DB;
 
-class TradeListingManager extends Service
-{
+class TradeListingManager extends Service {
     /*
     |--------------------------------------------------------------------------
     | Trade Manager
@@ -33,33 +26,34 @@ class TradeListingManager extends Service
     /**
      * Creates a new trade listing.
      *
-     * @param  array                        $data
-     * @param  \App\Models\User\User        $user
-     * @return bool|\App\Models\Trade\TradeListing
+     * @param array $data
+     * @param User  $user
+     *
+     * @return bool|TradeListing
      */
     public function createTradeListing($data, $user) {
         DB::beginTransaction();
         try {
             if (!isset($data['contact'])) {
-                throw new \Exception("Please enter your preferred method(s) of contact.");
+                throw new \Exception('Please enter your preferred method(s) of contact.');
             }
 
             $listing = TradeListing::create([
-                'title' => isset($data['title']) ? $data['title'] : null,
-                'user_id' => $user->id,
-                'comments' => isset($data['comments']) ? $data['comments'] : null,
-                'contact' => $data['contact'],
+                'title'    => $data['title'] ?? null,
+                'user_id'  => $user->id,
+                'comments' => $data['comments'] ?? null,
+                'contact'  => $data['contact'],
             ]);
 
             $listingData = [];
             if (!$seekingData = $this->handleSeekingAssets($listing, $data, $user)) {
-                throw new \Exception("Error attaching sought attachments.");
+                throw new \Exception('Error attaching sought attachments.');
             } else {
                 $listingData['seeking'] = getDataReadyAssets($seekingData);
             }
 
             if (!$offeringData = $this->handleOfferingAssets($listing, $data, $user)) {
-                throw new \Exception("Error attaching offered attachments.");
+                throw new \Exception('Error attaching offered attachments.');
             } else {
                 $listingData['offering'] = $offeringData;
             }
@@ -84,44 +78,54 @@ class TradeListingManager extends Service
             }
 
             return $this->commitReturn($listing);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 
     /**
      * Marks a trade listing as expired.
      *
-     * @param  array                        $data
-     * @param  \App\Models\User\User        $user
-     * @return bool|\App\Models\Trade\TradeListing
+     * @param array $data
+     * @param User  $user
+     *
+     * @return bool|TradeListing
      */
-    public function markExpired($data, $user)
-    {
+    public function markExpired($data, $user) {
         DB::beginTransaction();
         try {
             $listing = TradeListing::find($data['id']);
-            if(!$listing) throw new \Exception("Invalid trade listing.");
-            if(!$listing->isActive) throw new \Exception("This listing is already expired.");
-            if(!$listing->user->id == Auth::user()->id && !Auth::user()->hasPower('manage_submissions')) throw new \Exception("You can't edit this listing.");
+            if (!$listing) {
+                throw new \Exception('Invalid trade listing.');
+            }
+            if (!$listing->isActive) {
+                throw new \Exception('This listing is already expired.');
+            }
+            if (!$listing->user->id == Auth::user()->id && !Auth::user()->hasPower('manage_submissions')) {
+                throw new \Exception("You can't edit this listing.");
+            }
 
             $listing->expires_at = Carbon::now();
             $listing->save();
 
             return $this->commitReturn($listing);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 
     /**
      * Handles recording of assets on the seeking side of a trade listing, as well as initial validation.
      *
-     * @param  \App\Models\Trade\TradeListing $listing
-     * @param  array                    $data
-     * @return bool|array
+     * @param TradeListing $listing
+     * @param array        $data
+     * @param mixed        $user
+     *
+     * @return array|bool
      */
     private function handleSeekingAssets($listing, $data, $user) {
         DB::beginTransaction();
@@ -140,10 +144,10 @@ class TradeListingManager extends Service
 
                     if ($type == 'Currency') {
                         if (!$asset->is_user_owned) {
-                            throw new \Exception("One or more of the selected currencies cannot be held by users.");
+                            throw new \Exception('One or more of the selected currencies cannot be held by users.');
                         }
                         if (!$asset->allow_user_to_user) {
-                            throw new \Exception("One or more of the selected currencies cannot be traded.");
+                            throw new \Exception('One or more of the selected currencies cannot be traded.');
                         }
                     }
 
@@ -156,19 +160,21 @@ class TradeListingManager extends Service
             }
 
             return $this->commitReturn($seekingAssets);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 
     /**
      * Handles recording of assets on the user's side of a trade listing, as well as initial validation.
      *
-     * @param  \App\Models\Trade\TradeListing $listing
-     * @param  array                    $data
-     * @param  \App\Models\User\User    $user
-     * @return bool|array
+     * @param TradeListing $listing
+     * @param array        $data
+     * @param User         $user
+     *
+     * @return array|bool
      */
     private function handleOfferingAssets($listing, $data, $user) {
         DB::beginTransaction();
@@ -179,10 +185,14 @@ class TradeListingManager extends Service
 
             // Attach items. They are not even held, merely recorded for display on the listing.
             if (isset($data['stack_id'])) {
-                foreach($data['stack_id'] as $key=>$stackId) {
+                foreach ($data['stack_id'] as $key=>$stackId) {
                     $stack = UserItem::with('item')->find($stackId);
-                    if(!$stack || $stack->user_id != $user->id) throw new \Exception("Invalid item selected.");
-                    if(!$stack->item->allow_transfer || isset($stack->data['disallow_transfer'])) throw new \Exception("One or more of the selected items cannot be transferred.");
+                    if (!$stack || $stack->user_id != $user->id) {
+                        throw new \Exception('Invalid item selected.');
+                    }
+                    if (!$stack->item->allow_transfer || isset($stack->data['disallow_transfer'])) {
+                        throw new \Exception('One or more of the selected items cannot be transferred.');
+                    }
 
                     addAsset($userAssets, $stack, $data['stack_quantity'][$stackId]);
                     $assetCount++;
@@ -196,7 +206,9 @@ class TradeListingManager extends Service
             if (isset($data['offer_currency_ids'])) {
                 foreach ($data['offer_currency_ids'] as $key=>$currencyId) {
                     $currency = Currency::where('allow_user_to_user', 1)->where('id', $currencyId)->first();
-                    if(!$currency) throw new \Exception("Invalid currency selected.");
+                    if (!$currency) {
+                        throw new \Exception('Invalid currency selected.');
+                    }
 
                     addAsset($userAssets, $currency, 1);
                     $assetCount++;
@@ -208,27 +220,40 @@ class TradeListingManager extends Service
 
             // Attach characters.
             if (isset($data['character_id'])) {
-                foreach($data['character_id'] as $characterId) {
+                foreach ($data['character_id'] as $characterId) {
                     $character = Character::where('id', $characterId)->where('user_id', $user->id)->first();
-                    if(!$character) throw new \Exception("Invalid character selected.");
-                    if(!$character->is_sellable && !$character->is_tradeable && !$character->is_giftable) throw new \Exception("One or more of the selected characters cannot be transferred.");
-                    if(CharacterTransfer::active()->where('character_id', $character->id)->exists()) throw new \Exception("One or more of the selected characters is already pending a character transfer.");
-                    if($character->trade_id) throw new \Exception("One or more of the selected characters is already in a trade.");
-                    if($character->designUpdate()->active()->exists()) throw new \Exception("One or more of the selected characters has an active design update. Please wait for it to be processed, or delete it.");
-                    if($character->transferrable_at && $character->transferrable_at->isFuture()) throw new \Exception("One or more of the selected characters is still on transfer cooldown and cannot be transferred.");
+                    if (!$character) {
+                        throw new \Exception('Invalid character selected.');
+                    }
+                    if (!$character->is_sellable && !$character->is_tradeable && !$character->is_giftable) {
+                        throw new \Exception('One or more of the selected characters cannot be transferred.');
+                    }
+                    if (CharacterTransfer::active()->where('character_id', $character->id)->exists()) {
+                        throw new \Exception('One or more of the selected characters is already pending a character transfer.');
+                    }
+                    if ($character->trade_id) {
+                        throw new \Exception('One or more of the selected characters is already in a trade.');
+                    }
+                    if ($character->designUpdate()->active()->exists()) {
+                        throw new \Exception('One or more of the selected characters has an active design update. Please wait for it to be processed, or delete it.');
+                    }
+                    if ($character->transferrable_at && $character->transferrable_at->isFuture()) {
+                        throw new \Exception('One or more of the selected characters is still on transfer cooldown and cannot be transferred.');
+                    }
 
                     addAsset($userAssets, $character, 1);
                     $assetCount++;
                 }
             }
-            if($assetCount > $assetLimit) {
+            if ($assetCount > $assetLimit) {
                 throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
             }
 
             return $this->commitReturn($userAssets);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 }

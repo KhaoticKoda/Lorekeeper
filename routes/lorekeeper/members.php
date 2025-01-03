@@ -92,7 +92,7 @@ Route::group(['prefix' => 'trades', 'namespace' => 'Users'], function () {
     Route::get('listings/{id}', 'TradeController@getListing')->where('id', '[0-9]+');
     Route::post('listings/create', 'TradeController@postCreateListing');
     Route::post('listings/{id}/expire', 'TradeController@postExpireListing')->where('id', '[0-9]+');
-    
+
     // TRADES
     Route::get('{status}', 'TradeController@getIndex')->where('status', 'open|pending|completed|rejected|canceled');
     Route::get('create', 'TradeController@getCreateTrade');
