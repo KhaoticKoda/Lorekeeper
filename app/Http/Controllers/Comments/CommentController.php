@@ -11,7 +11,7 @@ use App\Models\Report\Report;
 use App\Models\Sales\Sales;
 use App\Models\SitePage;
 use App\Models\User\User;
-use App\Models\TradeListing;
+use App\Models\Trade\TradeListing;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -131,7 +131,7 @@ class CommentController extends Controller {
                 $post = 'your site page';
                 $link = $page->url.'/#comment-'.$comment->getKey();
                 break;
-            case 'App\Models\TradeListing':
+            case 'App\Models\Trade\TradeListing':
                 $listing = TradeListing::find($comment->commentable_id);
                 $recipient = $listing->user;
                 $post = 'your trade listing';

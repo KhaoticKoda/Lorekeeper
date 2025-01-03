@@ -89,7 +89,7 @@ function getAssetKeys($isCharacter = false) {
  */
 function getAssetModelString($type, $namespaced = true) {
     switch ($type) {
-        case 'items':
+        case 'items': case 'item':
             if ($namespaced) {
                 return '\App\Models\Item\Item';
             } else {
@@ -97,7 +97,7 @@ function getAssetModelString($type, $namespaced = true) {
             }
             break;
 
-        case 'currencies':
+        case 'currencies': case 'currency':
             if ($namespaced) {
                 return '\App\Models\Currency\Currency';
             } else {

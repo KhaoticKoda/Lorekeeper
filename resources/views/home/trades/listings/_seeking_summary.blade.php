@@ -1,36 +1,29 @@
 @if($data)
-    @if($data['items'])
-        <div class="row">
-        <div class="col-sm-2">
-            <strong>Items:</strong>
-        </div>
-            <div class="col-md">
-                <div class="row">   
-                    @foreach($data['items'] as $itemRow)
-                    <div class="col-sm-4">
-                        <a href="/world/items?name={{ $itemRow['asset']->name }}">{!! $itemRow['asset']->name !!}</a> x{!! $itemRow['quantity'] !!}
+    @foreach ($data as $type=>$assets)
+        @if ($assets)
+            <div class="row">
+                <div class="col-sm-2">
+                    <strong>{!! ucfirst($type) !!}:</strong>
+                </div>
+                <div class="col-md">
+                    <div class="row">
+                        @foreach($assets as $asset)
+                            <div class="col-sm-4">
+                                @if ($type != 'currencies')
+                                    @if (isset($asset['asset']->imageUrl))
+                                        <img class="small-icon" src="{{$asset['asset']->imageUrl }}">
+                                    @endif
+                                    {!! $asset['asset']->displayName !!} x{!! $asset['quantity'] !!}
+                                @else
+                                    {!! $asset['asset']->display('') !!}
+                                @endif
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
-        </div>
-    @endif
-    @if($data['currencies'])
-        <div class="row">
-        <div class="col-sm-2">
-            <strong>Currencies:</strong>
-        </div>
-            <div class="col-md">
-                <div class="row">
-                    @foreach($data['currencies'] as $currency)
-                        <div class="col-sm-3">
-                            {!! $currency['asset']->display('') !!}
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endif
+        @endif
+    @endforeach
 @endif
 @if(isset($etc) && $etc)
     <div class="row">

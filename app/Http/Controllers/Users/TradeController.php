@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Facades\Settings;
 use App\Http\Controllers\Controller;
+use App\Models\Currency\Currency;
 use App\Models\Character\CharacterCategory;
 use App\Models\Item\Item;
 use App\Models\Item\ItemCategory;
-use App\Models\Trade;
-use App\Models\TradeListing;
+use App\Models\Trade\Trade;
+use App\Models\Trade\TradeListing;
 use App\Models\User\User;
 use App\Models\User\UserItem;
-use App\Services\TradeManager;
+use App\Services\Trade\TradeManager;
 use App\Services\TradeListingManager;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TradeController extends Controller {
     /*
@@ -31,7 +35,6 @@ class TradeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex($status = 'open') {
-        $user = Auth::user();
         $trades = Trade::with('recipient')->with('sender')->with('staff')->where(function ($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
         })->where('status', ucfirst($status))->orderBy('id', 'DESC');
@@ -80,10 +83,18 @@ class TradeController extends Controller {
                 return $userItem->isTransferrable == true;
             })
             ->sortBy('item.name');
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+                $item->id => json_encode([
+                    'name' => $item->name,
+                    'image_url' => $item->image_url,
+                ]),
+            ];
+        });
 
         return view('home.trades.create_trade', [
             'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'item_filter'         => Item::orderBy('name')->get()->keyBy('id'),
+            'item_filter'         => $item_filter,
             'inventory'           => $inventory,
             'userOptions'         => User::visible()->where('id', '!=', Auth::user()->id)->orderBy('name')->pluck('name', 'id')->toArray(),
             'characters'          => Auth::user()->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
@@ -115,11 +126,19 @@ class TradeController extends Controller {
             $trade = null;
         }
 
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+                $item->id => json_encode([
+                    'name' => $item->name,
+                    'image_url' => $item->image_url,
+                ]),
+            ];
+        });
         return view('home.trades.edit_trade', [
             'trade'               => $trade,
             'partner'             => (Auth::user()->id == $trade->sender_id) ? $trade->recipient : $trade->sender,
             'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'item_filter'         => Item::orderBy('name')->get()->keyBy('id'),
+            'item_filter'         => $item_filter,
             'inventory'           => $inventory,
             'userOptions'         => User::visible()->orderBy('name')->pluck('name', 'id')->toArray(),
             'characters'          => Auth::user()->allCharacters()->visible()->with('designUpdate')->get(),
@@ -131,7 +150,7 @@ class TradeController extends Controller {
     /**
      * Creates a new trade.
      *
-     * @param App\Services\TradeManager $service
+     * @param App\Services\Trade\TradeManager $service
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -154,7 +173,7 @@ class TradeController extends Controller {
     /**
      * Edits a trade.
      *
-     * @param App\Services\TradeManager $service
+     * @param App\Services\Trade\TradeManager $service
      * @param int                       $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -191,7 +210,7 @@ class TradeController extends Controller {
     /**
      * Confirms or unconfirms an offer.
      *
-     * @param App\Services\TradeManager $service
+     * @param App\Services\Trade\TradeManager $service
      * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -230,7 +249,7 @@ class TradeController extends Controller {
     /**
      * Confirms or unconfirms a trade.
      *
-     * @param App\Services\TradeManager $service
+     * @param App\Services\Trade\TradeManager $service
      * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -269,7 +288,7 @@ class TradeController extends Controller {
     /**
      * Cancels a trade.
      *
-     * @param App\Services\TradeManager $service
+     * @param App\Services\Trade\TradeManager $service
      * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -347,21 +366,32 @@ class TradeController extends Controller {
      * @param  string  $type
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getCreateListing(Request $request)
-    {
+    public function getCreateListing(Request $request) {
         $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', Auth::user()->id)
         ->get()
         ->filter(function($userItem){
             return $userItem->isTransferrable == true;
         })
         ->sortBy('item.name');;
-        $currencies = Currency::where('is_user_owned', 1)->where('allow_user_to_user', 1)->orderBy('sort_user', 'DESC')->get();
+        $currencies = Currency::where('is_user_owned', 1)->where('allow_user_to_user', 1)->orderBy('sort_user', 'DESC')->get()->pluck('name', 'id');
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+            $item->id => json_encode([
+                'name' => $item->name,
+                'image_url' => $item->image_url,
+                'allow_transfer' => $item->allow_transfer,
+            ]),
+            ];
+        });
+        $items = $item_filter->filter(function ($item) {
+            return json_decode($item)->allow_transfer;
+        });
 
         return view('home.trades.listings.create_listing', [
-            'items' => Item::orderBy('name')->where('allow_transfer', 1)->pluck('name', 'id'),
+            'items' => $items,
             'currencies' => $currencies,
             'categories' => ItemCategory::orderBy('sort', 'DESC')->get(),
-            'item_filter' => Item::orderBy('name')->get()->keyBy('id'),
+            'item_filter' => $item_filter,
             'inventory' => $inventory,
             'characters' => Auth::user()->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
             'characterCategories' => CharacterCategory::orderBy('sort', 'DESC')->get(),
@@ -377,16 +407,20 @@ class TradeController extends Controller {
      * @param  App\Services\TradeListingManager  $service
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreateListing(Request $request, TradeListingManager $service)
-    {
-        if($listing = $service->createTradeListing($request->only(['title', 'comments', 'contact', 'item_ids', 'quantities', 'stack_id', 'stack_quantity', 'offer_currency_ids', 'seeking_currency_ids', 'character_id', 'offering_etc', 'seeking_etc']), Auth::user())) {
-            flash('Trade listing created successfully.')->success();
-            return redirect()->to($listing->url);
+    public function postCreateListing(Request $request, TradeListingManager $service) {
+        if (!$listing = $service->createTradeListing($request->only([
+                'title', 'comments', 'contact', 'item_ids', 'offering_etc', 'seeking_etc',
+                'rewardable_type', 'rewardable_id', 'quantity',
+                'offer_currency_ids', 'character_id', 'stack_id', 'stack_quantity',
+            ]), Auth::user())) {
+            foreach($service->errors()->getMessages()['error'] as $error) {
+                flash($error)->error();
+            }
+            
+            return redirect()->back();
         }
-        else {
-            foreach($service->errors()->getMessages()['error'] as $error) flash($error)->error();
-        }
-        return redirect()->back();
+
+        return redirect()->to($listing->url);
     }
 
     /**
@@ -397,16 +431,18 @@ class TradeController extends Controller {
      * @param  integer  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postExpireListing(Request $request, TradeListingManager $service, $id)
-    {
+    public function postExpireListing(Request $request, TradeListingManager $service, $id) {
         $listing = TradeListing::find($id);
-        if(!$listing) abort(404);
-
-        if($service->markExpired(['id' => $id], Auth::user())) {
-            flash('Listing expired successfully.')->success();
+        if(!$listing) {
+            abort(404);
         }
-        else {
-            foreach($service->errors()->getMessages()['error'] as $error) flash($error)->error();
+
+        if ($service->markExpired(['id' => $id], Auth::user())) {
+            flash('Listing expired successfully.')->success();
+        } else {
+            foreach($service->errors()->getMessages()['error'] as $error) {
+                flash($error)->error();
+            }
         }
         return redirect()->back();
     }

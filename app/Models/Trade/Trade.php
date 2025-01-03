@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Trade;
 
 use App\Facades\Settings;
 use App\Models\Character\Character;
@@ -41,6 +41,26 @@ class Trade extends Model {
      * @var string
      */
     public $timestamps = true;
+
+    /**
+     * Validation rules for character creation.
+     *
+     * @var array
+     */
+    public static $createRules = [
+        'status' => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
+        'terms_link' => 'nullable|url',
+    ];
+
+    /**
+     * Validation rules for character updating.
+     *
+     * @var array
+     */
+    public static $updateRules = [
+        'status' => 'required|in:Pending,Accepted,Completed,Rejected,Proposal',
+        'terms_link' => 'nullable|url',
+    ];
 
     /**********************************************************************************************
 

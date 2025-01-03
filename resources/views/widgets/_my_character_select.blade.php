@@ -7,7 +7,7 @@
                 <select class="form-control d-inline-block w-auto" id="userCharacterCategory">
                     <option value="all">All Categories</option>
                     <option value="selected">Selected Characters</option>
-                    <option disabled>&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</option>
+                    <option disabled>──────────</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach

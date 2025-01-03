@@ -7,7 +7,7 @@ use App\Facades\Settings;
 use App\Models\Character\Character;
 use App\Models\Character\CharacterTransfer;
 use App\Models\Currency\Currency;
-use App\Models\Trade;
+use App\Models\Trade\Trade;
 use App\Models\User\User;
 use App\Models\User\UserItem;
 use Illuminate\Support\Facades\DB;

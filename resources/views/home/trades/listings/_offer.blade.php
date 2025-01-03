@@ -2,8 +2,8 @@
 <h3>Offering:</h3>
 
 <div class="card mb-3 trade-offer">
-    @if(isset($data) && $data['user_items'])
-        <div class="card-header">
+    @if (isset($data) && $data['user_items'])
+        <div class="card-header h5">
             Items
         </div>
         <div class="card-body user-items">
@@ -29,8 +29,8 @@
             </table>
         </div>
     @endif
-    @if(isset($data) && $data['characters'])
-        <div class="card-header border-top">
+    @if (isset($data) && $data['characters'])
+        <div class="card-header {{ isset($data['user_items']) ? 'border-top' : '' }} border-bottom-0 h5">
             Characters
         </div>
         <div class="card-body">
@@ -50,8 +50,8 @@
             </div>
         </div>
     @endif
-    @if(isset($data) && $data['currencies'])
-        <div class="card-header border-top border-bottom-0">
+    @if (isset($data) && $data['currencies'])
+        <div class="card-header {{ (false) ? 'border-top' : '' }} border-bottom-0 h5">
             Currencies
         </div>
         <ul class="list-group list-group-flush">
@@ -62,8 +62,8 @@
             @endforeach
         </ul>
     @endif
-    @if(isset($listing->data['offering_etc']) && $listing->data['offering_etc'])
-        <div class="card-header border-top border-bottom-0">
+    @if (isset($listing->data['offering_etc']) && $listing->data['offering_etc'])
+        <div class="card-header {{ isset($data) ? 'border-top' : '' }} h5">
             Other Goods & Services
         </div>
         <ul class="list-group list-group-flush">
@@ -72,7 +72,7 @@
             </div>
         </ul>
     @endif
-    @if(!isset($listing->data['offering']) && !isset($listing->data['offering_etc']))
+    @if (!isset($listing->data['offering']) && !isset($listing->data['offering_etc']))
         <div class="card-body">{!! $user->displayName !!} has not offered anything.</div>
     @endif
 </div>

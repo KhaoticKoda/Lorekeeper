@@ -4,13 +4,8 @@ use App\Services\Service;
 
 use Carbon\Carbon;
 
-use DB;
-use Config;
-use Image;
-use Notifications;
-use Auth;
-use Settings;
-
+use App\Facades\Notifications;
+use App\Facades\Settings;
 use App\Models\User\User;
 use App\Models\User\UserItem;
 use App\Models\Character\Character;
@@ -19,7 +14,10 @@ use App\Models\Submission\Submission;
 use App\Models\Submission\SubmissionCharacter;
 use App\Models\Currency\Currency;
 use App\Models\Item\Item;
-use App\Models\TradeListing;
+use App\Models\Trade\TradeListing;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 class TradeListingManager extends Service
 {
@@ -37,55 +35,55 @@ class TradeListingManager extends Service
      *
      * @param  array                        $data
      * @param  \App\Models\User\User        $user
-     * @return bool|\App\Models\TradeListing
+     * @return bool|\App\Models\Trade\TradeListing
      */
-    public function createTradeListing($data, $user)
-    {
+    public function createTradeListing($data, $user) {
         DB::beginTransaction();
         try {
-            if(!isset($data['contact'])) throw new \Exception("Please enter your preferred method(s) of contact.");
+            if (!isset($data['contact'])) {
+                throw new \Exception("Please enter your preferred method(s) of contact.");
+            }
 
             $listing = TradeListing::create([
                 'title' => isset($data['title']) ? $data['title'] : null,
                 'user_id' => $user->id,
                 'comments' => isset($data['comments']) ? $data['comments'] : null,
                 'contact' => $data['contact'],
-                'data' => null
             ]);
 
-            if($assetData = $this->handleListingAssets($listing, $data, $user)) {
-                $listingData = $listing->data;
-                $listingData['offering'] = getDataReadyAssets($assetData['offering']);
-                $listingData['offering'] <> null ? $listing->data = json_encode($listingData) : null;
-                $listing->save();
+            $listingData = [];
+            if (!$seekingData = $this->handleSeekingAssets($listing, $data, $user)) {
+                throw new \Exception("Error attaching sought attachments.");
+            } else {
+                $listingData['seeking'] = getDataReadyAssets($seekingData);
             }
 
-            if($assetData = $this->handleSeekingAssets($listing, $data, $user)) {
-                $listingData = $listing->data;
-                $listingData['seeking'] = getDataReadyAssets($assetData['seeking']);
-                $listingData['seeking'] <> null ? $listing->data = json_encode($listingData) : null;
-                $listing->save();
+            if (!$offeringData = $this->handleOfferingAssets($listing, $data, $user)) {
+                throw new \Exception("Error attaching offered attachments.");
+            } else {
+                $listingData['offering'] = $offeringData;
             }
 
-            if($data['offering_etc'] || $data['seeking_etc']) {
-                $listingData = $listing->data;
-                $listingData['offering_etc'] = $data['offering_etc'];
-                $listingData['seeking_etc'] = $data['seeking_etc'];
-                $listing->data = json_encode($listingData);
-                $listing->save();
+            if ($data['offering_etc'] || $data['seeking_etc']) {
+                $listingData['offering_etc'] = $data['offering_etc'] ?? null;
+                $listingData['seeking_etc'] = $data['seeking_etc'] ?? null;
             }
 
-            // These checks are performed here, since it's faster and easier to check for the asset arrays (vs the separate inputs)
-            if(!$listing->data) throw new \Exception("Please enter what you're seeking and offering.");
-            if(!isset($listing->data['seeking']) && !isset($listing->data['seeking_etc'])) throw new \Exception("Please enter what you're seeking.");
-            if(!isset($listing->data['offering']) && !isset($listing->data['offering_etc'])) throw new \Exception("Please enter what you're offering.");
-
-            $duration = Settings::get('trade_listing_duration');
-            $listing->expires_at = Carbon::now()->addDays($duration);
+            $listing->expires_at = Carbon::now()->addDays(Settings::get('trade_listing_duration'));
+            $listing->data = $listingData;
             $listing->save();
 
-            return $this->commitReturn($listing);
+            if (!$listing->data) {
+                throw new \Exception("Please enter what you're seeking and offering.");
+            }
+            if (!isset($listing->data['seeking']) && !isset($listing->data['seeking_etc'])) {
+                throw new \Exception("Please enter what you're seeking.");
+            }
+            if (!isset($listing->data['offering']) && !isset($listing->data['offering_etc'])) {
+                throw new \Exception("Please enter what you're offering.");
+            }
 
+            return $this->commitReturn($listing);
         } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
@@ -97,7 +95,7 @@ class TradeListingManager extends Service
      *
      * @param  array                        $data
      * @param  \App\Models\User\User        $user
-     * @return bool|\App\Models\TradeListing
+     * @return bool|\App\Models\Trade\TradeListing
      */
     public function markExpired($data, $user)
     {
@@ -121,60 +119,43 @@ class TradeListingManager extends Service
     /**
      * Handles recording of assets on the seeking side of a trade listing, as well as initial validation.
      *
-     * @param  \App\Models\TradeListing $listing
+     * @param  \App\Models\Trade\TradeListing $listing
      * @param  array                    $data
      * @return bool|array
      */
-    private function handleSeekingAssets($listing, $data, $user)
-    {
+    private function handleSeekingAssets($listing, $data, $user) {
         DB::beginTransaction();
         try {
             $seekingAssets = createAssetsArray();
             $assetCount = 0;
-            $assetLimit = Config::get('lorekeeper.settings.trade_asset_limit');
+            $assetLimit = config('lorekeeper.settings.trade_asset_limit');
 
-            if(isset($data['item_ids'])) {
-                $keyed_quantities = [];
-                array_walk($data['item_ids'], function($id, $key) use(&$keyed_quantities, $data) {
-                    if($id != null && !in_array($id, array_keys($keyed_quantities), TRUE)) {
-                        $keyed_quantities[$id] = $data['quantities'][$key];
+            if (isset($data['rewardable_type'])) {
+                foreach ($data['rewardable_type'] as $key=>$type) {
+                    $model = getAssetModelString(strtolower($type));
+                    $asset = $model::find($data['rewardable_id'][$key]);
+                    if (!$asset) {
+                        throw new \Exception("Invalid {$type} selected.");
                     }
-                });
 
-                // Elaborate validation to account for the nature of the item select form.
-                foreach($data['item_ids'] as $id) {
-                    if($id != null) {
-                    $item = Item::find($id);
-                    if(!$item) throw new \Exception("One or more of the selected items is invalid.");
+                    if ($type == 'Currency') {
+                        if (!$asset->is_user_owned) {
+                            throw new \Exception("One or more of the selected currencies cannot be held by users.");
+                        }
+                        if (!$asset->allow_user_to_user) {
+                            throw new \Exception("One or more of the selected currencies cannot be traded.");
+                        }
                     }
-                }
-                $items = Item::find($data['item_ids']);
 
-                foreach($items as $item) {
-                    if(!$item) throw new \Exception("Invalid item selected.");
-                    if(!$item->allow_transfer) throw new \Exception("One or more of the selected items cannot be transferred.");
-
-                    addAsset($seekingAssets, $item, $keyed_quantities[$item->id]);
-                    $assetCount++;
+                    addAsset($seekingAssets, $asset, $data['quantity'][$key]);
+                    $assetCount += 1;
                 }
             }
-            if($assetCount > $assetLimit) throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
-
-            if(isset($data['seeking_currency_ids'])) {
-                $currencies = Currency::find($data['seeking_currency_ids']);
-
-                foreach($currencies as $currency) {
-                    if(!$currency) throw new \Exception("Invalid currency selected.");
-                    if(!$currency->is_user_owned) throw new \Exception("One or more of the selected currencies cannot be held by users.");
-                    if(!$currency->allow_user_to_user) throw new \Exception("One or more of the selected currencies cannot be traded.");
-
-                    addAsset($seekingAssets, $currency, 1);
-                    $assetCount++;
-                }
+            if ($assetCount > $assetLimit) {
+                throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
             }
-            if($assetCount > $assetLimit) throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
 
-            return $this->commitReturn(['seeking' => $seekingAssets]);
+            return $this->commitReturn($seekingAssets);
         } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
@@ -184,21 +165,20 @@ class TradeListingManager extends Service
     /**
      * Handles recording of assets on the user's side of a trade listing, as well as initial validation.
      *
-     * @param  \App\Models\TradeListing $listing
+     * @param  \App\Models\Trade\TradeListing $listing
      * @param  array                    $data
      * @param  \App\Models\User\User    $user
      * @return bool|array
      */
-    private function handleListingAssets($listing, $data, $user)
-    {
+    private function handleOfferingAssets($listing, $data, $user) {
         DB::beginTransaction();
         try {
             $userAssets = createAssetsArray();
             $assetCount = 0;
-            $assetLimit = Config::get('lorekeeper.settings.trade_asset_limit');
+            $assetLimit = config('lorekeeper.settings.trade_asset_limit');
 
             // Attach items. They are not even held, merely recorded for display on the listing.
-            if(isset($data['stack_id'])) {
+            if (isset($data['stack_id'])) {
                 foreach($data['stack_id'] as $key=>$stackId) {
                     $stack = UserItem::with('item')->find($stackId);
                     if(!$stack || $stack->user_id != $user->id) throw new \Exception("Invalid item selected.");
@@ -208,11 +188,13 @@ class TradeListingManager extends Service
                     $assetCount++;
                 }
             }
-            if($assetCount > $assetLimit) throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            if ($assetCount > $assetLimit) {
+                throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            }
 
             // Attach currencies. Character currencies cannot be attached to trades, so we're just checking the user's bank.
-            if(isset($data['offer_currency_ids'])) {
-                foreach($data['offer_currency_ids'] as $key=>$currencyId) {
+            if (isset($data['offer_currency_ids'])) {
+                foreach ($data['offer_currency_ids'] as $key=>$currencyId) {
                     $currency = Currency::where('allow_user_to_user', 1)->where('id', $currencyId)->first();
                     if(!$currency) throw new \Exception("Invalid currency selected.");
 
@@ -220,10 +202,12 @@ class TradeListingManager extends Service
                     $assetCount++;
                 }
             }
-            if($assetCount > $assetLimit) throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            if ($assetCount > $assetLimit) {
+                throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            }
 
             // Attach characters.
-            if(isset($data['character_id'])) {
+            if (isset($data['character_id'])) {
                 foreach($data['character_id'] as $characterId) {
                     $character = Character::where('id', $characterId)->where('user_id', $user->id)->first();
                     if(!$character) throw new \Exception("Invalid character selected.");
@@ -237,9 +221,11 @@ class TradeListingManager extends Service
                     $assetCount++;
                 }
             }
-            if($assetCount > $assetLimit) throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            if($assetCount > $assetLimit) {
+                throw new \Exception("You may only include a maximum of {$assetLimit} things in a listing.");
+            }
 
-            return $this->commitReturn(['offering' => $userAssets]);
+            return $this->commitReturn($userAssets);
         } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }

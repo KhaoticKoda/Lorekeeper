@@ -63,13 +63,14 @@
     <div class="col-lg-6">
         @include('home.trades.listings._offer', ['user' => $listing->user, 'data' => $offeringData, 'listing' => $listing, 'type' => 'offering'])
     </div>
-
 </div>
 
-@comments(['model' => $listing,
-        'perPage' => 5
-    ])
-
+    <hr />
+    <div class="container">
+        @comments(['model' => $listing,
+            'perPage' => 5
+        ])
+    </div>
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

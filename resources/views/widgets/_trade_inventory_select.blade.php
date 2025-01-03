@@ -14,12 +14,8 @@
                     {!! Form::label('item_id_filter', 'Item:', ['class' => 'mr-2']) !!}
                     {!! Form::select('item_id_filter', $item_filter, null, [
                         'id' => 'itemIdFilter',
-                        'class' => 'form-control mr-2 default item-select',
-                        'placeholder' => 'Start Typing to Find an Item'
-                    ]) !!}
-                    <a href="#" class="clear-item-filter btn btn-primary mb-2">
-                        Clear Item Filter
-                    </a>
+                        'class' => 'form-control mr-2 default item-select', 'placeholder' => 'Start Typing to Find an Item']) !!}
+                    <a href="#" class="clear-item-filter btn btn-primary mb-2">Clear Item Filter</a>
                 </div>
             </div>
             <div class="text-right mb-3">

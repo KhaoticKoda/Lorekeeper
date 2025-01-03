@@ -21,18 +21,34 @@
                 <h5 class="card-heading">
                     Seeking:
                 </h5>
-                @include('home.trades.listings._seeking_summary', ['user' => $listing->user, 'data' => isset($listing->data['seeking']) ? parseAssetData($listing->data['seeking']) : null, 'listing' => $listing, 'etc' => isset($listing->data['seeking_etc']) ? $listing->data['seeking_etc'] : null])
+                @include('home.trades.listings._seeking_summary', [
+                    'user' => $listing->user,
+                    'data' => isset($listing->data['seeking']) ? parseAssetData($listing->data['seeking']) : null,
+                    'listing' => $listing,
+                    'etc' => isset($listing->data['seeking_etc']) ? $listing->data['seeking_etc'] : null
+                ])
             </div>
             <div class="col-md-6">
                 <h5 class="card-heading">
                     Offering:
                 </h5>
-                @include('home.trades.listings._offer_summary', ['user' => $listing->user, 'data' => isset($listing->data['offering']) ? parseAssetData($listing->data['offering']) : null, 'listing' => $listing, 'etc' => isset($listing->data['offering_etc']) ? $listing->data['offering_etc'] : null])
+                @include('home.trades.listings._offer_summary', [
+                    'user' => $listing->user,
+                    'data' => isset($listing->data['offering']) ? parseAssetData($listing->data['offering']) : null,
+                    'listing' => $listing,
+                    'etc' => isset($listing->data['offering_etc']) ? $listing->data['offering_etc'] : null
+                ])
             </div>
         </div>
         <hr />
+        @php
+            $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Trade\TradeListing')->where('commentable_id', $listing->id)->count();
+        @endphp
         <div class="text-right">
-            <a href="{{ $listing->url }}" class="btn btn-outline-primary"><i class="fas fa-comment"></i> {{ App\Models\Comment::where('commentable_type', 'App\Models\TradeListing')->where('commentable_id', $listing->id)->count() }} Comment{{ App\Models\Comment::where('commentable_type', 'App\Models\TradeListing')->where('commentable_id', $listing->id)->count() != 1 ? 's' : ''}} ・ View Details</a>
+            <a href="{{ $listing->url }}" class="btn btn-outline-primary">
+                <i class="fas fa-comment"></i>
+                {{ $commentCount }} Comment{{$commentCount != 1 ? 's' : ''}} ・ View Details
+            </a>
         </div>
     </div>
 </div>

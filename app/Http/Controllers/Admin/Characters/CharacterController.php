@@ -12,10 +12,10 @@ use App\Models\Feature\Feature;
 use App\Models\Rarity;
 use App\Models\Species\Species;
 use App\Models\Species\Subtype;
-use App\Models\Trade;
+use App\Models\Trade\Trade;
 use App\Models\User\User;
 use App\Services\CharacterManager;
-use App\Services\TradeManager;
+use App\Services\Trade\TradeManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
