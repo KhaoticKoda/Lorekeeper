@@ -255,7 +255,7 @@ return [
     | This disables the option for users to manually upload their own
     | thumbnail images in design updates, including use of the cropper.
     | Note that this does not prevent permissioned staff from uploading
-    | custom thumbnail images. 
+    | custom thumbnail images.
     |
     | 0: Allows custom thumbnail uploads.
     | 1: Disallows custom thumbnail uploads.
@@ -274,7 +274,7 @@ return [
     | This disables the option for users to manually upload their own
     | thumbnail images in design updates, requiring use of the cropper.
     | Note that this does not prevent permissioned staff from uploading
-    | custom thumbnail images. 
+    | custom thumbnail images.
     |
     | 0: Allows custom thumbnail uploads.
     | 1: Disallows custom thumbnail uploads.
