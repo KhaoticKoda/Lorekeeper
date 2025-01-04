@@ -265,6 +265,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Remove Manual Thumbnail Image Upload Anyway
+    |--------------------------------------------------------------------------
+    |
+    | NOTE: If the above feature, the Masterlist Image Automation Removing
+    | Manual Upload For Users is enabled, this option is irrelevant.
+    |
+    | The following option is for if you want to disable the manual uploading
+    | of thumbnail images, to ensure users do not attempt to upload their
+    | own images, even despite the lack of automation. This essentially forces
+    | users to use the cropper, instead.
+    | This will remove it purely for users, not administration.
+    |
+    | 0: Keeps the manual thumbnail image upload for users.
+    | 1: Hides the thumbnail upload for users.
+    |
+    */
+    'hide_manual_thumbnail_image_upload' => 0,
+
+    /*
+    |--------------------------------------------------------------------------
     | Gallery Image Settings
     |--------------------------------------------------------------------------
     |
