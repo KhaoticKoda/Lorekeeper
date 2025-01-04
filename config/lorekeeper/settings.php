@@ -246,39 +246,38 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Masterlist Image Automation Removing Manual Upload For Users
+    | Masterlist Image Automation Hide Manual Thumbnail
     |--------------------------------------------------------------------------
     |
-    | NOTE: This feature will only function if the above feature, the
-    | Masterlist Image Automation Replacing Cropper, is also enabled.
+    | NOTE: If the "Masterlist Image Automation Replacing Cropper"
+    | setting above is enabled, this setting has no effect.
     |
-    | The following option is for if you DO want to disable the manual uploading
-    | of thumbnail images, to ensure users do not attempt to upload their
-    | own thumbnail images, regardless of the automation.
-    | This will remove it purely for users, not administration.
+    | This disables the option for users to manually upload their own
+    | thumbnail images in design updates, including use of the cropper.
+    | Note that this does not prevent permissioned staff from uploading
+    | custom thumbnail images. 
     |
-    | 0: Keeps the manual thumbnail upload for users.
-    | 1: Hides the thumbnail upload for users.
+    | 0: Allows custom thumbnail uploads.
+    | 1: Disallows custom thumbnail uploads.
     |
     */
     'masterlist_image_automation_hide_manual_thumbnail' => 0,
 
     /*
     |--------------------------------------------------------------------------
-    | Remove Manual Thumbnail Image Upload Anyway
+    | Remove Manual Thumbnail Image Upload
     |--------------------------------------------------------------------------
     |
-    | NOTE: If the above feature, the Masterlist Image Automation Removing
-    | Manual Upload For Users is enabled, this option is irrelevant.
+    | NOTE: If the "Masterlist Image Automation Hide Manual Thumbnail"
+    | setting above is enabled, this setting has no effect.
     |
-    | The following option is for if you want to disable the manual uploading
-    | of thumbnail images, to ensure users do not attempt to upload their
-    | own images, even despite the lack of automation.
-    | This essentially forces users to use the cropper, instead.
-    | This will remove it purely for users, not administration.
+    | This disables the option for users to manually upload their own
+    | thumbnail images in design updates, requiring use of the cropper.
+    | Note that this does not prevent permissioned staff from uploading
+    | custom thumbnail images. 
     |
-    | 0: Keeps the manual thumbnail image upload for users.
-    | 1: Hides the thumbnail upload for users.
+    | 0: Allows custom thumbnail uploads.
+    | 1: Disallows custom thumbnail uploads.
     |
     */
     'hide_manual_thumbnail_image_upload' => 0,
