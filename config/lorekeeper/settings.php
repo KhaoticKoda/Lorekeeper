@@ -250,7 +250,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | NOTE: If the "Masterlist Image Automation Replacing Cropper"
-    | setting above is enabled, this setting has no effect.
+    | setting above is disabled, this setting has no effect.
     |
     | This disables the option for users to manually upload their own
     | thumbnail images in design updates, including use of the cropper.
