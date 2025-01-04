@@ -237,7 +237,7 @@ return [
     | It will automatically add transparent borders to the images to make them square,
     | based on the bigger dimension (between width/height).
     | Thumbnails will effectively be small previews of the full masterlist images.
-    | This feature will not replace the manual uploading of thumbnails.
+    | This feature does not disable the manual uploading of thumbnail images.
     |
     | Simply change to "1" to enable, or keep at "0" to disable.
     |
@@ -253,8 +253,8 @@ return [
     | Masterlist Image Automation Replacing Cropper, is also enabled.
     |
     | The following option is for if you DO want to disable the manual uploading
-    | of thumbnails, to ensure users do not attempt to upload their
-    | own thumbnails regardless of the automation.
+    | of thumbnail images, to ensure users do not attempt to upload their
+    | own thumbnail images, regardless of the automation.
     | This will remove it purely for users, not administration.
     |
     | 0: Keeps the manual thumbnail upload for users.
@@ -273,8 +273,8 @@ return [
     |
     | The following option is for if you want to disable the manual uploading
     | of thumbnail images, to ensure users do not attempt to upload their
-    | own images, even despite the lack of automation. This essentially forces
-    | users to use the cropper, instead.
+    | own images, even despite the lack of automation.
+    | This essentially forces users to use the cropper, instead.
     | This will remove it purely for users, not administration.
     |
     | 0: Keeps the manual thumbnail image upload for users.
