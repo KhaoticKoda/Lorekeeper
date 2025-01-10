@@ -158,8 +158,12 @@ class DesignUpdateManager extends Service {
                     $imageData['use_cropper'] = isset($data['use_cropper']);
                 }
                 if (!$isAdmin && isset($data['image'])) {
-                    if (config('lorekeeper.settings.store_masterlist_fullsizes') != null) {
-                        $imageData['extension'] = config('lorekeeper.settings.masterlist_fullsizes_format');
+                    if (config('lorekeeper.settings.store_masterlist_fullsizes')) {
+                        if (config('lorekeeper.settings.masterlist_fullsizes_format') != null) {
+                            $imageData['extension'] = config('lorekeeper.settings.masterlist_fullsizes_format');
+                        } else {
+                            $imageData['extension'] = $data['image']->getClientOriginalExtension();
+                        }
                     } elseif (config('lorekeeper.settings.masterlist_image_format') != null) {
                         $imageData['extension'] = config('lorekeeper.settings.masterlist_image_format');
                     } else {
@@ -413,7 +417,7 @@ class DesignUpdateManager extends Service {
 
                 // Skip the feature if the rarity is too high.
                 // Comment out this check if rarities should have more berth for traits choice.
-                //if($features[$featureId]->rarity->sort > $rarity->sort) continue;
+                // if($features[$featureId]->rarity->sort > $rarity->sort) continue;
 
                 // Skip the feature if it's not the correct species.
                 if ($features[$featureId]->species_id && $features[$featureId]->species_id != $species->id) {
