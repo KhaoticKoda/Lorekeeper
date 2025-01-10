@@ -489,7 +489,7 @@ class User extends Authenticatable implements MustVerifyEmail {
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getCurrencies($showAll = false) {
+    public function getCurrencies($showAll = false, $adminUser = null) {
         // Get a list of currencies that need to be displayed
         // On profile: only ones marked is_displayed
         // In bank: ones marked is_displayed + the ones the user has
@@ -497,11 +497,11 @@ class User extends Authenticatable implements MustVerifyEmail {
         $owned = UserCurrency::where('user_id', $this->id)->pluck('quantity', 'currency_id')->toArray();
 
         $currencies = Currency::where('is_user_owned', 1)
-            ->whereHas('category', function ($query) {
-                $query->visible(Auth::user() ?? null);
+            ->whereHas('category', function ($query) use ($adminUser) {
+                $query->visible($adminUser);
             })
             ->orWhereNull('currency_category_id')
-            ->visible(Auth::user() ?? null);
+            ->visible($adminUser);
         if ($showAll) {
             $currencies->where(function ($query) use ($owned) {
                 $query->where('is_displayed', 1)->orWhereIn('id', array_keys($owned));
