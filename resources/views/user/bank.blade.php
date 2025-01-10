@@ -16,7 +16,12 @@
         <div class="card mb-2">
             @if ($currencies->first()->category)
                 <div class="card-header">
-                    <h5 class="mb-0">{!! $currencies->first()->category->displayName !!}</h5>
+                    <h5 class="mb-0">
+                        @if (!$currencies->first()->category->is_visible)
+                            <i class="fas fa-eye-slash mx-1 text-danger"></i>
+                        @endif
+                        {!! $currencies->first()->category->displayName !!}
+                    </h5>
                 </div>
             @endif
             <ul class="list-group list-group-flush">
