@@ -12,7 +12,7 @@
     </h1>
 
     <h3>Currencies</h3>
-    @foreach ($user->getCurrencies(true) as $category => $currencies)
+    @foreach ($user->getCurrencies(true, (Auth::user() ?? null)) as $category => $currencies)
         <div class="card mb-2">
             @if ($currencies->first()->category)
                 <div class="card-header">
@@ -26,6 +26,9 @@
                             <div class="col-lg-2 col-md-3 col-6 text-right">
                                 <strong>
                                     <a href="{{ $currency->url }}">
+                                        @if (!$currency->is_visible)
+                                            <i class="fas fa-eye-slash mr-1"></i>
+                                        @endif
                                         {{ $currency->name }}
                                         @if ($currency->abbreviation)
                                             ({{ $currency->abbreviation }})

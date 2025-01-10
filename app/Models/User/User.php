@@ -488,20 +488,20 @@ class User extends Authenticatable implements MustVerifyEmail {
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getCurrencies($showAll = false) {
+    public function getCurrencies($showAll = false, $adminUser = null) {
         // Get a list of currencies that need to be displayed
         // On profile: only ones marked is_displayed
         // In bank: ones marked is_displayed + the ones the user has
 
         $owned = UserCurrency::where('user_id', $this->id)->pluck('quantity', 'currency_id')->toArray();
 
-        $currencies = Currency::visible()->where('is_user_owned', 1);
+        $currencies = Currency::visible($adminUser)->where('is_user_owned', 1);
         if ($showAll) {
             $currencies->where(function ($query) use ($owned) {
                 $query->where('is_displayed', 1)->orWhereIn('id', array_keys($owned));
             });
 
-            $categories = CurrencyCategory::visible()->orderBy('sort', 'DESC')->get();
+            $categories = CurrencyCategory::visible($adminUser)->orderBy('sort', 'DESC')->get();
 
             if ($categories->count()) {
                 $currencies->orderByRaw('FIELD(currency_category_id,'.implode(',', $categories->pluck('id')->toArray()).')');
