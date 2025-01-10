@@ -484,8 +484,7 @@ class User extends Authenticatable implements MustVerifyEmail {
     /**
      * Get the user's held currencies.
      *
-     * @param bool       $showAll
-     * @param mixed|null $adminUser
+     * @param bool $showAll
      *
      * @return \Illuminate\Support\Collection
      */
