@@ -117,7 +117,7 @@ class Currency extends Model {
         return $query->orderBy('id');
     }
 
-        /**
+    /**
      * Scope a query to show only visible currencies.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
