@@ -488,7 +488,7 @@ class User extends Authenticatable implements MustVerifyEmail {
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getCurrencies($showAll = false) {
+    public function getCurrencies($showAll = false, $showCategories = false) {
         // Get a list of currencies that need to be displayed
         // On profile: only ones marked is_displayed
         // In bank: ones marked is_displayed + the ones the user has
@@ -501,10 +501,12 @@ class User extends Authenticatable implements MustVerifyEmail {
                 $query->where('is_displayed', 1)->orWhereIn('id', array_keys($owned));
             });
 
-            $categories = CurrencyCategory::visible()->orderBy('sort', 'DESC')->get();
+            if ($showCategories) {
+                $categories = CurrencyCategory::visible()->orderBy('sort', 'DESC')->get();
 
-            if ($categories->count()) {
-                $currencies->orderByRaw('FIELD(currency_category_id,'.implode(',', $categories->pluck('id')->toArray()).')');
+                if ($categories->count()) {
+                    $currencies->orderByRaw('FIELD(currency_category_id,'.implode(',', $categories->pluck('id')->toArray()).')');
+                }
             }
         } else {
             $currencies = $currencies->where('is_displayed', 1);
@@ -516,7 +518,7 @@ class User extends Authenticatable implements MustVerifyEmail {
             $currency->quantity = $owned[$currency->id] ?? 0;
         }
 
-        if ($showAll) {
+        if ($showAll && $showCategories) {
             $currencies = $currencies->groupBy(function ($currency) use ($categories) {
                 if (!$currency->category) {
                     return 'Miscellaneous';
