@@ -56,6 +56,11 @@ class ShopStock extends Model {
     public function item() {
         $model = getAssetModelString(strtolower($this->stock_type));
 
+        if (!class_exists($model)) {
+            // Laravel requires a relationship instance to be returned (cannot return null), so returning one that doesn't exist here.
+            return $this->belongsTo(self::class, 'id', 'item_id')->whereNull('item_id');
+        }
+
         return $this->belongsTo($model);
     }
 

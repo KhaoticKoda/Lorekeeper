@@ -1,4 +1,4 @@
-<div class="card character-bio">
+<div class="card character-bio {{ $loop->last ? '' : 'mb-3' }}">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
             @foreach ($stock as $categoryId => $categoryItems)

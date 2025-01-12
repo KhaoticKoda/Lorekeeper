@@ -71,6 +71,7 @@ class ShopManager extends Service {
             }
 
             $coupon = null;
+            $couponUserItem = null;
             if (isset($data['use_coupon'])) {
                 // check if the the stock is limited stock
                 if ($shopStock->is_limited_stock && !Settings::get('limited_stock_coupon_settings')) {
@@ -80,13 +81,13 @@ class ShopManager extends Service {
                     throw new \Exception('Please select a coupon to use.');
                 }
                 // finding the users tag
-                $userItem = UserItem::find($data['coupon']);
+                $couponUserItem = UserItem::find($data['coupon']);
                 // check if the item id is inside allowed_coupons
-                if ($shop->allowed_coupons && count(json_decode($shop->allowed_coupons, 1)) > 0 && !in_array($userItem->item_id, json_decode($shop->allowed_coupons, 1))) {
+                if ($shop->allowed_coupons && count(json_decode($shop->allowed_coupons, 1)) > 0 && !in_array($couponUserItem->item_id, json_decode($shop->allowed_coupons, 1))) {
                     throw new \Exception('Sorry! You can\'t use this coupon.');
                 }
                 // finding bought item
-                $item = Item::find($userItem->item_id);
+                $item = Item::find($couponUserItem->item_id);
                 $tag = $item->tags()->where('tag', 'Coupon')->first();
                 $coupon = $tag->data;
 
@@ -101,7 +102,7 @@ class ShopManager extends Service {
 
                 // if the coupon isn't infinite kill it
                 if (!$coupon['infinite']) {
-                    if (!(new InventoryManager)->debitStack($user, 'Coupon Used', ['data' => 'Coupon used in purchase of '.$shopStock->item->name.' from '.$shop->name], $userItem, 1)) {
+                    if (!(new InventoryManager)->debitStack($user, 'Coupon Used', ['data' => 'Coupon used in purchase of '.$shopStock->item->name.' from '.$shop->name], $couponUserItem, 1)) {
                         throw new \Exception('Failed to remove coupon.');
                     }
                 }
@@ -174,15 +175,17 @@ class ShopManager extends Service {
 
             if ($character) {
                 if (!fillCharacterAssets($characterCostAssets, $character, null, 'Shop Purchase', [
-                    'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name,
+                    'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name . 
+                    ($coupon ? '. Coupon used: ' . $couponUserItem->item->name : ''),
                 ])) {
                     throw new \Exception('Failed to purchase item.');
                 }
             }
             if (!fillUserAssets($userCostAssets, $user, null, 'Shop Purchase', [
-                'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name,
+                'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name . 
+                ($coupon ? '. Coupon used: ' . $couponUserItem->item->name : ''),
             ])) {
-                throw new \Exception('Failed to purchase item.');
+                throw new \Exception('Failed to purchase item - could not debit costs.');
             }
 
             // If the item has a limited quantity, decrease the quantity
@@ -200,6 +203,7 @@ class ShopManager extends Service {
                     'base'      => getDataReadyAssets($baseStockCost),
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
+                    'coupon'   => $couponUserItem ? $couponUserItem->item->id : null,
                 ],
                 'stock_type'   => $shopStock->stock_type,
                 'item_id'      => $shopStock->item_id,
@@ -214,7 +218,7 @@ class ShopManager extends Service {
                 'data'  => $shopLog->itemData,
                 'notes' => 'Purchased '.format_date($shopLog->created_at),
             ] + ($shopStock->disallow_transfer ? ['disallow_transfer' => true] : []))) {
-                throw new \Exception('Failed to purchase item.');
+                throw new \Exception('Failed to purchase item - could not credit item.');
             }
 
             return $this->commitReturn($shop);

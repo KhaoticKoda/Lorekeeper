@@ -336,9 +336,8 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
             foreach ($contents as $asset) {
                 if (!$service->creditItem($sender, $recipient, $logType, $data, $asset['asset'], $asset['quantity'])) {
                     foreach ($service->errors()->getMessages()['error'] as $error) {
-                        Log::error($error);
+                        flash($error)->error();
                     }
-
                     return false;
                 }
             }
@@ -347,10 +346,16 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
             foreach ($contents as $asset) {
                 if ($asset['quantity'] < 0) {
                     if (!$service->debitCurrency($sender, $recipient, $logType, $data['data'], $asset['asset'], abs($asset['quantity']))) {
+                        foreach ($service->errors()->getMessages()['error'] as $error) {
+                            flash($error)->error();
+                        }
                         return false;
                     }
                 } else {
                     if (!$service->creditCurrency($sender, $recipient, $logType, $data['data'], $asset['asset'], $asset['quantity'])) {
+                        foreach ($service->errors()->getMessages()['error'] as $error) {
+                            flash($error)->error();
+                        }
                         return false;
                     }
                 }
@@ -359,6 +364,9 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
             $service = new App\Services\RaffleManager;
             foreach ($contents as $asset) {
                 if (!$service->addTicket($recipient, $asset['asset'], $asset['quantity'])) {
+                    foreach ($service->errors()->getMessages()['error'] as $error) {
+                        flash($error)->error();
+                    }
                     return false;
                 }
             }
@@ -366,6 +374,9 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
             $service = new App\Services\InventoryManager;
             foreach ($contents as $asset) {
                 if (!$service->moveStack($sender, $recipient, $logType, $data, $asset['asset'])) {
+                    foreach ($service->errors()->getMessages()['error'] as $error) {
+                        flash($error)->error();
+                    }
                     return false;
                 }
             }
@@ -373,6 +384,9 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
             $service = new App\Services\CharacterManager;
             foreach ($contents as $asset) {
                 if (!$service->moveCharacter($asset['asset'], $recipient, $data, $asset['quantity'], $logType)) {
+                    foreach ($service->errors()->getMessages()['error'] as $error) {
+                        flash($error)->error();
+                    }
                     return false;
                 }
             }

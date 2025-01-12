@@ -152,15 +152,15 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="row">
-                                @if ($stock->item->has_image)
+                                @if ($stock->item?->has_image)
                                     <div class="col-4">
-                                        <img src="{{ $stock->item->imageUrl }}" class="img-fluid" alt="{{ $stock->item->name }}">
+                                        <img src="{{ $stock->item?->imageUrl }}" class="img-fluid" alt="{{ $stock->item?->name }}">
                                     </div>
                                 @endif
-                                <div class="col-{{ $stock->item->has_image ? '8' : '10' }}">
+                                <div class="col-{{ $stock->item?->has_image ? '8' : '10' }}">
                                     <div>
-                                        <a href="{{ $stock->item->idUrl }}">
-                                            <strong>{{ $stock->item->name }} - {{ $stock->stock_type }}</strong>
+                                        <a href="{{ $stock->item?->idUrl }}">
+                                            <strong>{{ $stock->item?->name ?? 'Deleted' }} - {{ $stock->stock_type }}</strong>
                                         </a>
                                         @if ($stock->isRandom)
                                             <span class="ml-1 badge badge-primary">Random</span>
