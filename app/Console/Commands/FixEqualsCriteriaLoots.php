@@ -18,7 +18,7 @@ class FixEqualsCriteriaLoots extends Command {
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Fix equals criteria loots to double equals for use in where clause';
 
     /**
      * Execute the console command.
