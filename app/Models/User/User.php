@@ -486,6 +486,7 @@ class User extends Authenticatable implements MustVerifyEmail {
      *
      * @param bool       $showAll
      * @param mixed|null $user
+     * @param mixed      $showCategories
      *
      * @return \Illuminate\Support\Collection
      */
