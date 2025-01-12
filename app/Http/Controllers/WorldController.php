@@ -61,9 +61,9 @@ class WorldController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCurrencies(Request $request) {
-        $query = Currency::query()->with('category')->where(function ($query) {
+        $query = Currency::query()->visible(Auth::user() ?? null)->with('category')->where(function ($query) {
             $query->whereHas('category', function ($query) {
-                $query->where('is_visible', 1);
+                $query->visible(Auth::user() ?? null);
             })->orWhereNull('currency_category_id');
         });
 
@@ -104,7 +104,7 @@ class WorldController extends Controller {
         }
 
         return view('world.currencies', [
-            'currencies' => $query->orderBy('name')->orderBy('id')->paginate(20)->appends($request->query()),
+            'currencies' => $query->visible(Auth::user() ?? null)->orderBy('name')->orderBy('id')->paginate(20)->appends($request->query()),
             'categories' => ['withoutOption' => 'Without Category'] + CurrencyCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
         ]);
     }
