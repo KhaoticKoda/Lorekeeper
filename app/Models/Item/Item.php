@@ -27,6 +27,16 @@ class Item extends Model {
      * @var string
      */
     protected $table = 'items';
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     /**
      * Validation rules for creation.
      *
@@ -283,19 +293,6 @@ class Item extends Model {
         }
 
         return $this->reference_url;
-    }
-
-    /**
-     * Get the data attribute as an associative array.
-     *
-     * @return array
-     */
-    public function getDataAttribute() {
-        if (!$this->id) {
-            return null;
-        }
-
-        return json_decode($this->attributes['data'], true);
     }
 
     /**

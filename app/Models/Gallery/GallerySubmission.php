@@ -35,6 +35,16 @@ class GallerySubmission extends Model {
     protected $table = 'gallery_submissions';
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'array',
+        'vote_data' => 'array',
+    ];
+
+    /**
      * Whether the model contains timestamps to be saved and updated.
      *
      * @var string
@@ -316,24 +326,6 @@ class GallerySubmission extends Model {
         }
 
         return asset($this->imageDirectory.'/'.$this->thumbnailFileName);
-    }
-
-    /**
-     * Get the data attribute as an associative array.
-     *
-     * @return array
-     */
-    public function getDataAttribute() {
-        return json_decode($this->attributes['data'], true);
-    }
-
-    /**
-     * Gets the voting data of the gallery submission.
-     *
-     * @return string
-     */
-    public function getVoteDataAttribute() {
-        return collect(json_decode($this->attributes['vote_data'], true));
     }
 
     /**
