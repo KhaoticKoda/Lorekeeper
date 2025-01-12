@@ -112,7 +112,7 @@ class ShopLog extends Model {
         return 'Purchased from '.$this->shop->name.' by '.
             ($this->character_id ? $this->character->slug.' (owned by '.$this->user->name.')' : $this->user->displayName).' using '.
             (createRewardsString($cost, true, true) == 'Nothing. :(' ? 'Free' : createRewardsString($cost, true, true))
-            . ($this->coupon ? ' with coupon '.$this->coupon->displayName : '');
+            .($this->coupon ? ' with coupon '.$this->coupon->displayName : '');
     }
 
     /**
@@ -178,7 +178,7 @@ class ShopLog extends Model {
 
     /**
      * Returns the coupon used (if any).
-     * 
+     *
      * @return Item|null
      */
     public function getCouponAttribute() {

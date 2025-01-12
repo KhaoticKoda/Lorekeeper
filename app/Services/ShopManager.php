@@ -175,15 +175,15 @@ class ShopManager extends Service {
 
             if ($character) {
                 if (!fillCharacterAssets($characterCostAssets, $character, null, 'Shop Purchase', [
-                    'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name . 
-                    ($coupon ? '. Coupon used: ' . $couponUserItem->item->name : ''),
+                    'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name.
+                    ($coupon ? '. Coupon used: '.$couponUserItem->item->name : ''),
                 ])) {
                     throw new \Exception('Failed to purchase item.');
                 }
             }
             if (!fillUserAssets($userCostAssets, $user, null, 'Shop Purchase', [
-                'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name . 
-                ($coupon ? '. Coupon used: ' . $couponUserItem->item->name : ''),
+                'data' => 'Purchased '.$shopStock->item->name.' x'.$quantity.' from '.$shop->name.
+                ($coupon ? '. Coupon used: '.$couponUserItem->item->name : ''),
             ])) {
                 throw new \Exception('Failed to purchase item - could not debit costs.');
             }
@@ -203,7 +203,7 @@ class ShopManager extends Service {
                     'base'      => getDataReadyAssets($baseStockCost),
                     'user'      => getDataReadyAssets($userCostAssets),
                     'character' => getDataReadyAssets($characterCostAssets),
-                    'coupon'   => $couponUserItem ? $couponUserItem->item->id : null,
+                    'coupon'    => $couponUserItem ? $couponUserItem->item->id : null,
                 ],
                 'stock_type'   => $shopStock->stock_type,
                 'item_id'      => $shopStock->item_id,

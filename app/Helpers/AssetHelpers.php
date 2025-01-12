@@ -338,6 +338,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                     foreach ($service->errors()->getMessages()['error'] as $error) {
                         flash($error)->error();
                     }
+
                     return false;
                 }
             }
@@ -349,6 +350,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                         foreach ($service->errors()->getMessages()['error'] as $error) {
                             flash($error)->error();
                         }
+
                         return false;
                     }
                 } else {
@@ -356,6 +358,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                         foreach ($service->errors()->getMessages()['error'] as $error) {
                             flash($error)->error();
                         }
+
                         return false;
                     }
                 }
@@ -367,6 +370,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                     foreach ($service->errors()->getMessages()['error'] as $error) {
                         flash($error)->error();
                     }
+
                     return false;
                 }
             }
@@ -377,6 +381,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                     foreach ($service->errors()->getMessages()['error'] as $error) {
                         flash($error)->error();
                     }
+
                     return false;
                 }
             }
@@ -387,6 +392,7 @@ function fillUserAssets($assets, $sender, $recipient, $logType, $data) {
                     foreach ($service->errors()->getMessages()['error'] as $error) {
                         flash($error)->error();
                     }
+
                     return false;
                 }
             }
