@@ -424,7 +424,7 @@ class GalleryManager extends Service {
 
             // Get existing vote data if it exists, remove any existing vote data for the user,
             // add the new vote data, and json encode it
-            $voteData = (isset($submission->vote_data) ? collect(json_decode($submission->vote_data, true)) : collect([]));
+            $voteData = (isset($submission->vote_data) ? collect($submission->vote_data, true) : collect([]));
             $voteData->get($user->id) ? $voteData->pull($user->id) : null;
             $voteData->put($user->id, $vote);
             $submission->vote_data = $voteData->toJson();
