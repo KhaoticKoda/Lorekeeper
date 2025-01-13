@@ -75,13 +75,6 @@ class Prompt extends Model {
         return $this->belongsTo(PromptCategory::class, 'prompt_category_id');
     }
 
-    /**
-     * Get the rewards attached to this prompt.
-     */
-    public function rewards() {
-        return $this->hasMany(PromptReward::class, 'prompt_id');
-    }
-
     /**********************************************************************************************
 
         SCOPES
