@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -105,7 +107,16 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('galleries/sort', 'GalleryController@postSortGallery');
 
     // CURRENCIES
-    Route::get('currencies', 'CurrencyController@getIndex');
+    Route::get('currency-categories', 'CurrencyController@getIndex');
+    Route::get('currency-categories/create', 'CurrencyController@getCreateCurrencyCategory');
+    Route::get('currency-categories/edit/{id}', 'CurrencyController@getEditCurrencyCategory');
+    Route::get('currency-categories/delete/{id}', 'CurrencyController@getDeleteCurrencyCategory');
+    Route::post('currency-categories/create', 'CurrencyController@postCreateEditCurrencyCategory');
+    Route::post('currency-categories/edit/{id?}', 'CurrencyController@postCreateEditCurrencyCategory');
+    Route::post('currency-categories/delete/{id}', 'CurrencyController@postDeleteCurrencyCategory');
+    Route::post('currency-categories/sort', 'CurrencyController@postSortCurrencyCategory');
+
+    Route::get('currencies', 'CurrencyController@getCurrencyIndex');
     Route::get('currencies/sort', 'CurrencyController@getSort');
     Route::get('currencies/create', 'CurrencyController@getCreateCurrency');
     Route::get('currencies/edit/{id}', 'CurrencyController@getEditCurrency');
@@ -256,9 +267,11 @@ Route::group(['prefix' => 'pages', 'middleware' => 'power:edit_pages'], function
     Route::get('create', 'PageController@getCreatePage');
     Route::get('edit/{id}', 'PageController@getEditPage');
     Route::get('delete/{id}', 'PageController@getDeletePage');
+    Route::get('regen/{id}', 'PageController@getRegenPage');
     Route::post('create', 'PageController@postCreateEditPage');
     Route::post('edit/{id?}', 'PageController@postCreateEditPage');
     Route::post('delete/{id}', 'PageController@postDeletePage');
+    Route::post('regen/{id}', 'PageController@postRegenPage');
 });
 
 // NEWS
@@ -267,9 +280,11 @@ Route::group(['prefix' => 'news', 'middleware' => 'power:manage_news'], function
     Route::get('create', 'NewsController@getCreateNews');
     Route::get('edit/{id}', 'NewsController@getEditNews');
     Route::get('delete/{id}', 'NewsController@getDeleteNews');
+    Route::get('regen/{id}', 'NewsController@getRegenNews');
     Route::post('create', 'NewsController@postCreateEditNews');
     Route::post('edit/{id?}', 'NewsController@postCreateEditNews');
     Route::post('delete/{id}', 'NewsController@postDeleteNews');
+    Route::post('regen/{id}', 'NewsController@postRegenNews');
 });
 
 // SALES

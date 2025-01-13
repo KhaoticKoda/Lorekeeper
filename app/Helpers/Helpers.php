@@ -450,14 +450,38 @@ function prettyProfileName($url) {
 }
 
 /**
- * Get the object's rewards
+ * Checks the site setting and returns the appropriate FontAwesome version.
+ *
+ * @return string
  */
+function faVersion() {
+    $setting = config('lorekeeper.settings.fa_version');
+    $directory = 'css';
+
+    switch ($setting) {
+        case 0:
+            $version = 'allv5';
+            break;
+        case 1:
+            $version = 'allv6';
+            break;
+        case 2:
+            $version = 'allvmix';
+            break;
+    }
+
+    return asset($directory.'/'.$version.'.min.css');
+}
+
+/**
+* Get the object's rewards
+*/
 function objectRewards($object, $key, $recipient)
 {
-    return App\Models\ObjectReward::where([
-        ['object_type', get_class($object)],
-        ['object_id', $object->id],
-        ['recipient_type', $recipient],
-        ['reward_key', $key],
-    ])->get();
+   return App\Models\ObjectReward::where([
+       ['object_type', get_class($object)],
+       ['object_id', $object->id],
+       ['recipient_type', $recipient],
+       ['reward_key', $key],
+   ])->get();
 }

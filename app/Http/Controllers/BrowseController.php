@@ -32,7 +32,7 @@ class BrowseController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUsers(Request $request) {
-        $query = User::visible()->join('ranks', 'users.rank_id', '=', 'ranks.id')->select('ranks.name AS rank_name', 'users.*');
+        $query = User::visible()->with('primaryAlias')->join('ranks', 'users.rank_id', '=', 'ranks.id')->select('ranks.name AS rank_name', 'users.*');
         $sort = $request->only(['sort']);
 
         if ($request->get('name')) {
@@ -106,7 +106,7 @@ class BrowseController extends Controller {
             'canView' => $canView,
             'privacy' => $privacy,
             'key'     => $key,
-            'users'   => $canView ? User::where('is_deactivated', 1)->orderBy('users.name')->paginate(30)->appends($request->query()) : null,
+            'users'   => $canView ? User::where('is_deactivated', 1)->with('primaryAlias', 'settings')->orderBy('users.name')->paginate(30)->appends($request->query()) : null,
         ]);
     }
 
@@ -137,7 +137,7 @@ class BrowseController extends Controller {
             'canView' => $canView,
             'privacy' => $privacy,
             'key'     => $key,
-            'users'   => $canView ? User::where('is_banned', 1)->orderBy('users.name')->paginate(30)->appends($request->query()) : null,
+            'users'   => $canView ? User::where('is_banned', 1)->with('primaryAlias', 'settings')->orderBy('users.name')->paginate(30)->appends($request->query()) : null,
         ]);
     }
 
@@ -147,8 +147,8 @@ class BrowseController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCharacters(Request $request) {
-        $query = Character::with('user.rank')->with('image.features')->with('rarity')->with('image.species')->myo(0);
-        $imageQuery = CharacterImage::images(Auth::user() ?? null)->with('features')->with('rarity')->with('species')->with('features');
+        $query = Character::with('user.rank', 'image.features', 'rarity', 'image.species', 'image.rarity')->myo(0);
+        $imageQuery = CharacterImage::images(Auth::user() ?? null)->with('features', 'rarity', 'species');
 
         if ($sublists = Sublist::where('show_main', 0)->get()) {
             $subCategories = [];
@@ -192,9 +192,8 @@ class BrowseController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getMyos(Request $request) {
-        $query = Character::with('user.rank')->with('image.features')->with('rarity')->with('image.species')->myo(1);
-
-        $imageQuery = CharacterImage::images(Auth::user() ?? null)->with('features')->with('rarity')->with('species')->with('features');
+        $query = Character::with('user.rank', 'image.features', 'rarity', 'image.species', 'image.rarity')->myo(1);
+        $imageQuery = CharacterImage::images(Auth::user() ?? null)->with('features', 'rarity', 'species');
 
         $query = $this->handleMasterlistSearch($request, $query, $imageQuery, true);
 
@@ -217,8 +216,8 @@ class BrowseController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSublist(Request $request, $key) {
-        $query = Character::with('user.rank')->with('image.features')->with('rarity')->with('image.species')->myo(0);
-        $imageQuery = CharacterImage::with('features')->with('rarity')->with('species')->with('features');
+        $query = Character::with('user.rank', 'image.features', 'rarity', 'image.species', 'image.rarity')->myo(0);
+        $imageQuery = CharacterImage::with('features', 'rarity', 'species');
 
         $sublist = Sublist::where('key', $key)->first();
         if (!$sublist) {
@@ -397,57 +396,60 @@ class BrowseController extends Controller {
             });
         }
         if ($request->get('excluded_tags') || $request->get('included_tags')) {
-            $excludedTags = $request->get('excluded_tags');
-            $includedTags = $request->get('included_tags');
-            $images = $imageQuery->get();
+            $filteredImageIds = collect();
+            $excludedTags = $request->get('excluded_tags', []);
+            $includedTags = $request->get('included_tags', []);
 
-            $filteredImageQuery = $images;
-
-            // first exclude, then include
-            if ($excludedTags) {
-                $filteredImageQuery = $images->filter(function ($image) use ($excludedTags) {
-                    if (!$image->content_warnings) {
-                        return true;
-                    }
-
-                    if (in_array('all', $excludedTags) && $image->content_warnings) {
-                        return false;
-                    }
-
-                    foreach ($excludedTags as $tag) {
-                        if ($image->content_warnings && in_array($tag, $image->content_warnings)) {
+            $imageQuery->chunk(100, function ($images) use (&$filteredImageIds, $excludedTags, $includedTags) {
+                // excluded tags
+                if (!empty($excludedTags)) {
+                    $images = $images->reject(function ($image) use ($excludedTags) {
+                        if (!$image->content_warnings) {
                             return false;
                         }
-                    }
-
-                    return true;
-                });
-            }
-
-            if ($request->get('included_tags')) {
-                $filteredImageQuery = $filteredImageQuery->filter(function ($image) use ($includedTags) {
-                    if (!$image->content_warnings) {
-                        return false;
-                    }
-
-                    if (in_array('all', $includedTags) && $image->content_warnings) {
-                        return true;
-                    }
-
-                    foreach ($includedTags as $tag) {
-                        if ($image->content_warnings && in_array($tag, $image->content_warnings)) {
+                        if (in_array('all', $excludedTags)) {
                             return true;
                         }
-                    }
+                        foreach ($excludedTags as $tag) {
+                            foreach ($image->content_warnings as $warning) {
+                                if (strtolower($warning) == strtolower($tag)) {
+                                    return true;
+                                }
+                            }
+                        }
 
-                    return false;
-                });
-            }
+                        return false;
+                    });
+                }
+
+                // included tags
+                if (!empty($includedTags)) {
+                    $images = $images->filter(function ($image) use ($includedTags) {
+                        if (!$image->content_warnings) {
+                            return false;
+                        }
+                        if (in_array('all', $includedTags)) {
+                            return true;
+                        }
+                        foreach ($includedTags as $tag) {
+                            foreach ($image->content_warnings as $warning) {
+                                if (strtolower($warning) == strtolower($tag)) {
+                                    return true;
+                                }
+                            }
+                        }
+
+                        return false;
+                    });
+                }
+
+                $filteredImageIds = $filteredImageIds->merge($images->pluck('character_id'));
+            });
         } else {
-            $filteredImageQuery = $imageQuery;
+            $filteredImageIds = $imageQuery->pluck('character_id');
         }
 
-        $query->whereIn('id', $filteredImageQuery->pluck('character_id')->toArray());
+        $query->whereIn('id', $filteredImageIds->toArray());
 
         if (!$isMyo) {
             if ($request->get('is_gift_art_allowed')) {

@@ -251,7 +251,7 @@ class CharacterManager extends Service {
             }
 
             // Save the processed image
-            $image->save($characterImage->imagePath.'/'.$characterImage->fullsizeFileName, 100, config('lorekeeper.settings.masterlist_fullsizes_format'));
+            $image->save($characterImage->imagePath.'/'.$characterImage->fullsizeFileName, 100, config('lorekeeper.settings.masterlist_fullsizes_format') != null ? config('lorekeeper.settings.masterlist_fullsizes_format') : $characterImage->fullsize_extension);
         } else {
             // Delete fullsize if it was previously created.
             if (isset($characterImage->fullsize_hash) ? file_exists(public_path($characterImage->imageDirectory.'/'.$characterImage->fullsizeFileName)) : false) {
@@ -263,7 +263,7 @@ class CharacterManager extends Service {
         if (config('lorekeeper.settings.masterlist_image_dimension') != 0) {
             if ($image->width() > $image->height()) {
                 // Landscape
-                if (config('lorekeeper.settings.masterlist_image_dimension_target') == 'short') {
+                if (config('lorekeeper.settings.masterlist_image_dimension_target') == 'shorter') {
                     $image->resize(null, config('lorekeeper.settings.masterlist_image_dimension'), function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
@@ -276,7 +276,7 @@ class CharacterManager extends Service {
                 }
             } else {
                 // Portrait
-                if (config('lorekeeper.settings.masterlist_image_dimension_target') == 'short') {
+                if (config('lorekeeper.settings.masterlist_image_dimension_target') == 'shorter') {
                     $image->resize(config('lorekeeper.settings.masterlist_image_dimension'), null, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
@@ -302,11 +302,11 @@ class CharacterManager extends Service {
 
                 $wmScale = config('lorekeeper.settings.watermark_percent');
 
-                //Assume Landscape by Default
+                // Assume Landscape by Default
                 $maxSize = $imageWidth * $wmScale;
 
                 if ($imageWidth > $imageHeight) {
-                    //Landscape
+                    // Landscape
                     $maxSize = $imageWidth * $wmScale;
                 } else {
                     // Portrait
@@ -314,7 +314,7 @@ class CharacterManager extends Service {
                 }
 
                 if ($wmWidth > $wmHeight) {
-                    //Landscape
+                    // Landscape
                     $watermark->resize($maxSize, null, function ($constraint) {
                         $constraint->aspectRatio();
                     });
@@ -410,11 +410,11 @@ class CharacterManager extends Service {
 
                     $wmScale = config('lorekeeper.settings.watermark_percent');
 
-                    //Assume Landscape by Default
+                    // Assume Landscape by Default
                     $maxSize = $imageWidth * $wmScale;
 
                     if ($imageWidth > $imageHeight) {
-                        //Landscape
+                        // Landscape
                         $maxSize = $imageWidth * $wmScale;
                     } else {
                         // Portrait
@@ -422,7 +422,7 @@ class CharacterManager extends Service {
                     }
 
                     if ($wmWidth > $wmHeight) {
-                        //Landscape
+                        // Landscape
                         $watermark->resize($maxSize, null, function ($constraint) {
                             $constraint->aspectRatio();
                         });
@@ -1055,12 +1055,12 @@ class CharacterManager extends Service {
 
             $count = 0;
             foreach ($images as $image) {
-                //if($count == 1)
-                //{
+                // if($count == 1)
+                // {
                 //    // Set the first one as the active image
                 //    $image->character->image_id = $image->id;
                 //    $image->character->save();
-                //}
+                // }
                 $image->sort = $count;
                 $image->save();
                 $count++;
@@ -1606,7 +1606,7 @@ class CharacterManager extends Service {
 
                 // Process the character move if the transfer has already been approved
                 if ($transfer->is_approved) {
-                    //check the cooldown saved
+                    // check the cooldown saved
                     if (isset($transfer->data['cooldown'])) {
                         $cooldown = $transfer->data['cooldown'];
                     }
