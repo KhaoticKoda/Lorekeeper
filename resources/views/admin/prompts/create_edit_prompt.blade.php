@@ -108,7 +108,7 @@
         'type' => 'prompt',
         'recipient' => 'User',
         'reward_key' => 'objectRewards',
-        'info' => 'Rewards are credited on a per-user basis.'
+        'info' => 'Rewards are credited on a per-user basis.',
     ])
 
     @include('widgets._reward_maker', [
