@@ -472,3 +472,19 @@ function faVersion() {
 
     return asset($directory.'/'.$version.'.min.css');
 }
+
+/**
+ * Get the object's rewards.
+ *
+ * @param mixed $object
+ * @param mixed $key
+ * @param mixed $recipient
+ */
+function objectRewards($object, $key, $recipient) {
+    return App\Models\ObjectReward::where([
+        ['object_type', get_class($object)],
+        ['object_id', $object->id],
+        ['recipient_type', $recipient],
+        ['reward_key', $key],
+    ])->get();
+}

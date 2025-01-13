@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Prompt\Prompt;
 use App\Models\Prompt\PromptCategory;
-use App\Models\Prompt\PromptReward;
 use App\Models\Submission\Submission;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -208,8 +207,6 @@ class PromptService extends Service {
                 $this->handleImage($image, $prompt->imagePath, $prompt->imageFileName);
             }
 
-            $this->populateRewards(Arr::only($data, ['rewardable_type', 'rewardable_id', 'quantity']), $prompt);
-
             return $this->commitReturn($prompt);
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
@@ -266,8 +263,6 @@ class PromptService extends Service {
                 $this->handleImage($image, $prompt->imagePath, $prompt->imageFileName);
             }
 
-            $this->populateRewards(Arr::only($data, ['rewardable_type', 'rewardable_id', 'quantity']), $prompt);
-
             return $this->commitReturn($prompt);
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
@@ -292,7 +287,6 @@ class PromptService extends Service {
                 throw new \Exception('A submission under this prompt exists. Deleting the prompt will break the submission page - consider setting the prompt to be not active instead.');
             }
 
-            $prompt->rewards()->delete();
             if ($prompt->has_image) {
                 $this->deleteImage($prompt->imagePath, $prompt->imageFileName);
             }
@@ -367,27 +361,5 @@ class PromptService extends Service {
         }
 
         return $data;
-    }
-
-    /**
-     * Processes user input for creating/updating prompt rewards.
-     *
-     * @param array  $data
-     * @param Prompt $prompt
-     */
-    private function populateRewards($data, $prompt) {
-        // Clear the old rewards...
-        $prompt->rewards()->delete();
-
-        if (isset($data['rewardable_type'])) {
-            foreach ($data['rewardable_type'] as $key => $type) {
-                PromptReward::create([
-                    'prompt_id'       => $prompt->id,
-                    'rewardable_type' => $type,
-                    'rewardable_id'   => $data['rewardable_id'][$key],
-                    'quantity'        => $data['quantity'][$key],
-                ]);
-            }
-        }
     }
 }

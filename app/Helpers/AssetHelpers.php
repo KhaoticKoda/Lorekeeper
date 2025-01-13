@@ -89,7 +89,7 @@ function getAssetKeys($isCharacter = false) {
  */
 function getAssetModelString($type, $namespaced = true) {
     switch ($type) {
-        case 'items':
+        case 'items': case 'item':
             if ($namespaced) {
                 return '\App\Models\Item\Item';
             } else {
@@ -97,7 +97,7 @@ function getAssetModelString($type, $namespaced = true) {
             }
             break;
 
-        case 'currencies':
+        case 'currencies': case 'currency':
             if ($namespaced) {
                 return '\App\Models\Currency\Currency';
             } else {
@@ -105,7 +105,7 @@ function getAssetModelString($type, $namespaced = true) {
             }
             break;
 
-        case 'raffle_tickets':
+        case 'raffle_tickets': case 'raffle':
             if ($namespaced) {
                 return '\App\Models\Raffle\Raffle';
             } else {
@@ -113,7 +113,7 @@ function getAssetModelString($type, $namespaced = true) {
             }
             break;
 
-        case 'loot_tables':
+        case 'loot_tables': case 'loottable':
             if ($namespaced) {
                 return '\App\Models\Loot\LootTable';
             } else {
@@ -171,11 +171,12 @@ function createAssetsArray($isCharacter = false) {
  *
  * @param array $first
  * @param array $second
+ * @param mixed $isCharacter
  *
  * @return array
  */
-function mergeAssetsArrays($first, $second) {
-    $keys = getAssetKeys();
+function mergeAssetsArrays($first, $second, $isCharacter = false) {
+    $keys = getAssetKeys($isCharacter);
     foreach ($keys as $key) {
         foreach ($second[$key] as $item) {
             addAsset($first, $item['asset'], $item['quantity']);
@@ -253,11 +254,12 @@ function getDataReadyAssets($array, $isCharacter = false) {
  * Use the data attribute after json_decode()ing it.
  *
  * @param array $array
+ * @param mixed $isCharacter
  *
  * @return array
  */
-function parseAssetData($array) {
-    $assets = createAssetsArray();
+function parseAssetData($array, $isCharacter = false) {
+    $assets = createAssetsArray($isCharacter);
     foreach ($array as $key => $contents) {
         $model = getAssetModelString($key);
         if ($model) {

@@ -12,21 +12,18 @@
                 <p>You have completed this prompt <strong>{{ $count }}</strong> time{{ $count == 1 ? '' : 's' }}.</p>
             @endif
         @endif
-        <table class="table table-sm mb-0">
-            <thead>
-                <tr>
-                    <th width="70%">Reward</th>
-                    <th width="30%">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($prompt->rewards as $reward)
-                    <tr>
-                        <td>{!! $reward->reward->displayName !!}</td>
-                        <td>{{ $reward->quantity }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @include('widgets._reward_display', [
+            'object' => $prompt,
+            'type' => 'prompt',
+            'reward_key' => 'objectRewards',
+            'recipient' => 'User',
+        ])
+        @include('widgets._reward_display', [
+            'object' => $prompt,
+            'type' => 'prompt',
+            'reward_key' => 'objectCharacterRewards',
+            'recipient' => 'Character',
+            'info' => 'Only focus characters will recieve these rewards.',
+        ])
     </div>
 </div>
