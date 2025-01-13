@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\RewardManager;
 use Illuminate\Http\Request;
 
-class RewardController extends Controller
-{
+class RewardController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Admin / Reward Maker Controller
@@ -18,23 +17,23 @@ class RewardController extends Controller
      */
 
     /**
-     * Edit reward
+     * Edit reward.
      *
-     * @param  \Illuminate\Http\Request    $request
-     * @param  int|null                    $id
+     * @param int|null $id
+     * @param mixed    $model
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function editReward(Request $request, RewardManager $service, $model, $id)
-    {
+    public function editReward(Request $request, RewardManager $service, $model, $id) {
         $decodedmodel = urldecode(base64_decode($model));
-        //check model + id combo exists
+        // check model + id combo exists
         $object = $decodedmodel::find($id);
         if (!$object) {
             throw new \Exception('Invalid object.');
         }
 
         $data = $request->only([
-            'rewardable_type', 'rewardable_id', 'reward_quantity','recipient_type','reward_key'
+            'rewardable_type', 'rewardable_id', 'reward_quantity', 'recipient_type', 'reward_key',
         ]);
 
         if ($id && $service->editRewards($object, $data)) {
@@ -43,9 +42,8 @@ class RewardController extends Controller
             foreach ($service->errors()->getMessages()['error'] as $error) {
                 flash($error)->error();
             }
-
         }
+
         return redirect()->back();
     }
-
 }

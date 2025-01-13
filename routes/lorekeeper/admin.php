@@ -257,7 +257,7 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('prompts/edit/{id?}', 'PromptController@postCreateEditPrompt');
     Route::post('prompts/delete/{id}', 'PromptController@postDeletePrompt');
 
-    # REWARD MAKER
+    // REWARD MAKER
     Route::post('reward-maker/edit/{model}/{id}', 'RewardController@editReward');
 });
 

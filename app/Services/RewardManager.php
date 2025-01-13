@@ -4,10 +4,8 @@ namespace App\Services;
 
 use App\Models\ObjectReward;
 use DB;
-use Illuminate\Http\Request;
 
-class RewardManager extends Service
-{
+class RewardManager extends Service {
     /*
     |--------------------------------------------------------------------------
     | Admin / Reward Maker Service
@@ -18,15 +16,14 @@ class RewardManager extends Service
      */
 
     /**
-     * Edit reward
+     * Edit reward.
      *
-     * @param  \Illuminate\Http\Request    $request
-     * @param  int|null                    $id
+     * @param mixed $object
+     * @param mixed $data
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function editRewards($object, $data)
-    {
-
+    public function editRewards($object, $data) {
         DB::beginTransaction();
         try {
             if (!isset($data['reward_key'])) {
@@ -38,23 +35,22 @@ class RewardManager extends Service
 
             // We're going to remove all rewards and reattach them with the updated data
 
-            foreach(objectRewards($object, $data['reward_key'], $data['recipient_type']) as $reward){
+            foreach (objectRewards($object, $data['reward_key'], $data['recipient_type']) as $reward) {
                 $reward->delete();
             }
 
             if (isset($data['rewardable_type'])) {
                 foreach ($data['rewardable_type'] as $key => $type) {
-
                     $model = strtolower($type);
 
                     ObjectReward::create([
-                        'object_id' => $object->id,
-                        'object_type' => get_class($object),
+                        'object_id'       => $object->id,
+                        'object_type'     => get_class($object),
                         'rewardable_type' => getAssetModelString($model),
-                        'rewardable_id' => $data['rewardable_id'][$key] ?? null,
-                        'quantity' => $data['reward_quantity'][$key],
-                        'recipient_type' => $data['recipient_type'],
-                        'reward_key' => $data['reward_key'],
+                        'rewardable_id'   => $data['rewardable_id'][$key] ?? null,
+                        'quantity'        => $data['reward_quantity'][$key],
+                        'recipient_type'  => $data['recipient_type'],
+                        'reward_key'      => $data['reward_key'],
                     ]);
                 }
             }
@@ -63,32 +59,36 @@ class RewardManager extends Service
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 
     /**
-     * Grant rewards
+     * Grant rewards.
      *
-     * @param  array                  $data
-     * @param  \App\Models\User\User  $user
+     * @param array                 $data
+     * @param \App\Models\User\User $user
+     * @param mixed                 $object
+     * @param mixed                 $recipient
+     * @param mixed                 $isCharacter
+     *
      * @return mixed
      */
-    public function grantRewards($object, $user, $recipient, $data, $isCharacter = false)
-    {
+    public function grantRewards($object, $user, $recipient, $data, $isCharacter = false) {
         DB::beginTransaction();
 
         try {
             if (!$object) {
-                throw new \Exception("Invalid object.");
+                throw new \Exception('Invalid object.');
             }
 
             if (!$recipient) {
-                throw new \Exception("Invalid recipient.");
+                throw new \Exception('Invalid recipient.');
             }
 
-            if($isCharacter){
+            if ($isCharacter) {
                 $recipient_type = 'Character';
-            }else{
+            } else {
                 $recipient_type = 'User';
             }
 
@@ -114,12 +114,13 @@ class RewardManager extends Service
                 flash(createRewardsString($rewards))->success();
             }
 
-            flash(($isCharacter ? 'Character' : 'User') . ' rewards granted successfully.')->success();
+            flash(($isCharacter ? 'Character' : 'User').' rewards granted successfully.')->success();
 
             return $this->commitReturn(true);
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 }
