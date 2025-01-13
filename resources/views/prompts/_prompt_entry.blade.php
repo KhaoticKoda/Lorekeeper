@@ -35,49 +35,19 @@
                     <p class="text-info">Submissions to this prompt are hidden.</p>
                 @endif
             </div>
-            <h3>Rewards</h3>
-            <h4>User Rewards <i class="fas fa-user"></i></h4>
-            @if (!count($prompt->rewards))
-                No user rewards.
-            @else
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th width="70%">Reward</th>
-                            <th width="30%">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($prompt->rewards as $reward)
-                            <tr>
-                                <td>{!! $reward->reward->displayName !!}</td>
-                                <td>{{ $reward->quantity }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-            <h4>Character Rewards <i class="fas fa-paw"></i></h4>
-            @if (!count($prompt->characterRewards))
-                No character rewards.
-            @else
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th width="70%">Reward</th>
-                            <th width="30%">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($prompt->characterRewards as $reward)
-                            <tr>
-                                <td>{!! $reward->reward->displayName !!}</td>
-                                <td>{{ $reward->quantity }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
+            @include('widgets._reward_display', [
+                'object' => $prompt,
+                'type' => 'prompt',
+                'reward_key' => 'objectRewards',
+                'recipient' => 'User',
+            ])
+            @include('widgets._reward_display', [
+                'object' => $prompt,
+                'type' => 'prompt',
+                'reward_key' => 'objectCharacterRewards',
+                'recipient' => 'Character',
+                'info' => 'Only focus characters will recieve these rewards.',
+            ])
         </div>
         <div class="text-right">
             @if ($prompt->end_at && $prompt->end_at->isPast())

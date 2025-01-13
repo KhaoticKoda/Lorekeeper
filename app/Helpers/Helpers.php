@@ -448,3 +448,16 @@ function prettyProfileName($url) {
         return $url;
     }
 }
+
+/**
+ * Get the object's rewards
+ */
+function objectRewards($object, $key, $recipient)
+{
+    return App\Models\ObjectReward::where([
+        ['object_type', get_class($object)],
+        ['object_id', $object->id],
+        ['recipient_type', $recipient],
+        ['reward_key', $key],
+    ])->get();
+}

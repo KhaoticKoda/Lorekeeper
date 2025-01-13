@@ -96,6 +96,26 @@
 
     {!! Form::close() !!}
 
+    <h3>Rewards</h3>
+    <p>Mods are able to modify the specific rewards granted at approval time.</p>
+    <p>You can add loot tables containing any kind of currencies (both user- and character-attached), but be sure to keep track of which are being distributed! Character-only currencies cannot be given to users.</p>
+
+    @include('widgets._reward_maker', [
+        'object' => $prompt,
+        'type' => 'prompt',
+        'recipient' => 'User',
+        'reward_key' => 'objectRewards',
+        'info' => 'Rewards are credited on a per-user basis.'
+    ])
+
+    @include('widgets._reward_maker', [
+        'object' => $prompt,
+        'type' => 'prompt',
+        'recipient' => 'Character',
+        'reward_key' => 'objectCharacterRewards',
+        'info' => 'Character rewards are only credited to the focus characters of a submission, both users and moderators can add and edit this status. There can be multiple focus characters.',
+    ])
+
     @if ($prompt->id)
         <h3>Preview</h3>
         <div class="card mb-3">
