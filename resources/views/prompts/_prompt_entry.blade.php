@@ -31,27 +31,19 @@
                     <p class="text-info">Submissions to this prompt are hidden.</p>
                 @endif
             </div>
-            <h4>Rewards</h4>
-            @if(!count($prompt->rewards))
-                No rewards.
-            @else
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th width="70%">Reward</th>
-                            <th width="30%">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($prompt->rewards as $reward)
-                            <tr>
-                                <td>{!! $reward->reward->displayName !!}</td>
-                                <td>{{ $reward->quantity }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
+            @include('widgets._reward_display', [
+                'object' => $prompt,
+                'type' => 'prompt',
+                'reward_key' => 'objectRewards',
+                'recipient' => 'User',
+            ])
+            @include('widgets._reward_display', [
+                'object' => $prompt,
+                'type' => 'prompt',
+                'reward_key' => 'objectCharacterRewards',
+                'recipient' => 'Character',
+                'info' => 'Only focus characters will recieve these rewards.',
+            ])
         </div>
         <div class="text-right">
             @if($prompt->end_at && $prompt->end_at->isPast())

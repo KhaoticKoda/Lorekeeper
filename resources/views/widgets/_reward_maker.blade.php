@@ -1,7 +1,7 @@
 @php
     //idk what to name this variable, it's in case you want to add an addition to the title ($keytitle user rewards) given that now we have reward keys for multiple attachments to the same model
 
-//so instead of just periodic rewards you could add some other textual identifier for another purpose so you won't confuse yourself with multiple identical fields.
+//so you could add some other textual identifier for another purpose so you won't confuse yourself with multiple identical fields.
     if (!isset($keytitle)) {
         $keytitle = '';
     }
@@ -40,6 +40,12 @@
             $currencies = \App\Models\Currency\Currency::where('is_character_owned', 1)->orderBy('sort_character', 'DESC')->pluck('name', 'id');
         }
         $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
+
+        //get the rewards
+        $rewards = objectRewards($object, $reward_key, $recipient);
+
+        //get the types
+        $reward_types = ['Item' => 'Item', 'Currency' => 'Currency', 'LootTable' => 'Loot Table'] + ($isUser ? ['Raffle' => 'Raffle'] : []);
     @endphp
     {!! Form::hidden('recipient_type', $recipient) !!}
     {!! Form::hidden('reward_key', $reward_key) !!}
@@ -69,10 +75,10 @@
                         </tr>
                     </thead>
                     <tbody id="rewardTableBody{{ $reward_key }}{{ $recipient }}">
-                        @if ($object->$reward_key)
-                            @foreach ($object->$reward_key as $reward)
+                        @if ($rewards->count())
+                            @foreach ($rewards as $reward)
                                 <tr class="reward-row">
-                                    <td>{!! Form::select('rewardable_type[]', ['Item' => 'Item', 'Currency' => 'Currency', 'LootTable' => 'Loot Table'] + ($isUser ? ['Raffle' => 'Raffle'] : []), $reward->rewardType(), [
+                                    <td>{!! Form::select('rewardable_type[]', $reward_types, $reward->rewardType(), [
                                         'class' => 'form-control reward-type selectize',
                                         'placeholder' => 'Select Reward Type',
                                     ]) !!}</td>
@@ -112,7 +118,7 @@
         <table class="table table-sm">
             <tbody id="rewardRow{{ $reward_key }}{{ $recipient }}">
                 <tr class="reward-row">
-                    <td>{!! Form::select('rewardable_type[]', ['Item' => 'Item', 'Currency' => 'Currency', 'LootTable' => 'Loot Table'] + ($isUser ? ['Raffle' => 'Raffle'] : []), null, [
+                    <td>{!! Form::select('rewardable_type[]', $reward_types, null, [
                         'class' => 'form-control reward-type selectize',
                         'placeholder' => 'Select Reward Type',
                     ]) !!}</td>

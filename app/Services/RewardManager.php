@@ -37,9 +37,10 @@ class RewardManager extends Service
             }
 
             // We're going to remove all rewards and reattach them with the updated data
-            //update the key variable because for some reason it doesn't like being called directly?????????????
-            $rewardkey = $data['reward_key'];
-            $object->$rewardkey()->delete();
+
+            foreach(objectRewards($object, $data['reward_key'], $data['recipient_type']) as $reward){
+                $reward->delete();
+            }
 
             if (isset($data['rewardable_type'])) {
                 foreach ($data['rewardable_type'] as $key => $type) {
@@ -72,7 +73,7 @@ class RewardManager extends Service
      * @param  \App\Models\User\User  $user
      * @return mixed
      */
-    public function grantRewards($object, $user, $recipient, $logtype, $logdata, $rewardKey, $isCharacter = false)
+    public function grantRewards($object, $user, $recipient, $data, $isCharacter = false)
     {
         DB::beginTransaction();
 
@@ -85,26 +86,32 @@ class RewardManager extends Service
                 throw new \Exception("Invalid recipient.");
             }
 
+            if($isCharacter){
+                $recipient_type = 'Character';
+            }else{
+                $recipient_type = 'User';
+            }
+
             $rewards = createAssetsArray();
 
-            if ($isCharacter) {
-                foreach ($object->$rewardKey as $reward) {
-                    addAsset($rewards, $reward->reward, $reward->quantity);
-                }
+            foreach (objectRewards($object, $data['reward_key'], $recipient_type) as $reward) {
+                addAsset($rewards, $reward->reward, $reward->quantity);
+            }
 
+            if ($isCharacter) {
                 // Distribute character rewards
-                if (!($rewards = fillCharacterAssets($rewards, null, $recipient, $logtype, $logdata, $user))) {
+                if (!($rewards = fillCharacterAssets($rewards, null, $recipient, $data['log_type'], $data['log_data'], $user))) {
                     throw new \Exception('Failed to distribute rewards to character.');
                 }
             } else {
-                foreach ($object->$rewardKey as $reward) {
-                    addAsset($rewards, $reward->reward, $reward->quantity);
-                }
-
                 // Distribute user rewards
-                if (!($rewards = fillUserAssets($rewards, null, $recipient, $logtype, $logdata))) {
+                if (!($rewards = fillUserAssets($rewards, null, $recipient, $data['log_type'], $data['log_data']))) {
                     throw new \Exception('Failed to distribute rewards to user.');
                 }
+            }
+
+            if (isset($data['flash_rewards']) && $data['flash_rewards'] == 1) {
+                flash(createRewardsString($rewards))->success();
             }
 
             flash(($isCharacter ? 'Character' : 'User') . ' rewards granted successfully.')->success();

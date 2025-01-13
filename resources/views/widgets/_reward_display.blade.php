@@ -1,3 +1,7 @@
+@php
+    $rewards = objectRewards($object, $reward_key, $recipient);
+@endphp
+
 <hr class="my-4 w-75" />
 
 <h4>{{ ucfirst($type) }} Rewards ({!! $recipient == 'User' ? 'User <i class="fas fa-user"></i>' : 'Character <i class="fas fa-paw"></i>' !!} )</h4>
@@ -5,7 +9,7 @@
 @if (isset($info))
     <div class="alert alert-info">{!! $info !!}</div>
 @endif
-@if ($object->$reward_key->count())
+@if ($rewards->count())
     <table class="table table-sm">
         <thead>
             <tr>
@@ -14,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($object->$reward_key as $reward)
+            @foreach ($rewards as $reward)
                 <tr>
                     <td>{!! $reward->reward->displayName !!}</td>
                     <td>{{ $reward->quantity }}</td>
