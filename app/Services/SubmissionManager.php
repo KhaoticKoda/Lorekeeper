@@ -56,7 +56,7 @@ class SubmissionManager extends Service
                 throw new \Exception('Please select a prompt.');
             }
             if (!$isClaim) {
-                $prompt = Prompt::active()->where('id', $data['prompt_id'])->with('rewards')->first();
+                $prompt = Prompt::active()->where('id', $data['prompt_id'])->with('objectRewards')->first();
                 if (!$prompt) {
                     throw new \Exception('Invalid prompt selected.');
                 }
@@ -130,7 +130,7 @@ class SubmissionManager extends Service
                 throw new \Exception('Please select a prompt.');
             }
             if (!$isClaim) {
-                $prompt = Prompt::active()->where('id', $data['prompt_id'])->with('rewards')->first();
+                $prompt = Prompt::active()->where('id', $data['prompt_id'])->with('objectRewards')->first();
                 if (!$prompt) {
                     throw new \Exception('Invalid prompt selected.');
                 }
@@ -722,7 +722,7 @@ class SubmissionManager extends Service
         // Get a list of rewards, then create the submission itself
         $promptRewards = createAssetsArray();
         if ($submission->status == 'Pending' && isset($submission->prompt_id) && $submission->prompt_id) {
-            foreach ($submission->prompt->rewards as $reward) {
+            foreach ($submission->prompt->objectRewards as $reward) {
                 addAsset($promptRewards, $reward->reward, $reward->quantity);
             }
         }
@@ -746,7 +746,7 @@ class SubmissionManager extends Service
         $promptRewards = createAssetsArray();
         $promptRewards = mergeAssetsArrays($promptRewards, parseAssetData($assets['rewards']));
         if (isset($submission->prompt_id) && $submission->prompt_id) {
-            foreach ($submission->prompt->rewards as $reward) {
+            foreach ($submission->prompt->objectRewards as $reward) {
                 removeAsset($promptRewards, $reward->reward, $reward->quantity);
             }
         }
@@ -766,7 +766,7 @@ class SubmissionManager extends Service
         $promptRewards = createAssetsArray(true);
         $promptRewards = mergeAssetsArrays($promptRewards, parseAssetData($assets, true), true);
         if (isset($submission->prompt_id) && $submission->prompt_id) {
-            foreach ($submission->prompt->characterRewards as $reward) {
+            foreach ($submission->prompt->objectCharacterRewards as $reward) {
                 removeAsset($promptRewards, $reward->reward, $reward->quantity);
             }
         }
@@ -833,11 +833,11 @@ class SubmissionManager extends Service
             $assets = $this->processRewards($data + ['character_id' => $c->id, 'currencies' => $currencies, 'items' => $items, 'tables' => $tables], true);
 
             //add the preset character rewards with any character rewards in data
-            if ($submission->status == 'Pending' && isset($submission->prompt_id) && $submission->prompt_id && $submission->prompt->characterRewards->count() && isset($data['character_is_focus']) && $data['character_is_focus'][$c->id]) {
+            if ($submission->status == 'Pending' && isset($submission->prompt_id) && $submission->prompt_id && $submission->prompt->objectCharacterRewards->count() && isset($data['character_is_focus']) && $data['character_is_focus'][$c->id]) {
                 // Get a list of rewards
                 $defaultRewards = createAssetsArray(true);
                 //add to array
-                foreach ($submission->prompt->characterRewards as $reward) {
+                foreach ($submission->prompt->objectCharacterRewards as $reward) {
                     addAsset($defaultRewards, $reward->reward, $reward->quantity);
                 }
                 //merge with the cleaned up user-set stuff

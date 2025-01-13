@@ -75,6 +75,28 @@ class Prompt extends Model {
         return $this->belongsTo(PromptCategory::class, 'prompt_category_id');
     }
 
+    /**
+     * Get the rewards attached to this prompt.
+     */
+    public function objectRewards() {
+        return $this->hasMany('App\Models\ObjectReward', 'object_id')->where([
+            ['object_type', get_class($this)],
+            ['recipient_type', 'User'],
+            ['reward_key', 'objectRewards'],
+        ]);
+    }
+
+    /**
+     * Get the rewards attached to this prompt.
+     */
+    public function objectCharacterRewards() {
+        return $this->hasMany('App\Models\ObjectReward', 'object_id')->where([
+            ['object_type', get_class($this)],
+            ['recipient_type', 'Character'],
+            ['reward_key', 'objectCharacterRewards'],
+        ]);
+    }
+
     /**********************************************************************************************
 
         SCOPES
