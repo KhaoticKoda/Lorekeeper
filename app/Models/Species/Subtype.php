@@ -30,6 +30,7 @@ class Subtype extends Model {
     protected $appends = [
         'name_with_species',
     ];
+
     /**
      * Validation rules for creation.
      *
@@ -135,7 +136,7 @@ class Subtype extends Model {
      * @return string
      */
     public function getSubtypeImageFileNameAttribute() {
-        return $this->hash.$this->id.'-image.png';
+        return $this->id.'-'.$this->hash.'-image.png';
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Model;
 use App\Models\Prompt\Prompt;
 use App\Models\Rarity;
 use App\Models\Shop\Shop;
+use App\Models\Shop\ShopStock;
 use App\Models\User\User;
 
 class Item extends Model {
@@ -27,6 +28,16 @@ class Item extends Model {
      * @var string
      */
     protected $table = 'items';
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'tags',
+    ];
+
     /**
      * Validation rules for creation.
      *
@@ -92,6 +103,13 @@ class Item extends Model {
      */
     public function rarity() {
         return $this->belongsTo(Rarity::class, $this->attributes['rarity_id'] ?? null, 'id');
+    }
+
+    /**
+     * Get shop stock for this item.
+     */
+    public function shopStock() {
+        return $this->hasMany(ShopStock::class, 'item_id');
     }
 
     /**********************************************************************************************
@@ -195,7 +213,7 @@ class Item extends Model {
      * @return string
      */
     public function getImageFileNameAttribute() {
-        return $this->hash.$this->id.'-image.png';
+        return $this->id.'-'.$this->hash.'-image.png';
     }
 
     /**
@@ -351,17 +369,24 @@ class Item extends Model {
     }
 
     /**
-     * Get the shops attribute as an associative array.
+     * Get the shops that stock this item.
      *
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getShopsAttribute() {
-        if (!$this->data) {
+    public function getShopsAttribute($user = null) {
+        if (!config('lorekeeper.extensions.item_entry_expansion.extra_fields') || !$this->shop_stock_count) {
             return null;
         }
-        $itemShops = $this->data['shops'];
 
-        return Shop::whereIn('id', $itemShops)->get();
+        $shops = Shop::where(function ($query) use ($user) {
+            if ($user && $user->hasPower('edit_data')) {
+                return $query;
+            }
+
+            return $query->where('is_hidden', 0)->where('is_staff', 0);
+        })->whereIn('id', $this->shopStock->pluck('shop_id')->toArray());
+
+        return $shops;
     }
 
     /**
@@ -375,7 +400,11 @@ class Item extends Model {
         }
         $itemPrompts = $this->data['prompts'];
 
-        return Prompt::whereIn('id', $itemPrompts)->get();
+        if (count($itemPrompts)) {
+            return Prompt::whereIn('id', $itemPrompts)->get();
+        } else {
+            return null;
+        }
     }
 
     /**

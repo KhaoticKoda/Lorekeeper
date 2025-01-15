@@ -128,7 +128,7 @@ class Shop extends Model {
      * @return string
      */
     public function getShopImageFileNameAttribute() {
-        return $this->hash.$this->id.'-image.png';
+        return $this->id.'-'.$this->hash.'-image.png';
     }
 
     /**
