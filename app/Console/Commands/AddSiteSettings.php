@@ -77,6 +77,10 @@ class AddSiteSettings extends Command {
 
         $this->addSiteSetting('trade_listing_duration', 14, 'Number of days a trade listing is displayed for.');
 
+        $this->addSiteSetting('trade_listing_limit', 3, 'Number of trade listings a user can have at once.');
+
+        $this->addSiteSetting('open_trades_queue', 0, '0: Trades do not need mod approval, 1: Trades must be approved by a mod.');
+
         $this->addSiteSetting('deactivated_privacy', 0, 'Who can view the deactivated list? 0: Admin only, 1: Staff only, 2: Members only, 3: Public.');
 
         $this->addSiteSetting('deactivated_link', 0, '0: No link to the deactivated list is displayed anywhere, 1: Link to the deactivated list is shown on the user list.');

@@ -6,6 +6,7 @@ use App\Facades\Settings;
 use App\Models\Character\Character;
 use App\Models\User\User;
 use App\Models\User\UserItem;
+use App\Models\Model;
 
 class Trade extends Model {
     /**

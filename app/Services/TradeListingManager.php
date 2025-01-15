@@ -34,6 +34,9 @@ class TradeListingManager extends Service {
     public function createTradeListing($data, $user) {
         DB::beginTransaction();
         try {
+            if (TradeListing::where('user_id', $user->id)->where('expires_at', '>', Carbon::now())->count() > Settings::get('trade_listing_limit')) {
+                throw new \Exception('You already have the maximum number of active trade listings. Please wait for them to expire before creating a new one.');
+            }
             if (!isset($data['contact'])) {
                 throw new \Exception('Please enter your preferred method(s) of contact.');
             }
