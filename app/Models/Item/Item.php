@@ -450,7 +450,7 @@ class Item extends Model {
             }
 
             return $query->where('is_hidden', 0)->where('is_staff', 0);
-        })->whereIn('id', $this->shopStock->pluck('shop_id')->toArray());
+        })->whereIn('id', $this->shopStock->pluck('shop_id')->toArray())->get();
 
         return $shops;
     }
