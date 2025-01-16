@@ -435,6 +435,8 @@ class Item extends Model {
     /**
      * Get the shops that stock this item.
      *
+     * @param mixed|null $user
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function shops($user = null) {
