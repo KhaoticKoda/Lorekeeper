@@ -14,6 +14,7 @@ use App\Models\Gallery\GalleryFavorite;
 use App\Models\Gallery\GallerySubmission;
 use App\Models\Item\Item;
 use App\Models\Item\ItemLog;
+use App\Models\Limit\UserUnlockedLimit;
 use App\Models\Notification;
 use App\Models\Rank\Rank;
 use App\Models\Rank\RankPower;
@@ -204,6 +205,13 @@ class User extends Authenticatable implements MustVerifyEmail {
      */
     public function commentLikes() {
         return $this->hasMany(CommentLike::class);
+    }
+
+    /**
+     * Gets all of the user's unlocked limits.
+     */
+    public function unlockedLimits() {
+        return $this->hasMany(UserUnlockedLimit::class);
     }
 
     /**********************************************************************************************
@@ -484,27 +492,36 @@ class User extends Authenticatable implements MustVerifyEmail {
     /**
      * Get the user's held currencies.
      *
-     * @param bool $showAll
+     * @param bool       $showAll
+     * @param mixed|null $user
+     * @param mixed      $showCategories
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getCurrencies($showAll = false) {
+    public function getCurrencies($showAll = false, $showCategories = false, $user = null) {
         // Get a list of currencies that need to be displayed
         // On profile: only ones marked is_displayed
         // In bank: ones marked is_displayed + the ones the user has
 
         $owned = UserCurrency::where('user_id', $this->id)->pluck('quantity', 'currency_id')->toArray();
 
-        $currencies = Currency::where('is_user_owned', 1);
+        $currencies = Currency::where('is_user_owned', 1)
+            ->whereHas('category', function ($query) use ($user) {
+                $query->visible($user);
+            })
+            ->orWhereNull('currency_category_id')
+            ->visible($user);
         if ($showAll) {
             $currencies->where(function ($query) use ($owned) {
                 $query->where('is_displayed', 1)->orWhereIn('id', array_keys($owned));
             });
 
-            $categories = CurrencyCategory::visible()->orderBy('sort', 'DESC')->get();
+            if ($showCategories) {
+                $categories = CurrencyCategory::visible()->orderBy('sort', 'DESC')->get();
 
-            if ($categories->count()) {
-                $currencies->orderByRaw('FIELD(currency_category_id,'.implode(',', $categories->pluck('id')->toArray()).')');
+                if ($categories->count()) {
+                    $currencies->orderByRaw('FIELD(currency_category_id,'.implode(',', $categories->pluck('id')->toArray()).')');
+                }
             }
         } else {
             $currencies = $currencies->where('is_displayed', 1);
@@ -516,7 +533,7 @@ class User extends Authenticatable implements MustVerifyEmail {
             $currency->quantity = $owned[$currency->id] ?? 0;
         }
 
-        if ($showAll) {
+        if ($showAll && $showCategories) {
             $currencies = $currencies->groupBy(function ($currency) use ($categories) {
                 if (!$currency->category) {
                     return 'Miscellaneous';
