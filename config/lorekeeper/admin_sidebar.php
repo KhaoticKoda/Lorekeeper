@@ -102,7 +102,7 @@ return [
             [
                 'name' => 'Trades',
                 'url'  => 'admin/trades/incoming',
-            ]
+            ],
         ],
     ],
     'Grants'     => [

@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Trade\Trade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class TradeController extends Controller {
     /**

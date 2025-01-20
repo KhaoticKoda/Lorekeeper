@@ -15,7 +15,6 @@ use App\Models\Species\Subtype;
 use App\Models\Trade\Trade;
 use App\Models\User\User;
 use App\Services\CharacterManager;
-use App\Services\TradeManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

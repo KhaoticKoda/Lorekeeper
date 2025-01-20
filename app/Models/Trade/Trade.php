@@ -98,6 +98,8 @@ class Trade extends Model {
 
     /**
      * Scope a query to only include finalised trades.
+     *
+     * @param mixed $query
      */
     public function scopeCompleted($query) {
         return $query->where('status', 'Completed')->orWhere('status', 'Rejected');
@@ -105,6 +107,8 @@ class Trade extends Model {
 
     /**
      * Scope a query to order by the newest trades.
+     *
+     * @param mixed $query
      */
     public function scopeSortNewest($query) {
         return $query->orderBy('id', 'DESC');
@@ -112,6 +116,8 @@ class Trade extends Model {
 
     /**
      * Scope a query to order by the oldest trades.
+     *
+     * @param mixed $query
      */
     public function scopeSortOldest($query) {
         return $query->orderBy('id', 'ASC');
