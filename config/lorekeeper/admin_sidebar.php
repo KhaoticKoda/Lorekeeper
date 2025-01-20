@@ -23,7 +23,7 @@ return [
             ],
             [
                 'name' => 'Admin Logs',
-                'url'  => 'admin/logs',
+                'url'  => 'admin/admin-logs',
             ],
             [
                 'name' => 'Staff Reward Settings',
@@ -40,17 +40,27 @@ return [
             ],
         ],
     ],
-    'Site'       => [
-        'power' => 'edit_pages',
+    'News' => [
+        'power' => 'manage_news',
         'links' => [
             [
                 'name' => 'News',
                 'url'  => 'admin/news',
             ],
+        ],
+    ],
+    'Sales' => [
+        'power' => 'manage_sales',
+        'links' => [
             [
                 'name' => 'Sales',
                 'url'  => 'admin/sales',
             ],
+        ],
+    ],
+    'Pages'       => [
+        'power' => 'edit_pages',
+        'links' => [
             [
                 'name' => 'Pages',
                 'url'  => 'admin/pages',
@@ -184,6 +194,10 @@ return [
                 'name' => 'Items',
                 'url'  => 'admin/data/items',
             ],
+            [
+                'name' => 'Dynamic Limits',
+                'url'  => 'admin/data/limits',
+            ],
         ],
     ],
     'Raffles'    => [
@@ -209,6 +223,10 @@ return [
             [
                 'name' => 'File Manager',
                 'url'  => 'admin/files',
+            ],
+            [
+                'name' => 'Log Viewer',
+                'url'  => 'admin/logs',
             ],
         ],
     ],

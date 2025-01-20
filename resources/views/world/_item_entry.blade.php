@@ -5,6 +5,9 @@
     <div class="{{ $imageUrl ? 'col-md-9' : 'col-12' }}">
         <x-admin-edit title="Item" :object="$item" />
         <h3>
+            @if (!$item->is_released)
+                <i class="fas fa-eye-slash mr-1"></i>
+            @endif
             {!! $name !!}
             @if (isset($idUrl) && $idUrl)
                 <a href="{{ $idUrl }}" class="world-entry-search text-muted">
@@ -29,7 +32,7 @@
             @if (config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                 @if (isset($item->rarity) && $item->rarity)
                     <div class="col-md">
-                        <p><strong>Rarity:</strong> {!! $item->rarity !!}</p>
+                        <p><strong>Rarity:</strong> {!! $item->rarity->displayName !!}</p>
                     </div>
                 @endif
                 @if (isset($item->itemArtist) && $item->itemArtist)
@@ -65,7 +68,7 @@
                 </p>
             @endif
             {!! $description !!}
-            @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $shops->count() || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
+            @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                 <div class="text-right">
                     <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
                         <strong>Show details...</strong>
@@ -77,7 +80,7 @@
                             <strong>Uses:</strong> {{ $item->uses }}
                         </p>
                     @endif
-                    @if ((isset($item->source) && $item->source) || $shops->count() || (isset($item->data['prompts']) && $item->data['prompts']))
+                    @if ((isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts']))
                         <h5>Availability</h5>
                         <div class="row">
                             @if (isset($item->source) && $item->source)
@@ -90,13 +93,13 @@
                                     </p>
                                 </div>
                             @endif
-                            @if ($shops->count())
+                            @if ($item->shop_stock_count)
                                 <div class="col">
                                     <p>
                                         <strong>Purchaseable At:</strong>
                                     </p>
                                     <div class="row">
-                                        @foreach ($shops as $shop)
+                                        @foreach ($item->shops(Auth::user() ?? null) as $shop)
                                             <div class="col">
                                                 <a href="{{ $shop->url }}">
                                                     {{ $shop->name }}

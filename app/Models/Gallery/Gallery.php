@@ -2,7 +2,6 @@
 
 namespace App\Models\Gallery;
 
-use App\Facades\Settings;
 use App\Models\Model;
 use Carbon\Carbon;
 
@@ -73,6 +72,28 @@ class Gallery extends Model {
      */
     public function children() {
         return $this->hasMany(self::class, 'parent_id')->sort();
+    }
+
+    /**
+     * Get the sibling galleries of this gallery.
+     */
+    public function siblings() {
+        if ($this->parent) {
+            return $this->parent->hasMany(self::class, 'parent_id')->sort();
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the avunculi galleries of this gallery.
+     */
+    public function avunculi() {
+        if ($this->parent && $this->parent->siblings()) {
+            return $this->parent->siblings()->sort();
+        }
+
+        return null;
     }
 
     /**
@@ -180,12 +201,13 @@ class Gallery extends Model {
     /**
      * Gets whether or not the user can submit to the gallery.
      *
+     * @param bool       $submissionsOpen
      * @param mixed|null $user
      *
      * @return string
      */
-    public function canSubmit($user = null) {
-        if (Settings::get('gallery_submissions_open')) {
+    public function canSubmit($submissionsOpen, $user = null) {
+        if ($submissionsOpen) {
             if ((isset($this->start_at) && $this->start_at->isFuture()) || (isset($this->end_at) && $this->end_at->isPast())) {
                 return false;
             } elseif ($user && $user->hasPower('manage_submissions')) {
