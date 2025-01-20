@@ -543,7 +543,7 @@ class GallerySubmission extends Model {
      * @return array
      */
     public function getVoteData($withUsers = 0) {
-        $voteData['raw'] = json_decode($this->attributes['vote_data'], true);
+        $voteData['raw'] = $this->vote_data;
 
         // Only query users if necessary, and condense to one query per submission
         if ($withUsers) {
