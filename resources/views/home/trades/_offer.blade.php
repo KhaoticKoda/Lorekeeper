@@ -1,6 +1,6 @@
-<h2>
-    {!! $user->displayName !!}'s Offer
-    <span class="float-right">
+<div class="d-flex h2">
+    <div>{!! $user->displayName !!}'s Offer</div>
+    <div class="ml-auto">
         @if (Auth::user()->id == $user->id && $trade->status == 'Open')
             @if ($trade->{'is_' . $type . '_confirmed'})
                 <a href="#" class="btn btn-sm btn-outline-danger" id="confirmOfferButton" data-toggle="tooltip"
@@ -22,13 +22,15 @@
                 <small class="text-muted">{!! add_help('This offer has yet to be confirmed.') !!} Pending</small>
             @endif
         @endif
-    </span>
-</h2>
+    </div>
+</div>
 <div class="card mb-3 trade-offer
-        @if ($trade->{'is_' . $type . '_confirmed'}) @if ($trade->{'is_' . $type . '_trade_confirmed'})
+        @if ($trade->{'is_' . $type . '_confirmed'})
+            @if ($trade->{'is_' . $type . '_trade_confirmed'})
                 border-success
             @else
-                border-primary @endif
+                border-primary
+            @endif
         @endif
 ">
     @if ($data)

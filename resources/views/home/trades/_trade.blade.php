@@ -24,9 +24,11 @@
         @endif
         <div class="row">
             <div class="col-md-6">
-                <h3 class="card-heading">
-                    {!! $trade->sender->id == Auth::user()->id ? 'Your Offer' : $trade->sender->displayName . '\'s Offer' !!}
-                    <span class="float-right">
+                <div class="d-flex h3">
+                    <div class="card-heading">
+                        {!! $trade->sender->id == Auth::user()->id ? 'Your Offer' : $trade->sender->displayName . '\'s Offer' !!}
+                    </div>
+                    <div class="text-right ml-auto">
                         @if ($trade->{'is_sender_confirmed'})
                             @if ($trade->{'is_sender_trade_confirmed'})
                                 <small class="text-success">Trade Confirmed</small>
@@ -36,8 +38,8 @@
                         @else
                             <small class="text-muted">Pending</small>
                         @endif
-                    </span>
-                </h3>
+                    </div>
+                </div>
                 @include('home.trades._offer_summary', [
                     'user' => $trade->sender,
                     'data' => isset($trade->data['sender']) ? parseAssetData($trade->data['sender']) : null,
@@ -46,9 +48,11 @@
                 ])
             </div>
             <div class="col-md-6">
-                <h3 class="card-heading">
-                    {!! $trade->recipient->id == Auth::user()->id ? 'Your Offer' : $trade->recipient->displayName . '\'s Offer' !!}
-                    <span class="float-right">
+                <div class="d-flex h3">
+                    <div class="card-heading">
+                        {!! $trade->recipient->id == Auth::user()->id ? 'Your Offer' : $trade->recipient->displayName . '\'s Offer' !!}
+                    </div>
+                    <div class="text-right ml-auto">
                         @if ($trade->{'is_recipient_confirmed'})
                             @if ($trade->{'is_recipient_trade_confirmed'})
                                 <small class="text-success">Trade Confirmed</small>
@@ -58,8 +62,8 @@
                         @else
                             <small class="text-muted">Pending</small>
                         @endif
-                    </span>
-                </h3>
+                    </div>
+                </div>
                 @include('home.trades._offer_summary', [
                     'user' => $trade->recipient,
                     'data' => isset($trade->data['recipient']) ? parseAssetData($trade->data['recipient']) : null,
