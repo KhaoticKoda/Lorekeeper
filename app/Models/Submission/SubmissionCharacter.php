@@ -22,7 +22,6 @@ class SubmissionCharacter extends Model {
      */
     protected $table = 'submission_characters';
 
-    
     /**
      * The attributes that should be cast to native types.
      *

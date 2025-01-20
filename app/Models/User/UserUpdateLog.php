@@ -20,13 +20,6 @@ class UserUpdateLog extends Model {
      * @var string
      */
     protected $table = 'user_update_log';
-    
-    /**
-     * The primary key of the model.
-     *
-     * @var string
-     */
-    public $primaryKey = 'user_id';
 
     /**
      * The attributes that should be cast to native types.
@@ -36,6 +29,13 @@ class UserUpdateLog extends Model {
     protected $casts = [
         'data' => 'array',
     ];
+
+    /**
+     * The primary key of the model.
+     *
+     * @var string
+     */
+    public $primaryKey = 'user_id';
 
     /**
      * Whether the model contains timestamps to be saved and updated.

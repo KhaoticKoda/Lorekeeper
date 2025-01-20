@@ -29,7 +29,7 @@ class CharacterLog extends Model {
      * @var array
      */
     protected $casts = [
-        'data' => 'array',
+        'data'       => 'array',
         'change_log' => 'array',
     ];
 

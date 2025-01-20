@@ -26,7 +26,7 @@ class Submission extends Model {
      * @var string
      */
     protected $table = 'submissions';
-    
+
     /**
      * The attributes that should be cast to native types.
      *
