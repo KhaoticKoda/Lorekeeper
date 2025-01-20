@@ -96,8 +96,25 @@ class Trade extends Model {
 
     **********************************************************************************************/
 
+    /**
+     * Scope a query to only include finalised trades.
+     */
     public function scopeCompleted($query) {
         return $query->where('status', 'Completed')->orWhere('status', 'Rejected');
+    }
+
+    /**
+     * Scope a query to order by the newest trades.
+     */
+    public function scopeSortNewest($query) {
+        return $query->orderBy('id', 'DESC');
+    }
+
+    /**
+     * Scope a query to order by the oldest trades.
+     */
+    public function scopeSortOldest($query) {
+        return $query->orderBy('id', 'ASC');
     }
 
     /**********************************************************************************************
