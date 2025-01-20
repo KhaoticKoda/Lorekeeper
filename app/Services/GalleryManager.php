@@ -189,6 +189,10 @@ class GalleryManager extends Service {
                 throw new \Exception("You can't edit this submission.");
             }
 
+            if ($submission->status == 'Rejected') {
+                throw new \Exception('This submission has been rejected and cannot be edited.');
+            }
+
             // Check that there is text and/or an image, including if there is an existing image (via the existence of a hash)
             if ((!isset($data['image']) && !isset($submission->hash)) && !$data['text']) {
                 throw new \Exception('Please submit either text or an image.');
@@ -368,7 +372,7 @@ class GalleryManager extends Service {
 
                 // Check if all collaborators have approved, and if so send a notification to the
                 // submitting user (unless they are the last to approve-- which shouldn't happen, but)
-                if ($submission->collaboratorApproved) {
+                if ($submission->collaboratorApproval) {
                     if (Settings::get('gallery_submissions_require_approval') && $submission->gallery->votes_required > 0) {
                         if ($submission->user->id != $user->id) {
                             Notifications::create('GALLERY_COLLABORATORS_APPROVED', $submission->user, [
@@ -406,7 +410,7 @@ class GalleryManager extends Service {
             if ($submission->status != 'Pending') {
                 throw new \Exception('This request cannot be processed.');
             }
-            if (!$submission->collaboratorApproved) {
+            if (!$submission->collaboratorApproval) {
                 throw new \Exception("This submission's collaborators have not all approved yet.");
             }
 
@@ -431,23 +435,11 @@ class GalleryManager extends Service {
 
             $submission->save();
 
-            // Count up the existing votes to see if the required number has been reached
-            $rejectSum = 0;
-            $approveSum = 0;
-            foreach ($submission->voteData as $voter=> $vote) {
-                if ($vote == 1) {
-                    $rejectSum += 1;
-                }
-                if ($vote == 2) {
-                    $approveSum += 1;
-                }
-            }
-
-            // And if so, process the submission
-            if ($action == 'reject' && $rejectSum >= $submission->gallery->votes_required) {
+            // Process the submission if the required number of votes has been reached
+            if ($action == 'reject' && $submission->getVoteData()['reject'] >= $submission->gallery->votes_required) {
                 $this->rejectSubmission($submission, $user);
             }
-            if ($action == 'accept' && $approveSum >= $submission->gallery->votes_required) {
+            if ($action == 'accept' && $submission->getVoteData()['approve'] >= $submission->gallery->votes_required) {
                 $this->acceptSubmission($submission);
             }
 
