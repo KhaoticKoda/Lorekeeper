@@ -79,7 +79,7 @@
         <div class="mb-3 collapse card-body" id="userOffering">
             <p>Select the items, characters, currencies, and/or other goods or services you're offering.</p>
             @include('widgets._inventory_select', ['user' => Auth::user(), 'inventory' => $inventory, 'categories' => $categories, 'selected' => [], 'page' => $page])
-            @include('widgets._my_character_select', ['readOnly' => true, 'categories' => $characterCategories])
+            @include('widgets._user_character_select', ['readOnly' => true, 'categories' => $characterCategories])
             @if (isset($currencies) && $currencies)
                 <h3>Currencies</h3>
                 <div class="form-group">
@@ -114,7 +114,7 @@
         'useCustomSelectize' => true,
     ])
     @include('widgets._inventory_select_js', ['readOnly' => true])
-    @include('widgets._my_character_select_js', ['readOnly' => true])
+    @include('widgets._user_character_select_js', ['readOnly' => true])
     @parent
     <script>
         $(document).ready(function() {

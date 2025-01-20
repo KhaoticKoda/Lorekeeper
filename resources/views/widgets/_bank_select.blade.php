@@ -1,5 +1,8 @@
-<h3>{{ $owner->logType == 'User' && $owner->id == Auth::user()->id ? 'Your' : ($owner->logType == 'Character' ? $owner->fullName : $owner->name) . '\'s' }} Bank <a class="small inventory-collapse-toggle collapse-toggle collapsed"
-        href="#{{ strtolower($owner->logType) }}Bank-{{ $owner->id }}" data-toggle="collapse">Show</a></h3>
+<h3>
+    {{ $owner->logType == 'User' && $owner->id == Auth::user()->id ? 'Your' : ($owner->logType == 'Character' ? $owner->fullName : $owner->name) . '\'s' }} Bank
+    <a class="small inventory-collapse-toggle collapse-toggle collapsed"
+        href="#{{ strtolower($owner->logType) }}Bank-{{ $owner->id }}" data-toggle="collapse">Show</a>
+</h3>
 <div class="{{ isset($selected) && count($selected) ? '' : 'collapse' }}" id="{{ strtolower($owner->logType) }}Bank-{{ $owner->id }}">
     <div class="card mb-3">
         <div class="card-body">

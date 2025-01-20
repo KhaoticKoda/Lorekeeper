@@ -332,19 +332,47 @@ return [
         'message' => 'Your report (#{report_id}) was closed by <a href="{staff_url}">{staff_name}</a>. (<a href="{url}">View Report</a>)',
         'url'     => 'reports/view/{report_id}',
     ],
-    // Comment made on user's model
+
     // COMMENT_MADE
     239 => [
         'name'    => 'Comment Made',
         'message' => '<a href="{sender_url}">{sender}</a> has made a comment on {post_type}. <a href="{comment_url}">See Context.</a>',
         'url'     => '',
     ],
-    // Comment recieved reply
+
     // COMMENT_REPLY
     240 => [
         'name'    => 'Comment Reply',
         'message' => '<a href="{sender_url}">{sender}</a> has made a reply to your comment. <a href="comment/{comment_url}">See Reply.</a>',
         'url'     => '',
+    ],
+
+    // TRADE_PROPOSAL_RECEIVED
+    280 => [
+        'name'    => 'Trade Proposal Received',
+        'message' => 'You have received a new trade proposal from <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'url'     => 'trades/{trade_id}',
+    ],
+
+    // TRADE_PROPOSAL_UPDATED
+    281  => [
+        'name'    => 'Trade Proposal Updated',
+        'message' => '<a href="{sender_url}">{sender_name}</a> has updated their trade proposal. (<a href="{url}">View Trade</a>)',
+        'url'     => 'trades/{trade_id}',
+    ],
+
+    // TRADE_PROPOSAL_ACCEPTED
+    282  => [
+        'name'    => 'Trade Proposal Accepted',
+        'message' => 'Your trade proposal has been accepted by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'url'     => 'trades/{trade_id}',
+    ],
+
+    // TRADE_PROPOSAL_REJECTED
+    283  => [
+        'name'    => 'Trade Proposal Cancelled',
+        'message' => 'A trade proposal has been cancelled by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'url'     => 'trades/{trade_id}',
     ],
 
     // CHARACTER_ITEM_GRANT

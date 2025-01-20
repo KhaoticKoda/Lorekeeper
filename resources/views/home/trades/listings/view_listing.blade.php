@@ -77,6 +77,15 @@
         </div>
     </div>
 
+    @if (Auth::check() && Auth::user()->id != $listing->user_id)
+        <div class="alert alert-dark text-center">
+            <a href="{{ url('trades/proposal?recipient_id=' . $listing->user_id) }}" class="btn btn-outline-light">
+                <i class="fas fa-handshake"></i>
+                Propose Trade
+            </a>
+        </div>
+    @endif
+
     <hr />
     <div class="container">
         @comments(['model' => $listing, 'perPage' => 5])

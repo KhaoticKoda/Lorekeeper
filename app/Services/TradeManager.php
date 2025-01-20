@@ -121,6 +121,127 @@ class TradeManager extends Service {
     }
 
     /**
+     * Proposes a trade.
+     * 
+     * @param array $data
+     * @param User  $user
+     * 
+     * @return bool|Trade
+     */
+    public function proposeTrade($data, $user, $trade = null) {
+        DB::beginTransaction();
+
+        try {
+
+            $created = true;
+            if ($trade) {
+                $created = false;
+                $recipient = $trade->recipient;
+                if ($trade->status != 'Proposal') {
+                    throw new \Exception('Invalid trade.');
+                }
+                if ($trade->recipient_id != $user->id && $trade->sender_id != $user->id) {
+                    throw new \Exception('You are not a participant in this trade.');
+                }
+
+                // update the confirmation status
+                $trade->is_sender_confirmed = $user->id == $trade->sender_id ? 1 : 0;
+                $trade->is_recipient_confirmed = $user->id == $trade->recipient_id ? 1 : 0;
+            } else {
+                $recipient = User::find($data['recipient_id']);
+                if (!$recipient) {
+                    throw new \Exception('Invalid recipient.');
+                }
+                if ($recipient->is_banned) {
+                    throw new \Exception('The recipient is a banned user and cannot receive a trade.');
+                }
+                if ($user->id == $recipient->id) {
+                    throw new \Exception('Cannot start a trade with yourself.');
+                }
+
+                $trade = Trade::create([
+                    'sender_id'              => $user->id,
+                    'recipient_id'           => $recipient->id,
+                    'status'                 => 'Proposal',
+                    'terms_link'             => 'Proposal from '.$user->name,
+                    'comments'               => $data['comments'] ?? null,
+                    'is_sender_confirmed'    => 1,
+                    'is_recipient_confirmed' => 0,
+                    'data'                   => null,
+                ]);
+            }
+
+            if (!$assetData = $this->handleTradeProposalAssets($data, $trade, $user, $recipient)) {
+                throw new \Exception('Failed to handle trade assets.');
+            }
+
+            $trade->data = [
+                'sender'    => getDataReadyAssets($assetData['sender']),
+                'recipient' => getDataReadyAssets($assetData['recipient']),
+            ];
+            $trade->save();
+
+            // send a notification
+            Notifications::create($created ? 'TRADE_PROPOSAL_UPDATED' : 'TRADE_PROPOSAL_RECEIVED', $user->id == $trade->sender_id ? $trade->recipient : $trade->sender, [
+                'sender_url'  => $user->url,
+                'sender_name' => $user->name,
+                'trade_id'    => $trade->id,
+            ]);
+
+            return $this->commitReturn($trade);
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
+
+        return $this->rollbackReturn(false);
+    }
+
+    /**
+     * Responds to a trade proposal.
+     * 
+     * @param Trade $trade
+     * @param User  $user
+     * @param string $action
+     * 
+     * @return bool|Trade
+     */
+    public function respondToTradeProposal($trade, $user, $action) {
+        DB::beginTransaction();
+
+        try {
+
+            // if it's an accept, simply confirm both sides of the trade and set the status to Open
+            if ($action == 'accept') {
+                $trade->update([
+                    'status'                 => 'Open',
+                    'is_sender_confirmed'    => 1,
+                    'is_recipient_confirmed' => 1,
+                ]);
+            } else {
+                // if it's a reject, return the assets to their owners
+                if (!$this->returnAttachments($trade)) {
+                    throw new \Exception('Failed to return trade attachments.');
+                }
+                $trade->status = 'Canceled';
+                $trade->save();
+            }
+
+            // send a notification
+            Notifications::create($action == 'accept' ? 'TRADE_PROPOSAL_ACCEPTED' : 'TRADE_PROPOSAL_REJECTED', $trade->sender_id == $user->id ? $trade->recipient : $trade->sender, [
+                'sender_name'  => $user->url,
+                'sender_url' => $user->name,
+                'trade_id'       => $trade->id,
+            ]);
+
+            return $this->commitReturn(true);
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
+
+        return $this->rollbackReturn(false);
+    }
+
+    /**
      * Cancels a trade.
      *
      * @param array $data
@@ -426,8 +547,8 @@ class TradeManager extends Service {
             if (!$type) {
                 throw new \Exception('User not found.');
             }
-            // First return any item stacks attached to the trade
 
+            // First return any item stacks attached to the trade
             if (isset($tradeData[$type]['user_items'])) {
                 foreach ($tradeData[$type]['user_items'] as $userItemId=> $quantity) {
                     $quantity = (int) $quantity;
@@ -490,10 +611,12 @@ class TradeManager extends Service {
                 if ($user->id != $trade->sender_id && $user->id != $trade->recipient_id) {
                     throw new \Exception('Error attaching currencies to this trade.');
                 }
-                // dd([$data['currency_id'], $data['currency_quantity']]);
                 $data['currency_id'] = $data['currency_id']['user-'.$user->id];
                 $data['currency_quantity'] = $data['currency_quantity']['user-'.$user->id];
-                foreach ($data['currency_id'] as $key=> $currencyId) {
+                foreach ($data['currency_id'] as $key => $currencyId) {
+                    if (!$currencyId) {
+                        continue;
+                    }
                     $currency = Currency::where('allow_user_to_user', 1)->where('id', $currencyId)->first();
                     if (!$currency) {
                         throw new \Exception('Invalid currency selected.');
@@ -706,6 +829,47 @@ class TradeManager extends Service {
             $this->setError('error', $e->getMessage());
         }
 
+        return $this->rollbackReturn(false);
+    }
+
+    /**
+     * Handles the initial creation of a proposed trade's assets, due to the nature of the data keys.
+     * 
+     * @param array $data
+     * @param Trade $trade
+     * @param User  $user
+     * @param User  $recipient
+     * 
+     * @return array|bool
+     */
+    private function handleTradeProposalAssets($data, $trade, $user, $recipient) {
+        DB::beginTransaction();
+
+        try {
+
+            // Prepare recipient data for use in the handleTradeAssets method
+            $recipientData = [
+                'stack_id' => $data['recipient_stack_id'] ?? [],
+                'stack_quantity' => $data['stack_quantity'], // this is keyed by stack id anyway
+                'currency_id' => $data['currency_id'], // this is divided by user id anyway
+                'currency_quantity' => $data['currency_quantity'],
+                'character_id' => $data['recipient_character_id'] ?? [],
+            ];
+
+            if (!$senderAssets = $this->handleTradeAssets($trade, $data, $user)) {
+                throw new \Exception('Failed to handle sender assets.');
+            }
+            if (!$recipientAssets = $this->handleTradeAssets($trade, $recipientData, $recipient)) {
+                throw new \Exception('Failed to handle recipient assets.');
+            }
+
+            return $this->commitReturn([
+                'sender' => $senderAssets['sender'],
+                'recipient' => $recipientAssets['recipient'],
+            ]);
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
         return $this->rollbackReturn(false);
     }
 }

@@ -99,8 +99,12 @@ Route::group(['prefix' => 'trades', 'namespace' => 'Users'], function () {
     Route::get('{status}', 'TradeController@getIndex')->where('status', 'open|pending|completed|rejected|canceled');
     Route::get('create', 'TradeController@getCreateTrade');
     Route::get('{id}/edit', 'TradeController@getEditTrade')->where('id', '[0-9]+');
+    Route::get('proposal/{id?}', 'TradeController@getCreateEditTradeProposal')->where('id', '[0-9]+');
+    Route::get('proposal/user/{id}', 'TradeController@getUserTradeProposal')->where('id', '[0-9]+');
     Route::post('create', 'TradeController@postCreateTrade');
     Route::post('{id}/edit', 'TradeController@postEditTrade')->where('id', '[0-9]+');
+    Route::post('propose/{id?}', 'TradeController@postCreateEditTradeProposal')->where('id', '[0-9]+');
+    Route::post('proposal/{id}/{action}', 'TradeController@postRespondToTradeProposal')->where('id', '[0-9]+')->where('action', 'accept|reject');
     Route::get('{id}', 'TradeController@getTrade')->where('id', '[0-9]+');
 
     Route::get('{id}/confirm-offer', 'TradeController@getConfirmOffer');

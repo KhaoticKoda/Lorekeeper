@@ -12,7 +12,7 @@ use App\Models\Trade\Trade;
 use App\Models\Trade\TradeListing;
 use App\Models\User\User;
 use App\Models\User\UserItem;
-use App\Services\Trade\TradeManager;
+use App\Services\TradeManager;
 use App\Services\TradeListingManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +113,7 @@ class TradeController extends Controller {
     public function getEditTrade($id) {
         $trade = Trade::where('id', $id)->where(function ($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
-        })->where('status', 'Open')->first();
+        })->whereIn('status', ['Open', 'Proposal'])->first();
 
         if ($trade) {
             $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', Auth::user()->id)
@@ -149,9 +149,88 @@ class TradeController extends Controller {
     }
 
     /**
+     * Gets the propose trade page.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getCreateEditTradeProposal(Request $request, $id = null) {
+        $trade = Trade::where('id', $id)->where('status', 'Proposal')->first();
+        $recipient = $trade ? $trade->recipient : User::find($request->input('recipient_id')); 
+        if ($recipient) {
+            $recipientInventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $recipient->id)
+                ->get()
+                ->filter(function ($userItem) {
+                    return $userItem->isTransferrable == true;
+                })
+                ->sortBy('item.name');
+        }
+
+        $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', Auth::user()->id)
+            ->get()
+            ->filter(function ($userItem) {
+                return $userItem->isTransferrable == true;
+            })
+            ->sortBy('item.name');
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+                $item->id => json_encode([
+                    'name'      => $item->name,
+                    'image_url' => $item->image_url,
+                ]),
+            ];
+        });
+
+        return view('home.trades.create_edit_trade_proposal', [
+            'trade'               => $id ? Trade::where('id', $id)->where('status', 'Proposal')->first() : null,
+            'recipient'           => $recipient ?? null,
+            'recipientInventory'  => $recipientInventory ?? null,
+            'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'item_filter'         => $item_filter,
+            'inventory'           => $inventory,
+            'userOptions'         => User::visible()->where('id', '!=', Auth::user()->id)->orderBy('name')->pluck('name', 'id')->toArray(),
+            'characterCategories' => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'page'                => 'trade',
+        ]);
+    }
+
+    /**
+     * Returns the mini view for the trade proposal for the recipient.
+     * 
+     * @param int $id
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getUserTradeProposal($id) {
+        $user = User::findOrFail($id);
+        $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $user->id)->get()->filter(function ($userItem) {
+            return $userItem->isTransferrable == true;
+        })->sortBy('item.name');
+
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+                $item->id => json_encode([
+                    'name'      => $item->name,
+                    'image_url' => $item->image_url,
+                ]),
+            ];
+        });
+
+        return view('home.trades._proposal_offer', [
+            'user'                => $user,
+            'inventory'           => $inventory,
+            'item_filter'         => $item_filter,
+            'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'page'                => 'trade',
+            'characters'          => $user->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
+            'characterCategories' => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'fieldPrefix'         => 'recipient_',
+        ]);
+    }
+
+    /**
      * Creates a new trade.
      *
-     * @param App\Services\Trade\TradeManager $service
+     * @param App\Services\TradeManager $service
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -174,13 +253,15 @@ class TradeController extends Controller {
     /**
      * Edits a trade.
      *
-     * @param App\Services\Trade\TradeManager $service
+     * @param App\Services\TradeManager $service
      * @param int                             $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postEditTrade(Request $request, TradeManager $service, $id) {
-        if ($trade = $service->editTrade($request->only(['comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id']) + ['id' => $id], Auth::user())) {
+        if ($trade = $service->editTrade($request->only([
+            'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id'
+        ]) + ['id' => $id], Auth::user())) {
             flash('Trade offer edited successfully.')->success();
         } else {
             foreach ($service->errors()->getMessages()['error'] as $error) {
@@ -189,6 +270,55 @@ class TradeController extends Controller {
         }
 
         return redirect()->back();
+    }
+
+    /**
+     * Proposes a trade.
+     * 
+     * @param App\Services\TradeManager $service
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postCreateEditTradeProposal(Request $request, TradeManager $service, $id = null) {
+        $trade = $id ? $trade = Trade::where('id', $id)->where(function ($query) {
+            $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
+        })->where('status', 'Proposal')->first() : null;
+        if ($trade = $service->proposeTrade($request->only([
+            'recipient_id', 'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id',
+            'recipient_stack_id', 'recipient_stack_quantity', 'recipient_character_id',
+        ]), Auth::user(), $trade)) {
+            flash('Trade ' . ($trade ? 'proposal edited' : 'proposed') . ' successfully.')->success();
+
+            return redirect()->to($trade->url);
+        } else {
+            foreach ($service->errors()->getMessages()['error'] as $error) {
+                flash($error)->error();
+            }
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Rejects or accepts a trade proposal.
+     * 
+     * @param App\Services\TradeManager $service
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postRespondToTradeProposal(Request $request, TradeManager $service, $id, $action) {
+        $trade = Trade::where('id', $id)->where(function ($query) {
+            $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
+        })->where('status', 'Proposal')->first();
+        if (!$service->respondToTradeProposal($trade, Auth::user(), $action)) {
+            foreach ($service->errors()->getMessages()['error'] as $error) {
+                flash($error)->error();
+            }
+        } else {
+            flash('Trade proposal ' . $action . 'ed successfully.')->success();
+        }
+
+        return redirect()->to($trade->url);
     }
 
     /**
@@ -211,7 +341,7 @@ class TradeController extends Controller {
     /**
      * Confirms or unconfirms an offer.
      *
-     * @param App\Services\Trade\TradeManager $service
+     * @param App\Services\TradeManager $service
      * @param mixed                           $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -250,7 +380,7 @@ class TradeController extends Controller {
     /**
      * Confirms or unconfirms a trade.
      *
-     * @param App\Services\Trade\TradeManager $service
+     * @param App\Services\TradeManager $service
      * @param mixed                           $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -289,7 +419,7 @@ class TradeController extends Controller {
     /**
      * Cancels a trade.
      *
-     * @param App\Services\Trade\TradeManager $service
+     * @param App\Services\TradeManager $service
      * @param mixed                           $id
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -332,8 +462,8 @@ class TradeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getExpiredListings(Request $request) {
-        return view('home.trades.listings.expired', [
-            'listings'        => TradeListing::expired()->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(10),
+        return view('home.trades.listings.listings', [
+            'listings'        => TradeListing::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(10),
             'listingDuration' => Settings::get('trade_listing_duration'),
         ]);
     }

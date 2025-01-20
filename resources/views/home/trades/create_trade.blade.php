@@ -38,7 +38,7 @@
         'selected' => [],
         'page' => $page,
     ])
-    @include('widgets._my_character_select', ['readOnly' => true, 'categories' => $characterCategories])
+    @include('widgets._user_character_select', ['readOnly' => true, 'categories' => $characterCategories])
     @include('widgets._bank_select', ['owner' => Auth::user(), 'selected' => null, 'isTransferrable' => true])
     <div class="text-right">{!! Form::submit('Create Trade', ['class' => 'btn btn-primary']) !!}</div>
     {!! Form::close() !!}
@@ -48,7 +48,7 @@
     @include('widgets._bank_select_row', ['owners' => [Auth::user()], 'isTransferrable' => true])
     @include('widgets._bank_select_js', [])
     @include('widgets._inventory_select_js', ['readOnly' => true])
-    @include('widgets._my_character_select_js', ['readOnly' => true])
+    @include('widgets._user_character_select_js', ['readOnly' => true])
     <script>
         $('.user-select').selectize();
     </script>
