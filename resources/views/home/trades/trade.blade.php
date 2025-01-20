@@ -9,7 +9,8 @@
 
     <h1>
         Trade with {!! $partner->displayName !!} (#{{ $trade->id }})
-        <span class="float-right badge badge-{{ $trade->status == 'Proposal' ? 'info' : ($trade->status == 'Pending' || $trade->status == 'Open' || $trade->status == 'Canceled' ? 'secondary' : ($trade->status == 'Completed' ? 'success' : 'danger')) }}">{{ $trade->status }}</span>
+        <span
+            class="float-right badge badge-{{ $trade->status == 'Proposal' ? 'info' : ($trade->status == 'Pending' || $trade->status == 'Open' || $trade->status == 'Canceled' ? 'secondary' : ($trade->status == 'Completed' ? 'success' : 'danger')) }}">{{ $trade->status }}</span>
     </h1>
 
 
@@ -80,13 +81,13 @@
                     You will have to confirm twice like a normal trade.
                 </p>
                 <div class="mx-auto text-center">
-                    <a href="{{ url('trades/proposal/'. $trade->id) }}" class="btn btn-outline-secondary">Edit Proposal</a>
-                    {!! Form::open(['url' => 'trades/proposal/'. $trade->id . '/reject', 'class' => 'd-inline']) !!}
-                        {!! Form::submit(($trade->sender_id == Auth::user()->id ? 'Cancel' : 'Reject') . ' Proposal', ['class' => 'btn btn-outline-danger']) !!}
+                    <a href="{{ url('trades/proposal/' . $trade->id) }}" class="btn btn-outline-secondary">Edit Proposal</a>
+                    {!! Form::open(['url' => 'trades/proposal/' . $trade->id . '/reject', 'class' => 'd-inline']) !!}
+                    {!! Form::submit(($trade->sender_id == Auth::user()->id ? 'Cancel' : 'Reject') . ' Proposal', ['class' => 'btn btn-outline-danger']) !!}
                     {!! Form::close() !!}
                     @if (($trade->sender_id == Auth::user()->id && !$trade->is_sender_confirmed) || ($trade->recipient_id == Auth::user()->id && !$trade->is_recipient_confirmed))
-                        {!! Form::open(['url' => 'trades/proposal/'. $trade->id . '/accept', 'class' => 'd-inline']) !!}
-                            {!! Form::submit('Accept Proposal', ['class' => 'btn btn-outline-success']) !!}
+                        {!! Form::open(['url' => 'trades/proposal/' . $trade->id . '/accept', 'class' => 'd-inline']) !!}
+                        {!! Form::submit('Accept Proposal', ['class' => 'btn btn-outline-success']) !!}
                         {!! Form::close() !!}
                     @else
                         <div class="btn btn-success" data-toggle="tooltip" title="You have already accepted (or sent) this proposal.">Accept Proposal</div>

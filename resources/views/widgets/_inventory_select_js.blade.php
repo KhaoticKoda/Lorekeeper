@@ -5,7 +5,7 @@
 @endphp
 <script>
     $(document).ready(function() {
-        var $itemIdFilter = $('#{{$fieldPrefix}}itemIdFilter');
+        var $itemIdFilter = $('#{{ $fieldPrefix }}itemIdFilter');
         $itemIdFilter.selectize({
             maxOptions: 10,
             render: {
@@ -16,24 +16,24 @@
         $itemIdFilter.on('change', function(e) {
             refreshFilter();
         });
-        $('.{{$fieldPrefix}}clear-item-filter').on('click', function(e) {
+        $('.{{ $fieldPrefix }}clear-item-filter').on('click', function(e) {
             e.preventDefault();
             $itemIdFilter[0].selectize.setValue(null);
         });
 
-        var $userItemCategory = $('#{{$fieldPrefix}}userItemCategory');
+        var $userItemCategory = $('#{{ $fieldPrefix }}userItemCategory');
         $userItemCategory.on('change', function(e) {
             refreshFilter();
         });
-        $('.{{$fieldPrefix}}inventory-select-all').on('click', function(e) {
+        $('.{{ $fieldPrefix }}inventory-select-all').on('click', function(e) {
             e.preventDefault();
             selectVisible();
         });
-        $('.{{$fieldPrefix}}inventory-clear-selection').on('click', function(e) {
+        $('.{{ $fieldPrefix }}inventory-clear-selection').on('click', function(e) {
             e.preventDefault();
             deselectVisible();
         });
-        $('.{{$fieldPrefix}}inventory-checkbox').on('change', function() {
+        $('.{{ $fieldPrefix }}inventory-checkbox').on('change', function() {
             $checkbox = $(this);
             var rowId = "#{{ $fieldPrefix }}itemRow" + $checkbox.val()
             if ($checkbox.is(":checked")) {
@@ -44,31 +44,31 @@
                 $(rowId).find('.quantity-select').prop('name', '')
             }
         });
-        $('#{{$fieldPrefix}}toggle-checks').on('click', function() {
+        $('#{{ $fieldPrefix }}toggle-checks').on('click', function() {
             ($(this).is(":checked")) ? selectVisible(): deselectVisible();
         });
 
         function refreshFilter() {
             var display = $userItemCategory.val();
             var itemId = $itemIdFilter.val();
-            $('.{{$fieldPrefix}}user-item').addClass('hide');
-            $('.{{$fieldPrefix}}user-item.category-' + display + '.item-' + (itemId ? itemId : 'all')).removeClass('hide');
-            $('#{{$fieldPrefix}}toggle-checks').prop('checked', false);
+            $('.{{ $fieldPrefix }}user-item').addClass('hide');
+            $('.{{ $fieldPrefix }}user-item.category-' + display + '.item-' + (itemId ? itemId : 'all')).removeClass('hide');
+            $('#{{ $fieldPrefix }}toggle-checks').prop('checked', false);
         }
 
         function selectVisible() {
-            var $target = $('.{{$fieldPrefix}}user-item:not(.hide)');
-            $target.find('.{{$fieldPrefix}}inventory-checkbox').prop('checked', true);
-            $target.find('.{{$fieldPrefix}}inventory-checkbox').trigger('change');
-            $('#{{$fieldPrefix}}toggle-checks').prop('checked', true);
+            var $target = $('.{{ $fieldPrefix }}user-item:not(.hide)');
+            $target.find('.{{ $fieldPrefix }}inventory-checkbox').prop('checked', true);
+            $target.find('.{{ $fieldPrefix }}inventory-checkbox').trigger('change');
+            $('#{{ $fieldPrefix }}toggle-checks').prop('checked', true);
         }
 
         function deselectVisible() {
-            var $target = $('.{{$fieldPrefix}}user-item:not(.hide)');
-            $target.find('.{{$fieldPrefix}}inventory-checkbox').prop('checked', false);
-            $target.find('.{{$fieldPrefix}}inventory-checkbox').trigger('change');
-            $('#{{$fieldPrefix}}toggle-checks').prop('checked', false);
-            $target.find('.{{$fieldPrefix}}quantity-select').prop('name', '');
+            var $target = $('.{{ $fieldPrefix }}user-item:not(.hide)');
+            $target.find('.{{ $fieldPrefix }}inventory-checkbox').prop('checked', false);
+            $target.find('.{{ $fieldPrefix }}inventory-checkbox').trigger('change');
+            $('#{{ $fieldPrefix }}toggle-checks').prop('checked', false);
+            $target.find('.{{ $fieldPrefix }}quantity-select').prop('name', '');
         }
 
         function customItemSelectizeRender(item, escape) {

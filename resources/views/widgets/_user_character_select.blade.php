@@ -4,7 +4,7 @@
     }
 @endphp
 <h3>
-    {!! (isset($user) && Auth::user()->id != $user->id) ? $user->displayName . "'s" : 'Your' !!} Characters
+    {!! isset($user) && Auth::user()->id != $user->id ? $user->displayName . "'s" : 'Your' !!} Characters
     <a class="small characters-collapse-toggle collapse-toggle" href="#{{ $fieldPrefix }}userCharacters" data-toggle="collapse">Show</a>
 </h3>
 <div class="card mb-3 collapse show" id="{{ $fieldPrefix }}userCharacters">
@@ -30,7 +30,7 @@
         <div class="user-characters">
             <div class="row">
                 @foreach ($characters as $character)
-                    <div class="col-lg-{{ isset($customSize) ? $customSize : '2'}} col-sm-3 col-6 mb-3 {{ $fieldPrefix }}user-character category-all category-{{ $character->character_category_id ?: 0 }} {{ isset($selected) && in_array($character->id, $selected) ? 'category-selected' : '' }} {{ (isset($selected) && in_array($character->id, $selected)) || $character->isAvailable ? '' : 'select-disabled' }}"
+                    <div class="col-lg-{{ isset($customSize) ? $customSize : '2' }} col-sm-3 col-6 mb-3 {{ $fieldPrefix }}user-character category-all category-{{ $character->character_category_id ?: 0 }} {{ isset($selected) && in_array($character->id, $selected) ? 'category-selected' : '' }} {{ (isset($selected) && in_array($character->id, $selected)) || $character->isAvailable ? '' : 'select-disabled' }}"
                         data-id="{{ $character->id }}">
                         <div class="text-center character-item {{ (isset($selected) && in_array($character->id, $selected)) || $character->isAvailable ? '' : 'disabled' }}"
                             @if (!(isset($selected) && in_array($character->id, $selected)) && !$character->isAvailable) data-toggle="tooltip" title="{{ $character->trade_id ? 'This character is in a trade.' : 'This character has an active design update.' }}" @endif>

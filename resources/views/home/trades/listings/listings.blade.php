@@ -16,7 +16,7 @@
     {!! $listings->render() !!}
     @foreach ($listings as $listing)
         @include('home.trades.listings._listing', [
-            'listing'    => $listing,
+            'listing' => $listing,
             'showStatus' => true,
         ])
     @endforeach

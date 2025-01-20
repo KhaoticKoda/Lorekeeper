@@ -8,7 +8,7 @@
     }
 @endphp
 <h3>
-    {!! (isset($user) && Auth::user()->id != $user->id) ? $user->displayName . "'s" : 'Your' !!} Inventory <a class="small inventory-collapse-toggle collapse-toggle collapsed" href="#{{ $fieldPrefix }}userInventory" data-toggle="collapse">Show</a>
+    {!! isset($user) && Auth::user()->id != $user->id ? $user->displayName . "'s" : 'Your' !!} Inventory <a class="small inventory-collapse-toggle collapse-toggle collapsed" href="#{{ $fieldPrefix }}userInventory" data-toggle="collapse">Show</a>
 </h3>
 <hr>
 <div class="{{ isset($selected) && count($selected) ? '' : 'collapse' }}" id="{{ $fieldPrefix }}userInventory">
@@ -22,7 +22,7 @@
                         'class' => 'form-control mr-2 default item-select',
                         'placeholder' => 'Start Typing to Find an Item',
                     ]) !!}
-                    <a href="#" class="{{$fieldPrefix}}clear-item-filter btn btn-primary mb-2">
+                    <a href="#" class="{{ $fieldPrefix }}clear-item-filter btn btn-primary mb-2">
                         Clear Item Filter
                     </a>
                 </div>
@@ -30,7 +30,7 @@
             <div class="text-right mb-3">
                 <div class="d-inline-block mb-3">
                     {!! Form::label($fieldPrefix . 'item_category_id', 'Filter:', ['class' => 'mr-2']) !!}
-                    <select class="form-control d-inline-block w-auto" id="{{$fieldPrefix}}userItemCategory">
+                    <select class="form-control d-inline-block w-auto" id="{{ $fieldPrefix }}userItemCategory">
                         <option value="all">All Categories</option>
                         <option value="selected">Selected Items</option>
                         <option disabled>──────────</option>
@@ -42,15 +42,15 @@
                 </div>
                 <div class="d-inline-block">
                     {!! Form::label($fieldPrefix . 'item_category_id', 'Action:', ['class' => 'ml-2 mr-2']) !!}
-                    <a href="#" class="btn btn-primary {{$fieldPrefix}}inventory-select-all">Select All Visible</a>
-                    <a href="#" class="btn btn-primary {{$fieldPrefix}}inventory-clear-selection">Clear Visible Selection</a>
+                    <a href="#" class="btn btn-primary {{ $fieldPrefix }}inventory-select-all">Select All Visible</a>
+                    <a href="#" class="btn btn-primary {{ $fieldPrefix }}inventory-clear-selection">Clear Visible Selection</a>
                 </div>
             </div>
             <div id="userItems" class="user-items">
                 <table class="table table-sm">
                     <thead class="thead-light">
                         <tr class="d-flex">
-                            <th class="col-1"><input id="{{$fieldPrefix}}toggle-checks" type="checkbox"></th>
+                            <th class="col-1"><input id="{{ $fieldPrefix }}toggle-checks" type="checkbox"></th>
                             <th class="col-2">Item</th>
                             <th class="col-4">Source</th>
                             <th class="col-3">Notes</th>
@@ -62,10 +62,7 @@
                             <tr id="{{ $fieldPrefix }}itemRow{{ $itemRow->id }}"
                                 class="d-flex {{ $itemRow->isTransferrable ? '' : 'accountbound' }} user-item select-item-row item-all category-all item-{{ $itemRow->item->id }} category-{{ $itemRow->item->item_category_id ?: 0 }} {{ (isset($selected) && in_array($itemRow->id, array_keys($selected))) || (isset($old_selection) && isset($old_selection[$itemRow->id])) ? 'category-selected' : '' }}">
                                 <td class="col-1">
-                                    {!! Form::checkbox(
-                                        isset($fieldName) && $fieldName ? $fieldName : 'stack_id[]',
-                                        $itemRow->id, isset($selected) && in_array($itemRow->id, array_keys($selected)) ? true : false, ['class' => $fieldPrefix.'inventory-checkbox']) 
-                                    !!}
+                                    {!! Form::checkbox(isset($fieldName) && $fieldName ? $fieldName : 'stack_id[]', $itemRow->id, isset($selected) && in_array($itemRow->id, array_keys($selected)) ? true : false, ['class' => $fieldPrefix . 'inventory-checkbox']) !!}
                                 </td>
                                 <td class="col-2">
                                     @if (isset($itemRow->item->image_url))
@@ -106,7 +103,7 @@
                                             {!! Form::selectRange('stack_quantity[' . $itemRow->id . ']', 1, $itemRow->getAvailableContextQuantity($selected[$itemRow->id]), $selected[$itemRow->id], [
                                                 'class' => 'quantity-select',
                                                 'type' => 'number',
-                                                'style' => 'min-width:40px;'
+                                                'style' => 'min-width:40px;',
                                             ]) !!}
                                             /
                                             {{ $itemRow->getAvailableContextQuantity($selected[$itemRow->id]) }}
@@ -127,8 +124,8 @@
                                             {!! Form::selectRange('', 1, $itemRow->availableQuantity, 1, [
                                                 'class' => 'quantity-select',
                                                 'type' => 'number',
-                                                'style' => 'min-width:40px;'
-                                            ]) !!}/{{ $itemRow->availableQuantity }} 
+                                                'style' => 'min-width:40px;',
+                                            ]) !!}/{{ $itemRow->availableQuantity }}
                                             @if ($itemRow->getOthers())
                                                 {{ $itemRow->getOthers() }}
                                             @endif
@@ -140,8 +137,8 @@
                                             'class' => 'quantity-select',
                                             'type' => 'number',
                                             'style' => 'min-width:40px;',
-                                            'disabled'
-                                        ]) !!} /{{ $itemRow->availableQuantity }} 
+                                            'disabled',
+                                        ]) !!} /{{ $itemRow->availableQuantity }}
                                         @if ($itemRow->getOthers())
                                             {{ $itemRow->getOthers() }}
                                         @endif
