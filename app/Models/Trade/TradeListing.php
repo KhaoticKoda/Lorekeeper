@@ -153,7 +153,7 @@ class TradeListing extends Model {
 
     /**
      * Gets the name for the trade listing for use in forms.
-     * 
+     *
      * @return string
      */
     public function getFormNameAttribute() {

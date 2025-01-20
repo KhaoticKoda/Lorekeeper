@@ -64,7 +64,7 @@ class Notification extends Model {
     public function getMessageAttribute() {
         $notification = config('lorekeeper.notifications.'.$this->notification_type_id);
 
-        $message = isset($notification['message']) ? $notification['message'] : 'Unknown Notification';
+        $message = $notification['message'] ?? 'Unknown Notification';
 
         // Replace the URL...
         $message = isset($notification['url']) ? str_replace('{url}', url($notification['url']), $message) : $message;

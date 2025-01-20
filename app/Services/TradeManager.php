@@ -122,17 +122,17 @@ class TradeManager extends Service {
 
     /**
      * Proposes a trade.
-     * 
-     * @param array $data
-     * @param User  $user
-     * 
+     *
+     * @param array      $data
+     * @param User       $user
+     * @param mixed|null $trade
+     *
      * @return bool|Trade
      */
     public function proposeTrade($data, $user, $trade = null) {
         DB::beginTransaction();
 
         try {
-
             $created = true;
             if ($trade) {
                 $created = false;
@@ -198,18 +198,17 @@ class TradeManager extends Service {
 
     /**
      * Responds to a trade proposal.
-     * 
-     * @param Trade $trade
-     * @param User  $user
+     *
+     * @param Trade  $trade
+     * @param User   $user
      * @param string $action
-     * 
+     *
      * @return bool|Trade
      */
     public function respondToTradeProposal($trade, $user, $action) {
         DB::beginTransaction();
 
         try {
-
             // if it's an accept, simply confirm both sides of the trade and set the status to Open
             if ($action == 'accept') {
                 $trade->update([
@@ -228,8 +227,8 @@ class TradeManager extends Service {
 
             // send a notification
             Notifications::create($action == 'accept' ? 'TRADE_PROPOSAL_ACCEPTED' : 'TRADE_PROPOSAL_REJECTED', $trade->sender_id == $user->id ? $trade->recipient : $trade->sender, [
-                'sender_name'  => $user->url,
-                'sender_url' => $user->name,
+                'sender_name'    => $user->url,
+                'sender_url'     => $user->name,
                 'trade_id'       => $trade->id,
             ]);
 
@@ -834,26 +833,25 @@ class TradeManager extends Service {
 
     /**
      * Handles the initial creation of a proposed trade's assets, due to the nature of the data keys.
-     * 
+     *
      * @param array $data
      * @param Trade $trade
      * @param User  $user
      * @param User  $recipient
-     * 
+     *
      * @return array|bool
      */
     private function handleTradeProposalAssets($data, $trade, $user, $recipient) {
         DB::beginTransaction();
 
         try {
-
             // Prepare recipient data for use in the handleTradeAssets method
             $recipientData = [
-                'stack_id' => $data['recipient_stack_id'] ?? [],
-                'stack_quantity' => $data['stack_quantity'], // this is keyed by stack id anyway
-                'currency_id' => $data['currency_id'], // this is divided by user id anyway
+                'stack_id'          => $data['recipient_stack_id'] ?? [],
+                'stack_quantity'    => $data['stack_quantity'], // this is keyed by stack id anyway
+                'currency_id'       => $data['currency_id'], // this is divided by user id anyway
                 'currency_quantity' => $data['currency_quantity'],
-                'character_id' => $data['recipient_character_id'] ?? [],
+                'character_id'      => $data['recipient_character_id'] ?? [],
             ];
 
             if (!$senderAssets = $this->handleTradeAssets($trade, $data, $user)) {
@@ -864,12 +862,13 @@ class TradeManager extends Service {
             }
 
             return $this->commitReturn([
-                'sender' => $senderAssets['sender'],
+                'sender'    => $senderAssets['sender'],
                 'recipient' => $recipientAssets['recipient'],
             ]);
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
+
         return $this->rollbackReturn(false);
     }
 }

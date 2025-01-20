@@ -12,8 +12,8 @@ use App\Models\Trade\Trade;
 use App\Models\Trade\TradeListing;
 use App\Models\User\User;
 use App\Models\User\UserItem;
-use App\Services\TradeManager;
 use App\Services\TradeListingManager;
+use App\Services\TradeManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -150,12 +150,14 @@ class TradeController extends Controller {
 
     /**
      * Gets the propose trade page.
-     * 
+     *
+     * @param mixed|null $id
+     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateEditTradeProposal(Request $request, $id = null) {
         $trade = Trade::where('id', $id)->where('status', 'Proposal')->first();
-        $recipient = $trade ? $trade->recipient : User::find($request->input('recipient_id')); 
+        $recipient = $trade ? $trade->recipient : User::find($request->input('recipient_id'));
         if ($recipient) {
             $recipientInventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $recipient->id)
                 ->get()
@@ -195,9 +197,9 @@ class TradeController extends Controller {
 
     /**
      * Returns the mini view for the trade proposal for the recipient.
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUserTradeProposal($id) {
@@ -254,13 +256,13 @@ class TradeController extends Controller {
      * Edits a trade.
      *
      * @param App\Services\TradeManager $service
-     * @param int                             $id
+     * @param int                       $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postEditTrade(Request $request, TradeManager $service, $id) {
         if ($trade = $service->editTrade($request->only([
-            'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id'
+            'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id',
         ]) + ['id' => $id], Auth::user())) {
             flash('Trade offer edited successfully.')->success();
         } else {
@@ -274,9 +276,10 @@ class TradeController extends Controller {
 
     /**
      * Proposes a trade.
-     * 
+     *
      * @param App\Services\TradeManager $service
-     * 
+     * @param mixed|null                $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postCreateEditTradeProposal(Request $request, TradeManager $service, $id = null) {
@@ -287,7 +290,7 @@ class TradeController extends Controller {
             'recipient_id', 'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id',
             'recipient_stack_id', 'recipient_stack_quantity', 'recipient_character_id',
         ]), Auth::user(), $trade)) {
-            flash('Trade ' . ($trade ? 'proposal edited' : 'proposed') . ' successfully.')->success();
+            flash('Trade '.($trade ? 'proposal edited' : 'proposed').' successfully.')->success();
 
             return redirect()->to($trade->url);
         } else {
@@ -301,9 +304,11 @@ class TradeController extends Controller {
 
     /**
      * Rejects or accepts a trade proposal.
-     * 
+     *
      * @param App\Services\TradeManager $service
-     * 
+     * @param mixed                     $id
+     * @param mixed                     $action
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postRespondToTradeProposal(Request $request, TradeManager $service, $id, $action) {
@@ -315,7 +320,7 @@ class TradeController extends Controller {
                 flash($error)->error();
             }
         } else {
-            flash('Trade proposal ' . $action . 'ed successfully.')->success();
+            flash('Trade proposal '.$action.'ed successfully.')->success();
         }
 
         return redirect()->to($trade->url);
@@ -342,7 +347,7 @@ class TradeController extends Controller {
      * Confirms or unconfirms an offer.
      *
      * @param App\Services\TradeManager $service
-     * @param mixed                           $id
+     * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -381,7 +386,7 @@ class TradeController extends Controller {
      * Confirms or unconfirms a trade.
      *
      * @param App\Services\TradeManager $service
-     * @param mixed                           $id
+     * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -420,7 +425,7 @@ class TradeController extends Controller {
      * Cancels a trade.
      *
      * @param App\Services\TradeManager $service
-     * @param mixed                           $id
+     * @param mixed                     $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
