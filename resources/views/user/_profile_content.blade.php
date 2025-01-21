@@ -163,10 +163,10 @@
     @endif
     <div class="col-md-{{ $user->settings->allow_profile_comments ? 4 : 12 }}">
         <div class="card mb-4">
-            <div class="card-header" data-toggle="collapse" data-target="#mentionHelp">
+            <div class="card-header" data-toggle="collapse" data-target="#mentionHelp" aria-expanded="{{ $user->settings->allow_profile_comments ? 'true' : 'false' }}">
                 <h5>Mention This User</h5>
             </div>
-            <div class="card-body collapse" id="mentionHelp">
+            <div class="card-body collapse {{ $user->settings->allow_profile_comments ? 'show' : '' }}" id="mentionHelp">
                 In the rich text editor:
                 <div class="alert alert-secondary">
                     {{ '@' . $user->name }}
