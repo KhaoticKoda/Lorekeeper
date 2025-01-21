@@ -15,24 +15,23 @@
 
     {!! Form::open(['url' => 'email', 'method' => 'POST']) !!}
 
-        <div class="form-group row">
-            {!! Form::label('email', 'Email Address', ['class' => 'col-md-4 col-form-label text-md-right']) !!}
-            <div class="col-md-6">
-                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
+    <div class="form-group row">
+        {!! Form::label('email', 'Email Address', ['class' => 'col-md-4 col-form-label text-md-right']) !!}
+        <div class="col-md-6">
+            {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
+            @if ($errors->has('email'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
         </div>
+    </div>
 
-        <div class="form-group row">
-            <div class="col-md-6 offset-md-4">
-                {!! Form::submit('Add Email Address', ['class' => 'btn btn-primary']) !!}
-            </div>
+    <div class="form-group row">
+        <div class="col-md-6 offset-md-4">
+            {!! Form::submit('Add Email Address', ['class' => 'btn btn-primary']) !!}
         </div>
+    </div>
 
     {!! Form::close() !!}
-
 @endsection
