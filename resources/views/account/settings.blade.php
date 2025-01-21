@@ -111,12 +111,7 @@
         <div class="form-group row">
             <label class="col-md-2 col-form-label">Setting</label>
             <div class="col-md-10">
-                {!! Form::select(
-                    'allow_profile_comments',
-                    ['0' => '0: No one can comment on your profile.', '1' => '1: Users can comment on your profile.'],
-                    Auth::user()->settings->allow_profile_comments,
-                    ['class' => 'form-control'],
-                ) !!}
+                {!! Form::select('allow_profile_comments', ['0' => '0: No one can comment on your profile.', '1' => '1: Users can comment on your profile.'], Auth::user()->settings->allow_profile_comments, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="text-right">
