@@ -349,6 +349,16 @@ class User extends Authenticatable implements MustVerifyEmail {
     }
 
     /**
+     * Displays the user's name, but with specific classes to identify mentions
+     *
+     * @return string
+     */
+    public function getMentionDisplayNameAttribute() {
+        return ($this->is_banned ? '<strike>' : '').'<a href="'.$this->url.'" class="display-user mention-user" data-id="'.$this->id.
+        '" style="'.($this->rank->color ? 'color: #'.$this->rank->color.';' : '').($this->is_deactivated ? 'opacity: 0.5;' : '').'"><i class="'.($this->rank->icon ? $this->rank->icon : 'fas fa-user').' mr-1" style="opacity: 50%;"></i>@'.$this->name.'</a>'.($this->is_banned ? '</strike>' : '');
+    }
+
+    /**
      * Gets the user's last username change.
      *
      * @return string

@@ -156,15 +156,35 @@
                     plugins: [
                         'advlist autolink lists link image charmap print preview anchor',
                         'searchreplace visualblocks code fullscreen spoiler',
-                        'insertdatetime media table paste code help wordcount'
+                        'insertdatetime media table paste code help wordcount toc mention',
                     ],
-                    toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | spoiler-add spoiler-remove | removeformat | code',
+                    toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | toc bullist numlist outdent indent | link image | spoiler-add spoiler-remove | removeformat | code',
                     content_css: [
                         '{{ asset('css/app.css') }}',
                         '{{ asset('css/lorekeeper.css') }}'
+
                     ],
                     spoiler_caption: 'Toggle Spoiler',
-                    target_list: false
+                    target_list: false,
+                    toc_class: 'container',
+                    mentions: {
+                        source: function (query, process, delimiter) {
+                            $.getJSON('{{ url('users/search') }}', function(data) {
+                                process(data);
+                            });
+                        },
+                        insert: function(item) {
+                            return '<span>' + item.mention_display_name + '</span>';
+                        },
+                        render: function(item) {
+                            return '<li class="pl-2">' +
+                                        '<a href="javascript:;">' +
+                                            '<img src="' + item.avatar + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
+                                            '<span>' + item.name + '</span>' +
+                                        '</a>' +
+                                    '</li>';
+                        },
+                    },
                 });
                 bsCustomFileInput.init();
                 var $mobileMenuButton = $('#mobileMenuButton');

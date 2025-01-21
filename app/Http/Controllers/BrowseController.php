@@ -80,6 +80,23 @@ class BrowseController extends Controller {
     }
 
     /**
+     * Shows user name list matching the search query.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getUsersSearch(Request $request) {
+        $username = $request->get('username');
+        $users = User::visible()->where('name', 'LIKE', "%$username%")->orderBy('name')->get()->map(function ($user) {
+            return [
+                'name'               => $user->name,
+                'avatar'             => $user->avatarUrl,
+                'mention_display_name' => $user->mentionDisplayName
+            ];
+        });
+        return response()->json($users);
+    }
+
+    /**
      * Shows the user deactivated.
      *
      * @return \Illuminate\Contracts\Support\Renderable
