@@ -15,32 +15,57 @@
         <a class="btn btn-primary" href="{{ url('admin/emotes/create') }}"><i class="fas fa-plus"></i> Create New Emote</a>
     </div>
 
+    <div>
+        {!! Form::open(['method' => 'GET', 'class' => '']) !!}
+        <div class="form-inline justify-content-end">
+            <div class="form-group ml-3 mb-3">
+                {!! Form::text('name', Request::get('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+
     @if (!count($emotes))
         <p>No emotes found.</p>
     @else
-        <table class="table table-sm emote-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Is Visible</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+        {!! $emotes->render() !!}
+        <div class="mb-4 logs-table">
+            <div class="logs-table-header">
+                <div class="row">
+                    <div class="col-5 col-md-6">
+                        <div class="logs-table-cell">Name</div>
+                    </div>
+                    <div class="col-5 col-md-5">
+                        <div class="logs-table-cell">Description</div>
+                    </div>
+                </div>
+            </div>
+            <div class="logs-table-body">
                 @foreach ($emotes as $emote)
-                    <tr>
-                        <td>
-                            {!! $emote->imageUrl ? '<img src="' . $emote->imageUrl . '" class="img-fluid mr-2" style="height: 2em;" />' : '' !!} {{ $emote->name }}</a>
-                        </td>
-                        <td>{{ $emote->is_active ? 'Active' : ' ' }}</td>
-                        <td class="text-right">
-                            <a href="{{ url('admin/emotes/edit/' . $emote->id) }}" class="btn btn-primary">Edit</a>
-                        </td>
-                    </tr>
+                    <div class="logs-table-row">
+                        <div class="row flex-wrap">
+                            <div class="col-5 col-md-6">
+                                <div class="logs-table-cell">
+                                    @if (!$emote->is_released)
+                                        <i class="fas fa-eye-slash mr-1"></i>
+                                    @endif
+                                    {{ $emote->name }}
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-5">
+                                <div class="logs-table-cell">{{ $emote->description ? $emote->description : 'No description' }}</div>
+                            </div>
+                            <div class="col-3 col-md-1 text-right">
+                                <div class="logs-table-cell">
+                                    <a href="{{ url('admin/data/emotes/edit/' . $emote->id) }}" class="btn btn-primary py-0 px-2">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
-            </tbody>
-
-        </table>
+            </div>
+        </div>
+        {!! $emotes->render() !!}
     @endif
 
 @endsection

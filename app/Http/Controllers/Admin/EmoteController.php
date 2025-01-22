@@ -53,7 +53,7 @@ class EmoteController extends Controller {
     public function postCreateEditEmote(Request $request, EmoteService $service, $id = null) {
         $id ? $request->validate(Emote::$updateRules) : $request->validate(Emote::$createRules);
         $data = $request->only([
-            'name', 'image', 'is_active',
+            'name', 'image', 'description', 'alt_text', 'is_active',
         ]);
         if ($id && $service->updateEmote(Emote::find($id), $data, Auth::user())) {
             flash('Emote updated successfully.')->success();

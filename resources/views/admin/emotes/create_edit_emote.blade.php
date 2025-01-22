@@ -17,20 +17,31 @@
 
     <h3>Basic Information</h3>
 
-    <div class="form-group">
-        {!! Form::label('Name') !!} {!! add_help('NOTE: Names with spaces don\'t play well with the emote generator, so try to use underscores if you have to') !!}
-        {!! Form::text('name', $emote->name, ['class' => 'form-control']) !!}
+    <div class="row">
+        <div class="col-md-3 form-group">
+            {!! Form::label('Image (Required)') !!}
+            <div>{!! Form::file('image') !!}</div>
+            @if ($emote->id)
+                <div class="form-check">
+                    {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
+                    {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+                </div>
+            @endif
+        </div>
+        <div class="col-md-9 form-group">
+            {!! Form::label('Name') !!}
+            {!! Form::text('name', $emote->name, ['class' => 'form-control']) !!}
+        </div>
     </div>
 
     <div class="form-group">
-        {!! Form::label('Image (Required)') !!}
-        <div>{!! Form::file('image') !!}</div>
-        @if ($emote->has_image)
-            <div class="form-check">
-                {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-                {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
-            </div>
-        @endif
+        {!! Form::label('Alt Text') !!}
+        {!! Form::text('alt_text', $emote->alt_text, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('description') !!}
+        {!! Form::textarea('description', $emote->description, ['class' => 'form-control wysiwyg']) !!}
     </div>
 
     <div class="form-group">
@@ -53,11 +64,14 @@
                         <a data-toggle="tooltip" title="[ADMIN] Edit emote" href="{{ url('admin/emotes/edit/') . '/' . $emote->id }}" class="mb-2 float-right"><i class="fas fa-crown"></i></a>
                     @endif
                     <div class="world-entry-image">
-                        @isset($emote->imageUrl)
-                            <img src="{{ $emote->imageUrl }}" class="world-entry-image mb-3 mw-100" />
-                        @endisset
+                        {!! $emote->getImage() !!}
                     </div>
-                    <h3 class="mb-0 text-center">{!! $emote->name !!}</h3>
+                    <h3 class="mb-2 text-center">
+                        {!! $emote->name !!}
+                    </h3>
+                    <div>
+                        {!! $emote->description !!}
+                    </div>
                     <div class="card-header">
                         <h5>Use This Emote</h5>
                     </div>

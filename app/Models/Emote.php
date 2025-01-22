@@ -9,7 +9,7 @@ class Emote extends Model {
      * @var array
      */
     protected $fillable = [
-        'name', 'is_active',
+        'name', 'description', 'alt_text', 'is_active',
     ];
 
     /**
@@ -26,7 +26,7 @@ class Emote extends Model {
      */
     public static $createRules = [
         'name'  => 'required|unique:items|between:3,100',
-        'image' => 'required|mimes:png,jpg,jpeg,gif',
+        'image' => 'required|mimes:png,jpg,jpeg,gif,apng,webp',
     ];
 
     /**
@@ -36,12 +36,13 @@ class Emote extends Model {
      */
     public static $updateRules = [
         'name'  => 'required|between:3,100',
-        'image' => 'mimes:png,jpg,jpeg,gif',
+        'image' => 'mimes:png,jpg,jpeg,gif,apng,webp',
     ];
 
     /**********************************************************************************************
 
         SCOPES
+
     **********************************************************************************************/
 
     /**
@@ -58,6 +59,7 @@ class Emote extends Model {
     /**********************************************************************************************
 
         ACCESSORS
+
     **********************************************************************************************/
 
     /**
@@ -94,5 +96,20 @@ class Emote extends Model {
      */
     public function getImageUrlAttribute() {
         return asset($this->imageDirectory.'/'.$this->imageFileName);
+    }
+
+    /**********************************************************************************************
+
+        OTHER FUNCTIONS
+
+    **********************************************************************************************/
+
+    /**
+     * Returns the emote's image as an HTML image element with alt text.
+     * 
+     * @return string
+     */
+    public function getImage() {
+        return '<img src="'.$this->imageUrl.'" alt="'.$this->alt_text.'" data-toggle="tooltip" title="'.$this->name.' - '.$this->alt_text.'">';
     }
 }

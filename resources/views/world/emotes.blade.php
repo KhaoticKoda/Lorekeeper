@@ -11,7 +11,7 @@
     <div>
         {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
         <div class="form-group mr-3 mb-3">
-            {!! Form::text('name', Request::get('name'), ['class' => 'form-control']) !!}
+            {!! Form::text('name', Request::get('name'), ['class' => 'form-control', 'placeholder' => 'Search by Name']) !!}
         </div>
         {!! Form::close() !!}
     </div>
@@ -29,11 +29,14 @@
                             <a data-toggle="tooltip" title="[ADMIN] Edit emote" href="{{ url('admin/emotes/edit/') . '/' . $emote->id }}" class="mb-2 float-right"><i class="fas fa-crown"></i></a>
                         @endif
                         <div class="world-entry-image">
-                            @isset($emote->imageUrl)
-                                <img src="{{ $emote->imageUrl }}" class="world-entry-image mb-3 mw-100" />
-                            @endisset
+                            {!! $emote->getImage() !!}
                         </div>
-                        <h3 class="mb-0 text-center">{!! $emote->name !!}</h3>
+                        <h3 class="mb-2 text-center">
+                            {!! $emote->name !!}
+                        </h3>
+                        <div>
+                            {!! $emote->description !!}
+                        </div>
                         <div class="card-header">
                             <h5>Use This Emote</h5>
                         </div>
