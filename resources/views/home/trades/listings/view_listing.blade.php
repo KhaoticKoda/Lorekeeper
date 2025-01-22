@@ -37,7 +37,7 @@
         <h3>
             @if ($listing->isActive && (Auth::user()->id == $listing->user->id || Auth::user()->hasPower('manage_submissions')))
                 {!! Form::open(['url' => url()->current(), 'id' => 'expireForm']) !!}
-                    <a href="#" id="expireButton" class="float-right btn btn-outline-danger btn-sm"> Mark Expired</a>
+                <a href="#" id="expireButton" class="float-right btn btn-outline-danger btn-sm"> Mark Expired</a>
                 {!! Form::close() !!}
                 <a href="{{ url('trades/listings/' . $listing->id . '/edit') }}" class="float-right mr-2 btn btn-outline-info btn-sm">Edit</a>
             @endif

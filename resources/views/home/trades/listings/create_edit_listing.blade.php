@@ -89,7 +89,7 @@
                 'inventory' => $inventory,
                 'categories' => $categories,
                 'selected' => $listing->inventory ?? [],
-                'page' => $page
+                'page' => $page,
             ])
             @include('widgets._user_character_select', [
                 'readOnly' => true,

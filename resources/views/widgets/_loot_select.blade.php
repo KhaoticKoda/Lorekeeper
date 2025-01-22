@@ -5,11 +5,13 @@
     $type = isset($type) ? $type : 'Reward';
     $isTradeable = isset($isTradeable) ? $isTradeable : false;
     if (isset($useCustomSelectize) && $useCustomSelectize) {
-        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)->where(function ($query) use ($isTradeable) {
+        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
                 if ($isTradeable) {
                     $query->where('allow_user_to_user', 1);
                 }
-            })->orderBy('sort_character', 'DESC')
+            })
+            ->orderBy('sort_character', 'DESC')
             ->get()
             ->mapWithKeys(function ($currency) {
                 return [
@@ -19,11 +21,13 @@
                     ]),
                 ];
             });
-        $items = \App\Models\Item\Item::orderBy('name')->where(function ($query) use ($isTradeable) {
+        $items = \App\Models\Item\Item::orderBy('name')
+            ->where(function ($query) use ($isTradeable) {
                 if ($isTradeable) {
                     $query->where('allow_transfer', 1);
                 }
-            })->get()
+            })
+            ->get()
             ->mapWithKeys(function ($item) {
                 return [
                     $item->id => json_encode([
@@ -32,11 +36,13 @@
                     ]),
                 ];
             });
-        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)->where(function ($query) use ($isTradeable) {
+        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
                 if ($isTradeable) {
                     $query->where('allow_user_to_user', 1);
                 }
-            })->orderBy('name')
+            })
+            ->orderBy('name')
             ->get()
             ->mapWithKeys(function ($currency) {
                 return [
@@ -71,21 +77,29 @@
                 });
         }
     } else {
-        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)->where(function ($query) use ($isTradeable) {
+        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
                 if ($isTradeable) {
                     $query->where('allow_user_to_user', 1);
                 }
-            })->orderBy('sort_character', 'DESC')->pluck('name', 'id');
+            })
+            ->orderBy('sort_character', 'DESC')
+            ->pluck('name', 'id');
         $items = \App\Models\Item\Item::where(function ($query) use ($isTradeable) {
-                if ($isTradeable) {
-                    $query->where('allow_transfer', 1);
-                }
-            })->orderBy('name')->pluck('name', 'id');
-        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)->where(function ($query) use ($isTradeable) {
+            if ($isTradeable) {
+                $query->where('allow_transfer', 1);
+            }
+        })
+            ->orderBy('name')
+            ->pluck('name', 'id');
+        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
                 if ($isTradeable) {
                     $query->where('allow_user_to_user', 1);
                 }
-            })->orderBy('name')->pluck('name', 'id');
+            })
+            ->orderBy('name')
+            ->pluck('name', 'id');
         if ($showLootTables) {
             $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
         }
