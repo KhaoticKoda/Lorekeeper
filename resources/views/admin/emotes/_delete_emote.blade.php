@@ -1,5 +1,5 @@
-@if($emote)
-    {!! Form::open(['url' => 'admin/emotes/delete/'.$emote->id]) !!}
+@if ($emote)
+    {!! Form::open(['url' => 'admin/emotes/delete/' . $emote->id]) !!}
 
     <p>Are you sure you want to delete <strong>{{ $emote->name }}</strong>?</p>
 
@@ -8,6 +8,6 @@
     </div>
 
     {!! Form::close() !!}
-@else 
+@else
     Invalid emote selected.
 @endif
