@@ -157,6 +157,7 @@
                         'advlist autolink lists link image charmap print preview anchor',
                         'searchreplace visualblocks code fullscreen spoiler',
                         'insertdatetime media table paste code help wordcount toc mention',
+                        'textpattern',
                     ],
                     toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | toc bullist numlist outdent indent | link image | spoiler-add spoiler-remove | removeformat | code',
                     content_css: [
@@ -166,6 +167,24 @@
                     ],
                     spoiler_caption: 'Toggle Spoiler',
                     target_list: false,
+                    textpattern_patterns: [
+                        {start: '# ', format: 'h1'},
+                        {start: '## ', format: 'h2'},
+                        {start: '### ', format: 'h3'},
+                        {start: '#### ', format: 'h4'},
+                        {start: '##### ', format: 'h5'},
+                        {start: '###### ', format: 'h6'},
+                        {start: '**', end: '**', format: 'bold'},
+                        {start: '__', end: '__', format: 'bold'},
+                        {start: '*', end: '*', format: 'italic'},
+                        {start: '_', end: '_', format: 'italic'},
+                        {start: '~~', end: '~~', format: 'strikethrough'},
+                        {start: '> ', format: 'blockquote'},
+                        {start: '* ', cmd: 'InsertUnorderedList'},
+                        {start: '- ', cmd: 'InsertUnorderedList'},
+                        {start: '+ ', cmd: 'InsertUnorderedList'},
+                        {start: '1. ', cmd: 'InsertOrderedList'},
+                    ],
                     toc_class: 'container',
                     mentions: {
                         source: function (query, process, delimiter) {
