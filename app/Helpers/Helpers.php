@@ -118,6 +118,9 @@ function parse($text, &$pings = null) {
     $text = parseUsers($text, $users);
     $text = parseCharacters($text, $characters);
     $text = parseGalleryThumbs($text, $submissions);
+    $text = parseEmoteIDs($text, $users);
+    $text = parseEmoteNames($text, $users);
+    $text = parseItemIDs($text, $users);
     if($pings) $pings = ['users' => $users, 'characters' => $characters];
 
     return $text;
@@ -292,4 +295,85 @@ function prettyProfileName($url)
     // Return formatted name if possible; failing that, an unformatted url
     if(isset($name) && isset($site)) return $name.'@'.(Config::get('lorekeeper.sites.'.$site.'.display_name') != null ? Config::get('lorekeeper.sites.'.$site.'.display_name') : $site);
     else return $url;
+}
+
+/**
+ * Parses a piece of user-entered text to match userid mentions
+ * and replace with a link.
+ *
+ * @param string $text
+ * @param mixed  $users
+ *
+ * @return string
+ */
+function parseEmoteIDs($text, &$users) {
+    $matches = null;
+    $users = [];
+    $count = preg_match_all('/\[emote=([^\[\]&<>?"\']+)\]/', $text, $matches);
+    if ($count) {
+        $matches = array_unique($matches[1]);
+        foreach ($matches as $match) {
+            $emote = \App\Models\Emote::active()->where('id', $match)->first();
+            if ($emote) {
+                $users[] = $emote;
+                $text = preg_replace('/\[emote='.$match.'\]/', '<img src="'.$emote->imageUrl.'">', $text);
+            }
+        }
+    }
+
+    return $text;
+}
+
+/**
+ * Parses a piece of user-entered text to match userid mentions
+ * and replace with a link.
+ *
+ * @param string $text
+ * @param mixed  $users
+ *
+ * @return string
+ */
+function parseEmoteNames($text, &$users) {
+    $matches = null;
+    $users = [];
+    $count = preg_match_all('/\[emote=([A-Za-z0-9_-]+)/', $text, $matches);
+    if ($count) {
+        $matches = array_unique($matches[1]);
+        foreach ($matches as $match) {
+            $emote = \App\Models\Emote::active()->where('name', $match)->first();
+            if ($emote) {
+                $users[] = $emote;
+                $text = preg_replace('/\[emote='.$match.'\]/', '<img src="'.$emote->imageUrl.'">', $text);
+            }
+        }
+    }
+
+    return $text;
+}
+
+/**
+ * Parses a piece of user-entered text to match an item id
+ * and replace with an image.
+ *
+ * @param string $text
+ * @param mixed  $users
+ *
+ * @return string
+ */
+function parseItemIDs($text, &$users) {
+    $matches = null;
+    $users = [];
+    $count = preg_match_all('/\[item=([^\[\]&<>?"\']+)\]/', $text, $matches);
+    if ($count) {
+        $matches = array_unique($matches[1]);
+        foreach ($matches as $match) {
+            $item = \App\Models\Item\Item::released()->where('id', $match)->first();
+            if ($item) {
+                $users[] = $item;
+                $text = preg_replace('/\[item='.$match.'\]/', '<a href="'.$item->url.'"> <img src="'.$item->imageUrl.'"> </a>', $text);
+            }
+        }
+    }
+
+    return $text;
 }
