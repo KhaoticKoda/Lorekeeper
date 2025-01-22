@@ -494,7 +494,7 @@ Route::group(['prefix' => 'limits', 'middleware' => 'power:manage_data'], functi
 });
 
 // EMOTES
-Route::group(['prefix' => 'emotes', 'middleware' => 'power:manage_data'], function() {
+Route::group(['prefix' => 'emotes', 'middleware' => 'power:manage_data'], function () {
     Route::get('/', 'EmoteController@getEmoteIndex');
     Route::get('create', 'EmoteController@getCreateEmote');
     Route::post('create', 'EmoteController@postCreateEditEmote');

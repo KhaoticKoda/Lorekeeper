@@ -67,7 +67,7 @@ return [
             ],
             [
                 'name' => 'Emotes',
-                'url'  => 'admin/emotes'
+                'url'  => 'admin/emotes',
             ],
         ],
     ],

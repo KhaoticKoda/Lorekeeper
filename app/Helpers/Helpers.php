@@ -503,7 +503,7 @@ function parseEmoteIDs($text, &$users) {
     if ($count) {
         $matches = array_unique($matches[1]);
         foreach ($matches as $match) {
-            $emote = \App\Models\Emote::active()->where('id', $match)->first();
+            $emote = App\Models\Emote::active()->where('id', $match)->first();
             if ($emote) {
                 $users[] = $emote;
                 $text = preg_replace('/\[emote='.$match.'\]/', '<img src="'.$emote->imageUrl.'">', $text);
@@ -530,7 +530,7 @@ function parseEmoteNames($text, &$users) {
     if ($count) {
         $matches = array_unique($matches[1]);
         foreach ($matches as $match) {
-            $emote = \App\Models\Emote::active()->where('name', $match)->first();
+            $emote = App\Models\Emote::active()->where('name', $match)->first();
             if ($emote) {
                 $users[] = $emote;
                 $text = preg_replace('/\[emote='.$match.'\]/', '<img src="'.$emote->imageUrl.'">', $text);
@@ -557,7 +557,7 @@ function parseItemIDs($text, &$users) {
     if ($count) {
         $matches = array_unique($matches[1]);
         foreach ($matches as $match) {
-            $item = \App\Models\Item\Item::released()->where('id', $match)->first();
+            $item = App\Models\Item\Item::released()->where('id', $match)->first();
             if ($item) {
                 $users[] = $item;
                 $text = preg_replace('/\[item='.$match.'\]/', '<a href="'.$item->url.'"> <img src="'.$item->imageUrl.'"> </a>', $text);
