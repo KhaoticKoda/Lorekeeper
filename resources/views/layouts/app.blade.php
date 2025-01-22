@@ -187,7 +187,7 @@
                     ],
                     toc_class: 'container',
                     mentions: {
-                        source: function (query, process, delimiter) {
+                        source: function(query, process, delimiter) {
                             $.getJSON('{{ url('users/search') }}', function(data) {
                                 process(data);
                             });
@@ -197,11 +197,11 @@
                         },
                         render: function(item) {
                             return '<li class="pl-2">' +
-                                        '<a href="javascript:;">' +
-                                            '<img src="' + item.avatar + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
-                                            '<span>' + item.name + '</span>' +
-                                        '</a>' +
-                                    '</li>';
+                                '<a href="javascript:;">' +
+                                '<img src="' + item.avatar + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
+                                '<span>' + item.name + '</span>' +
+                                '</a>' +
+                                '</li>';
                         },
                     },
                 });

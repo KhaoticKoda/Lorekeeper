@@ -349,7 +349,7 @@ class User extends Authenticatable implements MustVerifyEmail {
     }
 
     /**
-     * Displays the user's name, but with specific classes to identify mentions
+     * Displays the user's name, but with specific classes to identify mentions.
      *
      * @return string
      */

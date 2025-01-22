@@ -86,13 +86,14 @@ class BrowseController extends Controller {
      */
     public function getUsersSearch(Request $request) {
         $username = $request->get('username');
-        $users = User::visible()->where('name', 'LIKE', "%$username%")->orderBy('name')->get()->map(function ($user) {
+        $users = User::visible()->where('name', 'LIKE', "%{$username}%")->orderBy('name')->get()->map(function ($user) {
             return [
-                'name'               => $user->name,
-                'avatar'             => $user->avatarUrl,
-                'mention_display_name' => $user->mentionDisplayName
+                'name'                 => $user->name,
+                'avatar'               => $user->avatarUrl,
+                'mention_display_name' => $user->mentionDisplayName,
             ];
         });
+
         return response()->json($users);
     }
 
