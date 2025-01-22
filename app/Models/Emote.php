@@ -106,7 +106,7 @@ class Emote extends Model {
 
     /**
      * Returns the emote's image as an HTML image element with alt text.
-     * 
+     *
      * @return string
      */
     public function getImage() {
