@@ -1,18 +1,22 @@
 @extends('home.trades.listings.layout')
 
 @section('trade-title')
-    Trades
+    {{ $listing->id ? 'Edit' : 'Create' }} Trade Listing
 @endsection
 
 @section('trade-content')
-    {!! breadcrumbs(['Trades' => 'trades/open', 'Listings' => 'trades/listings', 'New Listing' => 'trades/listings/create']) !!}
+    @if ($listing->id)
+        {!! breadcrumbs(['Trades' => 'trades/open', 'Listings' => 'trades/listings', 'Edit Listing' => 'trades/listings/edit/' . $listing->id]) !!}
+    @else
+        {!! breadcrumbs(['Trades' => 'trades/open', 'Listings' => 'trades/listings', 'New Listing' => 'trades/listings/create']) !!}
+    @endif
 
     <h1>
-        New Trade Listing
+        {{ $listing->id ? 'Edit' : 'Create' }} Trade Listing
     </h1>
 
     <p>
-        Create a new trade listing.
+        {{ $listing->id ? 'Edit' : 'Create a new' }} trade listing.
         <strong>Some notes:</strong>
     <ul>
         <li>The title should be informative and not include anything that breaks {{ config('lorekeeper.settings.site_name') }}'s rules.</li>
@@ -27,7 +31,7 @@
     </ul>
     </p>
 
-    {!! Form::open(['url' => 'trades/listings/create']) !!}
+    {!! Form::open(['url' => $listing->id ? 'trades/listings/' . $listing->id . '/edit' : 'trades/listings/create']) !!}
     <div class="card mb-3">
         <div class="card-header h2">
             Listing Details

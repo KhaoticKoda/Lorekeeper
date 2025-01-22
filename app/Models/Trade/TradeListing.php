@@ -35,14 +35,9 @@ class TradeListing extends Model {
     protected $casts = [
         'data'       => 'array',
         'expires_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
-
-    /**
-     * Whether the model contains timestamps to be saved and updated.
-     *
-     * @var string
-     */
-    public $timestamps = true;
 
     /**
      * Validation rules for character creation.

@@ -84,6 +84,8 @@ class TradeListingManager extends Service {
             }
 
             $listing->expires_at = $id ? $listing->expires_at : Carbon::now()->addDays(Settings::get('trade_listing_duration'));
+            $listing->created_at = $id ? $listing->created_at : Carbon::now();
+            $listing->updated_at = Carbon::now();
             $listing->data = $listingData;
             $listing->save();
 

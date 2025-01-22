@@ -8,7 +8,7 @@
                 <div class="row">
                     @foreach ($data['user_items'] as $itemRow)
                         <div class="col-sm-4">
-                            <a href="/world/items?name={{ $itemRow['asset']->item->name }}">{!! $itemRow['asset']->item->name !!}</a> x{!! $itemRow['quantity'] !!}
+                            <a href="{{ $itemRow['asset']->item->url }}">{!! $itemRow['asset']->item->displayName !!}</a> x{!! $itemRow['quantity'] !!}
                         </div>
                     @endforeach
                 </div>
