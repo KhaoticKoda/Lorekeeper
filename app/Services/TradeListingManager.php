@@ -31,22 +31,39 @@ class TradeListingManager extends Service {
      *
      * @return bool|TradeListing
      */
-    public function createTradeListing($data, $user) {
+    public function createEditTradeListing($data, $user, $id = null) {
         DB::beginTransaction();
         try {
-            if (TradeListing::where('user_id', $user->id)->where('expires_at', '>', Carbon::now())->count() > Settings::get('trade_listing_limit')) {
-                throw new \Exception('You already have the maximum number of active trade listings. Please wait for them to expire before creating a new one.');
-            }
             if (!isset($data['contact'])) {
                 throw new \Exception('Please enter your preferred method(s) of contact.');
             }
-
-            $listing = TradeListing::create([
-                'title'    => $data['title'] ?? null,
-                'user_id'  => $user->id,
-                'comments' => $data['comments'] ?? null,
-                'contact'  => $data['contact'],
-            ]);
+            if ($id) {
+                $listing = TradeListing::find($id);
+                if (!$listing) {
+                    throw new \Exception('Invalid trade listing.');
+                }
+                if (!$listing->isActive) {
+                    throw new \Exception('This listing is already expired.');
+                }
+                if (!$listing->user->id == Auth::user()->id && !Auth::user()->hasPower('manage_submissions')) {
+                    throw new \Exception("You can't edit this listing.");
+                }
+                $listing->update([
+                    'title'    => $data['title'] ?? null,
+                    'comments' => $data['comments'] ?? null,
+                    'contact'  => $data['contact'],
+                ]);
+            } else {
+                if (TradeListing::where('user_id', $user->id)->where('expires_at', '>', Carbon::now())->count() > Settings::get('trade_listing_limit')) {
+                    throw new \Exception('You already have the maximum number of active trade listings. Please wait for them to expire before creating a new one.');
+                }
+                $listing = TradeListing::create([
+                    'title'    => $data['title'] ?? null,
+                    'user_id'  => $user->id,
+                    'comments' => $data['comments'] ?? null,
+                    'contact'  => $data['contact'],
+                ]);
+            }
 
             $listingData = [];
             if (!$seekingData = $this->handleSeekingAssets($listing, $data, $user)) {
@@ -58,7 +75,7 @@ class TradeListingManager extends Service {
             if (!$offeringData = $this->handleOfferingAssets($listing, $data, $user)) {
                 throw new \Exception('Error attaching offered attachments.');
             } else {
-                $listingData['offering'] = $offeringData;
+                $listingData['offering'] = getDataReadyAssets($offeringData);
             }
 
             if ($data['offering_etc'] || $data['seeking_etc']) {
@@ -66,7 +83,7 @@ class TradeListingManager extends Service {
                 $listingData['seeking_etc'] = $data['seeking_etc'] ?? null;
             }
 
-            $listing->expires_at = Carbon::now()->addDays(Settings::get('trade_listing_duration'));
+            $listing->expires_at = $id ? $listing->expires_at : Carbon::now()->addDays(Settings::get('trade_listing_duration'));
             $listing->data = $listingData;
             $listing->save();
 
@@ -145,7 +162,15 @@ class TradeListingManager extends Service {
                         throw new \Exception("Invalid {$type} selected.");
                     }
 
-                    if ($type == 'Currency') {
+                    if (!canTradeAsset($type, $asset)) {
+                        throw new \Exception("One or more of the selected {$type}s cannot be traded.");
+                    }
+
+                    if ($type == 'Item') {
+                        if (!$asset->allow_transfer) {
+                            throw new \Exception('One or more of the selected items cannot be transferred.');
+                        }
+                    } else if ($type == 'Currency') {
                         if (!$asset->is_user_owned) {
                             throw new \Exception('One or more of the selected currencies cannot be held by users.');
                         }

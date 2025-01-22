@@ -19,8 +19,8 @@
                             @foreach ($assets as $asset)
                                 <tr class="d-flex">
                                     <td class="col-6">
-                                        @if (isset($asset['asset']->imageUrl))
-                                            <img class="small-icon" src="{{ $asset['asset']->imageUrl }}">
+                                        @if ($asset['asset']->imageUrl || $asset['asset']->currencyIconUrl)
+                                            <img class="small-icon" src="{{ $asset['asset']->imageUrl ?? $asset['asset']->currencyIconUrl }}" alt="{{ $asset['asset']->displayName }}">
                                         @endif
                                         {!! $asset['asset']->displayName !!}
                                     </td>

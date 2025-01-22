@@ -512,16 +512,54 @@ class TradeController extends Controller {
                 $item->id => json_encode([
                     'name'           => $item->name,
                     'image_url'      => $item->image_url,
-                    'allow_transfer' => $item->allow_transfer,
                 ]),
             ];
         });
-        $items = $item_filter->filter(function ($item) {
-            return json_decode($item)->allow_transfer;
+
+        return view('home.trades.listings.create_edit_listing', [
+            'listing'             => new TradeListing,
+            'currencies'          => $currencies,
+            'categories'          => ItemCategory::orderBy('sort', 'DESC')->get(),
+            'item_filter'         => $item_filter,
+            'inventory'           => $inventory,
+            'characters'          => Auth::user()->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
+            'characterCategories' => CharacterCategory::orderBy('sort', 'DESC')->get(),
+            'page'                => 'listing',
+            'listingDuration'     => Settings::get('trade_listing_duration'),
+        ]);
+    }
+
+    /**
+     * Shows the edit trade listing page.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getEditListing($id) {
+        $listing = TradeListing::find($id);
+        if (!$listing) {
+            abort(404);
+        }
+
+        $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', Auth::user()->id)
+            ->get()
+            ->filter(function ($userItem) {
+                return $userItem->isTransferrable == true;
+            })
+            ->sortBy('item.name');
+        $currencies = Currency::where('is_user_owned', 1)->where('allow_user_to_user', 1)->orderBy('sort_user', 'DESC')->get()->pluck('name', 'id');
+        $item_filter = Item::orderBy('name')->get()->mapWithKeys(function ($item) {
+            return [
+                $item->id => json_encode([
+                    'name'           => $item->name,
+                    'image_url'      => $item->image_url,
+                ]),
+            ];
         });
 
-        return view('home.trades.listings.create_listing', [
-            'items'               => $items,
+        return view('home.trades.listings.create_edit_listing', [
+            'listing'             => $listing,
             'currencies'          => $currencies,
             'categories'          => ItemCategory::orderBy('sort', 'DESC')->get(),
             'item_filter'         => $item_filter,
@@ -540,18 +578,20 @@ class TradeController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreateListing(Request $request, TradeListingManager $service) {
-        if (!$listing = $service->createTradeListing($request->only([
+    public function postCreateEditListing(Request $request, TradeListingManager $service, $id = null) {
+        if (!$listing = $service->createEditTradeListing($request->only([
             'title', 'comments', 'contact', 'item_ids', 'offering_etc', 'seeking_etc',
             'rewardable_type', 'rewardable_id', 'quantity',
             'offer_currency_ids', 'character_id', 'stack_id', 'stack_quantity',
-        ]), Auth::user())) {
+        ]), Auth::user(), $id)) {
             foreach ($service->errors()->getMessages()['error'] as $error) {
                 flash($error)->error();
             }
 
             return redirect()->back();
         }
+
+        flash('Trade listing '.($id ? 'edited' : 'created').' successfully.')->success();
 
         return redirect()->to($listing->url);
     }

@@ -36,16 +36,16 @@
             <div class="form-group">
                 {!! Form::label('title', 'Listing Title (Optional)') !!}
                 {!! add_help('This is what the public will see as the trade listing. <br>Try to be informative.') !!}
-                {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                {!! Form::text('title', $listing->title, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('comments', 'Comments (Optional)') !!} {!! add_help('This comment will be displayed on the trade index. You can write a helpful note here, for example to note down the purpose of the trade.') !!}
-                {!! Form::textarea('comments', null, ['class' => 'form-control', 'rows' => 3]) !!}
+                {!! Form::textarea('comments', $listing->comments, ['class' => 'form-control', 'rows' => 3]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('contact', 'Preferred Method(s) of Contact') !!}
                 {!! add_help('Enter in your preferred method(s) of contact. This field cannot be left blank.') !!}
-                {!! Form::text('contact', null, ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('contact', $listing->contact, ['class' => 'form-control', 'required']) !!}
             </div>
         </div>
     </div>
@@ -58,16 +58,18 @@
         <div class="mb-3 collapse card-body" id="userSeeking">
             <p>Select the items, currencies, and / or other goods or services you're seeking.</p>
             @include('widgets._loot_select', [
-                'loots' => [],
+                'loots' => $listing->seekingData ?? [],
                 'showLootTables' => false,
                 'showRaffles' => false,
                 'type' => 'Seeking',
+                'useCustomSelectize' => true,
+                'isTradeable' => true,
             ])
             <h3>Other</h3>
             <div class="form-group">
                 {!! Form::label('seeking_etc', 'Other Goods or Services') !!}
                 {!! add_help('Enter in any goods/services you are seeking that are not handled by the site-- for example, art. This should be brief!') !!}
-                {!! Form::text('seeking_etc', null, ['class' => 'form-control']) !!}
+                {!! Form::text('seeking_etc', $listing->data['seeking_etc'] ?? null, ['class' => 'form-control']) !!}
             </div>
         </div>
     </div>
@@ -78,25 +80,35 @@
         </div>
         <div class="mb-3 collapse card-body" id="userOffering">
             <p>Select the items, characters, currencies, and/or other goods or services you're offering.</p>
-            @include('widgets._inventory_select', ['user' => Auth::user(), 'inventory' => $inventory, 'categories' => $categories, 'selected' => [], 'page' => $page])
-            @include('widgets._user_character_select', ['readOnly' => true, 'categories' => $characterCategories])
+            @include('widgets._inventory_select', [
+                'user' => Auth::user(),
+                'inventory' => $inventory,
+                'categories' => $categories,
+                'selected' => $listing->inventory ?? [],
+                'page' => $page
+            ])
+            @include('widgets._user_character_select', [
+                'readOnly' => true,
+                'categories' => $characterCategories,
+                'selected' => $listing->characters ?? [],
+            ])
             @if (isset($currencies) && $currencies)
                 <h3>Currencies</h3>
                 <div class="form-group">
-                    {!! Form::select('offer_currency_ids[]', $currencies, 0, ['class' => 'form-control selectize', 'multiple']) !!}
+                    {!! Form::select('offer_currency_ids[]', $currencies, $listing->currencies ?? null, ['class' => 'form-control form-selectize', 'multiple']) !!}
                 </div>
             @endif
             <h3>Other</h3>
             <div class="form-group">
                 {!! Form::label('offering_etc', 'Other Goods or Services') !!}
                 {!! add_help('Enter in any goods/services you are offerering that are not handled by the site-- for example, art. This should be brief!') !!}
-                {!! Form::text('offering_etc', null, ['class' => 'form-control']) !!}
+                {!! Form::text('offering_etc', $listing->data['offering_etc'] ?? null, ['class' => 'form-control']) !!}
             </div>
         </div>
     </div>
 
     <div class="text-right">
-        {!! Form::submit('Create Listing', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit($listing->id ? 'Update Listing' : 'Create Listing', ['class' => 'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}
@@ -105,6 +117,8 @@
         'showLootTables' => false,
         'showRaffles' => false,
         'type' => 'Seeking',
+        'useCustomSelectize' => true,
+        'isTradeable' => true,
     ])
 @endsection
 @section('scripts')
@@ -118,7 +132,7 @@
     @parent
     <script>
         $(document).ready(function() {
-            $('.selectize').selectize();
+            $('.form-selectize').selectize();
             $('.default.item-select').selectize({
                 render: {
                     option: customItemSelectizeRender,

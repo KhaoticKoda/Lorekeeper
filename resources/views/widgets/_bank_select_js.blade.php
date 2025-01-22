@@ -7,7 +7,6 @@
             e.preventDefault();
             var $this = $(this);
             var $clone = $('#' + $this.data('type') + 'Row-' + $this.data('id')).find('.bank-row').clone();
-            console.log($clone);
             $clone.find('.selectize').selectize();
             console.log($clone);
             $('#' + $this.data('type') + 'Body-' + $this.data('id')).append($clone);

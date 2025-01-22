@@ -340,7 +340,7 @@ Route::group(['prefix' => 'grants', 'namespace' => 'Users', 'middleware' => 'pow
 Route::group(['prefix' => 'trades', 'middleware' => 'power:manage_submissions'], function () {
     Route::get('{type}', 'TradeController@getTradeQueue');
     Route::get('{id}', 'TradeController@getTradeInfo');
-    Route::get('act/{id}/{type}', 'TradeController@getTradeModal');
+    Route::get('act/{id}/{action}', 'TradeController@getTradeModal');
     Route::post('{id}', 'TradeController@postTradeQueue');
 });
 

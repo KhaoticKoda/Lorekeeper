@@ -9,8 +9,10 @@
 
     <h1>
         {!! $listing->displayName !!}
-
         <span class="float-right badge badge-{{ $listing->isActive ? 'success' : 'secondary' }}">{{ $listing->isActive ? 'Active' : 'Expired' }}</span>
+        <a class="float-right mr-2" href="{{ url('reports/new?url=') . $listing->url }}">
+            <i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="Click here to report this trade listing." style="opacity: 50%;"></i>
+        </a>
     </h1>
 
     <div class="mb-1">
@@ -35,11 +37,9 @@
         <h3>
             @if ($listing->isActive && (Auth::user()->id == $listing->user->id || Auth::user()->hasPower('manage_submissions')))
                 {!! Form::open(['url' => url()->current(), 'id' => 'expireForm']) !!}
-                <a href="#" id="expireButton" class="float-right btn btn-outline-info btn-sm"> Mark Expired</a>
-                <a class="float-right mr-2" href="{{ url('reports/new?url=') . $listing->url }}"><i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="Click here to report this trade listing." style="opacity: 50%;"></i></a>
+                    <a href="#" id="expireButton" class="float-right btn btn-outline-danger btn-sm"> Mark Expired</a>
                 {!! Form::close() !!}
-            @else
-                <a class="float-right" href="{{ url('reports/new?url=') . $listing->url }}"><i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="Click here to report this trade listing." style="opacity: 50%;"></i></a>
+                <a href="{{ url('trades/listings/' . $listing->id . '/edit') }}" class="float-right mr-2 btn btn-outline-info btn-sm">Edit</a>
             @endif
         </h3>
         <div>
@@ -90,28 +90,19 @@
     <div class="container">
         @comments(['model' => $listing, 'perPage' => 5])
     </div>
+
     <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="modal-header">
-                            <span class="modal-title h5 mb-0">Confirm Expiry</span>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="modal-body">
-                            <p>This will mark the trade listing as expired and remove it from active view.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="modal-body">
-                            <div class="text-right">
-                                <a href="#" id="expireSubmit" class="btn btn-danger">Mark Expired</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-header">
+                    <span class="modal-title h5 mb-0">
+                        Confirm Expiry
+                    </span>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>This will mark the trade listing as expired and remove it from active view.</p>
+                    <a href="#" id="expireSubmit" class="float-right btn btn-danger">Mark Expired</a>
                 </div>
             </div>
         </div>

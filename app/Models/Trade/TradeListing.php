@@ -182,58 +182,54 @@ class TradeListing extends Model {
         return url('trades/listings/'.$this->id);
     }
 
-    /**********************************************************************************************
-
-        OTHER FUNCTIONS
-
-    **********************************************************************************************/
-
     /**
-     * Gets all characters involved in the trade listing.
-     *
-     * @return \Illuminate\Support\Collection
+     * Returns the seeking data for use in loot rows.
      */
-    public function getCharacterData() {
-        return Character::with('user')->whereIn('id', $this->getCharacters($this->user))->get();
+    public function getSeekingDataAttribute() {
+        if (!isset($this->data['seeking'])) {
+            return [];
+        }
+
+        $assets = parseAssetData($this->data['seeking']);
+        $rewards = [];
+        foreach ($assets as $type => $a) {
+            $class = getAssetModelString($type, false);
+            foreach ($a as $id => $asset) {
+                $rewards[] = (object) [
+                    'rewardable_type' => $class,
+                    'rewardable_id'   => $id,
+                    'quantity'        => $asset['quantity'],
+                ];
+            }
+        }
+
+        return $rewards;
     }
 
     /**
-     * Gets the inventory of the user for selection.
-     *
-     * @param mixed $user
+     * Gets the selected inventory for the trade listing.
      *
      * @return array
      */
-    public function getInventory($user) {
-        return $this->data && isset($this->data['user']['user_items']) ? $this->data['user']['user_items'] : [];
-
-        return $inventory;
+    public function getInventoryAttribute() {
+        return $this->data && isset($this->data['offering']['user_items']) ? $this->data['offering']['user_items'] : [];
     }
 
     /**
      * Gets the currencies of the given user for selection.
      *
-     * @param User $user
-     *
      * @return array
      */
-    public function getCurrencies($user) {
-        return $this->data && isset($this->data['user']) && isset($this->data['user']['currencies']) ? $this->data['user']['currencies'] : [];
+    public function getCurrenciesAttribute() {
+        return $this->data && isset($this->data['offering']['currencies']) ? array_keys($this->data['offering']['currencies']) : [];
     }
 
     /**
-     * Gets the characters of the given user for selection.
-     *
-     * @param User $user
+     * Gets the characters from the offering (you cannot seek characters directly).
      *
      * @return array
      */
-    public function getCharacters($user) {
-        $characters = $this->data && isset($this->data['user']) && isset($this->data['user']['characters']) ? $this->data['user']['characters'] : [];
-        if ($characters) {
-            $characters = array_keys($characters);
-        }
-
-        return $characters;
+    public function getCharactersAttribute() {
+        return $this->data && isset($this->data['offering']) && isset($this->data['offering']['characters']) ? array_keys($this->data['offering']['characters']) : [];
     }
 }

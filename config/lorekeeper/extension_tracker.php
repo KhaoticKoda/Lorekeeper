@@ -11,15 +11,5 @@ return [
     //         'Uri' => 'https://github.com/preimpression/',
     //     ]),
     //     'version' => '1.0.0',
-    // ],
-
-    'trade_listings' => [
-        'key'      => 'Trade_Listings',
-        'wiki_key' => 'Trade_Listings',
-        'creators' => json_encode([
-            'Mercury' => 'https://github.com/itinerare/',
-        ]),
-        'version' => '1.0.1',
-    ],
 
 ];

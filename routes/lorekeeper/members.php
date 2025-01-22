@@ -92,7 +92,9 @@ Route::group(['prefix' => 'trades', 'namespace' => 'Users'], function () {
     Route::get('listings/expired', 'TradeController@getExpiredListings');
     Route::get('listings/create', 'TradeController@getCreateListing');
     Route::get('listings/{id}', 'TradeController@getListing')->where('id', '[0-9]+');
-    Route::post('listings/create', 'TradeController@postCreateListing');
+    Route::get('listings/{id}/edit', 'TradeController@getEditListing')->where('id', '[0-9]+');
+    Route::post('listings/create', 'TradeController@postCreateEditListing');
+    Route::post('listings/{id}/edit', 'TradeController@postCreateEditListing')->where('id', '[0-9]+');
     Route::post('listings/{id}/expire', 'TradeController@postExpireListing')->where('id', '[0-9]+');
 
     // TRADES

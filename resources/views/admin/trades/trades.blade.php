@@ -48,8 +48,7 @@
         $(document).ready(function() {
             $('.trade-action-button').on('click', function(e) {
                 e.preventDefault();
-                console.log("{{ url('admin/trade/act') }}/" + $(this).data('id') + "/" + $(this).data('action'));
-                loadModal("{{ url('admin/trade/act') }}/" + $(this).data('id') + "/" + $(this).data('action'), 'Process Trade');
+                loadModal("{{ url('admin/trades/act') }}/" + $(this).data('id') + "/" + $(this).data('action'), 'Process Trade');
             });
         });
     </script>
