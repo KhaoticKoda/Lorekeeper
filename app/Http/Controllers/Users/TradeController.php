@@ -575,6 +575,7 @@ class TradeController extends Controller {
      * Creates a new trade listing.
      *
      * @param App\Services\TradeListingManager $service
+     * @param mixed|null                       $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */

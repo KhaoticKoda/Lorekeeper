@@ -26,8 +26,9 @@ class TradeListingManager extends Service {
     /**
      * Creates a new trade listing.
      *
-     * @param array $data
-     * @param User  $user
+     * @param array      $data
+     * @param User       $user
+     * @param mixed|null $id
      *
      * @return bool|TradeListing
      */
@@ -172,7 +173,7 @@ class TradeListingManager extends Service {
                         if (!$asset->allow_transfer) {
                             throw new \Exception('One or more of the selected items cannot be transferred.');
                         }
-                    } else if ($type == 'Currency') {
+                    } elseif ($type == 'Currency') {
                         if (!$asset->is_user_owned) {
                             throw new \Exception('One or more of the selected currencies cannot be held by users.');
                         }
