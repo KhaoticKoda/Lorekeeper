@@ -105,7 +105,7 @@
                             break;
                         case '#':
                             return '<li class="pl-2">' +
-                            '<img src="' + item.image + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
+                                '<img src="' + item.image + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
                                 '<span>' + item.name + '</span>' +
                                 '</li>';
                             break;
