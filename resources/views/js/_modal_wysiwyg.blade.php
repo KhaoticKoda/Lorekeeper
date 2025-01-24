@@ -17,23 +17,75 @@
                 '{{ asset('css/lorekeeper.css') }}'
             ],
             toc_class: 'container',
-            textpattern_patterns: [
-                {start: '# ', format: 'h1'},
-                {start: '## ', format: 'h2'},
-                {start: '### ', format: 'h3'},
-                {start: '#### ', format: 'h4'},
-                {start: '##### ', format: 'h5'},
-                {start: '###### ', format: 'h6'},
-                {start: '**', end: '**', format: 'bold'},
-                {start: '__', end: '__', format: 'bold'},
-                {start: '*', end: '*', format: 'italic'},
-                {start: '_', end: '_', format: 'italic'},
-                {start: '~~', end: '~~', format: 'strikethrough'},
-                {start: '> ', format: 'blockquote'},
-                {start: '* ', cmd: 'InsertUnorderedList'},
-                {start: '- ', cmd: 'InsertUnorderedList'},
-                {start: '+ ', cmd: 'InsertUnorderedList'},
-                {start: '1. ', cmd: 'InsertOrderedList'},
+            textpattern_patterns: [{
+                    start: '# ',
+                    format: 'h1'
+                },
+                {
+                    start: '## ',
+                    format: 'h2'
+                },
+                {
+                    start: '### ',
+                    format: 'h3'
+                },
+                {
+                    start: '#### ',
+                    format: 'h4'
+                },
+                {
+                    start: '##### ',
+                    format: 'h5'
+                },
+                {
+                    start: '###### ',
+                    format: 'h6'
+                },
+                {
+                    start: '**',
+                    end: '**',
+                    format: 'bold'
+                },
+                {
+                    start: '__',
+                    end: '__',
+                    format: 'bold'
+                },
+                {
+                    start: '*',
+                    end: '*',
+                    format: 'italic'
+                },
+                {
+                    start: '_',
+                    end: '_',
+                    format: 'italic'
+                },
+                {
+                    start: '~~',
+                    end: '~~',
+                    format: 'strikethrough'
+                },
+                {
+                    start: '> ',
+                    format: 'blockquote'
+                },
+                {
+                    start: '* ',
+                    cmd: 'InsertUnorderedList'
+                },
+                {
+                    start: '- ',
+                    cmd: 'InsertUnorderedList'
+                },
+                {
+                    start: '+ ',
+                    cmd: 'InsertUnorderedList'
+                },
+                {
+                    start: '1. ',
+                    cmd: 'InsertOrderedList'
+                },
             ],
             mentions: {
                 delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions')) !!}'),
