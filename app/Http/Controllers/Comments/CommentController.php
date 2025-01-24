@@ -82,7 +82,8 @@ class CommentController extends Controller {
 
         $comment->commentable()->associate($base);
 
-        $comment->comment = parse($request->message);
+        $pings = [];
+        $comment->comment = parse($request->message, $pings);
         $comment->approved = !config('comments.approval_required');
 
         $comment->type = isset($request['type']) && $request['type'] ? $request['type'] : 'User-User';
@@ -152,6 +153,10 @@ class CommentController extends Controller {
                 'sender'      => $sender->name,
                 'sender_url'  => $sender->url,
             ]);
+        }
+
+        if ($pings) {
+            sendNotifications($pings, Auth::user(), $comment);
         }
 
         return Redirect::to(URL::previous().'#comment-'.$comment->getKey());

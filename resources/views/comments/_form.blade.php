@@ -5,7 +5,7 @@
         <div class="form-group">
             {!! Form::label('message', 'Enter your message here:') !!}
             {!! Form::textarea('message', null, ['class' => 'form-control comment-wysiwyg', 'rows' => 5]) !!}
-            <small class="form-text text-muted"><a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown</a> cheatsheet.</small>
+            <small class="form-text text-muted"><a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown cheatsheet.</a></small>
         </div>
 
         {!! Form::submit('Submit', ['class' => 'btn btn-sm btn-outline-success text-uppercase']) !!}

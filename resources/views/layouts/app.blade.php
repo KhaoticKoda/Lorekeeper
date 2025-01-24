@@ -187,18 +187,22 @@
                     ],
                     toc_class: 'container',
                     mentions: {
+                        delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions')) !!}'),
                         source: function(query, process, delimiter) {
-                            $.getJSON('{{ url('users/search') }}', function(data) {
+                            $.get('{{ url('mentions') }}', {
+                                query: query,
+                                delimiter: delimiter
+                            }, function(data) {
                                 process(data);
                             });
                         },
                         insert: function(item) {
-                            return '<span>' + item.mention_display_name + '</span>';
+                            return 'temp';
                         },
                         render: function(item) {
                             return '<li class="pl-2">' +
                                 '<a href="javascript:;">' +
-                                '<img src="' + item.avatar + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
+                                '<img src="' + item.image + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
                                 '<span>' + item.name + '</span>' +
                                 '</a>' +
                                 '</li>';

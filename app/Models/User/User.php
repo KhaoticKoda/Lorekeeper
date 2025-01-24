@@ -354,8 +354,20 @@ class User extends Authenticatable implements MustVerifyEmail {
      * @return string
      */
     public function getMentionDisplayNameAttribute() {
-        return ($this->is_banned ? '<strike>' : '').'<a href="'.$this->url.'" class="display-user mention-user" data-id="'.$this->id.
-        '" style="'.($this->rank->color ? 'color: #'.$this->rank->color.';' : '').($this->is_deactivated ? 'opacity: 0.5;' : '').'"><i class="'.($this->rank->icon ? $this->rank->icon : 'fas fa-user').' mr-1" style="opacity: 50%;"></i>@'.$this->name.'</a>'.($this->is_banned ? '</strike>' : '');
+        return '<span  class="data-mention" data-mention-type="user" data-id="'.$this->id.'" >'
+            .($this->is_banned ? '<strike>' : '').'<a href="'.$this->url.'" class="display-user" style="'.($this->rank->color ? 'color: #'.$this->rank->color.';' : '').($this->is_deactivated ? 'opacity: 0.5;' : '').'"><i class="'.($this->rank->icon ? $this->rank->icon : 'fas fa-user').' mr-1" style="opacity: 50%;"></i>@'.$this->name.'</a>'.($this->is_banned ? '</strike>' : '')
+            .'</span>';
+    }
+
+    /**
+     * Displays the user's avatar image, but with specific classes to identify mentions.
+     * 
+     * @return string
+     */
+    public function getMentionImageAttribute() {
+        return '<span data-mention-type="user" data-id="'.$this->id.'" >'
+            .'<img src="'.$this->avatarUrl.'" class="mention-avatar" alt="'.$this->name.'">'
+            .'</span>';
     }
 
     /**

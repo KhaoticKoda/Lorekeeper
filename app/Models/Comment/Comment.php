@@ -163,4 +163,13 @@ class Comment extends Model {
             $this->attributes['comment']
         );
     }
+
+    /**
+     * Returns the mention type text for ping notifications.
+     * 
+     * @return string
+     */
+    public function getMentionTypeAttribute() {
+        return 'in a comment';
+    }
 }

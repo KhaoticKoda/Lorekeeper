@@ -63,6 +63,15 @@ class Emote extends Model {
     **********************************************************************************************/
 
     /**
+     * Displays the emote in the tinymce editor.
+     * 
+     * @return string
+     */
+    public function getMentionImageAttribute() {
+        return '<span data-mention-type="emote" data-id="'.$this->id.'"><img src="'.$this->imageUrl.'" alt="'.$this->alt_text.'"  data-toggle="tooltip" title="'.$this->name.' - '.$this->alt_text.'"></span>';
+    }
+
+    /**
      * Gets the file directory containing the model's image.
      *
      * @return string

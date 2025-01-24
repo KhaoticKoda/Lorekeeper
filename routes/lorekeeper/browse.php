@@ -43,7 +43,7 @@ Route::group(['prefix' => 'sales'], function () {
     Users
 **************************************************************************************************/
 Route::get('users', 'BrowseController@getUsers');
-Route::get('users/search', 'BrowseController@getUsersSearch')->name('user.search');
+Route::get('mentions', 'BrowseController@getSearchMentions');
 Route::get('blacklist', 'BrowseController@getBlacklist');
 Route::get('deactivated-list', 'BrowseController@getDeactivated');
 
