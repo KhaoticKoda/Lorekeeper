@@ -248,13 +248,28 @@
                                 process(data);
                             });
                         },
+                        highlighter: function(text) {
+                            //make matched block strong (make case insensitive)
+                            return text.replace(new RegExp('(' + this.query + ')', 'ig'), function($1, match) {
+                                return '<strong>' + match + '</strong>';
+                            });
+                        },
                         insert: function(item) {
-                            return 'temp';
+                            let content = item.mention_display_name;
+                            const editor = tinyMCE.activeEditor;
+                            editor.insertContent(content + '&#8203;')
+
+                            const rng = editor.selection.getRng();
+                            rng.setStart(rng.endContainer, rng.endOffset);
+                            rng.collapse(true);
+                            editor.selection.setRng(rng);
+
+                            return '';
                         },
                         render: function(item) {
                             return '<li class="pl-2">' +
                                 '<a href="javascript:;">' +
-                                '<img src="' + item.image + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' +
+                                (item.image ? '<img src="' + item.image + '" class="rounded mr-1" style="height: 25px; width: 25px;" />' : '') +
                                 '<span>' + item.name + '</span>' +
                                 '</a>' +
                                 '</li>';

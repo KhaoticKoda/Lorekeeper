@@ -13,12 +13,4 @@ return [
     //     'version' => '1.0.0',
     // ],
 
-    'Emotes' => [
-        'key'      => 'Emotes',
-        'wiki_key' => 'Emotes',
-        'creators' => json_encode([
-            'CH3RVB' => 'https://github.com/CH3RVB/',
-        ]),
-        'version' => '1.1.0',
-    ],
 ];

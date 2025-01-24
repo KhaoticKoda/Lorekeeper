@@ -89,6 +89,9 @@
             <a href="http://wiki.lorekeeper.me/index.php?title=Extensions:Dynamic_Limits"><strong>Dynamic Limits</strong></a> by <a href="https://github.com/ScuffedNewt">ScuffedNewt</a>
         </p>
         <p class="mb-0 col-md-4">
+            <a href="http://wiki.lorekeeper.me/index.php?title=Extensions:Emotes"><strong>Emotes</strong></a> by <a href="https://github.com/CH3RVB">CH3RVB</a>
+        </p>
+        <p class="mb-0 col-md-4">
             <a href="http://wiki.lorekeeper.me/index.php?title=Extensions:Mentions"><strong>Mentions</strong></a> by <a href="https://github.com/ScuffedNewt">ScuffedNewt</a>
         </p>
         <p class="mb-0 col-md-4">
