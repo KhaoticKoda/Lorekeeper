@@ -160,7 +160,7 @@ function getAssetModelString($type, $namespaced = true) {
                 return 'Emote';
             }
             break;
-        
+
         case 'gallery_submissions': case 'gallery_submission':
             if ($namespaced) {
                 return '\App\Models\Gallery\GallerySubmission';
