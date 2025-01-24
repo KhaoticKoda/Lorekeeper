@@ -293,7 +293,7 @@ function parse($text, &$pings = null) {
     $purifier = new HTMLPurifier($config);
     $text = $purifier->purify($text);
 
-    parseMentions($text, $pings);
+    $text = parseMentions($text, $pings);
 
     return $text;
 }
@@ -310,26 +310,28 @@ function parse($text, &$pings = null) {
 function parseMentions($text, &$pings) {
     $matches = [];
     $count = preg_match_all(
-        '/<[^>]+data-mention-type="([^"]+)"[^>]*data-id="([^"]+)"[^>]*>/',
+        '/<([^ >]+)[^>]*data-mention-type="([^"]+)"[^>]*data-id="([^"]+)"[^>]*>(.*?)<\/\1>/s',
         $text,
         $matches,
         PREG_SET_ORDER
     );
-
+    
     if ($count) {
         foreach ($matches as $match) {
             $parentElement = $match[0];
-            $type = $match[1];
-            $id = $match[2];
-
+            $type = $match[2];
+            $id = $match[3];
+    
             $model = getAssetModelString($type);
             $object = $model::find($id);
-
+    
             if (!$object) {
                 continue;
             }
 
             $pings[$type][] = $object;
+            $hasImage = preg_match('/<img[^>]+>/i', $parentElement);
+            $text = str_replace($parentElement, $hasImage ? $object->mentionImage : $object->mentionDisplayName, $text);
         }
     }
 
