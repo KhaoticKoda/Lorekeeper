@@ -186,7 +186,7 @@
                     <div class="tab-pane fade" id="mention-{{ $image->id }}">
                         In the rich text editor:
                         <div class="alert alert-secondary">
-                            {{ '@'.$character->fullName }}
+                            {{ '@' . $character->fullName }}
                         </div>
                         <hr>
                         <div class="my-2">
