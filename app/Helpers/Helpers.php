@@ -315,16 +315,16 @@ function parseMentions($text, &$pings) {
         $matches,
         PREG_SET_ORDER
     );
-    
+
     if ($count) {
         foreach ($matches as $match) {
             $parentElement = $match[0];
             $type = $match[2];
             $id = $match[3];
-    
+
             $model = getAssetModelString($type);
             $object = $model::find($id);
-    
+
             if (!$object) {
                 continue;
             }
