@@ -249,7 +249,7 @@ class Prompt extends Model {
 
     /**
      * Displays the prompt's image, but with specific classes to identify mentions.
-     * 
+     *
      * @return string
      */
     public function getMentionImageAttribute() {

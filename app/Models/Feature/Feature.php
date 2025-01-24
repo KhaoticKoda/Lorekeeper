@@ -223,7 +223,7 @@ class Feature extends Model {
 
     /**
      * Displays the feature's image, but with specific classes to identify mentions.
-     * 
+     *
      * @return string
      */
     public function getMentionImageAttribute() {

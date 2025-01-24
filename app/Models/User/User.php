@@ -361,7 +361,7 @@ class User extends Authenticatable implements MustVerifyEmail {
 
     /**
      * Displays the user's avatar image, but with specific classes to identify mentions.
-     * 
+     *
      * @return string
      */
     public function getMentionImageAttribute() {

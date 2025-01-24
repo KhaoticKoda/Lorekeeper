@@ -166,7 +166,7 @@ class Comment extends Model {
 
     /**
      * Returns the mention type text for ping notifications.
-     * 
+     *
      * @return string
      */
     public function getMentionTypeAttribute() {
