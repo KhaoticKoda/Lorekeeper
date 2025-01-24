@@ -5,6 +5,4 @@ return [
     // delimiters
     'delimiters' => ['@', ':', '#'],
 
-    
-
 ];

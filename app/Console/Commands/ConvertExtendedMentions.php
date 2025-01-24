@@ -2,17 +2,15 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\News;
-use App\Models\SitePage;
-use App\Models\Sales\Sales;
 use App\Models\Character\CharacterProfile;
-use App\Models\Users\UserProfile;
 use App\Models\Gallery\GallerySubmission;
+use App\Models\News;
+use App\Models\Sales\Sales;
+use App\Models\SitePage;
+use App\Models\Users\UserProfile;
+use Illuminate\Console\Command;
 
-
-class ConvertExtendedMentions extends Command
-{
+class ConvertExtendedMentions extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -30,8 +28,7 @@ class ConvertExtendedMentions extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
-    {
+    public function handle() {
         //
         $this->info('Converting extended mentions...');
         $this->info('Converting News...');
@@ -41,7 +38,7 @@ class ConvertExtendedMentions extends Command
             $news->parsed_text = parse($newText);
             $news->save();
         }
-        
+
         $this->info('Converting Site Pages...');
         foreach (SitePage::all() as $page) {
             $newText = $this->convertText($page->text);
@@ -93,9 +90,9 @@ class ConvertExtendedMentions extends Command
             '/\[userav=([^\[\]&<>?"\']+)\]/', // matches [userav=username]
             '/\[character=([^\[\]&<>?"\']+)\]/', // matches [character=name]
             '/\[charthumb=([^\[\]&<>?"\']+)\]/', // matches [charthumb=name]
-            '/\[thumb=([^\[\]&<>?"\']+)\]/' // matches [thumb=name]
+            '/\[thumb=([^\[\]&<>?"\']+)\]/', // matches [thumb=name]
         ];
-    
+
         $replacements = [
             '<span class="data-mention" data-mention-type="user" data-id="$1">@$1</span>',
             '<span class="data-mention" data-mention-type="tag" data-id="$1">@$1</span>',
@@ -103,9 +100,9 @@ class ConvertExtendedMentions extends Command
             '<span class="data-mention" data-mention-type="user" data-id="$1"><img src="/avatars/$1.jpg"></span>',
             '<span class="data-mention" data-mention-type="character" data-id="$1">@$1</span>',
             '<span class="data-mention" data-mention-type="character" data-id="$1"><img src="/character_thumbs/$1.jpg"></span>',
-            '<span class="data-mention" data-mention-type="gallery_submission" data-id="$1"><img class="img-fluid rounded" src="/gallery_thumbs/$1.jpg"></span>'
-        ];        
-    
+            '<span class="data-mention" data-mention-type="gallery_submission" data-id="$1"><img class="img-fluid rounded" src="/gallery_thumbs/$1.jpg"></span>',
+        ];
+
         foreach ($toMatch as $index => $pattern) {
             $text = preg_replace($pattern, $replacements[$index], $text);
         }
