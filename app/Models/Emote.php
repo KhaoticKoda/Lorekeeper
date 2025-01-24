@@ -68,7 +68,7 @@ class Emote extends Model {
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="emote" data-id="'.$this->id.'"><img src="'.$this->imageUrl.'" alt="'.$this->alt_text.'"  data-toggle="tooltip" title="'.$this->name.' - '.$this->alt_text.'"></span>';
+        return '<span data-mention-type="emote" data-id="'.$this->id.'"><img src="'.$this->imageUrl.'" alt="'.$this->alt_text.'" class="img-fluid rounded" data-toggle="tooltip" title="'.$this->name.' - '.$this->alt_text.'"></span>';
     }
 
     /**
@@ -105,6 +105,24 @@ class Emote extends Model {
      */
     public function getImageUrlAttribute() {
         return asset($this->imageDirectory.'/'.$this->imageFileName);
+    }
+
+    /**
+     * Gets the admin edit URL.
+     *
+     * @return string
+     */
+    public function getAdminUrlAttribute() {
+        return url('admin/emotes/edit/'.$this->id);
+    }
+
+    /**
+     * Gets the power required to edit this model.
+     *
+     * @return string
+     */
+    public function getAdminPowerAttribute() {
+        return 'edit_data';
     }
 
     /**********************************************************************************************

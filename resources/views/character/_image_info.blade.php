@@ -186,7 +186,7 @@
                     <div class="tab-pane fade" id="mention-{{ $image->id }}">
                         In the rich text editor:
                         <div class="alert alert-secondary">
-                            [character={{ $character->slug }}]
+                            {{ '@'.$character->fullName }}
                         </div>
                         <hr>
                         <div class="my-2">
@@ -194,7 +194,7 @@
                         </div>
                         In the rich text editor:
                         <div class="alert alert-secondary">
-                            [charthumb={{ $character->slug }}]
+                            #{{ $character->fullName }}
                         </div>
                     </div>
                 @endif

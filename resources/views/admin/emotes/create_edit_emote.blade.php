@@ -57,12 +57,10 @@
 
     @if ($emote->id && $emote->imageUrl)
         <h3>Preview</h3>
-        <div class="col-12 col-md-4 mb-3">
+        <div class="col-12 col-md-4 col-sm-">
             <div class="card h-100">
-                <div class="card-header">
-                    @if (Auth::check() && Auth::user()->hasPower('edit_data'))
-                        <a data-toggle="tooltip" title="[ADMIN] Edit emote" href="{{ url('admin/emotes/edit/') . '/' . $emote->id }}" class="mb-2 float-right"><i class="fas fa-crown"></i></a>
-                    @endif
+                <div class="card-header border-bottom-0">
+                    <x-admin-edit title="Emote" :object="$emote" />
                     <div class="world-entry-image">
                         {!! $emote->getImage() !!}
                     </div>
@@ -72,26 +70,18 @@
                     <div>
                         {!! $emote->description !!}
                     </div>
-                    <div class="card-header">
-                        <h5>Use This Emote</h5>
-                    </div>
-                    <div class="card-body">
-                        In the rich text editor:
-                        <div class="alert alert-secondary">
-                            [emote={{ $emote->id }}]
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Use This Emote</h5>
                         </div>
-                        or:
-                        <div class="alert alert-secondary">
-                            [emote={{ $emote->name }}]
-                        </div>
-                        In comments and forums:
-                        <div class="alert alert-secondary">
-                            ![{{ $emote->name }}]({{ asset($emote->imageUrl) }})
+                        <div class="card-body bg-light">
+                            In the rich text editor:
+                            <div class="alert alert-secondary mb-0">
+                                :{{ $emote->name }}
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     @endif

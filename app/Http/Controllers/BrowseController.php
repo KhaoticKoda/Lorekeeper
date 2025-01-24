@@ -7,6 +7,7 @@ use App\Models\Character\Character;
 use App\Models\Character\CharacterCategory;
 use App\Models\Character\CharacterImage;
 use App\Models\Character\Sublist;
+use App\Models\Gallery\GallerySubmission;
 use App\Models\Emote;
 use App\Models\Feature\Feature;
 use App\Models\Item\Item;
@@ -284,9 +285,9 @@ class BrowseController extends Controller {
     public function getSearchMentions(Request $request) {
         $delimiter = $request->get('delimiter');
         $queryString = $request->get('query');
+        $result = collect();
         switch ($delimiter) {
             case '@':
-                $result = collect();
                 $users = User::visible()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($user) {
                     return [
                         'type'                 => '@',
@@ -310,21 +311,31 @@ class BrowseController extends Controller {
                 $result = collect($users)->merge(collect($characters));
                 break;
             case ':':
-                $result = Emote::where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($emote) {
+                $emotes = Emote::where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($emote) {
                     return [
                         'type'                 => ':',
-                        'name'                 => $emote->name,
+                        'name'                 => $emote->name . ' (Emote)',
                         'image'                => $emote->imageUrl,
                         'mention_display_name' => $emote->mentionImage,
                     ];
                 });
+
+                $items = Item::released()->where('has_image', 1)->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($item) {
+                    return [
+                        'type'                 => ':',
+                        'name'                 => $item->name . ' (Item)',
+                        'image'                => $item->imageUrl,
+                        'mention_display_name' => $item->mentionImage,
+                    ];
+                });
+
+                $result = collect($emotes)->merge(collect($items));
                 break;
             case '#':
-                $result = collect();
                 $users = User::visible()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($user) {
                     return [
                         'type'                 => '#',
-                        'name'                 => 'user-'.$user->name,
+                        'name'                 => $user->name . ' (User)',
                         'image'                => $user->avatarUrl,
                         'mention_display_name' => $user->mentionImage,
                     ];
@@ -335,7 +346,7 @@ class BrowseController extends Controller {
                 })->orderBy('name')->get()->map(function ($character) {
                     return [
                         'type'                 => '#',
-                        'name'                 => 'character-'.$character->fullName,
+                        'name'                 => $character->fullName . ' (Character)',
                         'image'                => $character->image->thumbnailUrl,
                         'mention_display_name' => $character->mentionImage,
                     ];
@@ -344,7 +355,7 @@ class BrowseController extends Controller {
                 $items = Item::released()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($item) {
                     return [
                         'type'                 => '#',
-                        'name'                 => 'item-'.$item->name,
+                        'name'                 => $item->name . ' (Item)',
                         'image'                => $item->has_image ? $item->imageUrl : null,
                         'mention_display_name' => $item->has_image ? $item->mentionImage : $item->mentionDisplayName,
                     ];
@@ -353,7 +364,7 @@ class BrowseController extends Controller {
                 $prompts = Prompt::active()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($prompt) {
                     return [
                         'type'                 => '#',
-                        'name'                 => 'prompt-'.$prompt->name,
+                        'name'                 => $prompt->name . ' (Prompt)',
                         'image'                => $prompt->has_image ? $prompt->imageUrl : null,
                         'mention_display_name' => $prompt->has_image ? $prompt->mentionImage : $prompt->mentionDisplayName,
                     ];
@@ -362,16 +373,22 @@ class BrowseController extends Controller {
                 $traits = Feature::visible()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($trait) {
                     return [
                         'type'                 => '#',
-                        'name'                 => 'trait-'.$trait->name,
+                        'name'                 => $trait->name . ' (Trait)',
                         'image'                => $trait->has_image ? $trait->mentionImage : $trait->mentionDisplayName,
                         'mention_display_name' => $trait->mentionDisplayName,
                     ];
                 });
 
-                $result = collect($users)->merge(collect($characters))->merge(collect($items))->merge(collect($prompts))->merge(collect($traits));
-                break;
-            default:
-                $result = [];
+                $gallerySubmissions = GallerySubmission::visible()->where('title', 'LIKE', "%{$queryString}%")->orderBy('title')->get()->map(function ($submission) {
+                    return [
+                        'type'                 => '#',
+                        'name'                 => $submission->title . ' (Gallery Submission)',
+                        'image'                => $submission->has_image ? $submission->imageUrl : null,
+                        'mention_display_name' => $submission->has_image ? $submission->mentionImage : $submission->mentionDisplayName,
+                    ];
+                });
+
+                $result = collect($users)->merge(collect($characters))->merge(collect($items))->merge(collect($prompts))->merge(collect($traits))->merge(collect($gallerySubmissions));
                 break;
         }
 

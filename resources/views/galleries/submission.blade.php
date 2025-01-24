@@ -219,7 +219,7 @@
                 <div class="card-body">
                     In the rich text editor:
                     <div class="alert alert-secondary">
-                        [thumb={{ $submission->id }}]
+                        {{ '#' . $submission->id }}
                     </div>
                 </div>
             </div>

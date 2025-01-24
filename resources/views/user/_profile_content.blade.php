@@ -172,25 +172,12 @@
                     {{ '@' . $user->name }}
                 </div>
                 <hr>
-                <div class="my-2"><strong>For Names and Avatars:</strong></div>
+                <div class="my-2"><strong>For Avatars:</strong></div>
                 In the rich text editor:
                 <div class="alert alert-secondary">
-                    {{ '%' . $user->name }}
+                    {{ '#' . $user->name }}
                 </div>
             </div>
-            @if (Auth::check() && Auth::user()->isStaff)
-                <div class="card-footer">
-                    <h5>[ADMIN]</h5>
-                    Permalinking to this user, in the rich text editor:
-                    <div class="alert alert-secondary">
-                        [user={{ $user->id }}]
-                    </div>
-                    Permalinking to this user's avatar, in the rich text editor:
-                    <div class="alert alert-secondary">
-                        [userav={{ $user->id }}]
-                    </div>
-                </div>
-            @endif
         </div>
     </div>
 </div>
