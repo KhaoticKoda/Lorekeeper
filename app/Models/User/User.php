@@ -366,7 +366,7 @@ class User extends Authenticatable implements MustVerifyEmail {
      */
     public function getMentionImageAttribute() {
         return '<span data-mention-type="user" data-id="'.$this->id.'" >'
-            .'<img src="'.$this->avatarUrl.'" class="img-fluid rounded" alt="'.$this->name.'">'
+            .'<img class="img-fluid rounded" src="'.$this->avatarUrl.'" class="img-fluid rounded" alt="'.$this->name.'">'
             .'</span>';
     }
 

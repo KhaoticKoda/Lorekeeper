@@ -330,7 +330,7 @@ class Character extends Model {
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="character" data-id="'.$this->id.'"><img src="'.$this->image->thumbnailUrl.'" alt="'.$this->name.'" class="mention-thumbnail"></span>';
+        return '<span data-mention-type="character" data-id="'.$this->id.'"><img class="img-fluid rounded" src="'.$this->image->thumbnailUrl.'" alt="'.$this->name.'" class="mention-thumbnail"></span>';
     }
 
     /**

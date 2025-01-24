@@ -227,7 +227,7 @@ class Feature extends Model {
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="feature" data-id="'.$this->id.'"><img src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
+        return '<span data-mention-type="feature" data-id="'.$this->id.'"><img class="img-fluid rounded" src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
     }
 
     /**

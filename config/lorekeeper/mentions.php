@@ -3,7 +3,8 @@
 return [
 
     // delimiters
-    '@',
-    ':',
-    '#',
+    'delimiters' => ['@', ':', '#'],
+
+    
+
 ];

@@ -253,7 +253,7 @@ class Prompt extends Model {
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="prompt" data-id="'.$this->id.'"><img class="img-fluid rounded" src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
+        return '<span data-mention-type="prompt" data-id="'.$this->id.'"><img class="img-fluid rounded" class="img-fluid rounded" src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
     }
 
     /**

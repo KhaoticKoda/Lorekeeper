@@ -384,12 +384,12 @@ class GallerySubmission extends Model {
     }
 
     /**
-     * Displays the prompt's image, but with specific classes to identify mentions.
+     * Displays the submission's image, but with specific classes to identify mentions.
      *
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="prompt" data-id="'.$this->id.'"><img class="img-fluid rounded" src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
+        return '<span data-mention-type="gallery_submission" data-id="'.$this->id.'"><img class="img-fluid rounded" src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
     }
 
     /**

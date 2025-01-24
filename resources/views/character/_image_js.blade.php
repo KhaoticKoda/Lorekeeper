@@ -96,7 +96,7 @@
                         },
                     ],
                     mentions: {
-                        delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions')) !!}'),
+                        delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions.delimiters')) !!}'),
                         source: function(query, process, delimiter) {
                             $.get('{{ url('mentions') }}', {
                                 query: query,
@@ -248,7 +248,7 @@
                             cmd: 'InsertOrderedList'
                         },
                         mentions: {
-                            delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions')) !!}'),
+                            delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions.delimiters')) !!}'),
                             source: function(query, process, delimiter) {
                                 $.get('{{ url('mentions') }}', {
                                     query: query,
