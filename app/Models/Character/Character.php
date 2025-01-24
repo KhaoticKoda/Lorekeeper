@@ -326,7 +326,7 @@ class Character extends Model {
 
     /**
      * Displays the character's thumbnail image, but with specific classes to identify mentions.
-     * 
+     *
      * @return string
      */
     public function getMentionImageAttribute() {

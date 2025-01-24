@@ -251,12 +251,12 @@ function faVersion() {
 }
 
 /****************************************************************************************
- * 
+ *
  * PARSING FUNCTIONS
  *
  ****************************************************************************************/
 
- /**
+/**
  * Parses a piece of user-entered text for HTML output and optionally gets pings.
  *
  * @param string $text
@@ -301,10 +301,10 @@ function parse($text, &$pings = null) {
 /**
  * Parses a piece of user-entered text to match mentions,
  * We don't replace the text and instead modify it on display to allow for name, image, hash, etc. changes, without breaking links or mentions.
- * 
+ *
  * @param string $text
  * @param array  $pings
- * 
+ *
  * @return string
  */
 function parseMentions($text, &$pings) {
@@ -338,30 +338,30 @@ function parseMentions($text, &$pings) {
 
 /**
  * Sends a notification to users or character's owners.
- * 
+ *
  * @param mixed $pings
- * 
- * @return void
+ * @param mixed $user
+ * @param mixed $mention
  */
 function sendNotifications($pings, $user, $mention) {
     if ($pings) {
         foreach ($pings as $type => $objects) {
             foreach ($objects as $object) {
                 if ($type == 'user' && $object->id != $user->id) {
-                    \App\Facades\Notifications::create('MENTIONED', $object, [
-                        'sender_url' => $user->url,
-                        'sender_name' => $user->name,
+                    App\Facades\Notifications::create('MENTIONED', $object, [
+                        'sender_url'     => $user->url,
+                        'sender_name'    => $user->name,
                         'mention_target' => 'you',
-                        'mention_url' => $mention->url,
-                        'mention_type' => $mention->mentionType,
+                        'mention_url'    => $mention->url,
+                        'mention_type'   => $mention->mentionType,
                     ]);
                 } elseif ($type == 'character' && $object->user->id != $user->id) {
-                    \App\Facades\Notifications::create('MENTIONED', $object->user, [
-                        'sender_url' => $user->url,
-                        'sender_name' => $user->name,
-                        'mention_target' => 'your character ' . $object->displayName,
-                        'mention_url' => $mention->url,
-                        'mention_type' => $mention->mentionType,
+                    App\Facades\Notifications::create('MENTIONED', $object->user, [
+                        'sender_url'     => $user->url,
+                        'sender_name'    => $user->name,
+                        'mention_target' => 'your character '.$object->displayName,
+                        'mention_url'    => $mention->url,
+                        'mention_type'   => $mention->mentionType,
                     ]);
                 }
             }

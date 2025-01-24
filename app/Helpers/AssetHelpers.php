@@ -152,7 +152,7 @@ function getAssetModelString($type, $namespaced = true) {
                 return 'CharacterItem';
             }
             break;
-        
+
         case 'emotes': case 'emote':
             if ($namespaced) {
                 return '\App\Models\Emote';

@@ -64,7 +64,7 @@ class Emote extends Model {
 
     /**
      * Displays the emote in the tinymce editor.
-     * 
+     *
      * @return string
      */
     public function getMentionImageAttribute() {
