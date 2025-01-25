@@ -526,10 +526,10 @@ class CharacterManager extends Service {
                 'updated_at'    => Carbon::now(),
             ] + ($logType == 'character' ?
                 [
-                    'change_log' => $isUpdate ? [
+                    'change_log' => $isUpdate ? json_encode([
                         'old' => $oldData,
                         'new' => $newData,
-                    ] : null,
+                    ]) : null,
                 ] : [])
         );
     }
