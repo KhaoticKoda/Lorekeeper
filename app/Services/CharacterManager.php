@@ -540,11 +540,7 @@ class CharacterManager extends Service {
             $log = UserCharacterLog::create($shared);
         }
 
-        if (isset($log)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $log;
     }
 
     /**
