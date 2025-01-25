@@ -95,7 +95,7 @@ class ConvertExtendedMentions extends Command {
 
         $replacements = [
             '<span class="data-mention" data-mention-type="user" data-id="$1">@$1</span>',
-            '<span class="data-mention" data-mention-type="tag" data-id="$1">@$1</span>',
+            '<span class="data-mention" data-mention-type="user" data-id="$1"><img src="/avatars/$1.jpg"></span><span class="data-mention" data-mention-type="user" data-id="$1">@$1</span>',
             '<span class="data-mention" data-mention-type="user" data-id="$1">@$1</span>',
             '<span class="data-mention" data-mention-type="user" data-id="$1"><img src="/avatars/$1.jpg"></span>',
             '<span class="data-mention" data-mention-type="character" data-id="$1">@$1</span>',
