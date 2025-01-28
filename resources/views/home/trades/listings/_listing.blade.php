@@ -54,9 +54,7 @@
         </div>
         <hr />
         @php
-            $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Trade\TradeListing')
-                ->where('commentable_id', $listing->id)
-                ->count();
+            $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Trade\TradeListing')->where('commentable_id', $listing->id)->count();
         @endphp
         <div class="text-right">
             @if (Auth::check() && Auth::user()->id != $listing->user_id)
