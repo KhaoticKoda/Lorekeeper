@@ -62,7 +62,7 @@ return [
     | (e.g. ownership checking for characters only associated with an off-site account)
     | will still work provided users link the relevant alias(es).
     |
-    | The email option functiond as a fallback for users who register with an off-site provider.
+    | The email option functions as a fallback for users who register with an off-site provider.
     | If they do not have an email associated with their off-site account, they will be prompted to
     | provide one on registration / login / site interaction (if this setting is enabled).
     |
