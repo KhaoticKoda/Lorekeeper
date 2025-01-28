@@ -578,8 +578,6 @@ class User extends Authenticatable implements MustVerifyEmail {
     /**
      * Get the user's currency logs.
      *
-     * @param int $limit
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection
      */
     public function getCurrencyLogs() {
@@ -595,8 +593,6 @@ class User extends Authenticatable implements MustVerifyEmail {
 
     /**
      * Get the user's item logs.
-     *
-     * @param int $limit
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection
      */
