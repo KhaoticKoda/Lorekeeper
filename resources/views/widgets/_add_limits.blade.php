@@ -19,11 +19,7 @@
     <p>
         You can add requirements to this object by clicking "Add Limit" & selecting a requirement from the dropdown below.
         <br />
-<<<<<<< HEAD
-        Requirements are used to determine if a specific action can be preformed on an object.
-=======
         Requirements are used to determine if a specific action can be performed on an object.
->>>>>>> 739424d7b28b85cb9042a01c0cf29541279351b3
         <br /><b>Note that the checks for requirements are automatic, but their usage needs to be defined in the code.</b>
         <br /><b>Dynamic limits are created in the admin panel, but execute their logic in the code.</b>
     </p>
@@ -37,16 +33,6 @@
             @if ($limits)
                 <h5>Limits for {!! $limits->first()->object->displayName !!}</h5>
             @endif
-<<<<<<< HEAD
-            <div class="form-group">
-                {!! Form::label('is_unlocked', 'Is Unlocked?') !!}
-                <p>
-                    If this is set to "No", the object will continue to be locked until all requirements are met, every time the user attempts to interact with it.
-                    <br />
-                    If this is set to "Yes", the object will be unlocked for the user to interact with after the requirements are met once. This option is good for one-time unlocks such as shops, locations, certain prompts, etc.
-                </p>
-                {!! Form::select('is_unlocked', ['yes' => 'Yes', 'no' => 'No'], $limits?->first()->is_unlocked ? 'yes' : 'no', ['class' => 'form-control']) !!}
-=======
             <div class="row">
                 <div class="col-md form-group">
                     {!! Form::label('is_unlocked', 'Is Unlocked?', ['class' => 'form-label font-weight-bold']) !!}
@@ -68,7 +54,6 @@
                     </p>
                     {!! Form::select('is_auto_unlocked', ['yes' => 'Yes', 'no' => 'No'], $limits?->first()->is_auto_unlocked ? 'yes' : 'no', ['class' => 'form-control']) !!}
                 </div>
->>>>>>> 739424d7b28b85cb9042a01c0cf29541279351b3
             </div>
             @if ($limits)
                 @foreach ($limits as $limit)
