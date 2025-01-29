@@ -316,6 +316,7 @@ function compareAssetArrays($first, $second, $isCharacter = false, $absQuantitie
  * @param App\Models\User\User $recipient
  * @param string               $logType
  * @param string               $data
+ * @param mixed|null           $selected
  *
  * @return array
  */

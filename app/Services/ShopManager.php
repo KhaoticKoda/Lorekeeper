@@ -167,7 +167,7 @@ class ShopManager extends Service {
 
                         addAsset($characterCostAssets, $cost->item, -$costQuantity);
                     }
-                } else if ($cost->item->assetType == 'items') {
+                } elseif ($cost->item->assetType == 'items') {
                     $requiredQuantity = $costQuantity;
                     if (isset($data['stack_id'])) {
                         foreach ($data['stack_id'] as $userItemStackId) {
@@ -179,7 +179,7 @@ class ShopManager extends Service {
                             $stackQuantity = $data['stack_quantity'][$userItemStackId] ?? $stack->count;
                             $requiredQuantity -= $stackQuantity;
                             $selected[] = [
-                                'stack' => $stack,
+                                'stack'    => $stack,
                                 'quantity' => $stackQuantity,
                             ];
                         }
@@ -188,14 +188,14 @@ class ShopManager extends Service {
                         foreach ($stacks as $stack) {
                             if ($stack->count >= $requiredQuantity) {
                                 $selected[] = [
-                                    'stack' => $stack,
+                                    'stack'    => $stack,
                                     'quantity' => $requiredQuantity,
                                 ];
                                 $requiredQuantity = 0;
                                 break;
                             } else {
                                 $selected[] = [
-                                    'stack' => $stack,
+                                    'stack'    => $stack,
                                     'quantity' => $stack->count,
                                 ];
                                 $requiredQuantity -= $stack->count;
