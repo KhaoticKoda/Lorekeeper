@@ -17,6 +17,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('staff-reward-settings/{key}', 'HomeController@postEditStaffRewardSetting');
 });
 
+Route::group(['prefix' => 'api','middleware' => 'power:api_access'], function () {
+    Route::get('/', 'ApiController@getIndex');
+
+    Route::post('/token', 'ApiController@postGenerateToken');
+    Route::post('/revoke', 'ApiController@postRevokeToken');
+});
+
 Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
     // USER LIST
     Route::group(['middleware' => 'power:edit_user_info'], function () {

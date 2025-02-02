@@ -686,6 +686,34 @@ class UserService extends Service
     }
 
     /**
+     * Generate an API token for the user.
+     *
+     * @param User $user
+     * @param User $staff
+     *
+     * @return bool
+     */
+    public function generateToken($user) {
+        try {
+            
+            $token = $user->createToken("token")->plainTextToken;
+            
+            UserUpdateLog::create(['staff_id' => $user->id, 'user_id' => $user->id, 'data' => json_encode([]), 'type' => 'Generated API Token']);
+            
+            flash('Token created successfully:')->success();
+            flash($token)->success();
+            flash('Copy this down! It will NOT be shown again.')->warning();
+
+            return true;
+        
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
+        return false;
+    }
+
+
+    /**
      * Revokes all of a user's API tokens.
      *
      * @param User $user
@@ -698,7 +726,7 @@ class UserService extends Service
             $user->tokens()->delete();
             
             UserUpdateLog::create(['staff_id' => $staff ? $staff->id : $user->id, 'user_id' => $user->id, 'data' => json_encode([]), 'type' => 'Tokens Revoked']);
-            
+
             return true;
         
         } catch (\Exception $e) {
