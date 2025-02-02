@@ -138,7 +138,7 @@
         <p>As an admin, you are able to revoke a user's API tokens at any time.</p>
         <p>This user currently has {{ $user->tokens()->count() }} active API token(s).</p>
         {!! Form::open(['url' => 'admin/users/' . $user->name . '/revoke']) !!}
-            {!! Form::submit('Revoke Tokens', ['class' => 'btn btn-danger revoke-button']) !!}
+        {!! Form::submit('Revoke Tokens', ['class' => 'btn btn-danger revoke-button']) !!}
         {!! Form::close() !!}
     </div>
 @endsection
@@ -146,10 +146,10 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-                $('.revoke-button').on('click', function(e) {
-                    e.preventDefault();
-                    loadModal("{{ url('admin/users/' . $user->name . '/revoke-confirm') }}", 'Revoke API Tokens');
-                });
+            $('.revoke-button').on('click', function(e) {
+                e.preventDefault();
+                loadModal("{{ url('admin/users/' . $user->name . '/revoke-confirm') }}", 'Revoke API Tokens');
+            });
         });
     </script>
 @endsection

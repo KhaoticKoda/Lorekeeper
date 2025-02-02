@@ -422,7 +422,7 @@ class UserController extends Controller {
         return redirect()->back();
     }
 
-        /**
+    /**
      * Show a user's token revokation page.
      *
      * @param mixed $name
@@ -442,7 +442,6 @@ class UserController extends Controller {
     }
 
     public function postRevokeTokens(Request $request, UserService $service, $name) {
-        
         $user = User::where('name', $name)->first();
 
         if (!$user) {
@@ -458,6 +457,5 @@ class UserController extends Controller {
         }
 
         return redirect()->back();
-
     }
 }

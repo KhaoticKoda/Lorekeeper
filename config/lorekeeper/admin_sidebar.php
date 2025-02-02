@@ -37,7 +37,7 @@ return [
             [
                 'name' => 'API Tokens',
                 'url'  => 'admin/api',
-            ]
+            ],
         ],
     ],
     'Reports'    => [

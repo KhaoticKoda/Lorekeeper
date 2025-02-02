@@ -19,7 +19,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('staff-reward-settings/{key}', 'HomeController@postEditStaffRewardSetting');
 });
 
-Route::group(['prefix' => 'api','middleware' => 'power:api_access'], function () {
+Route::group(['prefix' => 'api', 'middleware' => 'power:api_access'], function () {
     Route::get('/', 'ApiController@getIndex');
 
     Route::post('/token', 'ApiController@postGenerateToken');

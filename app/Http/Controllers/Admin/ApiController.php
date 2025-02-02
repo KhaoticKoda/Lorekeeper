@@ -27,12 +27,11 @@ class ApiController extends Controller {
     }
 
     /**
-     * Generates (or re-generates) an API token
+     * Generates (or re-generates) an API token.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function postGenerateToken(Request $request, UserService $service) {
-
         if (!$service->generateToken(Auth::user())) {
             foreach ($service->errors()->getMessages()['error'] as $error) {
                 flash($error)->error();
@@ -43,12 +42,11 @@ class ApiController extends Controller {
     }
 
     /**
-     * Generates (or re-generates) an API token
+     * Generates (or re-generates) an API token.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function postRevokeToken(Request $request, UserService $service) {
-
         if (!$service->revokeTokens(Auth::user())) {
             foreach ($service->errors()->getMessages()['error'] as $error) {
                 flash($error)->error();
@@ -59,5 +57,4 @@ class ApiController extends Controller {
 
         return redirect()->back()->withInput();
     }
-
 }
