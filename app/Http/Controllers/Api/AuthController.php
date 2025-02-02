@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class AuthController extends Controller {
+class AuthController extends Controller
+{
     /**
      * Authenticate with email/password and receive a PAT through the API.
      */
-    public function postGenerateToken(Request $request) {
+    public function postGenerateToken(Request $request)
+    {
         $request->validate([
             'email'      => 'required|email',
             'password'   => 'required',
@@ -21,15 +23,22 @@ class AuthController extends Controller {
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+        if ($user->hasPower('api_access')) {
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+
+
+            // Delete any pre-existing tokens
+            $user->tokens()->delete();
+
+            return $user->createToken($request->token_name)->plainTextToken;
+        } else {
+            return response()->json([
+                'message' => 'You do not have API access permissions.'
+            ], 404);
         }
-
-        // Delete any pre-existing tokens
-        $user->tokens()->delete();
-
-        return $user->createToken($request->token_name)->plainTextToken;
     }
 }
