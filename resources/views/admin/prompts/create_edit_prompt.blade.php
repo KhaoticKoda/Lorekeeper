@@ -30,7 +30,10 @@
 
     <div class="form-group">
         {!! Form::label('World Page Image (Optional)') !!} {!! add_help('This image is used only on the world information pages.') !!}
-        <div>{!! Form::file('image') !!}</div>
+        <div class="custom-file">
+            {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label']) !!}
+            {!! Form::file('image', ['class' => 'custom-file-input']) !!}
+        </div>
         <div class="text-muted">Recommended size: 100px x 100px</div>
         @if ($prompt->has_image)
             <div class="form-check">
@@ -104,6 +107,8 @@
     @include('widgets._loot_select_row', ['showLootTables' => true, 'showRaffles' => true])
 
     @if ($prompt->id)
+        @include('widgets._add_limits', ['object' => $prompt])
+
         <h3>Preview</h3>
         <div class="card mb-3">
             <div class="card-body">

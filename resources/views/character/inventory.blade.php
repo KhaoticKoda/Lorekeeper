@@ -42,6 +42,9 @@
             </div>
             @if (config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                 <div class="form-group ml-3 mb-3">
+                    {!! Form::select('rarity_id', $rarities, Request::get('rarity_id'), ['class' => 'form-control', 'placeholder' => 'Any Rarity']) !!}
+                </div>
+                <div class="form-group ml-3 mb-3">
                     {!! Form::select('artist', $artists, Request::get('artist'), ['class' => 'form-control', 'placeholder' => 'Any Artist']) !!}
                 </div>
             @endif
@@ -233,7 +236,7 @@
 @endsection
 
 @section('scripts')
-    @include('widgets._inventory_select_js', ['readOnly' => true])
+    @include('widgets._inventory_select_js')
     @include('widgets._inventory_view_js')
     <script>
         $(document).ready(function() {
