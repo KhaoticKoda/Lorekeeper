@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 
-class UserService extends Service {
+class UserService extends Service
+{
     /*
     |--------------------------------------------------------------------------
     | User Service
@@ -38,7 +39,8 @@ class UserService extends Service {
      *
      * @return User
      */
-    public function createUser($data) {
+    public function createUser($data)
+    {
         // If the rank is not given, create a user with the lowest existing rank.
         if (!isset($data['rank_id'])) {
             $data['rank_id'] = Rank::orderBy('sort')->first()->id;
@@ -74,14 +76,16 @@ class UserService extends Service {
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function validator(array $data, $socialite = false) {
+    public function validator(array $data, $socialite = false)
+    {
         return Validator::make($data, [
             'name'      => ['required', 'string', 'min:3', 'max:25', 'alpha_dash', 'unique:users'],
             'email'     => ($socialite ? [] : ['required']) + ['string', 'email', 'max:255', 'unique:users'],
             'agreement' => ['required', 'accepted'],
             'password'  => ($socialite ? [] : ['required']) + ['string', 'min:8', 'confirmed'],
             'dob'       => [
-                'required', function ($attribute, $value, $fail) {
+                'required',
+                function ($attribute, $value, $fail) {
                     $formatDate = Carbon::createFromFormat('Y-m-d', $value);
                     $now = Carbon::now();
                     if ($formatDate->diffInYears($now) < 13) {
@@ -89,17 +93,19 @@ class UserService extends Service {
                     }
                 },
             ],
-            'code'                 => ['string', function ($attribute, $value, $fail) {
-                if (!Settings::get('is_registration_open')) {
-                    if (!$value) {
-                        $fail('An invitation code is required to register an account.');
+            'code'                 => [
+                'string',
+                function ($attribute, $value, $fail) {
+                    if (!Settings::get('is_registration_open')) {
+                        if (!$value) {
+                            $fail('An invitation code is required to register an account.');
+                        }
+                        $invitation = Invitation::where('code', $value)->whereNull('recipient_id')->first();
+                        if (!$invitation) {
+                            $fail('Invalid code entered.');
+                        }
                     }
-                    $invitation = Invitation::where('code', $value)->whereNull('recipient_id')->first();
-                    if (!$invitation) {
-                        $fail('Invalid code entered.');
-                    }
-                }
-            },
+                },
             ],
         ] + (config('app.env') == 'production' && config('lorekeeper.extensions.use_recaptcha') ? [
             'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
@@ -113,7 +119,8 @@ class UserService extends Service {
      *
      * @return User
      */
-    public function updateUser($data) {
+    public function updateUser($data)
+    {
         $user = User::find($data['id']);
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
@@ -133,7 +140,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function updatePassword($data, $user) {
+    public function updatePassword($data, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -163,7 +171,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function updateEmail($data, $user) {
+    public function updateEmail($data, $user)
+    {
         $user->email = $data['email'];
         $user->email_verified_at = null;
         $user->save();
@@ -179,7 +188,8 @@ class UserService extends Service {
      * @param mixed $data
      * @param mixed $user
      */
-    public function updateBirthday($data, $user) {
+    public function updateBirthday($data, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -200,7 +210,8 @@ class UserService extends Service {
      * @param mixed $data
      * @param mixed $user
      */
-    public function updateBirthdayVisibilitySetting($data, $user) {
+    public function updateBirthdayVisibilitySetting($data, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -224,7 +235,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function confirmTwoFactor($code, $data, $user) {
+    public function confirmTwoFactor($code, $data, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -253,7 +265,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function disableTwoFactor($code, $user) {
+    public function disableTwoFactor($code, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -280,7 +293,8 @@ class UserService extends Service {
      * @param mixed $data
      * @param mixed $user
      */
-    public function updateContentWarningVisibility($data, $user) {
+    public function updateContentWarningVisibility($data, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -303,17 +317,18 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function updateAvatar($avatar, $user) {
+    public function updateAvatar($avatar, $user)
+    {
         DB::beginTransaction();
 
         try {
             if (!$avatar) {
                 throw new \Exception('Please upload a file.');
             }
-            $filename = $user->id.'.'.$avatar->getClientOriginalExtension();
+            $filename = $user->id . '.' . $avatar->getClientOriginalExtension();
 
             if ($user->avatar != 'default.jpg') {
-                $file = 'images/avatars/'.$user->avatar;
+                $file = 'images/avatars/' . $user->avatar;
                 //$destinationPath = 'uploads/' . $id . '/';
 
                 if (File::exists($file)) {
@@ -329,7 +344,7 @@ class UserService extends Service {
                     throw new \Exception('Failed to move file.');
                 }
             } else {
-                if (!Image::make($avatar)->resize(150, 150)->save(public_path('images/avatars/'.$filename))) {
+                if (!Image::make($avatar)->resize(150, 150)->save(public_path('images/avatars/' . $filename))) {
                     throw new \Exception('Failed to process avatar.');
                 }
             }
@@ -353,7 +368,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function updateUsername($username, $user) {
+    public function updateUsername($username, $user)
+    {
         DB::beginTransaction();
 
         try {
@@ -382,8 +398,8 @@ class UserService extends Service {
                 $last_change = UserUpdateLog::where('user_id', $user->id)->where('type', 'Username Change')->orderBy('created_at', 'desc')->first();
                 if ($last_change && $last_change->created_at->diffInDays(Carbon::now()) < config('lorekeeper.settings.username_change_cooldown')) {
                     throw new \Exception('You must wait '
-                        .config('lorekeeper.settings.username_change_cooldown') - $last_change->created_at->diffInDays(Carbon::now()).
-                    ' days before changing your username again.');
+                        . config('lorekeeper.settings.username_change_cooldown') - $last_change->created_at->diffInDays(Carbon::now()) .
+                        ' days before changing your username again.');
                 }
             }
 
@@ -415,13 +431,14 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function ban($data, $user, $staff) {
+    public function ban($data, $user, $staff)
+    {
         DB::beginTransaction();
 
         try {
             if (!$user->is_banned) {
                 // New ban (not just editing the reason), clear all their engagements
-                if (!$this->logAdminAction($staff, 'Banned User', 'Banned '.$user->displayname)) {
+                if (!$this->logAdminAction($staff, 'Banned User', 'Banned ' . $user->displayname)) {
                     throw new \Exception('Failed to log admin action.');
                 }
 
@@ -431,7 +448,7 @@ class UserService extends Service {
                     $query->where('sender_id', $user->id)->orWhere('recipient_id', $user->id);
                 })->where('status', 'Pending')->get();
                 foreach ($transfers as $transfer) {
-                    $characterManager->processTransferQueue(['transfer' => $transfer, 'action' => 'Reject', 'reason' => ($transfer->sender_id == $user->id ? 'Sender' : 'Recipient').' has been banned from site activity.'], $staff);
+                    $characterManager->processTransferQueue(['transfer' => $transfer, 'action' => 'Reject', 'reason' => ($transfer->sender_id == $user->id ? 'Sender' : 'Recipient') . ' has been banned from site activity.'], $staff);
                 }
 
                 // 2. Submissions and claims
@@ -502,11 +519,12 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function unban($user, $staff) {
+    public function unban($user, $staff)
+    {
         DB::beginTransaction();
 
         try {
-            if (!$this->logAdminAction($staff, 'Unbanned User', 'Unbanned '.$user->displayname)) {
+            if (!$this->logAdminAction($staff, 'Unbanned User', 'Unbanned ' . $user->displayname)) {
                 throw new \Exception('Failed to log admin action.');
             }
 
@@ -537,7 +555,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function deactivate($data, $user, $staff = null) {
+    public function deactivate($data, $user, $staff = null)
+    {
         DB::beginTransaction();
 
         try {
@@ -553,7 +572,7 @@ class UserService extends Service {
                     $query->where('sender_id', $user->id)->orWhere('recipient_id', $user->id);
                 })->where('status', 'Pending')->get();
                 foreach ($transfers as $transfer) {
-                    $characterManager->processTransferQueue(['transfer' => $transfer, 'action' => 'Reject', 'reason' => ($transfer->sender_id == $user->id ? 'Sender' : 'Recipient').'\'s account was deactivated.'], ($staff ? $staff : $user));
+                    $characterManager->processTransferQueue(['transfer' => $transfer, 'action' => 'Reject', 'reason' => ($transfer->sender_id == $user->id ? 'Sender' : 'Recipient') . '\'s account was deactivated.'], ($staff ? $staff : $user));
                 }
 
                 // 2. Submissions and claims
@@ -632,7 +651,8 @@ class UserService extends Service {
      *
      * @return bool
      */
-    public function reactivate($user, $staff = null) {
+    public function reactivate($user, $staff = null)
+    {
         DB::beginTransaction();
 
         try {
@@ -663,5 +683,27 @@ class UserService extends Service {
         }
 
         return $this->rollbackReturn(false);
+    }
+
+    /**
+     * Revokes all of a user's API tokens.
+     *
+     * @param User $user
+     * @param User $staff
+     *
+     * @return bool
+     */
+    public function revokeTokens($user, $staff = null) {
+        try {
+            $user->tokens()->delete();
+            
+            UserUpdateLog::create(['staff_id' => $staff ? $staff->id : $user->id, 'user_id' => $user->id, 'data' => json_encode([]), 'type' => 'Tokens Revoked']);
+            
+            return true;
+        
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
+        return false;
     }
 }
