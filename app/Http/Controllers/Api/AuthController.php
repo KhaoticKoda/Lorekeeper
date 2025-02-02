@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller {
-    
     /**
-     * Authenticate with email/password and receive a PAT through the API
+     * Authenticate with email/password and receive a PAT through the API.
      */
     public function postGenerateToken(Request $request) {
         $request->validate([
