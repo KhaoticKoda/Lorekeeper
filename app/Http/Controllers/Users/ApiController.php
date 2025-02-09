@@ -23,6 +23,11 @@ class ApiController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function postGenerateToken(Request $request, UserService $service) {
+
+        if(!Settings::get('allow_users_to_generate_tokens')) {
+            abort(404);
+        }
+
         if (!$service->generateToken(Auth::user())) {
             foreach ($service->errors()->getMessages()['error'] as $error) {
                 flash($error)->error();

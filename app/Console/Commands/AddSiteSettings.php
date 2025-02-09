@@ -95,6 +95,8 @@ class AddSiteSettings extends Command {
 
         $this->addSiteSetting('allow_users_to_delete_profile_comments', 0, '0: Users cannot delete profile comments, 1: Users can delete profile comments.');
 
+        $this->addSiteSetting('allow_users_to_generate_tokens', 0, '0: Users cannot generate their own API tokens, 1: Users can generate their own API tokens.');
+
         $this->line("\nSite settings up to date!");
     }
 
