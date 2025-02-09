@@ -221,14 +221,14 @@
         @endif
     </div>
 
-    @if(Settings::get('allow_users_to_generate_tokens'))
+    @if (Settings::get('allow_users_to_generate_tokens'))
         <div class="card p-3 mb-2">
             <h3>API Token</h3>
 
-            <p>Here you may generate personal access (API) tokens for your account. It will have the same site permissions as you.</p> 
+            <p>Here you may generate personal access (API) tokens for your account. It will have the same site permissions as you.</p>
             <div class="alert alert-warning">Be warned: giving away this token is like giving away your password!</div>
 
-                @if (Auth::user()->tokens->count())
+            @if (Auth::user()->tokens->count())
                 <div class="card p-3 mb-2">
                     <h3>Regenerate Token</h3>
                     <p>You already have an API token generated. You may regenerate this token with the button below. It will create a new token, <b>not</b> show you your current one.</p>
@@ -255,7 +255,7 @@
             @endif
         </div>
     @endif
-    
+
 @endsection
 @section('scripts')
     <script>
