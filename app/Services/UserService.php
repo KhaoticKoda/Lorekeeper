@@ -14,6 +14,7 @@ use App\Models\Trade;
 use App\Models\User\User;
 use App\Models\User\UserUpdateLog;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -701,7 +702,7 @@ class UserService extends Service {
     }
 
     /**
-     * Generate an API token for the user.
+     * Generate a "public" API token for the user.
      *
      * @param User $user
      *
@@ -709,6 +710,8 @@ class UserService extends Service {
      */
     public function generateToken($user) {
         try {
+            $user->tokens()->where('personal_access_tokens.name','token')->delete();
+
             $token = $user->createToken('token')->plainTextToken;
 
             UserUpdateLog::create(['staff_id' => $user->id, 'user_id' => $user->id, 'data' => json_encode([]), 'type' => 'Generated API Token']);
@@ -745,5 +748,24 @@ class UserService extends Service {
         }
 
         return false;
+    }
+
+    /**
+     * Generate a "hidden" API token for the user and return it as plain text.
+     *
+     *
+     * @return mixed
+     */
+    public function generateTokenAPI() {
+        try {
+            Auth::user()->tokens()->where('personal_access_tokens.name','hidden')->delete();
+            $token = Auth::user()->createToken('hidden')->plainTextToken;
+
+            UserUpdateLog::create(['staff_id' => Auth::user()->id, 'user_id' => Auth::user()->id, 'data' => json_encode([]), 'type' => 'Generated API Token w/o CSRF']);
+
+            return $token;
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
     }
 }

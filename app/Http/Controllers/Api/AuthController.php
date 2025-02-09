@@ -21,21 +21,15 @@ class AuthController extends Controller {
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user->hasPower('api_access')) {
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
-                ]);
-            }
-
-            // Delete any pre-existing tokens
-            $user->tokens()->delete();
-
-            return $user->createToken($request->token_name)->plainTextToken;
-        } else {
-            return response()->json([
-                'message' => 'You do not have API access permissions.',
-            ], 404);
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
         }
+
+        // Delete any pre-existing tokens
+        $user->tokens()->delete();
+
+        return $user->createToken($request->token_name)->plainTextToken;
     }
 }

@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Character\Character;
 use Illuminate\Http\Request;
 
-class InfoController extends Controller {
-    public function getCharacter(Request $request) {
-        $character = Character::findOrFail($request->id);
+class InfoController extends Controller
+{
+    public function getCharacter(Request $request)
+    {
+        $character = Character::find($request->id);
 
-        return response()->json($character);
+        if ($character) {
+            return response()->json($character);
+        } else {
+            return response()->json([
+                'message' => 'No character found.',
+            ], 404);
+        }
     }
 }

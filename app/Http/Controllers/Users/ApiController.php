@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
@@ -16,15 +16,6 @@ class ApiController extends Controller {
     | Handles creation/editing of API access.
     |
     */
-
-    /**
-     * Shows the API index.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function getIndex() {
-        return view('admin.api.api');
-    }
 
     /**
      * Generates (or re-generates) an API token.
@@ -56,5 +47,15 @@ class ApiController extends Controller {
         }
 
         return redirect()->back()->withInput();
+    }
+
+    /**
+     * Generates (or re-generates) an API token without CSRF protection.
+     * This token is different from the one provided to the user via settings.
+     *
+     * @return mixed
+     */
+    public function getGenerateToken(Request $request, UserService $service) {
+        return $service->generateTokenAPI();
     }
 }

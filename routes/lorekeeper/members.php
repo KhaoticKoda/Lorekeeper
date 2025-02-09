@@ -56,6 +56,10 @@ Route::group(['prefix' => 'account', 'namespace' => 'Users'], function () {
     Route::post('bookmarks/edit/{id}', 'BookmarkController@postCreateEditBookmark');
     Route::get('bookmarks/delete/{id}', 'BookmarkController@getDeleteBookmark');
     Route::post('bookmarks/delete/{id}', 'BookmarkController@postDeleteBookmark');
+
+    Route::post('api/token', 'ApiController@postGenerateToken');
+    Route::get('api/token', 'ApiController@getGenerateToken')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::post('api/revoke', 'ApiController@postRevokeToken');
 });
 
 Route::group(['prefix' => 'inventory', 'namespace' => 'Users'], function () {
@@ -243,3 +247,5 @@ Route::group(['prefix' => 'comments', 'namespace' => 'Comments'], function () {
 Route::group(['prefix' => 'limits'], function () {
     Route::post('unlock/{id}', 'Admin\LimitController@postUnlockLimits');
 });
+
+
