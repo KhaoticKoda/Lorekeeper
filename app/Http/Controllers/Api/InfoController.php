@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Character\Character;
 use Illuminate\Http\Request;
 
-class InfoController extends Controller
-{
-    public function getCharacter(Request $request)
-    {
+class InfoController extends Controller {
+    public function getCharacter(Request $request) {
         $character = Character::find($request->id);
 
         if ($character) {
