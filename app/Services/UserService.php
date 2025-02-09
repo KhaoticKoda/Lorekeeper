@@ -710,7 +710,7 @@ class UserService extends Service {
      */
     public function generateToken($user) {
         try {
-            $user->tokens()->where('personal_access_tokens.name','token')->delete();
+            $user->tokens()->where('personal_access_tokens.name', 'token')->delete();
 
             $token = $user->createToken('token')->plainTextToken;
 
@@ -753,12 +753,11 @@ class UserService extends Service {
     /**
      * Generate a "hidden" API token for the user and return it as plain text.
      *
-     *
      * @return mixed
      */
     public function generateTokenAPI() {
         try {
-            Auth::user()->tokens()->where('personal_access_tokens.name','hidden')->delete();
+            Auth::user()->tokens()->where('personal_access_tokens.name', 'hidden')->delete();
             $token = Auth::user()->createToken('hidden')->plainTextToken;
 
             UserUpdateLog::create(['staff_id' => Auth::user()->id, 'user_id' => Auth::user()->id, 'data' => json_encode([]), 'type' => 'Generated API Token w/o CSRF']);

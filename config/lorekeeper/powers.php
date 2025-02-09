@@ -66,5 +66,5 @@ return [
     'comment_on_sales' => [
         'name'        => 'Comment on Sales',
         'description' => 'Allow rank to comment on sales in preview mode.',
-    ]
+    ],
 ];
