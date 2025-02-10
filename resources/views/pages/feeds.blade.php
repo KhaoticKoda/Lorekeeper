@@ -22,15 +22,17 @@
     <p class="mb-2">Updates with recent Sales posts on this site.</p>
     <p class="mb-2"><code>{{ url('feeds/sales') }}</code></p>
 
-    <script>
-        $('.fa-copy').on('click', async (e) => {
-            await window.navigator.clipboard.writeText(e.currentTarget.dataset.copy);
-            e.currentTarget.classList.remove('toCopy');
-            e.currentTarget.classList.add('toCheck');
-            setTimeout(() => {
-                e.currentTarget.classList.remove('toCheck');
-                e.currentTarget.classList.add('toCopy');
-            }, 2000);
-        });
-    </script>
+@endsection 
+@section('scripts') 
+<script>
+    $('.fa-copy').on('click', async (e) => {
+		await window.navigator.clipboard.writeText(e.currentTarget.dataset.copy);
+        e.currentTarget.classList.remove('toCopy');
+        e.currentTarget.classList.add('toCheck');
+        setTimeout(() => {
+            e.currentTarget.classList.remove('toCheck');
+            e.currentTarget.classList.add('toCopy');
+        }, 2000);
+    });
+</script>
 @endsection
