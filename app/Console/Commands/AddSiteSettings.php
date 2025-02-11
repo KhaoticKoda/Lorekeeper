@@ -97,6 +97,8 @@ class AddSiteSettings extends Command {
 
         $this->addSiteSetting('allow_users_to_generate_tokens', 0, '0: Users cannot generate their own API tokens, 1: Users can generate their own API tokens.');
 
+        $this->addSiteSetting('allow_token_generation_via_api', 0, '0: Tokens can not be generated via the API, 1: Users can directly generate tokens via username/password authentication with the API.');
+
         $this->line("\nSite settings up to date!");
     }
 
