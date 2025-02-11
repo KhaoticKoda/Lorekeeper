@@ -13,8 +13,7 @@ class AuthController extends Controller {
      * Authenticate with email/password and receive a PAT through the API.
      */
     public function postGenerateToken(Request $request) {
-
-        if(!Settings::get('allow_token_generation_via_api')) {
+        if (!Settings::get('allow_token_generation_via_api')) {
             return response()->json([
                 'message' => 'Token generation via API is not allowed.',
             ], 403);
