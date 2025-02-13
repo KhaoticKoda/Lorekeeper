@@ -156,7 +156,7 @@
                     html: true
                 });
                 $('.cp').colorpicker();
-                
+
                 bsCustomFileInput.init();
                 var $mobileMenuButton = $('#mobileMenuButton');
                 var $sidebar = $('#sidebar');
