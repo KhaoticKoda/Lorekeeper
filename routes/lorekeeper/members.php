@@ -58,7 +58,7 @@ Route::group(['prefix' => 'account', 'namespace' => 'Users'], function () {
     Route::post('bookmarks/delete/{id}', 'BookmarkController@postDeleteBookmark');
 
     Route::post('api/token', 'ApiController@postGenerateToken');
-    Route::get('api/token', 'ApiController@getGenerateToken')->withoutMiddleware([App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::get('api/token', 'ApiController@getGenerateToken');
     Route::post('api/revoke', 'ApiController@postRevokeToken');
 });
 
