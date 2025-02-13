@@ -123,7 +123,7 @@
     @include('js._loot_js', ['showLootTables' => true, 'showRaffles' => true])
     @include('widgets._datetimepicker_js')
     <script>
-        $(function() {
+        $(document).ready(function() {
             @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
 
             $('.delete-prompt-button').on('click', function(e) {

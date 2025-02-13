@@ -71,7 +71,7 @@
 @section('scripts')
     @parent
     <script>
-        $(function() {
+        $(document).ready(function() {
             @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
 
             $('.delete-species-button').on('click', function(e) {

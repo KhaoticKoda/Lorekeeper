@@ -342,7 +342,7 @@
         @include('galleries._character_select_js')
 
         <script>
-            $(function() {
+            $(document).ready(function() {
                 @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
 
                 var $submitButton = $('#submitButton');

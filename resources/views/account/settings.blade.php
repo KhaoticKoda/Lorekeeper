@@ -223,7 +223,7 @@
 @endsection
 @section('scripts')
     <script>
-        $(function() {
+        $(document).ready(function() {
             @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
         });
 

@@ -75,7 +75,7 @@
     @include('widgets._character_create_options_js')
 
     <script>
-        $(function() {
+        $(document).ready(function() {
             @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
         });
 
