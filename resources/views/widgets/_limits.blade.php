@@ -56,7 +56,7 @@
                 (Requires {!! implode(
                     ', ',
                     $limits->map(function ($limit) use ($limitTypes) {
-                            return ($limit->quantity ? $limit->quantity . ' ' : '') . $limit->limit->displayName . ($limit->limit_type == 'element' ? ' Element' : '');
+                            return ($limit->quantity ? $limit->quantity . ' ' : '') . $limit->limit->displayName;
                         })->toArray(),
                 ) !!})
                 @if (!$hideUnlock && !$limits->first()->isUnlocked(Auth::user() ?? null) && !$limits->first()->is_auto_unlocked)
