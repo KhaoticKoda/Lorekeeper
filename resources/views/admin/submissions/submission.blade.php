@@ -288,7 +288,9 @@
         @include('js._character_select_js')
 
         <script>
-            $(document).ready(function() {
+            $(function() {
+                @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
                 var $confirmationModal = $('#confirmationModal');
                 var $submissionForm = $('#submissionForm');
 

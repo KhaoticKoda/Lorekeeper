@@ -282,6 +282,11 @@
     @endif
 
     <script>
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+        });
+
+    
         $("#species").change(function() {
             var species = $('#species').val();
             var myo = '<?php echo $isMyo; ?>';

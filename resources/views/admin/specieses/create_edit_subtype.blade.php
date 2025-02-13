@@ -70,7 +70,9 @@
 @section('scripts')
     @parent
     <script>
-        $(document).ready(function() {
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
             $('.delete-subtype-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/data/subtypes/delete') }}/{{ $subtype->id }}", 'Delete Subtype');

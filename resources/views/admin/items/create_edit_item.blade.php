@@ -174,7 +174,9 @@
 @section('scripts')
     @parent
     <script>
-        $(document).ready(function() {
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
             $('.selectize').selectize();
 
             $('#promptsList').selectize({

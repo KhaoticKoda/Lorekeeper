@@ -244,7 +244,9 @@
         function deleteStock(id) {
             loadModal("{{ url('admin/data/shops/stock/delete') }}/" + id, 'Delete Stock');
         }
-        $(document).ready(function() {
+
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
 
             $('#use_coupons').change(function() {
                 if ($(this).is(':checked')) {

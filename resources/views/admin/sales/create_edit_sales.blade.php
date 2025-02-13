@@ -94,7 +94,9 @@
     @include('widgets._datetimepicker_js')
 
     <script>
-        $(document).ready(function() {
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
             $('.delete-sales-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/sales/delete') }}/{{ $sales->id }}", 'Delete Post');

@@ -65,7 +65,9 @@
 @section('scripts')
     @parent
     <script>
-        $(document).ready(function() {
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
             $('.delete-category-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/data/prompt-categories/delete') }}/{{ $category->id }}", 'Delete Category');

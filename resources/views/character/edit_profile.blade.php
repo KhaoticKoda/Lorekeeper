@@ -81,3 +81,12 @@
     {!! Form::close() !!}
 
 @endsection
+
+@section('scripts')
+    @parent
+    <script>
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+        });
+    </script>
+@endsection

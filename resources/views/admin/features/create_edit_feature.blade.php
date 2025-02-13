@@ -86,7 +86,9 @@
 @section('scripts')
     @parent
     <script>
-        $(document).ready(function() {
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+
             $('.delete-feature-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/data/traits/delete') }}/{{ $feature->id }}", 'Delete Trait');

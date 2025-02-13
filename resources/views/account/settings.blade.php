@@ -223,6 +223,10 @@
 @endsection
 @section('scripts')
     <script>
+        $(function() {
+            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+        });
+
         var $avatarCrop = $('#avatarCrop');
         var $cropper = $('#cropper');
         var c = null;
