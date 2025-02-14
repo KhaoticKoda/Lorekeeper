@@ -1,5 +1,7 @@
+@if (!isset($noscript))
 <script>
     $(document).ready(function() {
+@endif
         tinymce.init({
             selector: '{{ $tinymceSelector }}',
             height: {{ $tinymceHeight }},
@@ -18,5 +20,7 @@
             spoiler_caption: 'Toggle Spoiler',
             target_list: false
         });
+@if (!isset($noscript))
     });
 </script>
+@endif
