@@ -59,10 +59,9 @@
 @section('scripts')
     @parent
     @include('widgets._datetimepicker_js')
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
         $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
             $('.delete-news-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/news/delete') }}/{{ $news->id }}", 'Delete Post');

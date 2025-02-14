@@ -75,10 +75,9 @@
 
 @section('scripts')
     @parent
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
         $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
             $('.delete-category-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/data/trait-categories/delete') }}/{{ $category->id }}", 'Delete Category');

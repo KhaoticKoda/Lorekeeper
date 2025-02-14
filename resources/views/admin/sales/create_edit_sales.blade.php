@@ -89,14 +89,11 @@
 
 @section('scripts')
     @parent
-
     @include('admin.sales._character_select_js')
     @include('widgets._datetimepicker_js')
-
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
         $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
             $('.delete-sales-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/sales/delete') }}/{{ $sales->id }}", 'Delete Post');

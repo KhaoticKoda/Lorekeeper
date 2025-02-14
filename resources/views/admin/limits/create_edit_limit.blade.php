@@ -47,10 +47,9 @@
     @parent
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/mode-php.js"></script>
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
         $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
             $('.delete-limit-button').on('click', function(e) {
                 e.preventDefault();
                 loadModal("{{ url('admin/data/limits/delete') }}/{{ $limit->id }}", 'Delete Limit');

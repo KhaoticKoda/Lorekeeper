@@ -225,6 +225,7 @@
 @section('scripts')
     @parent
     @include('widgets._datetimepicker_js')
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
         $('.selectize').selectize();
 
@@ -246,8 +247,6 @@
         }
 
         $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
             $('#use_coupons').change(function() {
                 if ($(this).is(':checked')) {
                     $('.coupon-row').removeClass('hide');

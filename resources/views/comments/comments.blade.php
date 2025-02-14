@@ -75,6 +75,7 @@
 
 @section('scripts')
     @parent
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '250'])
     <script>
         $(document).ready(function() {
             function sortComments() {
@@ -105,7 +106,6 @@
                             window.history.pushState({}, '', url);
                         }
                         $('#{{ $commentType }}-comments').fadeIn();
-                        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '250'])
                     }
                 });
             }

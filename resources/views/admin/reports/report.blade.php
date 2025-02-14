@@ -136,10 +136,9 @@
 @if ($report->status !== 'Closed')
     @section('scripts')
         @parent
+        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
         <script>
             $(document).ready(function() {
-                @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-
                 $('#closalButton').on('click', function(e) {
                     e.preventDefault();
                     $('#closalContent').removeClass('hide');

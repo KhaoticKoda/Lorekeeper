@@ -6,9 +6,7 @@
         });
         $('.edit-notes').on('click', function(e) {
             e.preventDefault();
-            $("div.imagenoteseditingparse").load("{{ url('admin/character/image') }}/" + $(this).data('id') + "/notes", function() {
-                @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.imagenoteseditingparse .wysiwyg', 'tinymceHeight' => '500'])
-            });
+            $("div.imagenoteseditingparse").load("{{ url('admin/character/image') }}/" + $(this).data('id') + "/notes");
             $(".edit-notes").remove();
         });
         $('.edit-credits').on('click', function(e) {
@@ -33,9 +31,7 @@
         });
         $('.edit-description').on('click', function(e) {
             e.preventDefault();
-            $("div.descriptioneditingparse").load("{{ url($character->is_myo_slot ? 'admin/myo/' : 'admin/character/') }}/" + $(this).data('{{ $character->is_myo_slot ? 'id' : 'slug' }}') + "/description", function() {
-                @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.descriptioneditingparse .wysiwyg', 'tinymceHeight' => '500'])
-            });
+            $("div.descriptioneditingparse").load("{{ url($character->is_myo_slot ? 'admin/myo/' : 'admin/character/') }}/" + $(this).data('{{ $character->is_myo_slot ? 'id' : 'slug' }}') + "/description");
             $(".edit-description").remove();
         });
         $('.delete-character').on('click', function(e) {

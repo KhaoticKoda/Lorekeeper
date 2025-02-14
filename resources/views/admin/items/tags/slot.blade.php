@@ -73,12 +73,8 @@
 @section('scripts')
     @parent
     @include('widgets._character_create_options_js')
-
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
-        $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-        });
-
         $("#species").change(function() {
             var species = $('#species').val();
             var myo = '<?php echo $isMyo; ?>';

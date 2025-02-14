@@ -280,13 +280,8 @@
     @if (!$isMyo)
         @include('widgets._character_code_js')
     @endif
-
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
     <script>
-        $(document).ready(function() {
-            @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
-        });
-
-
         $("#species").change(function() {
             var species = $('#species').val();
             var myo = '<?php echo $isMyo; ?>';
