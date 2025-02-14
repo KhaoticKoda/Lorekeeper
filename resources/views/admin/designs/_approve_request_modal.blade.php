@@ -88,4 +88,4 @@
 @include('widgets._character_create_options_js')
 @include('widgets._character_code_js')
 @include('widgets._datetimepicker_js')
-@include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+@include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])

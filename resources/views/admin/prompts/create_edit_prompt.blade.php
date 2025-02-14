@@ -122,7 +122,7 @@
     @parent
     @include('js._loot_js', ['showLootTables' => true, 'showRaffles' => true])
     @include('widgets._datetimepicker_js')
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
     <script>
         $(document).ready(function() {
             $('.delete-prompt-button').on('click', function(e) {

@@ -158,7 +158,7 @@
 
 @section('scripts')
     @parent
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
     <script>
         $(document).ready(function() {
             // Cropper ////////////////////////////////////////////////////////////////////////////////////

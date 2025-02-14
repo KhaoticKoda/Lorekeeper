@@ -222,7 +222,7 @@
     </div>
 @endsection
 @section('scripts')
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
     <script>
         var $avatarCrop = $('#avatarCrop');
         var $cropper = $('#cropper');

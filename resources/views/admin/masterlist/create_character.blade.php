@@ -280,7 +280,7 @@
     @if (!$isMyo)
         @include('widgets._character_code_js')
     @endif
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500'])
+    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
     <script>
         $("#species").change(function() {
             var species = $('#species').val();
