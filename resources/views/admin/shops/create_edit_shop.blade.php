@@ -225,7 +225,7 @@
 @section('scripts')
     @parent
     @include('widgets._datetimepicker_js')
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
+    @include('js._tinymce_wysiwyg')
     <script>
         $('.selectize').selectize();
 

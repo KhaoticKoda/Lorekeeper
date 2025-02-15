@@ -81,7 +81,7 @@
 
 @section('scripts')
     @parent
-    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
+    @include('js._tinymce_wysiwyg')
     <script>
         $(document).ready(function() {
             $('.delete-rarity-button').on('click', function(e) {

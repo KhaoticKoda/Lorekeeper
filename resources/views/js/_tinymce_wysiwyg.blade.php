@@ -3,8 +3,8 @@
     $(document).ready(function() {
 @endif
         tinymce.init({
-            selector: '{{ $tinymceSelector }}',
-            height: {{ $tinymceHeight }},
+            selector: '{{ $tinymceSelector ?? ".wysiwyg" }}',
+            height: {{ $tinymceHeight ?? 500 }},
             menubar: false,
             convert_urls: false,
             plugins: [
