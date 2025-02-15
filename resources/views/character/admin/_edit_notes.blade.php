@@ -9,4 +9,4 @@
 </div>
 {!! Form::close() !!}
 
-@include('js._tinymce_wysiwyg', ['MCESel' => '.imagenoteseditingparse .wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+@include('js._tinymce_wysiwyg', ['tinymceSelector' => '.imagenoteseditingparse .wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])

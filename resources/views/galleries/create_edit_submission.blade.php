@@ -340,7 +340,7 @@
     @parent
     @if (!$closed || ($submission->id && $submission->status != 'Rejected'))
         @include('galleries._character_select_js')
-        @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
         <script>
             $(document).ready(function() {
                 var $submitButton = $('#submitButton');

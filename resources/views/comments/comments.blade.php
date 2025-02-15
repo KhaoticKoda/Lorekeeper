@@ -105,7 +105,7 @@
                             window.history.pushState({}, '', url);
                         }
                         $('#{{ $commentType }}-comments').fadeIn();
-                        @include('js._tinymce_wysiwyg', ['MCESel' => '.comment-wysiwyg', 'MCEHgt' => '250', 'MCEScr' => false])
+                        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '250', 'tinymceScript' => false])
                     }
                 });
             }

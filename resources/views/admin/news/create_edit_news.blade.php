@@ -59,7 +59,7 @@
 @section('scripts')
     @parent
     @include('widgets._datetimepicker_js')
-    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
     <script>
         $(document).ready(function() {
             $('.delete-news-button').on('click', function(e) {

@@ -73,7 +73,7 @@
 @section('scripts')
     @parent
     @include('widgets._character_create_options_js')
-    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
     <script>
         $("#species").change(function() {
             var species = $('#species').val();

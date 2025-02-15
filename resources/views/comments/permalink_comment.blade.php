@@ -26,5 +26,5 @@
     </div>
 @endsection
 @section('scripts')
-    @include('js._tinymce_wysiwyg', ['MCESel' => '.comment-wysiwyg', 'MCEHgt' => '300', 'MCEScr' => true])
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '300', 'tinymceScript' => true])
 @endsection

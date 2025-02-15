@@ -47,7 +47,7 @@
     @parent
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/mode-php.js"></script>
-    @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
     <script>
         $(document).ready(function() {
             $('.delete-limit-button').on('click', function(e) {

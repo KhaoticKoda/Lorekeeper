@@ -286,7 +286,7 @@
     @if ($submission->status == 'Pending')
         @include('js._loot_js', ['showLootTables' => true, 'showRaffles' => true])
         @include('js._character_select_js')
-        @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
         <script>
             $(document).ready(function() {
                 var $confirmationModal = $('#confirmationModal');

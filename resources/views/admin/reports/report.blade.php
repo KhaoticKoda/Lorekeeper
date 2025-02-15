@@ -136,7 +136,7 @@
 @if ($report->status !== 'Closed')
     @section('scripts')
         @parent
-        @include('js._tinymce_wysiwyg', ['MCESel' => '.wysiwyg', 'MCEHgt' => '500', 'MCEScr' => true])
+        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.wysiwyg', 'tinymceHeight' => '500', 'tinymceScript' => true])
         <script>
             $(document).ready(function() {
                 $('#closalButton').on('click', function(e) {

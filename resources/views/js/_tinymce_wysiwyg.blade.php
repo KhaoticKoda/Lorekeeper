@@ -1,10 +1,10 @@
-@if (isset($MCEScr) && $MCEScr)
+@if (!isset($tinymceScript) || $tinymceScript)
 <script>
     $(document).ready(function() {
 @endif
         tinymce.init({
-            selector: '{{ $MCESel }}',
-            height: {{ $MCEHgt }},
+            selector: '{{ $tinymceSelector }}',
+            height: {{ $tinymceHeight }},
             menubar: false,
             convert_urls: false,
             plugins: [
@@ -20,7 +20,7 @@
             spoiler_caption: 'Toggle Spoiler',
             target_list: false
         });
-@if (isset($MCEScr) && $MCEScr)
+@if (!isset($tinymceScript) || $tinymceScript)
     });
 </script>
 @endif
