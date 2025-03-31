@@ -59,7 +59,7 @@ class RankService extends Service {
       if ($powers) {
         foreach ($powers as $power) {
           DB::table('rank_powers')->insert(['rank_id' => $rank->id, 'power' => $power]);
-        };
+        }
       }
 
       return $this->commitReturn(true);

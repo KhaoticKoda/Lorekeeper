@@ -63,7 +63,7 @@ class CurrencyManager extends Service {
             'sender_url' => $staff->url,
             'sender_name' => $staff->name
           ]);
-        };
+        }
       } else {
         foreach ($users as $user) {
           $this->creditCurrency(
@@ -80,7 +80,7 @@ class CurrencyManager extends Service {
             'sender_url' => $staff->url,
             'sender_name' => $staff->name
           ]);
-        };
+        }
       }
 
       return $this->commitReturn(true);

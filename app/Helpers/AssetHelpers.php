@@ -39,7 +39,7 @@ function calculateGroupCurrency($data) {
     if (isset($data['art_bonus'])) {
       foreach ((array) $data['art_bonus'] as $bonus) {
         $total += round($bonus) * $data['art_type'];
-      };
+      }
     }
   }
 
@@ -172,7 +172,7 @@ function mergeAssetsArrays($first, $second) {
   foreach ($keys as $key) {
     foreach ($second[$key] as $item) {
       addAsset($first, $item['asset'], $item['quantity']);
-    };
+    }
   }
   return $first;
 }

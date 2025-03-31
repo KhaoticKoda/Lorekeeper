@@ -288,7 +288,7 @@ class GallerySubmission extends Model {
     if ($this->promptSubmissions->count()) {
       foreach ($this->prompts as $prompt) {
         isset($prompt->prefix) ? ($prefixList[] = $prompt->prefix) : null;
-      };
+      }
     } elseif (isset($this->prompt_id)) {
       isset($this->prompt->prefix) ? ($prefixList[] = $this->prompt->prefix) : null;
     }

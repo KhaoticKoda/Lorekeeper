@@ -74,7 +74,7 @@
                                   $holdLocations['update'][$update->id] =
                                     $update->data['user']['user_items'][$item->id];
                                 }
-                              };
+                              }
                             }
                             if (isset($item->submission_count) && $item->submission_count > 0) {
                               foreach ($submissions as $submission) {
@@ -86,7 +86,7 @@
                                   $holdLocations['submission'][$submission->id] =
                                     $submission->data['user']['user_items'][$item->id];
                                 }
-                              };
+                              }
                             }
 
                             // Format a string with all the places a stack is held
@@ -104,7 +104,7 @@
                                     $quantity .
                                     ')'
                                 );
-                              };
+                              }
                             }
                             if (isset($holdLocations['update'])) {
                               foreach ($holdLocations['update'] as $update => $quantity) {
@@ -119,7 +119,7 @@
                                     $quantity .
                                     ')'
                                 );
-                              };
+                              }
                             }
                             if (isset($holdLocations['submission'])) {
                               foreach ($holdLocations['submission'] as $submission => $quantity) {
@@ -134,7 +134,7 @@
                                     $quantity .
                                     ')'
                                 );
-                              };
+                              }
                             }
                             ?>
                             @foreach($held as $location)

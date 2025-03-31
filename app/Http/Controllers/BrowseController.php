@@ -241,7 +241,7 @@ class BrowseController extends Controller {
         case 3:
           $query->where('is_gift_art_allowed', '>=', 1);
           break;
-      };
+      }
     }
     if ($request->get('is_gift_writing_allowed')) {
       switch ($request->get('is_gift_writing_allowed')) {
@@ -254,7 +254,7 @@ class BrowseController extends Controller {
         case 3:
           $query->where('is_gift_writing_allowed', '>=', 1);
           break;
-      };
+      }
     }
 
     switch ($request->get('sort')) {
@@ -512,7 +512,7 @@ class BrowseController extends Controller {
         case 3:
           $query->where('is_gift_art_allowed', '>=', 1);
           break;
-      };
+      }
     }
     if ($request->get('is_gift_writing_allowed')) {
       switch ($request->get('is_gift_writing_allowed')) {
@@ -525,7 +525,7 @@ class BrowseController extends Controller {
         case 3:
           $query->where('is_gift_writing_allowed', '>=', 1);
           break;
-      };
+      }
     }
     if ($request->get('is_sellable')) {
       $query->where('is_sellable', 1);
