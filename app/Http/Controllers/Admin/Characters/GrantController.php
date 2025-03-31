@@ -21,8 +21,7 @@ class GrantController extends Controller {
    * @param  string                        $slug
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCharacterCurrency($slug, Request $request, CurrencyManager $service) {
     $data = $request->only(['currency_id', 'quantity', 'data']);
     if (
@@ -46,8 +45,7 @@ class GrantController extends Controller {
    * @param  string                          $slug
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\InventoryManager   $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCharacterItems($slug, Request $request, InventoryManager $service) {
     $data = $request->only(['item_ids', 'quantities', 'data', 'disallow_transfer', 'notes']);
     if (

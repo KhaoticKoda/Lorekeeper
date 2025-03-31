@@ -21,8 +21,7 @@ class CharacterCategoryController extends Controller {
 
   /**
    * Shows the character category index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.characters.character_categories', [
       'categories' => CharacterCategory::orderBy('sort', 'DESC')->get()
@@ -31,8 +30,7 @@ class CharacterCategoryController extends Controller {
 
   /**
    * Shows the create character category page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacterCategory() {
     return view('admin.characters.create_edit_character_category', [
       'category' => new CharacterCategory(),
@@ -44,8 +42,7 @@ class CharacterCategoryController extends Controller {
   /**
    * Shows the edit character category page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterCategory($id) {
     $category = CharacterCategory::find($id);
     if (!$category) {
@@ -63,8 +60,7 @@ class CharacterCategoryController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int|null                               $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditCharacterCategory(
     Request $request,
     CharacterCategoryService $service,
@@ -97,8 +93,7 @@ class CharacterCategoryController extends Controller {
   /**
    * Gets the character category deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteCharacterCategory($id) {
     $category = CharacterCategory::find($id);
     return view('admin.characters._delete_character_category', [
@@ -111,8 +106,7 @@ class CharacterCategoryController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int                                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteCharacterCategory(
     Request $request,
     CharacterCategoryService $service,
@@ -132,8 +126,7 @@ class CharacterCategoryController extends Controller {
    * Sorts character categories.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortCharacterCategory(Request $request, CharacterCategoryService $service) {
     if ($service->sortCharacterCategory($request->get('sort'))) {
       flash('Category order updated successfully.')->success();

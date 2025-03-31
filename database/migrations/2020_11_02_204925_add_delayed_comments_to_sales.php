@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddDelayedCommentsToSales extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('sales', function (Blueprint $table) {
       $table->timestamp('comments_open_at')->nullable()->default(null);
@@ -18,8 +17,7 @@ class AddDelayedCommentsToSales extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('sales', function (Blueprint $table) {
       //

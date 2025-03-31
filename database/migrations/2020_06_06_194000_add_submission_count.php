@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSubmissionCount extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('user_items', function (Blueprint $table) {
       $table->unsignedInteger('submission_count')->default(0);
@@ -17,8 +16,7 @@ class AddSubmissionCount extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('user_items', function (Blueprint $table) {
       //

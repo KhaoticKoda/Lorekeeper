@@ -14,28 +14,24 @@ use App\Models\Character\CharacterImage;
 class ClearDeletedCharacterAttachments extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'clear-deleted-character-attachments';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Clears any currently remaining character attachments (features and currency) so that they can be deleted.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     // Get deleted character IDs
     $deletedCharacterIds = DB::table('characters')->whereNotNull('deleted_at')->pluck('id');

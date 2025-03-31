@@ -21,8 +21,7 @@ class BoxService extends Service {
 
   /**
    * Retrieves any data that should be used in the item tag editing form.
-   * @return array
-   */
+   * @return array */
   public function getEditData() {
     return [
       'characterCurrencies' => Currency::where('is_character_owned', 1)
@@ -41,8 +40,7 @@ class BoxService extends Service {
   /**
    * Processes the data attribute of the tag and returns it in the preferred format.
    * @param  string  $tag
-   * @return mixed
-   */
+   * @return mixed */
   public function getTagData($tag) {
     $rewards = [];
     if ($tag->data) {
@@ -65,8 +63,7 @@ class BoxService extends Service {
    * Processes the data attribute of the tag and returns it in the preferred format.
    * @param  string  $tag
    * @param  array   $data
-   * @return bool
-   */
+   * @return bool */
   public function updateData($tag, $data) {
     DB::beginTransaction();
 
@@ -113,8 +110,7 @@ class BoxService extends Service {
    * @param  \App\Models\User\UserItem  $stacks
    * @param  \App\Models\User\User      $user
    * @param  array                      $data
-   * @return bool
-   */
+   * @return bool */
   public function act($stacks, $user, $data) {
     DB::beginTransaction();
 
@@ -165,8 +161,7 @@ class BoxService extends Service {
   /**
    * Acts upon the item when used from the inventory.
    * @param  array                  $rewards
-   * @return string
-   */
+   * @return string */
   private function getBoxRewardsString($rewards) {
     $results = 'You have received: ';
     $result_elements = [];

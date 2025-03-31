@@ -16,8 +16,7 @@ class RaffleController extends Controller {
 
   /**
    * Shows the raffle index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleIndex() {
     $raffles = Raffle::query();
     if (Request::get('view') == 'completed') {
@@ -38,8 +37,7 @@ class RaffleController extends Controller {
   /**
    * Shows tickets for a given raffle.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleTickets($id) {
     $raffle = Raffle::find($id);
     if (!$raffle || !$raffle->is_active) {

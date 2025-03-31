@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddTransferFlagToItems extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('items', function (Blueprint $table) {
       // Flag for whether the item can be transferred between users.
@@ -20,8 +19,7 @@ class AddTransferFlagToItems extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('items', function (Blueprint $table) {
       //

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddInvitationKeys extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('invitations', function (Blueprint $table) {
@@ -27,8 +26,7 @@ class AddInvitationKeys extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('invitations');

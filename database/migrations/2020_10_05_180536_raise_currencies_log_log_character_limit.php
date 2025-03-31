@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class RaiseCurrenciesLogLogCharacterLimit extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('currecies_log', function (Blueprint $table) {
@@ -18,8 +17,7 @@ class RaiseCurrenciesLogLogCharacterLimit extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('currencies_log', function (Blueprint $table) {

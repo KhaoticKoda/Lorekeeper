@@ -12,26 +12,22 @@ class SitePage extends Model {
 
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['key', 'title', 'text', 'parsed_text', 'is_visible', 'can_comment'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'site_pages';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**
    * Validation rules for creation.
-   * @var array
-   */
+   * @var array */
   public static $createRules = [
     'key' => 'required|unique:site_pages|between:3,25|alpha_dash',
     'title' => 'required|between:3,100',
@@ -40,8 +36,7 @@ class SitePage extends Model {
 
   /**
    * Validation rules for updating.
-   * @var array
-   */
+   * @var array */
   public static $updateRules = [
     'key' => 'required|between:3,25|alpha_dash',
     'title' => 'required|between:3,100',
@@ -50,16 +45,14 @@ class SitePage extends Model {
 
   /**
    * Gets the URL of the public-facing page.
-   * @return string
-   */
+   * @return string */
   public function getUrlAttribute() {
     return url('info/' . $this->key);
   }
 
   /**
    * Displays the news post title, linked to the news post itself.
-   * @return string
-   */
+   * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '">' . $this->title . '</a>';
   }

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddDesignUpdates extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('design_updates', function (Blueprint $table) {
@@ -82,8 +81,7 @@ class AddDesignUpdates extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('user_items', function (Blueprint $table) {

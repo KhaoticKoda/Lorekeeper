@@ -9,8 +9,7 @@ use App\Models\Model;
 class CharacterTransfer extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'character_id',
     'sender_id',
@@ -24,14 +23,12 @@ class CharacterTransfer extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'character_transfers';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**********************************************************************************************
@@ -41,22 +38,19 @@ class CharacterTransfer extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the user who initiated the transfer.
-   */
+   * Get the user who initiated the transfer. */
   public function sender() {
     return $this->belongsTo('App\Models\User\User', 'sender_id');
   }
 
   /**
-   * Get the user who received the transfer.
-   */
+   * Get the user who received the transfer. */
   public function recipient() {
     return $this->belongsTo('App\Models\User\User', 'recipient_id');
   }
 
   /**
-   * Get the character to be transferred.
-   */
+   * Get the character to be transferred. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character');
   }
@@ -70,8 +64,7 @@ class CharacterTransfer extends Model {
   /**
    * Scope a query to only include pending trades, as well as trades pending staff approval.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeActive($query) {
     $query->where('status', 'Pending');
 
@@ -87,8 +80,7 @@ class CharacterTransfer extends Model {
   /**
    * Scope a query to only include completed trades.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeCompleted($query) {
     $query
       ->where('status', 'Rejected')
@@ -107,8 +99,7 @@ class CharacterTransfer extends Model {
 
   /**
    * Check if the transfer is active.
-   * @return bool
-   */
+   * @return bool */
   public function getIsActiveAttribute() {
     if ($this->status == 'Pending') {
       return true;
@@ -122,8 +113,7 @@ class CharacterTransfer extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return array
-   */
+   * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }

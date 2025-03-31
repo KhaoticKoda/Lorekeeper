@@ -8,8 +8,7 @@ use App\Models\Model;
 class Subtype extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'species_id',
     'name',
@@ -21,14 +20,12 @@ class Subtype extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'subtypes';
 
   /**
    * Validation rules for creation.
-   * @var array
-   */
+   * @var array */
   public static $createRules = [
     'species_id' => 'required',
     'name' => 'required|between:3,100',
@@ -38,8 +35,7 @@ class Subtype extends Model {
 
   /**
    * Validation rules for updating.
-   * @var array
-   */
+   * @var array */
   public static $updateRules = [
     'species_id' => 'required',
     'name' => 'required|between:3,100',
@@ -49,8 +45,7 @@ class Subtype extends Model {
 
   /**
    * Accessors to append to the model.
-   * @var array
-   */
+   * @var array */
   protected $appends = ['name_with_species'];
 
   /**********************************************************************************************
@@ -60,8 +55,7 @@ class Subtype extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the species the subtype belongs to.
-   */
+   * Get the species the subtype belongs to. */
   public function species() {
     return $this->belongsTo('App\Models\Species\Species', 'species_id');
   }
@@ -74,48 +68,42 @@ class Subtype extends Model {
 
   /**
    * Displays the subtype's name and species.
-   * @return string
-   */
+   * @return string */
   public function getNameWithSpeciesAttribute() {
     return $this->name . ' [' . $this->species->name . ' Subtype]';
   }
 
   /**
    * Displays the model's name, linked to its encyclopedia page.
-   * @return string
-   */
+   * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '" class="display-subtype">' . $this->name . '</a>';
   }
 
   /**
    * Gets the file directory containing the model's image.
-   * @return string
-   */
+   * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/data/subtypes';
   }
 
   /**
    * Gets the file name of the model's image.
-   * @return string
-   */
+   * @return string */
   public function getSubtypeImageFileNameAttribute() {
     return $this->id . '-image.png';
   }
 
   /**
    * Gets the path to the file directory containing the model's image.
-   * @return string
-   */
+   * @return string */
   public function getSubtypeImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
   /**
    * Gets the URL of the model's image.
-   * @return string
-   */
+   * @return string */
   public function getSubtypeImageUrlAttribute() {
     if (!$this->has_image) {
       return null;
@@ -125,16 +113,14 @@ class Subtype extends Model {
 
   /**
    * Gets the URL of the model's encyclopedia page.
-   * @return string
-   */
+   * @return string */
   public function getUrlAttribute() {
     return url('world/subtypes?name=' . $this->name);
   }
 
   /**
    * Gets the URL for a masterlist search of characters of this species subtype.
-   * @return string
-   */
+   * @return string */
   public function getSearchUrlAttribute() {
     return url('masterlist?subtype_id=' . $this->id);
   }

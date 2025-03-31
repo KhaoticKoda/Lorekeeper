@@ -32,8 +32,7 @@ class GalleryManager extends Service {
    * @param  array                  $data
    * @param  array                  $currencyFormData
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Gallery\GallerySubmission
-   */
+   * @return bool|\App\Models\Gallery\GallerySubmission */
   public function createSubmission($data, $currencyFormData, $user) {
     DB::beginTransaction();
 
@@ -187,8 +186,7 @@ class GalleryManager extends Service {
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  array                                  $data
    * @param  \App\Models\User\User                  $user
-   * @return bool|\App\Models\Gallery\GallerySubmission
-   */
+   * @return bool|\App\Models\Gallery\GallerySubmission */
   public function updateSubmission($submission, $data, $user) {
     DB::beginTransaction();
 
@@ -360,8 +358,7 @@ class GalleryManager extends Service {
   /**
    * Processes user input for creating/updating a gallery submission.
    * @param  array                                  $data
-   * @return array
-   */
+   * @return array */
   private function populateData($data) {
     // Parse any text
     if (isset($data['text']) && $data['text']) {
@@ -378,8 +375,7 @@ class GalleryManager extends Service {
    * Processes gallery submission images.
    * @param  array                                  $data
    * @param  \App\Models\Gallery\GallerySubmission  $submission
-   * @return array
-   */
+   * @return array */
   private function processImage($data, $submission) {
     if (isset($submission->hash)) {
       unlink($submission->imagePath . '/' . $submission->imageFileName);
@@ -413,8 +409,7 @@ class GalleryManager extends Service {
    * Processes collaborator edits/approvals on a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
-   * @return bool|\App\Models\Gallery\GalleryFavorite
-   */
+   * @return bool|\App\Models\Gallery\GalleryFavorite */
   public function editCollaborator($submission, $data, $user) {
     DB::beginTransaction();
 
@@ -468,8 +463,7 @@ class GalleryManager extends Service {
    * @param  string                                 $action
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
-   * @return  bool
-   */
+   * @return  bool */
   public function castVote($action, $submission, $user) {
     DB::beginTransaction();
 
@@ -535,8 +529,7 @@ class GalleryManager extends Service {
    * Processes staff comments for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
-   * @return bool|\App\Models\Gallery\GalleryFavorite
-   */
+   * @return bool|\App\Models\Gallery\GalleryFavorite */
   public function postStaffComments($id, $data, $user) {
     DB::beginTransaction();
 
@@ -580,8 +573,7 @@ class GalleryManager extends Service {
   /**
    * Processes acceptance for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
-   * @return bool|\App\Models\Gallery\GallerySubmission
-   */
+   * @return bool|\App\Models\Gallery\GallerySubmission */
   private function acceptSubmission($submission) {
     DB::beginTransaction();
 
@@ -650,8 +642,7 @@ class GalleryManager extends Service {
   /**
    * Processes rejection for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
-   * @return bool|\App\Models\Gallery\GallerySubmission
-   */
+   * @return bool|\App\Models\Gallery\GallerySubmission */
   private function rejectSubmission($submission) {
     DB::beginTransaction();
 
@@ -681,8 +672,7 @@ class GalleryManager extends Service {
   /**
    * Archives a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
-   * @return bool
-   */
+   * @return bool */
   public function archiveSubmission($submission, $user) {
     DB::beginTransaction();
 
@@ -711,8 +701,7 @@ class GalleryManager extends Service {
    * Processes group currency evaluation for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
-   * @return bool|\App\Models\Gallery\GalleryFavorite
-   */
+   * @return bool|\App\Models\Gallery\GalleryFavorite */
   public function postValueSubmission($id, $data, $user) {
     DB::beginTransaction();
 
@@ -872,8 +861,7 @@ class GalleryManager extends Service {
    * Toggles favorite status on a submission for a user.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
-   * @return bool|\App\Models\Gallery\GalleryFavorite
-   */
+   * @return bool|\App\Models\Gallery\GalleryFavorite */
   public function favoriteSubmission($submission, $user) {
     DB::beginTransaction();
 

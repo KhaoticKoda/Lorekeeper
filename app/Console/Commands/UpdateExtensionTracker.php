@@ -9,28 +9,24 @@ use Config;
 class UpdateExtensionTracker extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'update-extension-tracker';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Run this command in order to add extensions to your list of extensions. This helps you to keep track of what extensions are used on your site and who created them.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     $extensions = Config::get('lorekeeper.extension_tracker');
 

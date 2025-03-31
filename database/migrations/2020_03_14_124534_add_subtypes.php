@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSubtypes extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // These are basically, subspecies - I've decided to name them "subtypes"
     // as "subspecies" implies a biological taxonomic relation,
@@ -42,8 +41,7 @@ class AddSubtypes extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_images', function (Blueprint $table) {

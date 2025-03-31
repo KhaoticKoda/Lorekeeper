@@ -8,28 +8,24 @@ use Illuminate\Console\Command;
 class UpdateCommentTypes extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'update-comment-types';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Updates comment types.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return int
-   */
+   * @return int */
   public function handle() {
     $comments = Comment::where('commentable_type', 'App\Models\Report\Report')->where(
       'type',

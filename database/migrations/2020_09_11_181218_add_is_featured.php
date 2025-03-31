@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddIsFeatured extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('comments', function (Blueprint $table) {
       $table->integer('is_featured')->default(0);
@@ -17,8 +16,7 @@ class AddIsFeatured extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('comments', function (Blueprint $table) {
       $table->dropColumn('is_featured');

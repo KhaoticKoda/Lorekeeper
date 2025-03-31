@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Create user ranks and powers
     Schema::create('ranks', function (Blueprint $table) {
@@ -74,8 +73,7 @@ class CreateUsersTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('notifications');
 

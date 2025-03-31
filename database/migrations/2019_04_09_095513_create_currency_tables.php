@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCurrencyTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('currencies', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -98,8 +97,7 @@ class CreateCurrencyTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('banks_log');
     Schema::dropIfExists('banks');

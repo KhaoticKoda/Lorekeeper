@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCharacterTransferTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('character_transfers', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -33,8 +32,7 @@ class CreateCharacterTransferTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('character_transfers');
   }

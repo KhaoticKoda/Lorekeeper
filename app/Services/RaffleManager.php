@@ -22,8 +22,7 @@ class RaffleManager extends Service {
    * string containing comma-separated names.
    * @param  \App\Models\Raffle\Raffle $raffle
    * @param  string                    $names
-   * @return int
-   */
+   * @return int */
   public function addTickets($raffle, $names) {
     $names = explode(',', $names);
     $count = 0;
@@ -46,8 +45,7 @@ class RaffleManager extends Service {
    * @param  \App\Models\User\User     $user
    * @param  \App\Models\Raffle\Raffle $raffle
    * @param  int                       $count
-   * @return int
-   */
+   * @return int */
   public function addTicket($user, $raffle, $count = 1) {
     if (!$user) {
       return 0;
@@ -74,8 +72,7 @@ class RaffleManager extends Service {
   /**
    * Removes a single ticket.
    * @param  \App\Models\Raffle\RaffleTicket $ticket
-   * @return bool
-   */
+   * @return bool */
   public function removeTicket($ticket) {
     if (!$ticket) {
       return null;
@@ -92,8 +89,7 @@ class RaffleManager extends Service {
    * from other raffles in the group.
    * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
    * @param  bool                           $updateGroup
-   * @return bool
-   */
+   * @return bool */
   public function rollRaffleGroup($raffleGroup, $updateGroup = true) {
     if (!$raffleGroup) {
       return null;
@@ -117,8 +113,7 @@ class RaffleManager extends Service {
    * from other raffles in the group.
    * @param  \App\Models\Raffle\Raffle $raffle
    * @param  bool                      $updateGroup
-   * @return bool
-   */
+   * @return bool */
   public function rollRaffle($raffle, $updateGroup = false) {
     if (!$raffle) {
       return null;
@@ -146,8 +141,7 @@ class RaffleManager extends Service {
   /**
    * Rolls the winners of a raffle.
    * @param  \App\Models\Raffle\Raffle $raffle
-   * @return array
-   */
+   * @return array */
   private function rollWinners($raffle) {
     $ticketPool = $raffle->tickets;
     $ticketCount = $ticketPool->count();
@@ -196,8 +190,7 @@ class RaffleManager extends Service {
    * @param  array                          $winners
    * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
    * @param  \App\Models\Raffle\Raffle      $raffle
-   * @return bool
-   */
+   * @return bool */
   private function afterRoll($winners, $raffleGroup, $raffle) {
     // remove any tickets from winners in raffles in the group that aren't completed
     $raffles = $raffleGroup

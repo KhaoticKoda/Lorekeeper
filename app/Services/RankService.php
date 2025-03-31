@@ -21,8 +21,7 @@ class RankService extends Service {
    * Creates a user rank.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function createRank($data, $user) {
     DB::beginTransaction();
 
@@ -76,8 +75,7 @@ class RankService extends Service {
    * @param  \App\Models\Rank\Rank  $rank
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function updateRank($rank, $data, $user) {
     DB::beginTransaction();
 
@@ -125,8 +123,7 @@ class RankService extends Service {
    * Deletes a user rank.
    * @param  \App\Models\Rank\Rank  $rank
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function deleteRank($rank, $user) {
     DB::beginTransaction();
 
@@ -152,8 +149,7 @@ class RankService extends Service {
    * Sorts user ranks.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function sortRanks($data, $user) {
     DB::beginTransaction();
 

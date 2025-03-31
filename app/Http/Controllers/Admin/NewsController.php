@@ -14,8 +14,7 @@ use App\Http\Controllers\Controller;
 class NewsController extends Controller {
   /**
    * Shows the news index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.news.news', [
       'newses' => News::orderBy('updated_at', 'DESC')->paginate(20)
@@ -24,8 +23,7 @@ class NewsController extends Controller {
 
   /**
    * Shows the create news page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateNews() {
     return view('admin.news.create_edit_news', [
       'news' => new News()
@@ -35,8 +33,7 @@ class NewsController extends Controller {
   /**
    * Shows the edit news page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditNews($id) {
     $news = News::find($id);
     if (!$news) {
@@ -52,8 +49,7 @@ class NewsController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\NewsService  $service
    * @param  int|null                  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditNews(Request $request, NewsService $service, $id = null) {
     $id ? $request->validate(News::$updateRules) : $request->validate(News::$createRules);
     $data = $request->only(['title', 'text', 'post_at', 'is_visible', 'bump']);
@@ -73,8 +69,7 @@ class NewsController extends Controller {
   /**
    * Gets the news deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteNews($id) {
     $news = News::find($id);
     return view('admin.news._delete_news', [
@@ -87,8 +82,7 @@ class NewsController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\NewsService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteNews(Request $request, NewsService $service, $id) {
     if ($id && $service->deleteNews(News::find($id))) {
       flash('News deleted successfully.')->success();

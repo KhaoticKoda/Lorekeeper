@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class UpdateCharacterTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('characters', function (Blueprint $table) {
@@ -88,8 +87,7 @@ class UpdateCharacterTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('user_profiles');

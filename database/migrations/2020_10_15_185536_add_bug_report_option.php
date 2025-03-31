@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddBugReportOption extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('reports', function (Blueprint $table) {
@@ -19,8 +18,7 @@ class AddBugReportOption extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('reports', function (Blueprint $table) {

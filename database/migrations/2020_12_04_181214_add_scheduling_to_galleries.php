@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSchedulingToGalleries extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('galleries', function (Blueprint $table) {
       //
@@ -20,8 +19,7 @@ class AddSchedulingToGalleries extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('galleries', function (Blueprint $table) {
       //

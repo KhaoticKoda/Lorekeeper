@@ -25,8 +25,7 @@ class DesignController extends Controller {
   /**
    * Shows the index of character design update submissions.
    * @param  string  $type
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDesignUpdateIndex($type = null) {
     $requests = CharacterDesignUpdate::where('user_id', Auth::user()->id);
     if (!$type) {
@@ -43,8 +42,7 @@ class DesignController extends Controller {
   /**
    * Shows a design update request.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDesignUpdate($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -58,8 +56,7 @@ class DesignController extends Controller {
   /**
    * Shows a design update request's comments section.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getComments($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -75,8 +72,7 @@ class DesignController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postComments(Request $request, CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {
@@ -99,8 +95,7 @@ class DesignController extends Controller {
   /**
    * Shows a design update request's image section.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getImage($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -117,8 +112,7 @@ class DesignController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postImage(Request $request, CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {
@@ -145,8 +139,7 @@ class DesignController extends Controller {
   /**
    * Shows a design update request's addons section.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getAddons($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -176,8 +169,7 @@ class DesignController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postAddons(Request $request, CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {
@@ -200,8 +192,7 @@ class DesignController extends Controller {
   /**
    * Shows a design update request's features section.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatures($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -228,8 +219,7 @@ class DesignController extends Controller {
   /**
    * Shows the edit image subtype portion of the modal
    * @param  Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeaturesSubtype(Request $request) {
     $species = $request->input('species');
     $id = $request->input('id');
@@ -249,8 +239,7 @@ class DesignController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postFeatures(Request $request, CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {
@@ -273,8 +262,7 @@ class DesignController extends Controller {
   /**
    * Shows the design update request submission confirmation modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getConfirm($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -289,8 +277,7 @@ class DesignController extends Controller {
    * Submits a design update request for approval.
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSubmit(CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {
@@ -313,8 +300,7 @@ class DesignController extends Controller {
   /**
    * Shows the design update request deletion confirmation modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDelete($id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) {
@@ -329,8 +315,7 @@ class DesignController extends Controller {
    * Deletes a design update request.
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDelete(CharacterManager $service, $id) {
     $r = CharacterDesignUpdate::find($id);
     if (!$r) {

@@ -8,16 +8,14 @@ use Illuminate\Support\Facades\App;
 class SettingsProvider extends ServiceProvider {
   /**
    * Register services.
-   * @return void
-   */
+   * @return void */
   public function register() {
     //
   }
 
   /**
    * Bootstrap services.
-   * @return void
-   */
+   * @return void */
   public function boot() {
     //
     App::bind('settings', function () {

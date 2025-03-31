@@ -33,8 +33,7 @@ class FeatureController extends Controller {
 
   /**
    * Shows the feature category index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.features.feature_categories', [
       'categories' => FeatureCategory::orderBy('sort', 'DESC')->get()
@@ -43,8 +42,7 @@ class FeatureController extends Controller {
 
   /**
    * Shows the create feature category page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateFeatureCategory() {
     return view('admin.features.create_edit_feature_category', [
       'category' => new FeatureCategory()
@@ -54,8 +52,7 @@ class FeatureController extends Controller {
   /**
    * Shows the edit feature category page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditFeatureCategory($id) {
     $category = FeatureCategory::find($id);
     if (!$category) {
@@ -71,8 +68,7 @@ class FeatureController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditFeatureCategory(
     Request $request,
     FeatureService $service,
@@ -98,8 +94,7 @@ class FeatureController extends Controller {
   /**
    * Gets the feature category deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteFeatureCategory($id) {
     $category = FeatureCategory::find($id);
     return view('admin.features._delete_feature_category', [
@@ -112,8 +107,7 @@ class FeatureController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteFeatureCategory(Request $request, FeatureService $service, $id) {
     if ($id && $service->deleteFeatureCategory(FeatureCategory::find($id))) {
       flash('Category deleted successfully.')->success();
@@ -129,8 +123,7 @@ class FeatureController extends Controller {
    * Sorts feature categories.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortFeatureCategory(Request $request, FeatureService $service) {
     if ($service->sortFeatureCategory($request->get('sort'))) {
       flash('Category order updated successfully.')->success();
@@ -151,8 +144,7 @@ class FeatureController extends Controller {
   /**
    * Shows the feature index.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatureIndex(Request $request) {
     $query = Feature::query();
     $data = $request->only(['rarity_id', 'feature_category_id', 'species_id', 'name']);
@@ -189,8 +181,7 @@ class FeatureController extends Controller {
 
   /**
    * Shows the create feature page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateFeature() {
     return view('admin.features.create_edit_feature', [
       'feature' => new Feature(),
@@ -211,8 +202,7 @@ class FeatureController extends Controller {
   /**
    * Shows the edit feature page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditFeature($id) {
     $feature = Feature::find($id);
     if (!$feature) {
@@ -239,8 +229,7 @@ class FeatureController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditFeature(Request $request, FeatureService $service, $id = null) {
     $id ? $request->validate(Feature::$updateRules) : $request->validate(Feature::$createRules);
     $data = $request->only([
@@ -269,8 +258,7 @@ class FeatureController extends Controller {
   /**
    * Gets the feature deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteFeature($id) {
     $feature = Feature::find($id);
     return view('admin.features._delete_feature', [
@@ -283,8 +271,7 @@ class FeatureController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int                          $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteFeature(Request $request, FeatureService $service, $id) {
     if ($id && $service->deleteFeature(Feature::find($id))) {
       flash('Trait deleted successfully.')->success();

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class SetItemsLogSenderRecipientDefaultNull extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //Change default to null going forward
     DB::statement(
@@ -29,8 +28,7 @@ class SetItemsLogSenderRecipientDefaultNull extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     DB::statement(

@@ -9,8 +9,7 @@ use App\Models\User\User;
 class DropCharacterMyoCounts extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This count is not being used anywhere and is inaccurate
     // depending on your viewing permissions
@@ -22,8 +21,7 @@ class DropCharacterMyoCounts extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('user_settings', function (Blueprint $table) {

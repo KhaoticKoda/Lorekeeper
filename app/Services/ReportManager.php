@@ -31,8 +31,7 @@ class ReportManager extends Service {
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isClaim
-   * @return mixed
-   */
+   * @return mixed */
   public function createReport($data, $user, $isClaim = false) {
     DB::beginTransaction();
 
@@ -68,8 +67,7 @@ class ReportManager extends Service {
    * Approves a report.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return mixed
-   */
+   * @return mixed */
   public function assignReport($data, $user) {
     DB::beginTransaction();
 
@@ -101,8 +99,7 @@ class ReportManager extends Service {
    * Closes a report.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return mixed
-   */
+   * @return mixed */
   public function closeReport($data, $user) {
     DB::beginTransaction();
 

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddOwnedCurrencies extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('user_currencies', function (Blueprint $table) {
@@ -39,8 +38,7 @@ class AddOwnedCurrencies extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
   }

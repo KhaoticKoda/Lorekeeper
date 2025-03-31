@@ -21,8 +21,7 @@ class PageController extends Controller {
   /**
    * Shows the page with the given key.
    * @param  string  $key
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPage($key) {
     $page = SitePage::where('key', $key)->where('is_visible', 1)->first();
     if (!$page) {
@@ -33,8 +32,7 @@ class PageController extends Controller {
 
   /**
    * Shows the credits page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreditsPage() {
     return view('pages.credits', [
       'credits' => SitePage::where('key', 'credits')->first(),

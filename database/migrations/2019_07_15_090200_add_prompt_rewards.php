@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddPromptRewards extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('prompt_rewards', function (Blueprint $table) {
@@ -24,8 +23,7 @@ class AddPromptRewards extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('prompt_rewards');

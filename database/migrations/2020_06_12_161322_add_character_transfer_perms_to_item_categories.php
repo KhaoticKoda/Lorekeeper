@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddCharacterTransferPermsToItemCategories extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('item_categories', function (Blueprint $table) {
       // Set whether an item category can be owned by characters.
@@ -21,8 +20,7 @@ class AddCharacterTransferPermsToItemCategories extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('item_categories', function (Blueprint $table) {
       $table->dropColumn('is_character_owned');

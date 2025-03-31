@@ -25,8 +25,7 @@ use App\Http\Controllers\Controller;
 class GrantController extends Controller {
   /**
    * Show the currency grant page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCurrency() {
     return view('admin.grants.user_currency', [
       'users' => User::orderBy('id')->pluck('name', 'id'),
@@ -40,8 +39,7 @@ class GrantController extends Controller {
    * Grants or removes currency from multiple users.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postUserCurrency(Request $request, CurrencyManager $service) {
     $data = $request->only(['names', 'currency_id', 'quantity', 'data']);
     if ($service->grantUserCurrencies($data, Auth::user())) {
@@ -56,8 +54,7 @@ class GrantController extends Controller {
 
   /**
    * Show the item grant page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItems() {
     return view('admin.grants.items', [
       'users' => User::orderBy('id')->pluck('name', 'id'),
@@ -69,8 +66,7 @@ class GrantController extends Controller {
    * Grants or removes items from multiple users.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postItems(Request $request, InventoryManager $service) {
     $data = $request->only([
       'names',
@@ -92,8 +88,7 @@ class GrantController extends Controller {
 
   /**
    * Show the item search page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemSearch(Request $request) {
     $item = Item::find($request->only(['item_id']))->first();
 

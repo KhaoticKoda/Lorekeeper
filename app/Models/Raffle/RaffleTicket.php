@@ -6,20 +6,17 @@ use DB;
 class RaffleTicket extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['user_id', 'raffle_id', 'position', 'created_at', 'alias'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'raffle_tickets';
 
   /**
    * Dates on the model to convert to Carbon instances.
-   * @var array
-   */
+   * @var array */
   protected $dates = ['created_at'];
 
   /**********************************************************************************************
@@ -29,15 +26,13 @@ class RaffleTicket extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the raffle this ticket is for.
-   */
+   * Get the raffle this ticket is for. */
   public function raffle() {
     return $this->belongsTo('App\Models\Raffle\Raffle');
   }
 
   /**
-   * Get the user who owns the raffle ticket.
-   */
+   * Get the user who owns the raffle ticket. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }
@@ -51,8 +46,7 @@ class RaffleTicket extends Model {
   /**
    * Scope a query to only include the winning tickets in order of drawing.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeWinners($query) {
     $query->whereNotNull('position')->orderBy('position');
   }
@@ -66,8 +60,7 @@ class RaffleTicket extends Model {
   /**
    * Display the ticket holder's name.
    * If the owner is not a registered user on the site, this displays the ticket holder's dA name.
-   * @return string
-   */
+   * @return string */
   public function getDisplayHolderNameAttribute() {
     if ($this->user_id) {
       return $this->user->displayName;

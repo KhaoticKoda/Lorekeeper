@@ -43,8 +43,7 @@ class CharacterManager extends Service {
   /**
    * Retrieves the next number to be used for a character's masterlist code.
    * @param  int  $categoryId
-   * @return string
-   */
+   * @return string */
   public function pullNumber($categoryId) {
     $digits = Config::get('lorekeeper.settings.character_number_digits');
     $result = str_pad('', $digits, '0'); // A default value, in case
@@ -86,8 +85,7 @@ class CharacterManager extends Service {
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isMyo
-   * @return \App\Models\Character\Character|bool
-   */
+   * @return \App\Models\Character\Character|bool */
   public function createCharacter($data, $user, $isMyo = false) {
     DB::beginTransaction();
 
@@ -211,8 +209,7 @@ class CharacterManager extends Service {
    * Handles character data.
    * @param  array                  $data
    * @param  bool                   $isMyo
-   * @return \App\Models\Character\Character|bool
-   */
+   * @return \App\Models\Character\Character|bool */
   private function handleCharacter($data, $isMyo = false) {
     try {
       if ($isMyo) {
@@ -271,8 +268,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @return \App\Models\Character\Character  $character
    * @param  bool                             $isMyo
-   * @return \App\Models\Character\CharacterImage|bool
-   */
+   * @return \App\Models\Character\CharacterImage|bool */
   private function handleCharacterImage($data, $character, $isMyo = false) {
     try {
       if ($isMyo) {
@@ -425,8 +421,7 @@ class CharacterManager extends Service {
   /**
    * Trims and optionally resizes and watermarks an image.
    *
-   * @param  \App\Models\Character\CharacterImage  $characterImage
-   */
+   * @param  \App\Models\Character\CharacterImage  $characterImage */
   private function processImage($characterImage) {
     // Trim transparent parts of image.
     $image = Image::make($characterImage->imagePath . '/' . $characterImage->imageFileName)->trim(
@@ -560,8 +555,7 @@ class CharacterManager extends Service {
   /**
    * Crops a thumbnail for the given image.
    * @param  array                                 $points
-   * @param  \App\Models\Character\CharacterImage  $characterImage
-   */
+   * @param  \App\Models\Character\CharacterImage  $characterImage */
   private function cropThumbnail($points, $characterImage, $isMyo = false) {
     $image = Image::make($characterImage->imagePath . '/' . $characterImage->imageFileName);
 
@@ -722,8 +716,7 @@ class CharacterManager extends Service {
    * @param  bool    $isUpdate
    * @param  string  $oldData
    * @param  string  $newData
-   * @return bool
-   */
+   * @return bool */
   public function createLog(
     $senderId,
     $senderUrl,
@@ -768,8 +761,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  \App\Models\Character\Character|bool
-   */
+   * @return  \App\Models\Character\Character|bool */
   public function createImage($data, $character, $user) {
     DB::beginTransaction();
 
@@ -845,8 +837,7 @@ class CharacterManager extends Service {
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateImageFeatures($data, $image, $user) {
     DB::beginTransaction();
 
@@ -925,8 +916,7 @@ class CharacterManager extends Service {
   /**
    * Generates a list of features for displaying.
    * @param  \App\Models\Character\CharacterImage  $image
-   * @return  string
-   */
+   * @return  string */
   private function generateFeatureList($image) {
     $result = '';
     foreach ($image->features as $feature) {
@@ -946,8 +936,7 @@ class CharacterManager extends Service {
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateImageNotes($data, $image, $user) {
     DB::beginTransaction();
 
@@ -987,8 +976,7 @@ class CharacterManager extends Service {
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateImageCredits($data, $image, $user) {
     DB::beginTransaction();
 
@@ -1080,8 +1068,7 @@ class CharacterManager extends Service {
   /**
    * Generates a list of image credits for displaying.
    * @param  \App\Models\Character\CharacterImage  $image
-   * @return  string
-   */
+   * @return  string */
   private function generateCredits($image) {
     $result = ['designers' => '', 'artists' => ''];
     foreach ($image->designers as $designer) {
@@ -1098,8 +1085,7 @@ class CharacterManager extends Service {
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function reuploadImage($data, $image, $user) {
     DB::beginTransaction();
 
@@ -1165,8 +1151,7 @@ class CharacterManager extends Service {
    * Deletes an image.
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function deleteImage($image, $user) {
     DB::beginTransaction();
 
@@ -1215,8 +1200,7 @@ class CharacterManager extends Service {
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateImageSettings($data, $image, $user) {
     DB::beginTransaction();
 
@@ -1253,8 +1237,7 @@ class CharacterManager extends Service {
    * Updates a character's active image.
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateActiveImage($image, $user) {
     DB::beginTransaction();
 
@@ -1294,8 +1277,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function sortImages($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1350,8 +1332,7 @@ class CharacterManager extends Service {
    * Sorts a user's characters.
    * @param  array                                 $data
    * @param  \App\Models\User\User                 $user
-   * @return  bool
-   */
+   * @return  bool */
   public function sortCharacters($data, $user) {
     DB::beginTransaction();
 
@@ -1387,8 +1368,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateCharacterStats($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1499,8 +1479,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateCharacterDescription($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1540,8 +1519,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function updateCharacterSettings($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1580,8 +1558,7 @@ class CharacterManager extends Service {
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
    * @param  bool                             $isAdmin
-   * @return  bool
-   */
+   * @return  bool */
   public function updateCharacterProfile($data, $character, $user, $isAdmin = false) {
     DB::beginTransaction();
 
@@ -1673,8 +1650,7 @@ class CharacterManager extends Service {
    * Deletes a character.
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function deleteCharacter($character, $user) {
     DB::beginTransaction();
 
@@ -1716,8 +1692,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function createTransfer($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1801,8 +1776,7 @@ class CharacterManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function adminTransfer($data, $character, $user) {
     DB::beginTransaction();
 
@@ -1895,8 +1869,7 @@ class CharacterManager extends Service {
    * Processes a character transfer.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function processTransfer($data, $user) {
     DB::beginTransaction();
 
@@ -1968,8 +1941,7 @@ class CharacterManager extends Service {
    * Cancels a character transfer.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function cancelTransfer($data, $user) {
     DB::beginTransaction();
 
@@ -2004,8 +1976,7 @@ class CharacterManager extends Service {
    * Processes a character transfer in the approvals queue.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
-   * @return  bool
-   */
+   * @return  bool */
   public function processTransferQueue($data, $user) {
     DB::beginTransaction();
 
@@ -2095,8 +2066,7 @@ class CharacterManager extends Service {
    * @param  \App\Models\User\User            $recipient
    * @param  string                           $data
    * @param  int                              $cooldown
-   * @param  string                           $logType
-   */
+   * @param  string                           $logType */
   public function moveCharacter($character, $recipient, $data, $cooldown = -1, $logType = null) {
     $sender = $character->user;
     if (!$sender) {
@@ -2184,8 +2154,7 @@ class CharacterManager extends Service {
    * Creates a character design update request (or a MYO design approval request).
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
-   * @return  \App\Models\Character\CharacterDesignUpdate|bool
-   */
+   * @return  \App\Models\Character\CharacterDesignUpdate|bool */
   public function createDesignUpdateRequest($character, $user) {
     DB::beginTransaction();
 
@@ -2250,8 +2219,7 @@ class CharacterManager extends Service {
    * Saves the comment section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
-   * @return  bool
-   */
+   * @return  bool */
   public function saveRequestComment($data, $request) {
     DB::beginTransaction();
 
@@ -2273,8 +2241,7 @@ class CharacterManager extends Service {
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  bool                                         $isAdmin
-   * @return  bool
-   */
+   * @return  bool */
   public function saveRequestImage($data, $request, $isAdmin = false) {
     DB::beginTransaction();
 
@@ -2404,8 +2371,7 @@ class CharacterManager extends Service {
    * Saves the addons section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
-   * @return  bool
-   */
+   * @return  bool */
   public function saveRequestAddons($data, $request) {
     DB::beginTransaction();
 
@@ -2536,8 +2502,7 @@ class CharacterManager extends Service {
    * Saves the character features (traits) section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
-   * @return  bool
-   */
+   * @return  bool */
   public function saveRequestFeatures($data, $request) {
     DB::beginTransaction();
 
@@ -2631,8 +2596,7 @@ class CharacterManager extends Service {
   /**
    * Submit a character design update request to the approval queue.
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
-   * @return  bool
-   */
+   * @return  bool */
   public function submitRequest($request) {
     DB::beginTransaction();
 
@@ -2666,8 +2630,7 @@ class CharacterManager extends Service {
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
-   * @return  bool
-   */
+   * @return  bool */
   public function approveRequest($data, $request, $user) {
     DB::beginTransaction();
 
@@ -2971,8 +2934,7 @@ class CharacterManager extends Service {
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
    * @param  bool                                         $forceReject
-   * @return  bool
-   */
+   * @return  bool */
   public function rejectRequest(
     $data,
     $request,
@@ -3079,8 +3041,7 @@ class CharacterManager extends Service {
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
-   * @return  bool
-   */
+   * @return  bool */
   public function cancelRequest($data, $request, $user) {
     DB::beginTransaction();
 
@@ -3120,8 +3081,7 @@ class CharacterManager extends Service {
   /**
    * Deletes a character design update request.
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
-   * @return  bool
-   */
+   * @return  bool */
   public function deleteRequest($request) {
     DB::beginTransaction();
 
@@ -3211,8 +3171,7 @@ class CharacterManager extends Service {
    * @param  string                                       $action
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
-   * @return  bool
-   */
+   * @return  bool */
   public function voteRequest($action, $request, $user) {
     DB::beginTransaction();
 

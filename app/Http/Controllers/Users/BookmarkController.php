@@ -22,8 +22,7 @@ class BookmarkController extends Controller {
   /**
    * Shows the bookmarks page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBookmarks(Request $request) {
     $query = CharacterBookmark::join(
       'characters',
@@ -91,8 +90,7 @@ class BookmarkController extends Controller {
 
   /**
    * Gets the bookmark creation modal.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateBookmark() {
     return view('account.bookmarks._create_edit_bookmark', [
       'bookmark' => new CharacterBookmark()
@@ -102,8 +100,7 @@ class BookmarkController extends Controller {
   /**
    * Gets the bookmark editing modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditBookmark($id) {
     $bookmark = CharacterBookmark::with('character')
       ->where('id', $id)
@@ -122,8 +119,7 @@ class BookmarkController extends Controller {
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\BookmarkManager  $service
    * @param  int|null                      $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditBookmark(Request $request, BookmarkManager $service, $id = null) {
     $id
       ? $request->validate(CharacterBookmark::$updateRules)
@@ -153,8 +149,7 @@ class BookmarkController extends Controller {
   /**
    * Gets the bookmark deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteBookmark($id) {
     $bookmark = CharacterBookmark::with('character')
       ->where('id', $id)
@@ -173,8 +168,7 @@ class BookmarkController extends Controller {
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\BookmarkManager  $service
    * @param  int                           $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteBookmark(Request $request, BookmarkManager $service, $id) {
     if ($id && $service->deleteBookmark(['bookmark_id' => $id], Auth::user())) {
       flash('Bookmark deleted successfully.')->success();

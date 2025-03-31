@@ -22,8 +22,7 @@ class ExtensionService extends Service {
    * Should be called with a command instructing it
    * in what notifications to move where.
    * @param  $data
-   * @return bool
-   */
+   * @return bool */
   public function updateNotifications($source, $destination) {
     $count = Notification::where('notification_type_id', $source)->count();
     if ($count && isset($destination)) {

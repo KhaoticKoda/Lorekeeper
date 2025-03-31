@@ -22,8 +22,7 @@ class HomeController extends Controller {
 
   /**
    * Shows the homepage.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('welcome', [
       'about' => SitePage::where('key', 'about')->first()
@@ -32,8 +31,7 @@ class HomeController extends Controller {
 
   /**
    * Shows the account linking page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getLink(Request $request) {
     // If the user already has a username associated with their account, redirect them
     if (Auth::check() && Auth::user()->hasAlias) {
@@ -46,8 +44,7 @@ class HomeController extends Controller {
 
   /**
    * Redirects to the appropriate provider.
-   * @param string $provider
-   */
+   * @param string $provider */
   public function getAuthRedirect(LinkService $service, $provider) {
     if (!$this->checkProvider($provider, Auth::user())) {
       flash($this->error)->error();
@@ -61,8 +58,7 @@ class HomeController extends Controller {
 
   /**
    * Redirects to the appropriate provider.
-   * @param string $provider
-   */
+   * @param string $provider */
   public function getAuthCallback(LinkService $service, $provider) {
     if (!$this->checkProvider($provider, Auth::user())) {
       flash($this->error)->error();
@@ -95,8 +91,7 @@ class HomeController extends Controller {
 
   /**
    * Shows the birthdaying page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBirthday(Request $request) {
     // If the user already has a username associated with their account, redirect them
     if (Auth::check() && Auth::user()->birthday) {
@@ -109,8 +104,7 @@ class HomeController extends Controller {
 
   /**
    * Posts the birthdaying page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function postBirthday(Request $request) {
     $service = new UserService();
     // Make birthday into format we can store
@@ -133,8 +127,7 @@ class HomeController extends Controller {
 
   /**
    * Shows the birthdaying page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBirthdayBlocked(Request $request) {
     // If the user already has a username associated with their account, redirect them
     if (Auth::check() && Auth::user()->checkBirthday) {

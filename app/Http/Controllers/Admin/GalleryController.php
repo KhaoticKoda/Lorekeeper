@@ -19,8 +19,7 @@ class GalleryController extends Controller {
   /**
    * Shows the submission index page.
    * @param  string  $status
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionIndex(Request $request, $status = null) {
     $submissions = GallerySubmission::collaboratorApproved()->where(
       'status',
@@ -46,8 +45,7 @@ class GalleryController extends Controller {
   /**
    * Shows the index of submissions in the context of currency rewards.
    * @param  string  $status
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCurrencyIndex(Request $request, $status = null) {
     $submissions = GallerySubmission::requiresAward()->where(
       'is_valued',
@@ -77,8 +75,7 @@ class GalleryController extends Controller {
    * @param  App\Services\GalleryManager    $service
    * @param  int                            $id
    * @param  string                         $action
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditSubmission(Request $request, GalleryManager $service, $id, $action) {
     if (!$id) {
       flash('Invalid submission selected.')->error();
@@ -116,8 +113,7 @@ class GalleryController extends Controller {
    * @param  string                         $action
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\GalleryManager    $service
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   private function postVote($id, GalleryManager $service, $action) {
     $submission = GallerySubmission::where('id', $id)->where('status', 'Pending')->first();
     if (!$submission) {
@@ -141,8 +137,7 @@ class GalleryController extends Controller {
    * @param  int                             $id
    * @param  string                          $data
    * @param  App\Services\GalleryManager     $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postStaffComments($id, $data, GalleryManager $service) {
     if ($service->postStaffComments($id, $data, Auth::user())) {
       flash('Comments updated succesfully.')->success();
@@ -159,8 +154,7 @@ class GalleryController extends Controller {
    * @param  int                             $id
    * @param  string                          $data
    * @param  App\Services\GalleryManager     $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postValue($id, $data, GalleryManager $service) {
     if ($service->postValueSubmission($id, $data, Auth::user())) {
       flash('Submission evaluated succesfully.')->success();

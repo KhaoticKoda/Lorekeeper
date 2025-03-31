@@ -12,7 +12,6 @@ class Controller extends BaseController {
 
   /**
    * Creates a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {}
 }

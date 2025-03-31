@@ -21,8 +21,7 @@ class SpeciesService extends Service {
    * Creates a new species.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Species\Species
-   */
+   * @return bool|\App\Models\Species\Species */
   public function createSpecies($data, $user) {
     DB::beginTransaction();
 
@@ -56,8 +55,7 @@ class SpeciesService extends Service {
    * @param  \App\Models\Species\Species  $species
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
-   * @return bool|\App\Models\Species\Species
-   */
+   * @return bool|\App\Models\Species\Species */
   public function updateSpecies($species, $data, $user) {
     DB::beginTransaction();
 
@@ -93,8 +91,7 @@ class SpeciesService extends Service {
    * Processes user input for creating/updating a species.
    * @param  array                        $data
    * @param  \App\Models\Species\Species  $species
-   * @return array
-   */
+   * @return array */
   private function populateData($data, $species = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -114,8 +111,7 @@ class SpeciesService extends Service {
   /**
    * Deletes a species.
    * @param  \App\Models\Species\Species  $species
-   * @return bool
-   */
+   * @return bool */
   public function deleteSpecies($species) {
     DB::beginTransaction();
 
@@ -142,8 +138,7 @@ class SpeciesService extends Service {
   /**
    * Sorts species order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortSpecies($data) {
     DB::beginTransaction();
 
@@ -166,8 +161,7 @@ class SpeciesService extends Service {
    * Creates a new subtype.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Species\Subtype
-   */
+   * @return bool|\App\Models\Species\Subtype */
   public function createSubtype($data, $user) {
     DB::beginTransaction();
 
@@ -201,8 +195,7 @@ class SpeciesService extends Service {
    * @param  \App\Models\Species\Subtype  $subtype
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
-   * @return bool|\App\Models\Species\Subtype
-   */
+   * @return bool|\App\Models\Species\Subtype */
   public function updateSubtype($subtype, $data, $user) {
     DB::beginTransaction();
 
@@ -233,8 +226,7 @@ class SpeciesService extends Service {
    * Processes user input for creating/updating a subtype.
    * @param  array                        $data
    * @param  \App\Models\Species\Subtype  $subtype
-   * @return array
-   */
+   * @return array */
   private function populateSubtypeData($data, $subtype = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -254,8 +246,7 @@ class SpeciesService extends Service {
   /**
    * Deletes a subtype.
    * @param  \App\Models\Species\Subtype  $subtype
-   * @return bool
-   */
+   * @return bool */
   public function deleteSubtype($subtype) {
     DB::beginTransaction();
 
@@ -282,8 +273,7 @@ class SpeciesService extends Service {
   /**
    * Sorts subtype order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortSubtypes($data) {
     DB::beginTransaction();
 

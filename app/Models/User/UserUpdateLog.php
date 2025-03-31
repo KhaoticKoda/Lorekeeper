@@ -7,26 +7,22 @@ use App\Models\Model;
 class UserUpdateLog extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['staff_id', 'user_id', 'data', 'type'];
 
   /**
    * The primary key of the model.
-   * @var string
-   */
+   * @var string */
   public $primaryKey = 'user_id';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'user_update_log';
 
   /**********************************************************************************************
@@ -36,15 +32,13 @@ class UserUpdateLog extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the staff who updated the user.
-   */
+   * Get the staff who updated the user. */
   public function staff() {
     return $this->belongsTo('App\Models\User\User', 'staff_id');
   }
 
   /**
-   * Get the user that was updated.
-   */
+   * Get the user that was updated. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
@@ -57,8 +51,7 @@ class UserUpdateLog extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return array
-   */
+   * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }

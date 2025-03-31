@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSubMasterlist extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('character_categories', function (Blueprint $table) {
       //adds a setting on character categories which moves those characters to a second masterlist
@@ -37,8 +36,7 @@ class AddSubMasterlist extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('character_categories', function (Blueprint $table) {
       //

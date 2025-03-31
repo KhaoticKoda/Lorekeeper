@@ -34,8 +34,7 @@ class UserService extends Service {
   /**
    * Create a user.
    * @param  array  $data
-   * @return \App\Models\User\User
-   */
+   * @return \App\Models\User\User */
   public function createUser($data) {
     // If the rank is not given, create a user with the lowest existing rank.
     if (!isset($data['rank_id'])) {
@@ -66,8 +65,7 @@ class UserService extends Service {
   /**
    * Updates a user. Used in modifying the admin user on the command line.
    * @param  array  $data
-   * @return \App\Models\User\User
-   */
+   * @return \App\Models\User\User */
   public function updateUser($data) {
     $user = User::find($data['id']);
     if (isset($data['password'])) {
@@ -84,8 +82,7 @@ class UserService extends Service {
    * Updates the user's password.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function updatePassword($data, $user) {
     DB::beginTransaction();
 
@@ -111,8 +108,7 @@ class UserService extends Service {
    * Updates the user's email and resends a verification email.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function updateEmail($data, $user) {
     $user->email = $data['email'];
     $user->email_verified_at = null;
@@ -124,8 +120,7 @@ class UserService extends Service {
   }
 
   /**
-   * Updates user's birthday
-   */
+   * Updates user's birthday */
   public function updateBirthday($data, $user) {
     $user->birthday = $data;
     $user->save();
@@ -134,8 +129,7 @@ class UserService extends Service {
   }
 
   /**
-   * Updates user's birthday setting
-   */
+   * Updates user's birthday setting */
   public function updateDOB($data, $user) {
     $user->settings->birthday_setting = $data;
     $user->settings->save();
@@ -147,8 +141,7 @@ class UserService extends Service {
    * Updates the user's avatar.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool
-   */
+   * @return bool */
   public function updateAvatar($avatar, $user) {
     DB::beginTransaction();
 
@@ -205,8 +198,7 @@ class UserService extends Service {
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  \App\Models\User\User  $staff
-   * @return bool
-   */
+   * @return bool */
   public function ban($data, $user, $staff) {
     DB::beginTransaction();
 
@@ -336,8 +328,7 @@ class UserService extends Service {
    * Unbans a user.
    * @param  \App\Models\User\User  $user
    * @param  \App\Models\User\User  $staff
-   * @return bool
-   */
+   * @return bool */
   public function unban($user, $staff) {
     DB::beginTransaction();
 

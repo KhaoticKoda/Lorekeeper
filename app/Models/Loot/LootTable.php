@@ -10,20 +10,17 @@ use App\Models\Model;
 class LootTable extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['name', 'display_name'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'loot_tables';
 
   /**
    * Validation rules for creation.
-   * @var array
-   */
+   * @var array */
   public static $createRules = [
     'name' => 'required',
     'display_name' => 'required'
@@ -31,8 +28,7 @@ class LootTable extends Model {
 
   /**
    * Validation rules for updating.
-   * @var array
-   */
+   * @var array */
   public static $updateRules = [
     'name' => 'required',
     'display_name' => 'required'
@@ -45,8 +41,7 @@ class LootTable extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the loot data for this loot table.
-   */
+   * Get the loot data for this loot table. */
   public function loot() {
     return $this->hasMany('App\Models\Loot\Loot', 'loot_table_id');
   }
@@ -59,8 +54,7 @@ class LootTable extends Model {
 
   /**
    * Displays the model's name, linked to its encyclopedia page.
-   * @return string
-   */
+   * @return string */
   public function getDisplayNameAttribute() {
     return '<span class="display-loot">' .
       $this->attributes['display_name'] .
@@ -70,8 +64,7 @@ class LootTable extends Model {
 
   /**
    * Gets the loot table's asset type for asset management.
-   * @return string
-   */
+   * @return string */
   public function getAssetTypeAttribute() {
     return 'loot_tables';
   }
@@ -85,8 +78,7 @@ class LootTable extends Model {
   /**
    * Rolls on the loot table and consolidates the rewards.
    * @param  int  $quantity
-   * @return \Illuminate\Support\Collection
-   */
+   * @return \Illuminate\Support\Collection */
   public function roll($quantity = 1) {
     $rewards = createAssetsArray();
 
@@ -154,8 +146,7 @@ class LootTable extends Model {
    * @param  int    $quantity
    * @param  string $condition
    * @param  string $rarity
-   * @return \Illuminate\Support\Collection
-   */
+   * @return \Illuminate\Support\Collection */
   public function rollCategory($id, $quantity = 1, $criteria = null, $rarity = null) {
     $rewards = createAssetsArray();
 
@@ -201,8 +192,7 @@ class LootTable extends Model {
    * @param  int    $quantity
    * @param  string $condition
    * @param  string $rarity
-   * @return \Illuminate\Support\Collection
-   */
+   * @return \Illuminate\Support\Collection */
   public function rollRarityItem($quantity = 1, $criteria, $rarity) {
     $rewards = createAssetsArray();
 

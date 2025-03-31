@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSecureTrades extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('trades', function (Blueprint $table) {
@@ -43,8 +42,7 @@ class AddSecureTrades extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('characters', function (Blueprint $table) {

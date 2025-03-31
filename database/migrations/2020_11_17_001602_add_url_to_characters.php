@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddUrlToCharacters extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('characters', function (Blueprint $table) {
       // Create a column to house owner URL
@@ -23,8 +22,7 @@ class AddUrlToCharacters extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('characters', function (Blueprint $table) {
       //

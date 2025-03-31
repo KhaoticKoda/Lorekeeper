@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddShopPurchaseLimits extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('shop_stock', function (Blueprint $table) {
@@ -18,8 +17,7 @@ class AddShopPurchaseLimits extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('shop_stock', function (Blueprint $table) {

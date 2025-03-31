@@ -36,8 +36,7 @@ class CommentController extends Controller implements CommentControllerInterface
   }
 
   /**
-   * Creates a new comment for given model.
-   */
+   * Creates a new comment for given model. */
   public function store(Request $request) {
     // If guest commenting is turned off, authorize this action.
     if (Config::get('comments.guest_commenting') == false) {
@@ -154,8 +153,7 @@ class CommentController extends Controller implements CommentControllerInterface
   }
 
   /**
-   * Updates the message of the comment.
-   */
+   * Updates the message of the comment. */
   public function update(Request $request, Comment $comment) {
     Gate::authorize('edit-comment', $comment);
 
@@ -171,8 +169,7 @@ class CommentController extends Controller implements CommentControllerInterface
   }
 
   /**
-   * Deletes a comment.
-   */
+   * Deletes a comment. */
   public function destroy(Comment $comment) {
     Gate::authorize('delete-comment', $comment);
 
@@ -186,8 +183,7 @@ class CommentController extends Controller implements CommentControllerInterface
   }
 
   /**
-   * Creates a reply "comment" to a comment.
-   */
+   * Creates a reply "comment" to a comment. */
   public function reply(Request $request, Comment $comment) {
     Gate::authorize('reply-to-comment', $comment);
 
@@ -223,8 +219,7 @@ class CommentController extends Controller implements CommentControllerInterface
   }
 
   /**
-   * Is featured for comments
-   */
+   * Is featured for comments */
   public function feature($id) {
     $comment = Comment::find($id);
     if ($comment->is_featured == 0) {

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddBookmarks extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('character_bookmarks', function (Blueprint $table) {
@@ -29,8 +28,7 @@ class AddBookmarks extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('character_bookmarks');

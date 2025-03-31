@@ -20,8 +20,7 @@ class GalleryService extends Service {
    * Creates a new gallery.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Gallery
-   */
+   * @return bool|\App\Models\Gallery */
   public function createGallery($data, $user) {
     DB::beginTransaction();
 
@@ -56,8 +55,7 @@ class GalleryService extends Service {
    * @param  \App\Models\Gallery    $gallery
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Gallery
-   */
+   * @return bool|\App\Models\Gallery */
   public function updateGallery($gallery, $data, $user) {
     DB::beginTransaction();
 
@@ -95,8 +93,7 @@ class GalleryService extends Service {
   /**
    * Deletes a gallery.
    * @param  \App\Models\Gallery  $gallery
-   * @return bool
-   */
+   * @return bool */
   public function deleteGallery($gallery) {
     DB::beginTransaction();
 

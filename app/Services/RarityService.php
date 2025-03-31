@@ -21,8 +21,7 @@ class RarityService extends Service {
    * Creates a new rarity.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Rarity
-   */
+   * @return bool|\App\Models\Rarity */
   public function createRarity($data, $user) {
     DB::beginTransaction();
 
@@ -56,8 +55,7 @@ class RarityService extends Service {
    * @param  \App\Models\Rarity     $rarity
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Rarity
-   */
+   * @return bool|\App\Models\Rarity */
   public function updateRarity($rarity, $data, $user) {
     DB::beginTransaction();
 
@@ -93,8 +91,7 @@ class RarityService extends Service {
    * Processes user input for creating/updating a rarity.
    * @param  array               $data
    * @param  \App\Models\Rarity  $rarity
-   * @return array
-   */
+   * @return array */
   private function populateData($data, $rarity = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -118,8 +115,7 @@ class RarityService extends Service {
   /**
    * Deletes a rarity.
    * @param  \App\Models\Rarity  $rarity
-   * @return bool
-   */
+   * @return bool */
   public function deleteRarity($rarity) {
     DB::beginTransaction();
 
@@ -149,8 +145,7 @@ class RarityService extends Service {
   /**
    * Sorts rarity order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortRarity($data) {
     DB::beginTransaction();
 

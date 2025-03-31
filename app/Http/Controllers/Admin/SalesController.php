@@ -16,8 +16,7 @@ use App\Http\Controllers\Controller;
 class SalesController extends Controller {
   /**
    * Shows the Sales index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.sales.sales', [
       'saleses' => Sales::orderBy('post_at', 'DESC')->paginate(20)
@@ -26,8 +25,7 @@ class SalesController extends Controller {
 
   /**
    * Shows the create Sales page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSales() {
     return view('admin.sales.create_edit_sales', [
       'sales' => new Sales()
@@ -37,8 +35,7 @@ class SalesController extends Controller {
   /**
    * Shows the edit Sales page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSales($id) {
     $sales = Sales::find($id);
     if (!$sales) {
@@ -52,8 +49,7 @@ class SalesController extends Controller {
   /**
    * Shows character information.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterInfo($slug) {
     $character = Character::visible()->where('slug', $slug)->first();
 
@@ -67,8 +63,7 @@ class SalesController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\SalesService  $service
    * @param  int|null                  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditSales(Request $request, SalesService $service, $id = null) {
     $id ? $request->validate(Sales::$updateRules) : $request->validate(Sales::$createRules);
     $data = $request->only([
@@ -109,8 +104,7 @@ class SalesController extends Controller {
   /**
    * Gets the Sales deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSales($id) {
     $sales = Sales::find($id);
     return view('admin.sales._delete_sales', [
@@ -123,8 +117,7 @@ class SalesController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\SalesService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteSales(Request $request, SalesService $service, $id) {
     if ($id && $service->deleteSales(Sales::find($id))) {
       flash('Sales deleted successfully.')->success();

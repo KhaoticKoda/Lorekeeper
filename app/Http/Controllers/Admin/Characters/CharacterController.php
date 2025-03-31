@@ -37,16 +37,14 @@ class CharacterController extends Controller {
    * Gets the next number for a character in a category.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
-   * @return string
-   */
+   * @return string */
   public function getPullNumber(Request $request, CharacterManager $service) {
     return $service->pullNumber($request->get('category'));
   }
 
   /**
    * Shows the create character page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacter() {
     return view('admin.masterlist.create_character', [
       'categories' => CharacterCategory::orderBy('sort')->get(),
@@ -64,8 +62,7 @@ class CharacterController extends Controller {
 
   /**
    * Shows the create MYO slot page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateMyo() {
     return view('admin.masterlist.create_character', [
       'userOptions' => User::query()->orderBy('name')->pluck('name', 'id')->toArray(),
@@ -83,8 +80,7 @@ class CharacterController extends Controller {
   /**
    * Shows the edit image subtype portion of the modal
    * @param  Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacterMyoSubtype(Request $request) {
     $species = $request->input('species');
     return view('admin.masterlist._create_character_subtype', [
@@ -102,8 +98,7 @@ class CharacterController extends Controller {
    * Creates a character.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateCharacter(Request $request, CharacterManager $service) {
     $request->validate(Character::$createRules);
     $data = $request->only([
@@ -152,8 +147,7 @@ class CharacterController extends Controller {
    * Creates an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateMyo(Request $request, CharacterManager $service) {
     $request->validate(Character::$myoRules);
     $data = $request->only([
@@ -198,8 +192,7 @@ class CharacterController extends Controller {
   /**
    * Shows the edit character stats modal.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterStats($slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -221,8 +214,7 @@ class CharacterController extends Controller {
   /**
    * Shows the edit MYO stats modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditMyoStats($id) {
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
     if (!$this->character) {
@@ -241,8 +233,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditCharacterStats(Request $request, CharacterManager $service, $slug) {
     $request->validate(Character::$updateRules);
     $data = $request->only([
@@ -275,8 +266,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditMyoStats(Request $request, CharacterManager $service, $id) {
     $request->validate(Character::$myoRules);
     $data = $request->only([
@@ -305,8 +295,7 @@ class CharacterController extends Controller {
   /**
    * Shows the edit character description modal.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterDescription($slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -322,8 +311,7 @@ class CharacterController extends Controller {
   /**
    * Shows the edit MYO slot description modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditMyoDescription($id) {
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
     if (!$this->character) {
@@ -341,8 +329,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditCharacterDescription(Request $request, CharacterManager $service, $slug) {
     $data = $request->only(['description']);
     $this->character = Character::where('slug', $slug)->first();
@@ -365,8 +352,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditMyoDescription(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['description']);
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
@@ -389,8 +375,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCharacterSettings(Request $request, CharacterManager $service, $slug) {
     $data = $request->only(['is_visible']);
     $this->character = Character::where('slug', $slug)->first();
@@ -413,8 +398,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postMyoSettings(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['is_visible']);
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
@@ -435,8 +419,7 @@ class CharacterController extends Controller {
   /**
    * Shows the delete character modal.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterDelete($slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -452,8 +435,7 @@ class CharacterController extends Controller {
   /**
    * Shows the delete MYO slot modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyoDelete($id) {
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
     if (!$this->character) {
@@ -471,8 +453,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCharacterDelete(Request $request, CharacterManager $service, $slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -495,8 +476,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postMyoDelete(Request $request, CharacterManager $service, $id) {
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
     if (!$this->character) {
@@ -519,8 +499,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postTransfer(Request $request, CharacterManager $service, $slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -548,8 +527,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postMyoTransfer(Request $request, CharacterManager $service, $id) {
     $this->character = Character::where('is_myo_slot', 1)->where('id', $id)->first();
     if (!$this->character) {
@@ -575,8 +553,7 @@ class CharacterController extends Controller {
   /**
    * Shows the character transfer queue.
    * @param  string  $type
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTransferQueue($type) {
     $transfers = CharacterTransfer::query();
     $user = Auth::user();
@@ -606,8 +583,7 @@ class CharacterController extends Controller {
    * Shows the character transfer action modal.
    * @param  int     $id
    * @param  string  $action
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTransferModal($id, $action) {
     if ($action != 'approve' && $action != 'reject') {
       abort(404);
@@ -628,8 +604,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postTransferQueue(Request $request, CharacterManager $service, $id) {
     if (!Auth::check()) {
       abort(404);
@@ -659,8 +634,7 @@ class CharacterController extends Controller {
   /**
    * Shows the character trade queue.
    * @param  string  $type
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTradeQueue($type) {
     $trades = Trade::query();
     $user = Auth::user();
@@ -708,8 +682,7 @@ class CharacterController extends Controller {
    * Shows the character trade action modal.
    * @param  int     $id
    * @param  string  $action
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTradeModal($id, $action) {
     if ($action != 'approve' && $action != 'reject') {
       abort(404);
@@ -730,8 +703,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postTradeQueue(Request $request, TradeManager $service, $id) {
     if (!Auth::check()) {
       abort(404);
@@ -758,8 +730,7 @@ class CharacterController extends Controller {
 
   /**
    * Shows a list of all existing MYO slots.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyoIndex() {
     return view('admin.masterlist.myo_index', [
       'slots' => Character::myo(1)->orderBy('id', 'DESC')->paginate(30)

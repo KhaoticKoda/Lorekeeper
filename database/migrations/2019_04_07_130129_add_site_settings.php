@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSiteSettings extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('site_settings', function (Blueprint $table) {
@@ -32,8 +31,7 @@ class AddSiteSettings extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('site_pages');

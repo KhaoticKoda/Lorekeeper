@@ -23,8 +23,7 @@ class SalesService extends Service {
    * Creates a Sales post.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Sales\Sales
-   */
+   * @return bool|\App\Models\Sales\Sales */
   public function createSales($data, $user) {
     DB::beginTransaction();
 
@@ -72,8 +71,7 @@ class SalesService extends Service {
    * @param  \App\Models\Sales\Sales       $Sales
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Sales\Sales
-   */
+   * @return bool|\App\Models\Sales\Sales */
   public function updateSales($sales, $data, $user) {
     DB::beginTransaction();
 
@@ -121,8 +119,7 @@ class SalesService extends Service {
    * Processes sales data entered for characters.
    * @param  App\Models\Sales\Sales                   $sales
    * @param  array                                    $data
-   * @return bool
-   */
+   * @return bool */
   private function processCharacters($sales, $data) {
     foreach ($data['slug'] as $key => $slug) {
       $character = Character::myo(0)->visible()->where('slug', $slug)->first();
@@ -202,8 +199,7 @@ class SalesService extends Service {
   /**
    * Deletes a Sales post.
    * @param  \App\Models\Sales\Sales  $Sales
-   * @return bool
-   */
+   * @return bool */
   public function deleteSales($sales) {
     DB::beginTransaction();
 
@@ -220,8 +216,7 @@ class SalesService extends Service {
   /**
    * Updates queued Sales posts to be visible and alert users when
    * they should be posted.
-   * @return bool
-   */
+   * @return bool */
   public function updateQueue() {
     $count = Sales::shouldBeVisible()->count();
     if ($count) {
@@ -242,8 +237,7 @@ class SalesService extends Service {
   /**
    * Updates the unread Sales flag for all users so that
    * the new Sales notification is displayed.
-   * @return bool
-   */
+   * @return bool */
   private function alertUsers() {
     User::query()->update(['is_sales_unread' => 1]);
     return true;

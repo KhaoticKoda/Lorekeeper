@@ -27,8 +27,7 @@ class PromptController extends Controller {
 
   /**
    * Shows the prompt category index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.prompts.prompt_categories', [
       'categories' => PromptCategory::orderBy('sort', 'DESC')->get()
@@ -37,8 +36,7 @@ class PromptController extends Controller {
 
   /**
    * Shows the create prompt category page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreatePromptCategory() {
     return view('admin.prompts.create_edit_prompt_category', [
       'category' => new PromptCategory()
@@ -48,8 +46,7 @@ class PromptController extends Controller {
   /**
    * Shows the edit prompt category page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditPromptCategory($id) {
     $category = PromptCategory::find($id);
     if (!$category) {
@@ -65,8 +62,7 @@ class PromptController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int|null                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditPromptCategory(
     Request $request,
     PromptService $service,
@@ -92,8 +88,7 @@ class PromptController extends Controller {
   /**
    * Gets the prompt category deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeletePromptCategory($id) {
     $category = PromptCategory::find($id);
     return view('admin.prompts._delete_prompt_category', [
@@ -106,8 +101,7 @@ class PromptController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeletePromptCategory(Request $request, PromptService $service, $id) {
     if ($id && $service->deletePromptCategory(PromptCategory::find($id))) {
       flash('Category deleted successfully.')->success();
@@ -123,8 +117,7 @@ class PromptController extends Controller {
    * Sorts prompt categories.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortPromptCategory(Request $request, PromptService $service) {
     if ($service->sortPromptCategory($request->get('sort'))) {
       flash('Category order updated successfully.')->success();
@@ -145,8 +138,7 @@ class PromptController extends Controller {
   /**
    * Shows the prompt category index.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptIndex(Request $request) {
     $query = Prompt::query();
     $data = $request->only(['prompt_category_id', 'name']);
@@ -166,8 +158,7 @@ class PromptController extends Controller {
 
   /**
    * Shows the create prompt page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreatePrompt() {
     return view('admin.prompts.create_edit_prompt', [
       'prompt' => new Prompt(),
@@ -187,8 +178,7 @@ class PromptController extends Controller {
   /**
    * Shows the edit prompt page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditPrompt($id) {
     $prompt = Prompt::find($id);
     if (!$prompt) {
@@ -214,8 +204,7 @@ class PromptController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int|null                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditPrompt(Request $request, PromptService $service, $id = null) {
     $id ? $request->validate(Prompt::$updateRules) : $request->validate(Prompt::$createRules);
     $data = $request->only([
@@ -252,8 +241,7 @@ class PromptController extends Controller {
   /**
    * Gets the prompt deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeletePrompt($id) {
     $prompt = Prompt::find($id);
     return view('admin.prompts._delete_prompt', [
@@ -266,8 +254,7 @@ class PromptController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeletePrompt(Request $request, PromptService $service, $id) {
     if ($id && $service->deletePrompt(Prompt::find($id))) {
       flash('Prompt deleted successfully.')->success();

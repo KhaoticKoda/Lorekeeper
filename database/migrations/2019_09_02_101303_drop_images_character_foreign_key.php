@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class DropImagesCharacterForeignKey extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Since we're using this table for both character images and design updates,
     // we need to get rid of this foreign key for it to work with design updates
@@ -19,8 +18,7 @@ class DropImagesCharacterForeignKey extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_image_creators', function (Blueprint $table) {

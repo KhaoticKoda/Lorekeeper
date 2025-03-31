@@ -19,28 +19,24 @@ use App\Models\Item\Item;
 class MigrateAliases extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'migrate-aliases {--drop-columns : Whether the alias columns should be dropped after moving data from them}';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Migrates alias information associated with users, characters, and character image creators to the new storage system.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     $this->info('*****************************');
     $this->info('* MIGRATE ALIAS INFORMATION *');

@@ -27,8 +27,7 @@ class ShopController extends Controller {
 
   /**
    * Shows the shop index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('shops.index', [
       'shops' => Shop::where('is_active', 1)->orderBy('sort', 'DESC')->get()
@@ -38,8 +37,7 @@ class ShopController extends Controller {
   /**
    * Shows a shop.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getShop($id) {
     $categories = ItemCategory::orderBy('sort', 'DESC')->get();
     $shop = Shop::where('id', $id)->where('is_active', 1)->first();
@@ -75,8 +73,7 @@ class ShopController extends Controller {
    * @param  App\Services\ShopManager  $service
    * @param  int                       $id
    * @param  int                       $stockId
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getShopStock(ShopManager $service, $id, $stockId) {
     $shop = Shop::where('id', $id)->where('is_active', 1)->first();
     $stock = ShopStock::with('item')->where('id', $stockId)->where('shop_id', $id)->first();
@@ -112,8 +109,7 @@ class ShopController extends Controller {
    * Buys an item from a shop.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ShopManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postBuy(Request $request, ShopManager $service) {
     $request->validate(ShopLog::$createRules);
     if (
@@ -133,8 +129,7 @@ class ShopController extends Controller {
 
   /**
    * Shows the user's purchase history.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPurchaseHistory() {
     return view('shops.purchase_history', [
       'logs' => Auth::user()->getShopLogs(0),

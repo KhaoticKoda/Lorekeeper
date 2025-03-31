@@ -16,8 +16,7 @@ class LinkService extends Service {
 
   /**
    * Get the Auth URL for dA.
-   * @return string
-   */
+   * @return string */
   public function getAuthRedirect($provider) {
     if ($provider == 'deviantart') {
       return Socialite::driver($provider)
@@ -31,8 +30,7 @@ class LinkService extends Service {
   /**
    * Link the user's social media account name to their account
    *
-   * @param  \App\Models\User\User  $user
-   */
+   * @param  \App\Models\User\User  $user */
   public function saveProvider($provider, $result, $user) {
     DB::beginTransaction();
 
@@ -81,8 +79,7 @@ class LinkService extends Service {
   /**
    * Makes the selected alias the user's primary alias.
    *
-   * @param  \App\Models\User\User  $user
-   */
+   * @param  \App\Models\User\User  $user */
   public function makePrimary($aliasId, $user) {
     DB::beginTransaction();
 
@@ -125,8 +122,7 @@ class LinkService extends Service {
   /**
    * Hides or unhides the selected alias.
    *
-   * @param  \App\Models\User\User  $user
-   */
+   * @param  \App\Models\User\User  $user */
   public function hideAlias($aliasId, $user) {
     DB::beginTransaction();
 
@@ -160,8 +156,7 @@ class LinkService extends Service {
   /**
    * Removes the selected alias.
    *
-   * @param  \App\Models\User\User  $user
-   */
+   * @param  \App\Models\User\User  $user */
   public function removeAlias($aliasId, $user) {
     DB::beginTransaction();
 

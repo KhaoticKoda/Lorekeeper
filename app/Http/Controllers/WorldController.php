@@ -31,8 +31,7 @@ class WorldController extends Controller {
 
   /**
    * Shows the index page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('world.index');
   }
@@ -40,8 +39,7 @@ class WorldController extends Controller {
   /**
    * Shows the currency page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCurrencies(Request $request) {
     $query = Currency::query();
     $name = $request->get('name');
@@ -58,8 +56,7 @@ class WorldController extends Controller {
   /**
    * Shows the rarity page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRarities(Request $request) {
     $query = Rarity::query();
     $name = $request->get('name');
@@ -74,8 +71,7 @@ class WorldController extends Controller {
   /**
    * Shows the species page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSpecieses(Request $request) {
     $query = Species::query();
     $name = $request->get('name');
@@ -98,8 +94,7 @@ class WorldController extends Controller {
   /**
    * Shows the subtypes page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubtypes(Request $request) {
     $query = Subtype::query();
     $name = $request->get('name');
@@ -118,8 +113,7 @@ class WorldController extends Controller {
   /**
    * Shows the item categories page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemCategories(Request $request) {
     $query = ItemCategory::query();
     $name = $request->get('name');
@@ -134,8 +128,7 @@ class WorldController extends Controller {
   /**
    * Shows the trait categories page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatureCategories(Request $request) {
     $query = FeatureCategory::query();
     $name = $request->get('name');
@@ -150,8 +143,7 @@ class WorldController extends Controller {
   /**
    * Shows the traits page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatures(Request $request) {
     $query = Feature::with('category')->with('rarity')->with('species');
     $data = $request->only(['rarity_id', 'feature_category_id', 'species_id', 'name', 'sort']);
@@ -215,8 +207,7 @@ class WorldController extends Controller {
   /**
    * Shows a species' visual trait list.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSpeciesFeatures($id) {
     $categories = FeatureCategory::orderBy('sort', 'DESC')->get();
     $rarities = Rarity::orderBy('sort', 'ASC')->get();
@@ -258,8 +249,7 @@ class WorldController extends Controller {
   /**
    * Shows the items page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItems(Request $request) {
     $query = Item::with('category')->released();
     $data = $request->only(['item_category_id', 'name', 'sort', 'artist']);
@@ -312,8 +302,7 @@ class WorldController extends Controller {
   /**
    * Shows an individual item's page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItem($id) {
     $categories = ItemCategory::orderBy('sort', 'DESC')->get();
     $item = Item::where('id', $id)->released()->first();
@@ -339,8 +328,7 @@ class WorldController extends Controller {
   /**
    * Shows the character categories page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterCategories(Request $request) {
     $query = CharacterCategory::query();
     $name = $request->get('name');
@@ -355,8 +343,7 @@ class WorldController extends Controller {
   /**
    * Shows the prompt categories page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptCategories(Request $request) {
     $query = PromptCategory::query();
     $name = $request->get('name');
@@ -371,8 +358,7 @@ class WorldController extends Controller {
   /**
    * Shows the prompts page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPrompts(Request $request) {
     $query = Prompt::active()->with('category');
     $data = $request->only(['prompt_category_id', 'name', 'sort']);

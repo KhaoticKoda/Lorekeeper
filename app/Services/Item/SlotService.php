@@ -26,8 +26,7 @@ class SlotService extends Service {
 
   /**
    * Retrieves any data that should be used in the item tag editing form.
-   * @return array
-   */
+   * @return array */
   public function getEditData() {
     return [
       'rarities' =>
@@ -45,8 +44,7 @@ class SlotService extends Service {
   /**
    * Processes the data attribute of the tag and returns it in the preferred format for edits.
    * @param  string  $tag
-   * @return mixed
-   */
+   * @return mixed */
   public function getTagData($tag) {
     //fetch data from DB, if there is no data then set to NULL instead
     $characterData['name'] = isset($tag->data['name']) ? $tag->data['name'] : null;
@@ -91,8 +89,7 @@ class SlotService extends Service {
    * Processes the data attribute of the tag and returns it in the preferred format for DB storage.
    * @param  string  $tag
    * @param  array   $data
-   * @return bool
-   */
+   * @return bool */
   public function updateData($tag, $data) {
     //put inputs into an array to transfer to the DB
     $characterData['name'] = isset($data['name']) ? $data['name'] : null;
@@ -130,8 +127,7 @@ class SlotService extends Service {
    * @param  \App\Models\User\UserItem  $stacks
    * @param  \App\Models\User\User      $user
    * @param  array                      $data
-   * @return bool
-   */
+   * @return bool */
   public function act($stacks, $user, $data) {
     DB::beginTransaction();
 

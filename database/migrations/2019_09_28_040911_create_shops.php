@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateShops extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('shops', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -63,8 +62,7 @@ class CreateShops extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('shop_log');
     Schema::dropIfExists('shop_stock');

@@ -22,8 +22,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the submission index page.
    * @param  string  $status
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionIndex(Request $request, $status = null) {
     $submissions = Submission::with('prompt')
       ->where('status', $status ? ucfirst($status) : 'Pending')
@@ -58,8 +57,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the submission detail page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmission($id) {
     $submission = Submission::whereNotNull('prompt_id')->where('id', $id)->first();
     $inventory = isset($submission->data['user'])
@@ -108,8 +106,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the claim index page.
    * @param  string  $status
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaimIndex(Request $request, $status = null) {
     $submissions = Submission::where('status', $status ? ucfirst($status) : 'Pending')->whereNull(
       'prompt_id'
@@ -136,8 +133,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the claim detail page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaim($id) {
     $submission = Submission::whereNull('prompt_id')->where('id', $id)->first();
     $inventory = isset($submission->data['user'])
@@ -188,8 +184,7 @@ class SubmissionController extends Controller {
    * @param  App\Services\SubmissionManager  $service
    * @param  int                             $id
    * @param  string                          $action
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSubmission(Request $request, SubmissionManager $service, $id, $action) {
     $data = $request->only([
       'slug',

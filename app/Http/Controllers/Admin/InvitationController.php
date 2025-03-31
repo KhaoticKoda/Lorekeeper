@@ -13,8 +13,7 @@ use App\Http\Controllers\Controller;
 class InvitationController extends Controller {
   /**
    * Shows the invitation key index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.invitations.invitations', [
       'invitations' => Invitation::orderBy('id', 'DESC')->paginate(20)
@@ -24,8 +23,7 @@ class InvitationController extends Controller {
   /**
    * Generates a new invitation key.
    * @param  App\Services\InvitationService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postGenerateKey(InvitationService $service) {
     if ($service->generateInvitation(Auth::user())) {
       flash('Generated invitation successfully.')->success();
@@ -41,8 +39,7 @@ class InvitationController extends Controller {
    * Generates a new invitation key.
    * @param  App\Services\InvitationService  $service
    * @param  int                             $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteKey(InvitationService $service, $id) {
     $invitation = Invitation::find($id);
     if ($invitation && $service->deleteInvitation($invitation)) {

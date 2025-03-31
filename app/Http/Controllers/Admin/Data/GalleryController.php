@@ -21,8 +21,7 @@ class GalleryController extends Controller {
 
   /**
    * Shows the gallery index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.galleries.galleries', [
       'galleries' => Gallery::sort()->whereNull('parent_id')->paginate(10)
@@ -31,8 +30,7 @@ class GalleryController extends Controller {
 
   /**
    * Shows the create gallery page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateGallery() {
     return view('admin.galleries.create_edit_gallery', [
       'gallery' => new Gallery(),
@@ -43,8 +41,7 @@ class GalleryController extends Controller {
   /**
    * Shows the edit gallery page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditGallery($id) {
     $gallery = Gallery::find($id);
     if (!$gallery) {
@@ -61,8 +58,7 @@ class GalleryController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\GalleryService $service
    * @param  int|null                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditGallery(Request $request, GalleryService $service, $id = null) {
     $id ? $request->validate(Gallery::$updateRules) : $request->validate(Gallery::$createRules);
     $data = $request->only([
@@ -94,8 +90,7 @@ class GalleryController extends Controller {
   /**
    * Gets the gallery deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteGallery($id) {
     $gallery = Gallery::find($id);
     return view('admin.galleries._delete_gallery', [
@@ -108,8 +103,7 @@ class GalleryController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\GalleryService  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteGallery(Request $request, GalleryService $service, $id) {
     if ($id && $service->deleteGallery(Gallery::find($id))) {
       flash('Gallery deleted successfully.')->success();

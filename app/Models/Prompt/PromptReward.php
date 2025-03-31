@@ -8,20 +8,17 @@ use App\Models\Model;
 class PromptReward extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['prompt_id', 'rewardable_type', 'rewardable_id', 'quantity'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'prompt_rewards';
 
   /**
    * Validation rules for creation.
-   * @var array
-   */
+   * @var array */
   public static $createRules = [
     'rewardable_type' => 'required',
     'rewardable_id' => 'required',
@@ -30,8 +27,7 @@ class PromptReward extends Model {
 
   /**
    * Validation rules for updating.
-   * @var array
-   */
+   * @var array */
   public static $updateRules = [
     'rewardable_type' => 'required',
     'rewardable_id' => 'required',
@@ -45,8 +41,7 @@ class PromptReward extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the reward attached to the prompt reward.
-   */
+   * Get the reward attached to the prompt reward. */
   public function reward() {
     switch ($this->rewardable_type) {
       case 'Item':

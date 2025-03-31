@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateSalesCharacters extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('sales_characters', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -30,8 +29,7 @@ class CreateSalesCharacters extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('sales_characters');
   }

@@ -10,8 +10,7 @@ use App\Http\Controllers\Controller;
 class SettingsController extends Controller {
   /**
    * Shows the settings index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.settings.settings', [
       'settings' => DB::table('site_settings')->orderBy('key')->paginate(20)
@@ -22,8 +21,7 @@ class SettingsController extends Controller {
    * Edits a setting.
    * @param  \Illuminate\Http\Request       $request
    * @param  string                         $key
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditSetting(Request $request, $key) {
     if (
       DB::table('site_settings')

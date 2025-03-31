@@ -30,8 +30,7 @@ class BrowseController extends Controller {
   /**
    * Shows the user list.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUsers(Request $request) {
     $query = User::visible()
       ->join('ranks', 'users.rank_id', '=', 'ranks.id')
@@ -79,8 +78,7 @@ class BrowseController extends Controller {
   /**
    * Shows the user blacklist.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBlacklist(Request $request) {
     $canView = false;
     $key = Settings::get('blacklist_key');
@@ -116,8 +114,7 @@ class BrowseController extends Controller {
   /**
    * Shows the character masterlist.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacters(Request $request) {
     $query = Character::with('user.rank')
       ->with('image.features')
@@ -320,8 +317,7 @@ class BrowseController extends Controller {
   /**
    * Shows the MYO slot masterlist.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyos(Request $request) {
     $query = Character::with('user.rank')
       ->with('image.features')
@@ -460,8 +456,7 @@ class BrowseController extends Controller {
   /**
    * Shows the Sub masterlists.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSublist(Request $request, $key) {
     $query = Character::with('user.rank')
       ->with('image.features')

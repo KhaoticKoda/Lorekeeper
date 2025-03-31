@@ -8,8 +8,7 @@ use App\Models\Model;
 class CurrencyLog extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'sender_id',
     'sender_type',
@@ -24,14 +23,12 @@ class CurrencyLog extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'currencies_log';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**********************************************************************************************
@@ -41,8 +38,7 @@ class CurrencyLog extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the user who initiated the logged action.
-   */
+   * Get the user who initiated the logged action. */
   public function sender() {
     if ($this->sender_type == 'User') {
       return $this->belongsTo('App\Models\User\User', 'sender_id');
@@ -51,8 +47,7 @@ class CurrencyLog extends Model {
   }
 
   /**
-   * Get the user who received the logged action.
-   */
+   * Get the user who received the logged action. */
   public function recipient() {
     if ($this->recipient_type == 'User') {
       return $this->belongsTo('App\Models\User\User', 'recipient_id');
@@ -61,8 +56,7 @@ class CurrencyLog extends Model {
   }
 
   /**
-   * Get the currency that is the target of the action.
-   */
+   * Get the currency that is the target of the action. */
   public function currency() {
     return $this->belongsTo('App\Models\Currency\Currency');
   }

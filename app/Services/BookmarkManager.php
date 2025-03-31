@@ -18,8 +18,7 @@ class BookmarkManager extends Service {
    * Create a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Character\CharacterBookmark|bool
-   */
+   * @return \App\Models\Character\CharacterBookmark|bool */
   public function createBookmark($data, $user) {
     DB::beginTransaction();
 
@@ -68,8 +67,7 @@ class BookmarkManager extends Service {
    * Update a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Character\CharacterBookmark|bool
-   */
+   * @return \App\Models\Character\CharacterBookmark|bool */
   public function updateBookmark($data, $user) {
     DB::beginTransaction();
 
@@ -114,8 +112,7 @@ class BookmarkManager extends Service {
    * Delete a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
-   * @return bool
-   */
+   * @return bool */
   public function deleteBookmark($data, $user) {
     DB::beginTransaction();
 
@@ -145,8 +142,7 @@ class BookmarkManager extends Service {
    * Deletes bookmarks associated with a character.
    * For use when a character is deleted.
    * @param  \App\Models\Character\Character $character
-   * @return bool
-   */
+   * @return bool */
   public function deleteBookmarks($character) {
     DB::beginTransaction();
 

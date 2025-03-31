@@ -16,8 +16,7 @@ class FileManager extends Service {
   /**
    * Creates a directory.
    * @param  string  $dir
-   * @return bool
-   */
+   * @return bool */
   public function createDirectory($dir) {
     if (file_exists($dir)) {
       $this->setError('Folder already exists.');
@@ -35,8 +34,7 @@ class FileManager extends Service {
   /**
    * Deletes a directory if it exists and doesn't contain files.
    * @param  string  $dir
-   * @return bool
-   */
+   * @return bool */
   public function deleteDirectory($dir) {
     if (!file_exists($dir)) {
       $this->setError('error', 'Directory does not exist.');
@@ -56,8 +54,7 @@ class FileManager extends Service {
    * @param  string  $dir
    * @param  string  $oldName
    * @param  string  $newName
-   * @return bool
-   */
+   * @return bool */
   public function renameDirectory($dir, $oldName, $newName) {
     if (!file_exists($dir . '/' . $oldName)) {
       $this->setError('error', 'Directory does not exist.');
@@ -78,8 +75,7 @@ class FileManager extends Service {
    * @param  string  $dir
    * @param  string  $name
    * @param  bool    $isFileManager
-   * @return bool
-   */
+   * @return bool */
   public function uploadFile($file, $dir, $name, $isFileManager = true) {
     $directory = public_path() . ($isFileManager ? '/files' . ($dir ? '/' . $dir : '') : '/images');
     if (!file_exists($directory)) {
@@ -94,8 +90,7 @@ class FileManager extends Service {
   /**
    * Uploads a custom CSS file.
    * @param  array  $file
-   * @return bool
-   */
+   * @return bool */
   public function uploadCss($file) {
     File::move($file, public_path() . '/css/custom.css');
     chmod(public_path() . '/css/custom.css', 0755);
@@ -106,8 +101,7 @@ class FileManager extends Service {
   /**
    * Deletes a file.
    * @param  string  $path
-   * @return bool
-   */
+   * @return bool */
   public function deleteFile($path) {
     if (!file_exists($path)) {
       $this->setError('error', 'File does not exist.');
@@ -122,8 +116,7 @@ class FileManager extends Service {
    * @param  string  $oldDir
    * @param  string  $newDir
    * @param  string  $name
-   * @return bool
-   */
+   * @return bool */
   public function moveFile($oldDir, $newDir, $name) {
     if (!file_exists($oldDir . '/' . $name)) {
       $this->setError('error', 'File does not exist.');
@@ -141,8 +134,7 @@ class FileManager extends Service {
    * @param  string  $dir
    * @param  string  $oldName
    * @param  string  $newName
-   * @return bool
-   */
+   * @return bool */
   public function renameFile($dir, $oldName, $newName) {
     if (!file_exists($dir . '/' . $oldName)) {
       $this->setError('error', 'File does not exist.');

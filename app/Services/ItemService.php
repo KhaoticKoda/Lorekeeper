@@ -27,8 +27,7 @@ class ItemService extends Service {
    * Create a category.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Item\ItemCategory|bool
-   */
+   * @return \App\Models\Item\ItemCategory|bool */
   public function createItemCategory($data, $user) {
     DB::beginTransaction();
 
@@ -62,8 +61,7 @@ class ItemService extends Service {
    * @param  \App\Models\Item\ItemCategory  $category
    * @param  array                          $data
    * @param  \App\Models\User\User          $user
-   * @return \App\Models\Item\ItemCategory|bool
-   */
+   * @return \App\Models\Item\ItemCategory|bool */
   public function updateItemCategory($category, $data, $user) {
     DB::beginTransaction();
 
@@ -99,8 +97,7 @@ class ItemService extends Service {
    * Handle category data.
    * @param  array                               $data
    * @param  \App\Models\Item\ItemCategory|null  $category
-   * @return array
-   */
+   * @return array */
   private function populateCategoryData($data, $category = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -128,8 +125,7 @@ class ItemService extends Service {
   /**
    * Delete a category.
    * @param  \App\Models\Item\ItemCategory  $category
-   * @return bool
-   */
+   * @return bool */
   public function deleteItemCategory($category) {
     DB::beginTransaction();
 
@@ -156,8 +152,7 @@ class ItemService extends Service {
   /**
    * Sorts category order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortItemCategory($data) {
     DB::beginTransaction();
 
@@ -186,8 +181,7 @@ class ItemService extends Service {
    * Creates a new item.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Item\Item
-   */
+   * @return bool|\App\Models\Item\Item */
   public function createItem($data, $user) {
     DB::beginTransaction();
 
@@ -245,8 +239,7 @@ class ItemService extends Service {
    * @param  \App\Models\Item\Item  $item
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Item\Item
-   */
+   * @return bool|\App\Models\Item\Item */
   public function updateItem($item, $data, $user) {
     DB::beginTransaction();
 
@@ -305,8 +298,7 @@ class ItemService extends Service {
    * Processes user input for creating/updating an item.
    * @param  array                  $data
    * @param  \App\Models\Item\Item  $item
-   * @return array
-   */
+   * @return array */
   private function populateData($data, $item = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -340,8 +332,7 @@ class ItemService extends Service {
   /**
    * Deletes an item.
    * @param  \App\Models\Item\Item  $item
-   * @return bool
-   */
+   * @return bool */
   public function deleteItem($item) {
     DB::beginTransaction();
 
@@ -415,8 +406,7 @@ class ItemService extends Service {
 
   /**
    * Gets a list of item tags for selection.
-   * @return array
-   */
+   * @return array */
   public function getItemTags() {
     $tags = Config::get('lorekeeper.item_tags');
     $result = [];
@@ -431,8 +421,7 @@ class ItemService extends Service {
    * Adds an item tag to an item.
    * @param  \App\Models\Item\Item  $item
    * @param  string                 $tag
-   * @return string|bool
-   */
+   * @return string|bool */
   public function addItemTag($item, $tag) {
     DB::beginTransaction();
 
@@ -464,8 +453,7 @@ class ItemService extends Service {
    * @param  \App\Models\Item\Item  $item
    * @param  string                 $tag
    * @param  array                  $data
-   * @return string|bool
-   */
+   * @return string|bool */
   public function editItemTag($item, $tag, $data) {
     DB::beginTransaction();
 
@@ -500,8 +488,7 @@ class ItemService extends Service {
    * Removes an item tag from an item.
    * @param  \App\Models\Item\Item  $item
    * @param  string                 $tag
-   * @return string|bool
-   */
+   * @return string|bool */
   public function deleteItemTag($item, $tag) {
     DB::beginTransaction();
 

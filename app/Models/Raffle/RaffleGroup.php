@@ -6,20 +6,17 @@ use DB;
 class RaffleGroup extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['name', 'is_active'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'raffle_groups';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = false;
 
   /**********************************************************************************************
@@ -29,8 +26,7 @@ class RaffleGroup extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the raffles in this group.
-   */
+   * Get the raffles in this group. */
   public function raffles() {
     return $this->hasMany('App\Models\Raffle\Raffle', 'group_id')->orderBy('order');
   }

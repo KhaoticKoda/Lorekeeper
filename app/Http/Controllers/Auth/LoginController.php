@@ -20,22 +20,19 @@ class LoginController extends Controller {
 
   /**
    * Where to redirect users after login.
-   * @var string
-   */
+   * @var string */
   protected $redirectTo = '/';
 
   /**
    * Create a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     $this->middleware('guest')->except('logout');
   }
 
   /**
    * Show the application's login form.
-   * @return \Illuminate\Http\Response
-   */
+   * @return \Illuminate\Http\Response */
   public function showLoginForm() {
     return view('auth.login', ['userCount' => User::count()]);
   }

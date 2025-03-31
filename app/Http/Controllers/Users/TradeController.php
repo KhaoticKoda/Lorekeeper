@@ -28,8 +28,7 @@ class TradeController extends Controller {
   /**
    * Shows the user's trades.
    * @param  string  $type
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex($status = 'open') {
     $user = Auth::user();
     $trades = Trade::with('recipient')
@@ -67,8 +66,7 @@ class TradeController extends Controller {
   /**
    * Shows a trade.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTrade($id) {
     $trade = Trade::find($id);
 
@@ -97,8 +95,7 @@ class TradeController extends Controller {
   /**
    * Shows the trade creation page.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateTrade() {
     $inventory = UserItem::with('item')
       ->whereNull('deleted_at')
@@ -132,8 +129,7 @@ class TradeController extends Controller {
   /**
    * Shows the trade edit page.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditTrade($id) {
     $trade = Trade::where('id', $id)
       ->where(function ($query) {
@@ -172,8 +168,7 @@ class TradeController extends Controller {
    * Creates a new trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateTrade(Request $request, TradeManager $service) {
     if (
       $trade = $service->createTrade(
@@ -204,8 +199,7 @@ class TradeController extends Controller {
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @param  integer  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditTrade(Request $request, TradeManager $service, $id) {
     if (
       $trade = $service->editTrade(
@@ -232,8 +226,7 @@ class TradeController extends Controller {
   /**
    * Shows the offer confirmation modal.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getConfirmOffer($id) {
     $trade = Trade::where('id', $id)
       ->where(function ($query) {
@@ -251,8 +244,7 @@ class TradeController extends Controller {
    * Confirms or unconfirms an offer.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postConfirmOffer(Request $request, TradeManager $service, $id) {
     if ($trade = $service->confirmOffer(['id' => $id], Auth::user())) {
       flash('Trade offer confirmation edited successfully.')->success();
@@ -268,8 +260,7 @@ class TradeController extends Controller {
   /**
    * Shows the trade confirmation modal.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getConfirmTrade($id) {
     $trade = Trade::where('id', $id)
       ->where(function ($query) {
@@ -287,8 +278,7 @@ class TradeController extends Controller {
    * Confirms or unconfirms a trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postConfirmTrade(Request $request, TradeManager $service, $id) {
     if ($trade = $service->confirmTrade(['id' => $id], Auth::user())) {
       flash('Trade confirmed successfully.')->success();
@@ -304,8 +294,7 @@ class TradeController extends Controller {
   /**
    * Shows the trade cancellation modal.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCancelTrade($id) {
     $trade = Trade::where('id', $id)
       ->where(function ($query) {
@@ -323,8 +312,7 @@ class TradeController extends Controller {
    * Cancels a trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCancelTrade(Request $request, TradeManager $service, $id) {
     if ($trade = $service->cancelTrade(['id' => $id], Auth::user())) {
       flash('Trade canceled successfully.')->success();

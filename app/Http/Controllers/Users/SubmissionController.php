@@ -40,8 +40,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the user's submission log.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex(Request $request) {
     $submissions = Submission::with('prompt')
       ->where('user_id', Auth::user()->id)
@@ -65,8 +64,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the submission page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmission($id) {
     $submission = Submission::viewable(Auth::user())
       ->where('id', $id)
@@ -90,8 +88,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the submit page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewSubmission(Request $request) {
     $closed = !Settings::get('is_prompts_open');
     $inventory = UserItem::with('item')
@@ -138,8 +135,7 @@ class SubmissionController extends Controller {
   /**
    * Shows character information.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterInfo($slug) {
     $character = Character::visible()->where('slug', $slug)->first();
 
@@ -151,8 +147,7 @@ class SubmissionController extends Controller {
   /**
    * Shows prompt information.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptInfo($id) {
     $prompt = Prompt::active()->where('id', $id)->first();
     if (!$prompt) {
@@ -172,8 +167,7 @@ class SubmissionController extends Controller {
    * Creates a new submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\SubmissionManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postNewSubmission(Request $request, SubmissionManager $service) {
     $request->validate(Submission::$createRules);
     if (
@@ -216,8 +210,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the user's claim log.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaimsIndex(Request $request) {
     $submissions = Submission::where('user_id', Auth::user()->id)->whereNull('prompt_id');
     $type = $request->get('type');
@@ -239,8 +232,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the claim page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaim($id) {
     $submission = Submission::viewable(Auth::user())
       ->where('id', $id)
@@ -264,8 +256,7 @@ class SubmissionController extends Controller {
   /**
    * Shows the submit claim page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewClaim(Request $request) {
     $closed = !Settings::get('is_claims_open');
     $inventory = UserItem::with('item')
@@ -309,8 +300,7 @@ class SubmissionController extends Controller {
    * Creates a new claim.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\SubmissionManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postNewClaim(Request $request, SubmissionManager $service) {
     $request->validate(Submission::$createRules);
     if (

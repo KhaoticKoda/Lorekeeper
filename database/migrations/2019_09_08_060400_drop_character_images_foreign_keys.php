@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class DropCharacterImagesForeignKeys extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // We made these columns nullable, but the foreign keys prevent them from being updated to null
     // in the case of MYO slots.
@@ -20,8 +19,7 @@ class DropCharacterImagesForeignKeys extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_images', function (Blueprint $table) {

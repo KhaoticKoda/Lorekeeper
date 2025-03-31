@@ -9,23 +9,20 @@ use Illuminate\Validation\ValidationException;
 class Handler extends ExceptionHandler {
   /**
    * A list of the exception types that are not reported.
-   * @var array
-   */
+   * @var array */
   protected $dontReport = [
     //
   ];
 
   /**
    * A list of the inputs that are never flashed for validation exceptions.
-   * @var array
-   */
+   * @var array */
   protected $dontFlash = ['password', 'password_confirmation'];
 
   /**
    * Report or log an exception.
    * @param  \Exception  $exception
-   * @return void
-   */
+   * @return void */
   public function report(Throwable $exception) {
     if ($exception instanceof ValidationException) {
       foreach ($exception->validator->errors()->all() as $message) {
@@ -40,8 +37,7 @@ class Handler extends ExceptionHandler {
    * Render an exception into an HTTP response.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Exception  $exception
-   * @return \Illuminate\Http\Response
-   */
+   * @return \Illuminate\Http\Response */
   public function render($request, Throwable $exception) {
     return parent::render($request, $exception);
   }

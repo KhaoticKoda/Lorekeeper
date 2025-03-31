@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class TransferReason extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Add columns
     Schema::table('character_transfers', function (Blueprint $table) {
@@ -18,8 +17,7 @@ class TransferReason extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('character_transfers', function (Blueprint $table) {
       //

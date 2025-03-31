@@ -21,8 +21,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller {
   /**
    * Show the user index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex(Request $request) {
     $query = User::join('ranks', 'users.rank_id', '=', 'ranks.id')->select(
       'ranks.name AS rank_name',
@@ -78,8 +77,7 @@ class UserController extends Controller {
 
   /**
    * Show a user's admin page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUser($name) {
     $user = User::where('name', $name)->first();
 
@@ -237,8 +235,7 @@ class UserController extends Controller {
 
   /**
    * Show a user's account update log.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserUpdates($name) {
     $user = User::where('name', $name)->first();
 
@@ -254,8 +251,7 @@ class UserController extends Controller {
 
   /**
    * Show a user's ban page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBan($name) {
     $user = User::where('name', $name)->first();
 
@@ -270,8 +266,7 @@ class UserController extends Controller {
 
   /**
    * Show a user's ban confirmation page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBanConfirmation($name) {
     $user = User::where('name', $name)->first();
 
@@ -307,8 +302,7 @@ class UserController extends Controller {
 
   /**
    * Show a user's unban confirmation page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUnbanConfirmation($name) {
     $user = User::where('name', $name)->with('settings')->first();
 

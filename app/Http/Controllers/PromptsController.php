@@ -21,8 +21,7 @@ class PromptsController extends Controller {
 
   /**
    * Shows the index page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('prompts.index');
   }
@@ -30,8 +29,7 @@ class PromptsController extends Controller {
   /**
    * Shows the prompt categories page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptCategories(Request $request) {
     $query = PromptCategory::query();
     $name = $request->get('name');
@@ -46,8 +44,7 @@ class PromptsController extends Controller {
   /**
    * Shows the prompts page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getPrompts(Request $request) {
     $query = Prompt::active()->with('category');
     $data = $request->only(['prompt_category_id', 'name', 'sort']);

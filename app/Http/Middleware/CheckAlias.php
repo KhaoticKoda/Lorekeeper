@@ -10,8 +10,7 @@ class CheckAlias {
    * and banned users to the ban page.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next
-   * @return mixed
-   */
+   * @return mixed */
   public function handle($request, Closure $next) {
     if (!$request->user()->has_alias) {
       return redirect('/link');

@@ -19,8 +19,7 @@ class SalesController extends Controller {
 
   /**
    * Shows the sales index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     if (Auth::check() && Auth::user()->is_sales_unread) {
       Auth::user()->update(['is_sales_unread' => 0]);
@@ -34,8 +33,7 @@ class SalesController extends Controller {
    * Shows a sales post.
    * @param  int          $id
    * @param  string|null  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSales($id, $slug = null) {
     $sales = Sales::where('id', $id)->where('is_visible', 1)->first();
     if (!$sales) {

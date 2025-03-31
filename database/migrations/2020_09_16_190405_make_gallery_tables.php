@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class MakeGalleryTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Gallery structure table
     Schema::create('galleries', function (Blueprint $table) {
@@ -80,8 +79,7 @@ class MakeGalleryTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('galleries');

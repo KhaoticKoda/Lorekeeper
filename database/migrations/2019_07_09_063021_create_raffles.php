@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateRaffles extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('raffle_groups', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -44,8 +43,7 @@ class CreateRaffles extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('raffle_tickets');
     Schema::dropIfExists('raffles');

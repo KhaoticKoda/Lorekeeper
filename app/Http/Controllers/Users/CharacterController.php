@@ -31,8 +31,7 @@ class CharacterController extends Controller {
 
   /**
    * Shows the user's characters.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     $characters = Auth::user()
       ->characters()
@@ -48,8 +47,7 @@ class CharacterController extends Controller {
 
   /**
    * Shows the user's MYO slots.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyos() {
     $slots = Auth::user()->myoSlots()->with('image')->get();
 
@@ -62,8 +60,7 @@ class CharacterController extends Controller {
    * Sorts the user's characters.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortCharacters(Request $request, CharacterManager $service) {
     if ($service->sortCharacters($request->only(['sort']), Auth::user())) {
       flash('Characters sorted successfully.')->success();
@@ -79,8 +76,7 @@ class CharacterController extends Controller {
   /**
    * Shows the user's transfers.
    * @param  string  $type
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getTransfers($type = 'incoming') {
     $transfers = CharacterTransfer::with('sender.rank')
       ->with('recipient.rank')
@@ -114,8 +110,7 @@ class CharacterController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postHandleTransfer(Request $request, CharacterManager $service, $id) {
     if (!Auth::check()) {
       abort(404);

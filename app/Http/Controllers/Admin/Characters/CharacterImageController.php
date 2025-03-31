@@ -30,8 +30,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the add image page. Existing characters only, not MYO slots.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewImage($slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {
@@ -60,8 +59,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the edit image subtype portion of the modal
    * @param  Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewImageSubtype(Request $request) {
     $species = $request->input('species');
     $id = $request->input('id');
@@ -81,8 +79,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postNewImage(Request $request, CharacterManager $service, $slug) {
     $request->validate(CharacterImage::$createRules);
     $data = $request->only([
@@ -123,8 +120,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the edit image features modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageFeatures($id) {
     $image = CharacterImage::find($id);
 
@@ -150,8 +146,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditImageFeatures(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data']);
     $image = CharacterImage::find($id);
@@ -171,8 +166,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the edit image subtype portion of the modal
    * @param  Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageSubtype(Request $request) {
     $species = $request->input('species');
     $id = $request->input('id');
@@ -190,8 +184,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the edit image notes modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageNotes($id) {
     return view('character.admin._edit_notes_modal', [
       'image' => CharacterImage::find($id)
@@ -203,8 +196,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditImageNotes(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['description']);
     $image = CharacterImage::find($id);
@@ -224,8 +216,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the edit image credits modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageCredits($id) {
     return view('character.admin._edit_credits_modal', [
       'image' => CharacterImage::find($id),
@@ -238,8 +229,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditImageCredits(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['artist_url', 'artist_id', 'designer_url', 'designer_id']);
     $image = CharacterImage::find($id);
@@ -259,8 +249,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the reupload image modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageReupload($id) {
     return view('character.admin._reupload_image_modal', [
       'image' => CharacterImage::find($id)
@@ -272,8 +261,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postImageReupload(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['image', 'thumbnail', 'x0', 'x1', 'y0', 'y1', 'use_cropper']);
     $image = CharacterImage::find($id);
@@ -295,8 +283,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postImageSettings(Request $request, CharacterManager $service, $id) {
     $data = $request->only(['is_valid', 'is_visible']);
     $image = CharacterImage::find($id);
@@ -316,8 +303,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the set active image modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageActive($id) {
     return view('character.admin._active_image_modal', [
       'image' => CharacterImage::find($id)
@@ -329,8 +315,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postImageActive(Request $request, CharacterManager $service, $id) {
     $image = CharacterImage::find($id);
     if (!$image) {
@@ -349,8 +334,7 @@ class CharacterImageController extends Controller {
   /**
    * Shows the delete image modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageDelete($id) {
     return view('character.admin._delete_image_modal', [
       'image' => CharacterImage::find($id)
@@ -362,8 +346,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postImageDelete(Request $request, CharacterManager $service, $id) {
     $image = CharacterImage::find($id);
     if (!$image) {
@@ -384,8 +367,7 @@ class CharacterImageController extends Controller {
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortImages(Request $request, CharacterManager $service, $slug) {
     $this->character = Character::where('slug', $slug)->first();
     if (!$this->character) {

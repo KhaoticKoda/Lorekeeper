@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class MakeFeaturesNonunique extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This probably sounds like a pretty weird change,
     // but making it so that you can attach multiple of the
@@ -25,8 +24,7 @@ class MakeFeaturesNonunique extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_features', function (Blueprint $table) {

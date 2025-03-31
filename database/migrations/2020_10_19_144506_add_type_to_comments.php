@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddTypeToComments extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('comments', function (Blueprint $table) {
       //
@@ -18,8 +17,7 @@ class AddTypeToComments extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('comments', function (Blueprint $table) {
       //

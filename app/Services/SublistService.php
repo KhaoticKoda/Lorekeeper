@@ -27,8 +27,7 @@ class SublistService extends Service {
    * Create a sublist.
    * @param  array                 $data
    * @param  array                 $contents
-   * @return \App\Models\Character\Sublist|bool
-   */
+   * @return \App\Models\Character\Sublist|bool */
   public function createSublist($data, $contents) {
     DB::beginTransaction();
 
@@ -58,8 +57,7 @@ class SublistService extends Service {
    * @param  array                                $data
    * @param  array                                $contents
    * @param  \App\Models\User\User                $user
-   * @return \App\Models\Character\Sublist|bool
-   */
+   * @return \App\Models\Character\Sublist|bool */
   public function updateSublist($sublist, $data, $contents) {
     DB::beginTransaction();
 
@@ -96,8 +94,7 @@ class SublistService extends Service {
   /**
    * Delete a sublist.
    * @param  \App\Models\Character\Sublist  $sublist
-   * @return bool
-   */
+   * @return bool */
   public function deleteSublist($sublist) {
     DB::beginTransaction();
 
@@ -120,8 +117,7 @@ class SublistService extends Service {
   /**
    * Sorts sublist  order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortSublist($data) {
     DB::beginTransaction();
 

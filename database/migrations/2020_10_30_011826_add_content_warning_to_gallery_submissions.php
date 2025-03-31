@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddContentWarningToGallerySubmissions extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('gallery_submissions', function (Blueprint $table) {
       //
@@ -18,8 +17,7 @@ class AddContentWarningToGallerySubmissions extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('gallery_submissions', function (Blueprint $table) {
       //

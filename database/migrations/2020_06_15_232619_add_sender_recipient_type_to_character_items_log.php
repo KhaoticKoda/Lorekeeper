@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSenderRecipientTypeToCharacterItemsLog extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('character_items_log', function (Blueprint $table) {
       //Add sender and recipient type
@@ -25,8 +24,7 @@ class AddSenderRecipientTypeToCharacterItemsLog extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('character_items_log', function (Blueprint $table) {
       //

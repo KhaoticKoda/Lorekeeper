@@ -16,8 +16,7 @@ class InvitationService extends Service {
   /**
    * Generates an invitation code, saving the user who generated it.
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Invitation|bool
-   */
+   * @return \App\Models\Invitation|bool */
   public function generateInvitation($user) {
     DB::beginTransaction();
 
@@ -37,8 +36,7 @@ class InvitationService extends Service {
   /**
    * Marks an invitation code as used, saving the user who used it.
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Invitation|bool
-   */
+   * @return \App\Models\Invitation|bool */
   public function useInvitation($invitation, $user) {
     DB::beginTransaction();
 
@@ -61,8 +59,7 @@ class InvitationService extends Service {
   /**
    * Deletes an unused invitation code.
    * @param  \App\Models\Invitation $invitation
-   * @return bool
-   */
+   * @return bool */
   public function deleteInvitation($invitation) {
     DB::beginTransaction();
 
@@ -82,8 +79,7 @@ class InvitationService extends Service {
 
   /**
    * Generates a string for an invitation code.
-   * @return string
-   */
+   * @return string */
   private function generateCode() {
     return randomString(10);
   }

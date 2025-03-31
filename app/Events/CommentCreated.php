@@ -12,8 +12,7 @@ class CommentCreated {
 
   /**
    * Create a new event instance.
-   * @return void
-   */
+   * @return void */
   public function __construct(Comment $comment) {
     $this->comment = $comment;
   }

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class RenameDesignApprovalStatus extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     DB::statement(
@@ -18,8 +17,7 @@ class RenameDesignApprovalStatus extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     DB::statement(

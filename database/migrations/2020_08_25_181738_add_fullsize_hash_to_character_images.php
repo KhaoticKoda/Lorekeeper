@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddFullsizeHashToCharacterImages extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // To prevent people from scraping URLs
     Schema::table('character_images', function (Blueprint $table) {
@@ -22,8 +21,7 @@ class AddFullsizeHashToCharacterImages extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('character_images', function (Blueprint $table) {
       $table->dropColumn('fullsize_hash');

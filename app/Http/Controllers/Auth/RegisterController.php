@@ -31,22 +31,19 @@ class RegisterController extends Controller {
 
   /**
    * Where to redirect users after registration.
-   * @var string
-   */
+   * @var string */
   protected $redirectTo = '/';
 
   /**
    * Create a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     $this->middleware('guest');
   }
 
   /**
    * Show the application registration form.
-   * @return \Illuminate\Http\Response
-   */
+   * @return \Illuminate\Http\Response */
   public function showRegistrationForm() {
     return view('auth.register', ['userCount' => User::count()]);
   }
@@ -54,8 +51,7 @@ class RegisterController extends Controller {
   /**
    * Get a validator for an incoming registration request.
    * @param  array  $data
-   * @return \Illuminate\Contracts\Validation\Validator
-   */
+   * @return \Illuminate\Contracts\Validation\Validator */
   protected function validator(array $data) {
     return Validator::make($data, [
       'name' => ['required', 'string', 'min:3', 'max:25', 'alpha_dash', 'unique:users'],
@@ -93,8 +89,7 @@ class RegisterController extends Controller {
   /**
    * Create a new user instance after a valid registration.
    * @param  array  $data
-   * @return \App\Models\User\User
-   */
+   * @return \App\Models\User\User */
   protected function create(array $data) {
     DB::beginTransaction();
     $service = new UserService();

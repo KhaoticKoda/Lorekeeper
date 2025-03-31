@@ -34,8 +34,7 @@ class TradeManager extends Service {
    * Creates a new trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function createTrade($data, $user) {
     DB::beginTransaction();
 
@@ -84,8 +83,7 @@ class TradeManager extends Service {
    * Edits a user's side of a trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function editTrade($data, $user) {
     DB::beginTransaction();
     try {
@@ -128,8 +126,7 @@ class TradeManager extends Service {
    * @param  \App\Models\Trade      $trade
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|array
-   */
+   * @return bool|array */
   private function handleTradeAssets($trade, $data, $user) {
     DB::beginTransaction();
     try {
@@ -283,8 +280,7 @@ class TradeManager extends Service {
    * Cancels a trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function cancelTrade($data, $user) {
     DB::beginTransaction();
 
@@ -332,8 +328,7 @@ class TradeManager extends Service {
    * Confirms the user's offer.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function confirmOffer($data, $user) {
     DB::beginTransaction();
 
@@ -398,8 +393,7 @@ class TradeManager extends Service {
    * Confirms the trade for a user.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function confirmTrade($data, $user) {
     DB::beginTransaction();
 
@@ -488,8 +482,7 @@ class TradeManager extends Service {
    * Approves a trade in the admin panel.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function approveTrade($data, $user) {
     DB::beginTransaction();
 
@@ -531,8 +524,7 @@ class TradeManager extends Service {
    * Rejects a trade in the admin panel.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Trade
-   */
+   * @return bool|\App\Models\Trade */
   public function rejectTrade($data, $user) {
     DB::beginTransaction();
 
@@ -572,8 +564,7 @@ class TradeManager extends Service {
   /**
    * Returns trade attachments to their owners.
    * @param  \App\Models\Trade  $trade
-   * @return bool
-   */
+   * @return bool */
   private function returnAttachments($trade) {
     DB::beginTransaction();
 
@@ -631,8 +622,7 @@ class TradeManager extends Service {
    * Credits trade attachments to their new owners.
    * @param  \App\Models\Trade  $trade
    * @param  array              $data
-   * @return bool
-   */
+   * @return bool */
   private function creditAttachments($trade, $data = []) {
     DB::beginTransaction();
 

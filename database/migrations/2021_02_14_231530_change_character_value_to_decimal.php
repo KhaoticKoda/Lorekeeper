@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class ChangeCharacterValueToDecimal extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('characters', function (Blueprint $table) {
       $table->decimal('sale_value', 13, 2)->default(0.0)->change();
@@ -17,8 +16,7 @@ class ChangeCharacterValueToDecimal extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('characters', function (Blueprint $table) {
       $table->integer('sale_value')->nullable(false)->default(0)->change();

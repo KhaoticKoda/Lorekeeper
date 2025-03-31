@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddStaffCommentsToGallerySubmissions extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('gallery_submissions', function (Blueprint $table) {
       //
@@ -20,8 +19,7 @@ class AddStaffCommentsToGallerySubmissions extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('gallery_submissions', function (Blueprint $table) {
       //

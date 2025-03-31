@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AdjustItemLogsForCharacterItems extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //Drop character item logs table in favor of adjusting existing logs table to suit
     Schema::dropIfExists('character_items_log');
@@ -30,8 +29,7 @@ class AdjustItemLogsForCharacterItems extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::create('character_items_log', function (Blueprint $table) {

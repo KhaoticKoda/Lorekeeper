@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLootTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('loot_tables', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -33,8 +32,7 @@ class CreateLootTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('loots');
     Schema::dropIfExists('loot_tables');

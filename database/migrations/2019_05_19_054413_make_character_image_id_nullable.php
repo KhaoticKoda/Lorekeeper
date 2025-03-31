@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class MakeCharacterImageIdNullable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Realised I couldn't attach an image to a character without making either the
     // character's image ID nullable, or making the image's character ID nullable...
@@ -64,8 +63,7 @@ class MakeCharacterImageIdNullable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_features', function (Blueprint $table) {

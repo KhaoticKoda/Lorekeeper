@@ -19,8 +19,7 @@ class DesignController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  string                    $type
    * @param  string                    $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDesignIndex(Request $request, $type, $status) {
     $requests = CharacterDesignUpdate::where('status', ucfirst($status));
     if ($type == 'myo-approvals') {
@@ -37,8 +36,7 @@ class DesignController extends Controller {
 
   /**
    * Show the design action confirmation modal.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDesignConfirmation($id, $action) {
     $r = CharacterDesignUpdate::where('id', $id)->where('status', 'Pending')->first();
     if (!$r) {
@@ -105,8 +103,7 @@ class DesignController extends Controller {
 
   /**
    * Casts a vote for a design's approval or denial.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function postVote($id, $action, Request $request, CharacterManager $service) {
     $r = CharacterDesignUpdate::where('id', $id)->where('status', 'Pending')->first();
     if (!$r) {

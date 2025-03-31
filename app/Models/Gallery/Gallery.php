@@ -11,8 +11,7 @@ use App\Models\Model;
 class Gallery extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'id',
     'parent_id',
@@ -30,20 +29,17 @@ class Gallery extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'galleries';
 
   /**
    * Dates on the model to convert to Carbon instances.
-   * @var array
-   */
+   * @var array */
   public $dates = ['start_at', 'end_at'];
 
   /**
    * Validation rules for character creation.
-   * @var array
-   */
+   * @var array */
   public static $createRules = [
     'name' => 'required|unique:galleries|between:3,50',
     'description' => 'nullable'
@@ -51,8 +47,7 @@ class Gallery extends Model {
 
   /**
    * Validation rules for character updating.
-   * @var array
-   */
+   * @var array */
   public static $updateRules = [
     'name' => 'required|between:3,50',
     'description' => 'nullable'
@@ -65,22 +60,19 @@ class Gallery extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the parent gallery.
-   */
+   * Get the parent gallery. */
   public function parent() {
     return $this->belongsTo('App\Models\Gallery\Gallery', 'parent_id');
   }
 
   /**
-   * Get the child galleries of this gallery.
-   */
+   * Get the child galleries of this gallery. */
   public function children() {
     return $this->hasMany('App\Models\Gallery\Gallery', 'parent_id')->sort();
   }
 
   /**
-   * Get the submissions made to this gallery.
-   */
+   * Get the submissions made to this gallery. */
   public function submissions() {
     return $this->hasMany('App\Models\Gallery\GallerySubmission', 'gallery_id')
       ->visible()
@@ -96,8 +88,7 @@ class Gallery extends Model {
   /**
    * Scope a query to return galleries sorted first by sort number and then name.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSort($query) {
     return $query->orderByRaw('ISNULL(sort), sort ASC')->orderBy('name', 'ASC');
   }
@@ -105,8 +96,7 @@ class Gallery extends Model {
   /**
    * Scope a query to only include active galleries.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeActive($query) {
     return $query
       ->where(function ($query) {
@@ -130,8 +120,7 @@ class Gallery extends Model {
   /**
    * Scope a query to only include visible galleries.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
+   * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query) {
     return $query->where(function ($query) {
       $query
@@ -151,24 +140,21 @@ class Gallery extends Model {
 
   /**
    * Displays the gallery's display name.
-   * @return string
-   */
+   * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '" class="display-prompt">' . $this->name . '</a>';
   }
 
   /**
    * Gets the gallery's URL.
-   * @return string
-   */
+   * @return string */
   public function getUrlAttribute() {
     return url('gallery/' . $this->id);
   }
 
   /**
    * Gets whether or not the user can submit to the gallery.
-   * @return string
-   */
+   * @return string */
   public function canSubmit($user = null) {
     if (Settings::get('gallery_submissions_open')) {
       if (

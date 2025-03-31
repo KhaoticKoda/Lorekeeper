@@ -28,8 +28,7 @@ class ReportController extends Controller {
   /**
    * Shows the user's report log.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getReportsIndex(Request $request) {
     $reports = Report::where('user_id', Auth::user()->id);
     $type = $request->get('type');
@@ -47,8 +46,7 @@ class ReportController extends Controller {
   /**
    * Shows the bug report log.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getBugIndex(Request $request) {
     $reports = Report::where('is_br', 1);
 
@@ -66,8 +64,7 @@ class ReportController extends Controller {
   /**
    * Shows the report page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getReport($id) {
     $report = Report::viewable(Auth::check() ? Auth::user() : null)
       ->where('id', $id)
@@ -84,8 +81,7 @@ class ReportController extends Controller {
   /**
    * Shows the submit report page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewReport(Request $request) {
     $closed = !Settings::get('is_reports_open');
     return view('home.create_report', [
@@ -97,8 +93,7 @@ class ReportController extends Controller {
    * Creates a new report.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\ReportManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postNewReport(Request $request, ReportManager $service) {
     $request->validate(Report::$createRules);
     $request['url'] = strip_tags($request['url']);

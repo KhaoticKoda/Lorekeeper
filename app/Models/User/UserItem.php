@@ -10,20 +10,17 @@ class UserItem extends Model {
 
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['data', 'item_id', 'user_id'];
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'user_items';
 
   /**********************************************************************************************
@@ -33,15 +30,13 @@ class UserItem extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the user who owns the stack.
-   */
+   * Get the user who owns the stack. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }
 
   /**
-   * Get the item associated with this item stack.
-   */
+   * Get the item associated with this item stack. */
   public function item() {
     return $this->belongsTo('App\Models\Item\Item');
   }
@@ -54,16 +49,14 @@ class UserItem extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return array
-   */
+   * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
   /**
    * Checks if the stack is transferrable.
-   * @return array
-   */
+   * @return array */
   public function getIsTransferrableAttribute() {
     if (!isset($this->data['disallow_transfer']) && $this->item->allow_transfer) {
       return true;
@@ -73,24 +66,21 @@ class UserItem extends Model {
 
   /**
    * Gets the available quantity of the stack.
-   * @return int
-   */
+   * @return int */
   public function getAvailableQuantityAttribute() {
     return $this->count - $this->trade_count - $this->update_count - $this->submission_count;
   }
 
   /**
    * Gets the stack's asset type for asset management.
-   * @return string
-   */
+   * @return string */
   public function getAssetTypeAttribute() {
     return 'user_items';
   }
 
   /**
    * Returns string stating amount held elsewhere
-   * @return string
-   */
+   * @return string */
   public function getOthers($tradeCount = 0, $updateCount = 0, $submissionCount = 0) {
     return $this->getHeldString(
       $this->trade_count - $tradeCount,
@@ -101,8 +91,7 @@ class UserItem extends Model {
 
   /**
    * Gets the available quantity based on input context (either trade count or update count)
-   * @return int
-   */
+   * @return int */
   public function getAvailableContextQuantity($count) {
     return $this->getAvailableQuantityAttribute() + $count;
   }
@@ -110,8 +99,7 @@ class UserItem extends Model {
   /**
    * Construct string stating held items
    *
-   * @return string
-   */
+   * @return string */
   private function getHeldString($tradeCount, $updateCount, $submissionCount) {
     if (!$tradeCount && !$updateCount && !$submissionCount) {
       return null;

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class SetDesignUpdateTypeNull extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //Change default to null going forward
     DB::statement(
@@ -18,8 +17,7 @@ class SetDesignUpdateTypeNull extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     DB::statement(

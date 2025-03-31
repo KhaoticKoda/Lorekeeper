@@ -12,8 +12,7 @@ use App\Models\Model;
 class SalesCharacter extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'sales_id',
     'character_id',
@@ -26,14 +25,12 @@ class SalesCharacter extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'sales_characters';
 
   /**
    * Validation rules.
-   * @var array
-   */
+   * @var array */
   public static $rules = [
     'type' => 'required',
     'link' => 'nullable|url',
@@ -54,15 +51,13 @@ class SalesCharacter extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the sale this is attached to.
-   */
+   * Get the sale this is attached to. */
   public function sales() {
     return $this->belongsTo('App\Models\Sales\Sales', 'sales_id');
   }
 
   /**
-   * Get the character being attached to the sale.
-   */
+   * Get the character being attached to the sale. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character', 'character_id');
   }
@@ -75,16 +70,14 @@ class SalesCharacter extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return array
-   */
+   * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
   /**
    * Get the data attribute as an associative array.
-   * @return string
-   */
+   * @return string */
   public function getDisplayTypeAttribute() {
     switch ($this->attributes['type']) {
       case 'flatsale':
@@ -113,8 +106,7 @@ class SalesCharacter extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return string
-   */
+   * @return string */
   public function getTypeLinkAttribute() {
     switch ($this->attributes['type']) {
       case 'flatsale':
@@ -143,8 +135,7 @@ class SalesCharacter extends Model {
 
   /**
    * Get formatted pricing information.
-   * @return string
-   */
+   * @return string */
   public function getPriceAttribute() {
     if ($this->type == 'raffle') {
       return null;
@@ -196,8 +187,7 @@ class SalesCharacter extends Model {
 
   /**
    * Get the first image for the associated character.
-   * @return App\Models\Character\CharacterImage
-   */
+   * @return App\Models\Character\CharacterImage */
   public function getImageAttribute() {
     return CharacterImage::where('is_visible', 1)
       ->where('character_id', $this->character_id)

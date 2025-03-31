@@ -25,8 +25,7 @@ class LootTableController extends Controller {
 
   /**
    * Shows the loot table index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.loot_tables.loot_tables', [
       'tables' => LootTable::paginate(20)
@@ -35,8 +34,7 @@ class LootTableController extends Controller {
 
   /**
    * Shows the create loot table page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateLootTable() {
     $rarities = Item::whereNotNull('data')->get()->pluck('rarity')->unique()->toArray();
     sort($rarities);
@@ -54,8 +52,7 @@ class LootTableController extends Controller {
   /**
    * Shows the edit loot table page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditLootTable($id) {
     $table = LootTable::find($id);
     if (!$table) {
@@ -80,8 +77,7 @@ class LootTableController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int|null                  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditLootTable(Request $request, LootService $service, $id = null) {
     $id ? $request->validate(LootTable::$updateRules) : $request->validate(LootTable::$createRules);
     $data = $request->only([
@@ -110,8 +106,7 @@ class LootTableController extends Controller {
   /**
    * Gets the loot table deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteLootTable($id) {
     $table = LootTable::find($id);
     return view('admin.loot_tables._delete_loot_table', [
@@ -124,8 +119,7 @@ class LootTableController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteLootTable(Request $request, LootService $service, $id) {
     if ($id && $service->deleteLootTable(LootTable::find($id))) {
       flash('Loot table deleted successfully.')->success();
@@ -142,8 +136,7 @@ class LootTableController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int                       $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRollLootTable(Request $request, LootService $service, $id) {
     $table = LootTable::find($id);
     if (!$table) {

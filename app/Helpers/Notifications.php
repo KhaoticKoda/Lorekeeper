@@ -18,8 +18,7 @@ class Notifications {
    * @param  string                 $type
    * @param  \App\Models\User\User  $user
    * @param  array                  $data
-   * @return bool
-   */
+   * @return bool */
   public function create($type, $user, $data) {
     DB::beginTransaction();
 

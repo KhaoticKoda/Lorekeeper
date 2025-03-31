@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class FixDataDescriptions extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // OK...I decided I wanted to make these all consistent, and also allow HTML,
     // which means I need a field for the parsed descriptions.
@@ -119,8 +118,7 @@ class FixDataDescriptions extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('currencies', function (Blueprint $table) {

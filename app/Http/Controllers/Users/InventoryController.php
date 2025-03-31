@@ -31,8 +31,7 @@ class InventoryController extends Controller {
 
   /**
    * Shows the user's inventory page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     $categories = ItemCategory::orderBy('sort', 'DESC')->get();
     $items = count($categories)
@@ -69,8 +68,7 @@ class InventoryController extends Controller {
    * Shows the inventory stack modal.
    * @param  \Illuminate\Http\Request  $request
    * @param  int                       $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getStack(Request $request, $id) {
     $first_instance = UserItem::withTrashed()->where('id', $id)->first();
     $readOnly =
@@ -114,8 +112,7 @@ class InventoryController extends Controller {
    * Shows the inventory stack modal, for characters.
    * @param  \Illuminate\Http\Request  $request
    * @param  int                       $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterStack(Request $request, $id) {
     $first_instance = CharacterItem::withTrashed()->where('id', $id)->first();
     $stack = CharacterItem::where([
@@ -152,8 +149,7 @@ class InventoryController extends Controller {
    * Edits the inventory of involved users.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEdit(Request $request, InventoryManager $service) {
     if (!$request->ids) {
       flash('No items selected.')->error();
@@ -191,8 +187,7 @@ class InventoryController extends Controller {
    * Transfers inventory items to another user.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postTransfer(Request $request, InventoryManager $service) {
     if (
       $service->transferStack(
@@ -215,8 +210,7 @@ class InventoryController extends Controller {
    * Transfers inventory items to another user.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postTransferToCharacter(Request $request, InventoryManager $service) {
     if (
       $service->transferCharacterStack(
@@ -239,8 +233,7 @@ class InventoryController extends Controller {
    * Deletes an inventory stack.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postDelete(Request $request, InventoryManager $service) {
     if (
       $service->deleteStack(
@@ -262,8 +255,7 @@ class InventoryController extends Controller {
    * Sells an inventory stack.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\InventoryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postResell(Request $request, InventoryManager $service) {
     if (
       $service->resellStack(
@@ -284,8 +276,7 @@ class InventoryController extends Controller {
   /**
    * Shows the inventory selection widget.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSelector($id) {
     return view('widgets._inventory_select', [
       'user' => Auth::user()
@@ -295,8 +286,7 @@ class InventoryController extends Controller {
   /**
    * Acts on an item based on the item's tag.
    * @param  \Illuminate\Http\Request       $request
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   private function postAct(Request $request) {
     $stacks = UserItem::with('item')->find($request->get('ids'));
     $tag = $request->get('tag');
@@ -317,8 +307,7 @@ class InventoryController extends Controller {
 
   /**
    * Show the account search page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getAccountSearch(Request $request) {
     $item = Item::released()
       ->find($request->only(['item_id']))

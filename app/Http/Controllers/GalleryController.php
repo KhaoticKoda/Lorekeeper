@@ -26,8 +26,7 @@ class GalleryController extends Controller {
 
   /**
    * Create a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
     View::share('sidebarGalleries', Gallery::whereNull('parent_id')->visible()->sort()->get());
@@ -35,8 +34,7 @@ class GalleryController extends Controller {
 
   /**
    * Shows the gallery index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getGalleryIndex() {
     return view('galleries.index', [
       'galleries' => Gallery::sort()->active()->whereNull('parent_id')->paginate(10),
@@ -49,8 +47,7 @@ class GalleryController extends Controller {
    * Shows a given gallery.
    * @param  int  $id
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getGallery($id, Request $request) {
     $gallery = Gallery::visible()->where('id', $id)->first();
     if (!$gallery) {
@@ -127,8 +124,7 @@ class GalleryController extends Controller {
   /**
    * Shows a given submission.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmission($id) {
     $submission = GallerySubmission::find($id);
     if (!$submission) {
@@ -162,8 +158,7 @@ class GalleryController extends Controller {
   /**
    * Gets the submission favorites list modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionFavorites($id) {
     $submission = GallerySubmission::find($id);
     return view('galleries._submission_favorites', [
@@ -174,8 +169,7 @@ class GalleryController extends Controller {
   /**
    * Shows a given submission's detailed queue log.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionLog($id) {
     $submission = GallerySubmission::find($id);
     if (!$submission) {
@@ -206,8 +200,7 @@ class GalleryController extends Controller {
   /**
    * Shows the user's gallery submission log.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserSubmissions(Request $request, $type) {
     $submissions = GallerySubmission::userSubmissions(Auth::user());
     if (!$type) {
@@ -227,8 +220,7 @@ class GalleryController extends Controller {
   /**
    * Shows the submit page.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewGallerySubmission(Request $request, $id) {
     if (!Auth::check()) {
       abort(404);
@@ -257,8 +249,7 @@ class GalleryController extends Controller {
   /**
    * Shows the edit submission page.
    * @param  integer  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditGallerySubmission($id) {
     if (!Auth::check()) {
       abort(404);
@@ -295,8 +286,7 @@ class GalleryController extends Controller {
   /**
    * Shows character information.
    * @param  string  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterInfo($slug) {
     $character = Character::visible()->where('slug', $slug)->first();
 
@@ -308,8 +298,7 @@ class GalleryController extends Controller {
   /**
    * Gets the submission archival modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getArchiveSubmission($id) {
     $submission = GallerySubmission::find($id);
     return view('galleries._archive_submission', [
@@ -321,8 +310,7 @@ class GalleryController extends Controller {
    * Creates or edits a new gallery submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\GalleryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditGallerySubmission(
     Request $request,
     GalleryManager $service,
@@ -376,8 +364,7 @@ class GalleryController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\GalleryManager $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postArchiveSubmission(Request $request, GalleryManager $service, $id) {
     if ($id && $service->archiveSubmission(GallerySubmission::find($id), Auth::user())) {
       flash('Submission updated successfully.')->success();
@@ -393,8 +380,7 @@ class GalleryController extends Controller {
    * Edits/approves collaborator contributions to a submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\GalleryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditCollaborator(Request $request, GalleryManager $service, $id) {
     $data = $request->only(['collaborator_data', 'remove_user']);
     if ($service->editCollaborator(GallerySubmission::find($id), $data, Auth::user())) {
@@ -411,8 +397,7 @@ class GalleryController extends Controller {
    * Favorites/unfavorites a gallery submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\GalleryManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postFavoriteSubmission(Request $request, GalleryManager $service, $id) {
     if ($service->favoriteSubmission(GallerySubmission::find($id), Auth::user())) {
       flash('Favorite updated successfully.')->success();

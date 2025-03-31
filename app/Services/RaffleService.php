@@ -19,8 +19,7 @@ class RaffleService extends Service {
   /**
    * Creates a raffle.
    * @param  array  $data
-   * @return \App\Models\Raffle\Raffle
-   */
+   * @return \App\Models\Raffle\Raffle */
   public function createRaffle($data) {
     DB::beginTransaction();
     if (!isset($data['is_active'])) {
@@ -37,8 +36,7 @@ class RaffleService extends Service {
    * Updates a raffle.
    * @param  array                     $data
    * @param  \App\Models\Raffle\Raffle $raffle
-   * @return \App\Models\Raffle\Raffle
-   */
+   * @return \App\Models\Raffle\Raffle */
   public function updateRaffle($data, $raffle) {
     DB::beginTransaction();
     if (!isset($data['is_active'])) {
@@ -52,8 +50,7 @@ class RaffleService extends Service {
   /**
    * Deletes a raffle.
    * @param  \App\Models\Raffle\Raffle $raffle
-   * @return bool
-   */
+   * @return bool */
   public function deleteRaffle($raffle) {
     DB::beginTransaction();
     foreach ($raffle->tickets as $ticket) {
@@ -67,8 +64,7 @@ class RaffleService extends Service {
   /**
    * Creates a raffle group.
    * @param  array  $data
-   * @return \App\Models\Raffle\RaffleGroup
-   */
+   * @return \App\Models\Raffle\RaffleGroup */
   public function createRaffleGroup($data) {
     DB::beginTransaction();
     if (!isset($data['is_active'])) {
@@ -83,8 +79,7 @@ class RaffleService extends Service {
    * Updates a raffle group.
    * @param  array                          $data
    * @param  \App\Models\Raffle\RaffleGroup $raffle
-   * @return \App\Models\Raffle\Raffle
-   */
+   * @return \App\Models\Raffle\Raffle */
   public function updateRaffleGroup($data, $group) {
     DB::beginTransaction();
     if (!isset($data['is_active'])) {
@@ -101,8 +96,7 @@ class RaffleService extends Service {
   /**
    * Deletes a raffle group.
    * @param  \App\Models\Raffle\RaffleGroup $raffle
-   * @return bool
-   */
+   * @return bool */
   public function deleteRaffleGroup($group) {
     DB::beginTransaction();
     foreach ($group->raffles as $raffle) {

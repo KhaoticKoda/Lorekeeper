@@ -11,20 +11,17 @@ use App\Models\Character\CharacterCategory;
 class CharacterImageCreator extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = ['character_image_id', 'type', 'url', 'alias', 'character_type', 'user_id'];
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'character_image_creators';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = false;
 
   /**********************************************************************************************
@@ -34,15 +31,13 @@ class CharacterImageCreator extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the image associated with this record.
-   */
+   * Get the image associated with this record. */
   public function image() {
     return $this->belongsTo('App\Models\Character\CharacterImage', 'character_image_id');
   }
 
   /**
-   * Get the user associated with this record.
-   */
+   * Get the user associated with this record. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
@@ -56,8 +51,7 @@ class CharacterImageCreator extends Model {
   /**
    * Displays a link using the creator's URL.
    *
-   * @return string
-   */
+   * @return string */
   public function displayLink() {
     if ($this->user_id) {
       $user = User::find($this->user_id);

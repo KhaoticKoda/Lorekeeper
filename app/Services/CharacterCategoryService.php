@@ -19,8 +19,7 @@ class CharacterCategoryService extends Service {
   /**
    * Create a category.
    * @param  array  $data
-   * @return \App\Models\Character\CharacterCategory|bool
-   */
+   * @return \App\Models\Character\CharacterCategory|bool */
   public function createCharacterCategory($data) {
     DB::beginTransaction();
 
@@ -53,8 +52,7 @@ class CharacterCategoryService extends Service {
    * Update a category.
    * @param  \App\Models\Character\CharacterCategory  $category
    * @param  array                                    $data
-   * @return \App\Models\Character\CharacterCategory|bool
-   */
+   * @return \App\Models\Character\CharacterCategory|bool */
   public function updateCharacterCategory($category, $data) {
     DB::beginTransaction();
 
@@ -96,8 +94,7 @@ class CharacterCategoryService extends Service {
    * Handle category data.
    * @param  array                                         $data
    * @param  \App\Models\Character\CharacterCategory|null  $category
-   * @return array
-   */
+   * @return array */
   private function populateCategoryData($data, $category = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -117,8 +114,7 @@ class CharacterCategoryService extends Service {
   /**
    * Delete a category.
    * @param  \App\Models\Character\CharacterCategory  $category
-   * @return bool
-   */
+   * @return bool */
   public function deleteCharacterCategory($category) {
     DB::beginTransaction();
 
@@ -145,8 +141,7 @@ class CharacterCategoryService extends Service {
   /**
    * Sorts category order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortCharacterCategory($data) {
     DB::beginTransaction();
 

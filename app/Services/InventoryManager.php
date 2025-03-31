@@ -28,8 +28,7 @@ class InventoryManager extends Service {
    * Grants an item to multiple users.
    * @param  array                 $data
    * @param  \App\Models\User\User $staff
-   * @return bool
-   */
+   * @return bool */
   public function grantItems($data, $staff) {
     DB::beginTransaction();
 
@@ -94,8 +93,7 @@ class InventoryManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $staff
-   * @return bool
-   */
+   * @return bool */
   public function grantCharacterItems($data, $character, $staff) {
     DB::beginTransaction();
 
@@ -162,8 +160,7 @@ class InventoryManager extends Service {
    * @param  \App\Models\User\User|\App\Models\Character\Character          $recipient
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
    * @param  int                                                            $quantities
-   * @return bool
-   */
+   * @return bool */
   public function transferCharacterStack($sender, $recipient, $stacks, $quantities) {
     DB::beginTransaction();
 
@@ -275,8 +272,7 @@ class InventoryManager extends Service {
    * @param  \App\Models\User\User      $recipient
    * @param  \App\Models\User\UserItem  $stacks
    * @param  int                        $quantities
-   * @return bool
-   */
+   * @return bool */
   public function transferStack($sender, $recipient, $stacks, $quantities) {
     DB::beginTransaction();
 
@@ -358,8 +354,7 @@ class InventoryManager extends Service {
    * @param  \App\Models\User\User|\App\Models\Character\Character          $owner
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
    * @param  int                                                            $quantities
-   * @return bool
-   */
+   * @return bool */
   public function deleteStack($owner, $stacks, $quantities) {
     DB::beginTransaction();
 
@@ -464,8 +459,7 @@ class InventoryManager extends Service {
    * @param  \App\Models\User\User      $user
    * @param  \App\Models\User\UserItem  $stacks
    * @param  int                        $quantities
-   * @return bool
-   */
+   * @return bool */
   public function resellStack($user, $stacks, $quantities) {
     DB::beginTransaction();
 
@@ -548,8 +542,7 @@ class InventoryManager extends Service {
    * @param  array                                                  $data
    * @param  \App\Models\Item\Item                                  $item
    * @param  int                                                    $quantity
-   * @return bool
-   */
+   * @return bool */
   public function creditItem($sender, $recipient, $type, $data, $item, $quantity) {
     DB::beginTransaction();
 
@@ -620,8 +613,7 @@ class InventoryManager extends Service {
    * @param  string                                                         $type
    * @param  array                                                          $data
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $item
-   * @return bool
-   */
+   * @return bool */
   public function moveStack($sender, $recipient, $type, $data, $stack, $quantity) {
     DB::beginTransaction();
 
@@ -675,8 +667,7 @@ class InventoryManager extends Service {
    * @param  string                                                 $type
    * @param  array                                                  $data
    * @param  \App\Models\Item\UserItem                              $stack
-   * @return bool
-   */
+   * @return bool */
   public function debitStack($owner, $type, $data, $stack, $quantity) {
     DB::beginTransaction();
 
@@ -713,8 +704,7 @@ class InventoryManager extends Service {
    * @param  \App\Models\User\User|\App\Models\Character\Character          $owner
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
    * @param  int                                                            $quantities
-   * @return bool
-   */
+   * @return bool */
   public function nameStack($owner, $stacks, $name) {
     DB::beginTransaction();
 
@@ -753,8 +743,7 @@ class InventoryManager extends Service {
    * @param  string  $type
    * @param  string  $data
    * @param  int     $quantity
-   * @return  int
-   */
+   * @return  int */
   public function createLog(
     $senderId,
     $senderType,

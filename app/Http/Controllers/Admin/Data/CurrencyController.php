@@ -22,8 +22,7 @@ class CurrencyController extends Controller {
 
   /**
    * Shows the currency index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.currencies.currencies', [
       'currencies' => Currency::paginate(30)
@@ -32,8 +31,7 @@ class CurrencyController extends Controller {
 
   /**
    * Shows the create currency page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCurrency() {
     return view('admin.currencies.create_edit_currency', [
       'currency' => new Currency()
@@ -43,8 +41,7 @@ class CurrencyController extends Controller {
   /**
    * Shows the edit currency page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCurrency($id) {
     $currency = Currency::find($id);
     if (!$currency) {
@@ -60,8 +57,7 @@ class CurrencyController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int|null                               $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditCurrency(Request $request, CurrencyService $service, $id = null) {
     $id ? $request->validate(Currency::$updateRules) : $request->validate(Currency::$createRules);
     $data = $request->only([
@@ -95,8 +91,7 @@ class CurrencyController extends Controller {
   /**
    * Gets the currency deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteCurrency($id) {
     $currency = Currency::find($id);
     return view('admin.currencies._delete_currency', [
@@ -109,8 +104,7 @@ class CurrencyController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int                                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteCurrency(Request $request, CurrencyService $service, $id) {
     if ($id && $service->deleteCurrency(Currency::find($id))) {
       flash('Currency deleted successfully.')->success();
@@ -124,8 +118,7 @@ class CurrencyController extends Controller {
 
   /**
    * Shows the sort currency page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSort() {
     return view('admin.currencies.sort', [
       'userCurrencies' => Currency::where('is_user_owned', 1)->orderBy('sort_user', 'DESC')->get(),
@@ -140,8 +133,7 @@ class CurrencyController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  string                                 $type
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortCurrency(Request $request, CurrencyService $service, $type) {
     if ($service->sortCurrency($request->get('sort'), $type)) {
       flash('Currency order updated successfully.')->success();

@@ -39,8 +39,7 @@ class UserController extends Controller {
 
   /**
    * Create a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     $name = Route::current()->parameter('name');
     $this->user = User::where('name', $name)->first();
@@ -55,8 +54,7 @@ class UserController extends Controller {
   /**
    * Shows a user's profile.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUser($name) {
     $characters = $this->user->characters();
     if (!Auth::check() || !(Auth::check() && Auth::user()->hasPower('manage_characters'))) {
@@ -79,8 +77,7 @@ class UserController extends Controller {
   /**
    * Shows a user's aliases.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserAliases($name) {
     $aliases = $this->user->aliases();
     if (!Auth::check() || !(Auth::check() && Auth::user()->hasPower('edit_user_info'))) {
@@ -96,8 +93,7 @@ class UserController extends Controller {
   /**
    * Shows a user's characters.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCharacters($name) {
     $query = Character::myo(0)->where('user_id', $this->user->id);
     $imageQuery = CharacterImage::images(Auth::check() ? Auth::user() : null)
@@ -134,8 +130,7 @@ class UserController extends Controller {
   /**
    * Shows a user's sublist characters.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserSublist($name, $key) {
     $query = Character::myo(0)->where('user_id', $this->user->id);
     $imageQuery = CharacterImage::images(Auth::check() ? Auth::user() : null)
@@ -175,8 +170,7 @@ class UserController extends Controller {
   /**
    * Shows a user's MYO slots.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserMyoSlots($name) {
     $myo = $this->user->myoSlots();
     if (!Auth::check() || !(Auth::check() && Auth::user()->hasPower('manage_characters'))) {
@@ -193,8 +187,7 @@ class UserController extends Controller {
   /**
    * Shows a user's inventory.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserInventory($name) {
     $categories = ItemCategory::orderBy('sort', 'DESC')->get();
     $items = count($categories)
@@ -232,8 +225,7 @@ class UserController extends Controller {
   /**
    * Shows a user's profile.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserBank($name) {
     $user = $this->user;
     return view(
@@ -266,8 +258,7 @@ class UserController extends Controller {
   /**
    * Shows a user's currency logs.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCurrencyLogs($name) {
     $user = $this->user;
     return view('user.currency_logs', [
@@ -280,8 +271,7 @@ class UserController extends Controller {
   /**
    * Shows a user's item logs.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserItemLogs($name) {
     $user = $this->user;
     return view('user.item_logs', [
@@ -294,8 +284,7 @@ class UserController extends Controller {
   /**
    * Shows a user's character ownership logs.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserOwnershipLogs($name) {
     return view('user.ownership_logs', [
       'user' => $this->user,
@@ -307,8 +296,7 @@ class UserController extends Controller {
   /**
    * Shows a user's submissions.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserSubmissions($name) {
     return view('user.submission_logs', [
       'user' => $this->user,
@@ -320,8 +308,7 @@ class UserController extends Controller {
   /**
    * Shows a user's gallery submissions.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserGallery($name) {
     return view('user.gallery', [
       'user' => $this->user,
@@ -336,8 +323,7 @@ class UserController extends Controller {
   /**
    * Shows a user's gallery submission favorites.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserFavorites($name) {
     return view('user.favorites', [
       'user' => $this->user,
@@ -356,8 +342,7 @@ class UserController extends Controller {
   /**
    * Shows a user's gallery submission favorites that contain characters they own.
    * @param  string  $name
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserOwnCharacterFavorites($name) {
     $user = $this->user;
     $userCharacters = $user->characters()->pluck('id')->toArray();

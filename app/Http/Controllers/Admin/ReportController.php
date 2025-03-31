@@ -20,8 +20,7 @@ class ReportController extends Controller {
   /**
    * Shows the report index page.
    * @param  string  $status
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getReportIndex(Request $request, $status = null) {
     if ($status == 'assigned-to-me') {
       $reports = Report::assignedToMe(Auth::user());
@@ -37,8 +36,7 @@ class ReportController extends Controller {
   /**
    * Shows the report detail page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getReport($id) {
     $report = Report::where('id', $id)->first();
     if (!$report) {
@@ -55,8 +53,7 @@ class ReportController extends Controller {
    * @param  App\Services\ReportManager  $service
    * @param  int                             $id
    * @param  string                          $action
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postReport(Request $request, ReportManager $service, $id, $action) {
     $data = $request->only(['staff_comments']);
     if (

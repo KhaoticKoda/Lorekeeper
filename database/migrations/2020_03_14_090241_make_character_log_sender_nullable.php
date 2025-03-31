@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class MakeCharacterLogSenderNullable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This is required to allow staff to transfer characters from non-registered users around
     Schema::table('user_character_log', function (Blueprint $table) {
@@ -23,8 +22,7 @@ class MakeCharacterLogSenderNullable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('user_character_log', function (Blueprint $table) {

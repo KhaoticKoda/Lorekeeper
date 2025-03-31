@@ -20,8 +20,7 @@ class SublistController extends Controller {
 
   /**
    * Shows the sub masterlist index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.sublist.sublist', [
       'sublists' => Sublist::orderBy('sort', 'DESC')->get()
@@ -30,8 +29,7 @@ class SublistController extends Controller {
 
   /**
    * Shows the create sublist page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSublist() {
     return view('admin.sublist.create_edit_sublist', [
       'sublist' => new Sublist(),
@@ -45,8 +43,7 @@ class SublistController extends Controller {
   /**
    * Shows the edit sublist page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSublist($id) {
     $sublist = Sublist::find($id);
     if (!$sublist) {
@@ -66,8 +63,7 @@ class SublistController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService             $service
    * @param  int|null                               $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditSublist(Request $request, SublistService $service, $id = null) {
     if (!$request['show_main'] || $request['show_main'] == null) {
       $request['show_main'] = 0;
@@ -94,8 +90,7 @@ class SublistController extends Controller {
   /**
    * Gets the sublist deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSublist($id) {
     $sublist = Sublist::find($id);
     return view('admin.sublist._delete_sublist', [
@@ -108,8 +103,7 @@ class SublistController extends Controller {
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService             $service
    * @param  int                                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteSublist(Request $request, SublistService $service, $id) {
     if ($id && $service->deleteSublist(Sublist::find($id))) {
       flash('Sublist deleted successfully.')->success();
@@ -125,8 +119,7 @@ class SublistController extends Controller {
    * Sorts sublist order.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService              $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortSublist(Request $request, SublistService $service) {
     if ($service->sortSublist($request->get('sort'))) {
       flash('Category order updated successfully.')->success();

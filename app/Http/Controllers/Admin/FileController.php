@@ -15,8 +15,7 @@ class FileController extends Controller {
   /**
    * Shows the files index.
    * @param  string  $folder
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex($folder = null) {
     $filesDirectory = public_path() . '/files';
 
@@ -51,8 +50,7 @@ class FileController extends Controller {
    * Creates a new directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateFolder(Request $request, FileManager $service) {
     $request->validate(['name' => 'required|alpha_dash']);
 
@@ -70,8 +68,7 @@ class FileController extends Controller {
    * Moves a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postMoveFile(Request $request, FileManager $service) {
     $request->validate(['destination' => 'required']);
     $oldDir = $request->get('folder');
@@ -97,8 +94,7 @@ class FileController extends Controller {
    * Renames a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postRenameFile(Request $request, FileManager $service) {
     $request->validate(['name' => 'required|regex:/^[a-z0-9\._-]+$/i']);
     $dir = $request->get('folder');
@@ -121,8 +117,7 @@ class FileController extends Controller {
    * Deletes a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteFile(Request $request, FileManager $service) {
     $request->validate(['filename' => 'required']);
     $dir = $request->get('folder');
@@ -142,8 +137,7 @@ class FileController extends Controller {
    * Uploads a file to the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postUploadFile(Request $request, FileManager $service) {
     $request->validate(['file' => 'required|file']);
     $dir = $request->get('folder');
@@ -163,8 +157,7 @@ class FileController extends Controller {
    * Renames a directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postRenameFolder(Request $request, FileManager $service) {
     $request->validate(['name' => 'required|regex:/^[a-z0-9\._-]+$/i']);
     $dir = public_path() . '/files';
@@ -186,8 +179,7 @@ class FileController extends Controller {
    * Deletes a directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteFolder(Request $request, FileManager $service) {
     $request->validate(['folder' => 'required']);
     $dir = $request->get('folder');
@@ -205,8 +197,7 @@ class FileController extends Controller {
 
   /**
    * Shows the site images index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSiteImages() {
     return view('admin.files.images', [
       'images' => Config::get('lorekeeper.image_files')
@@ -217,8 +208,7 @@ class FileController extends Controller {
    * Uploads a site image file.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postUploadImage(Request $request, FileManager $service) {
     $request->validate(['file' => 'required|file']);
     $file = $request->file('file');
@@ -239,8 +229,7 @@ class FileController extends Controller {
    * Uploads a custom site CSS file.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postUploadCss(Request $request, FileManager $service) {
     $request->validate(['file' => 'required|file']);
     $file = $request->file('file');

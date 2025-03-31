@@ -35,8 +35,7 @@ class SubmissionManager extends Service {
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isClaim
-   * @return mixed
-   */
+   * @return mixed */
   public function createSubmission($data, $user, $isClaim = false) {
     DB::beginTransaction();
 
@@ -230,8 +229,7 @@ class SubmissionManager extends Service {
    * @param  array $data
    * @param  bool  $isCharacter
    * @param  bool  $isStaff
-   * @return array
-   */
+   * @return array */
   private function processRewards($data, $isCharacter, $isStaff = false) {
     if ($isCharacter) {
       $assets = createAssetsArray(true);
@@ -335,8 +333,7 @@ class SubmissionManager extends Service {
    * Rejects a submission.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return mixed
-   */
+   * @return mixed */
   public function rejectSubmission($data, $user) {
     DB::beginTransaction();
 
@@ -431,8 +428,7 @@ class SubmissionManager extends Service {
    * Approves a submission.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return mixed
-   */
+   * @return mixed */
   public function approveSubmission($data, $user) {
     DB::beginTransaction();
 

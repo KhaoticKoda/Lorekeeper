@@ -24,8 +24,7 @@ class CurrencyManager extends Service {
    * Admin function for granting currency to multiple users.
    * @param  array                  $data
    * @param  \App\Models\User\User  $staff
-   * @return  bool
-   */
+   * @return  bool */
   public function grantUserCurrencies($data, $staff) {
     DB::beginTransaction();
 
@@ -98,8 +97,7 @@ class CurrencyManager extends Service {
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $staff
    * @param  \App\Models\User\User            $staff
-   * @return  bool
-   */
+   * @return  bool */
   public function grantCharacterCurrencies($data, $character, $staff) {
     DB::beginTransaction();
 
@@ -173,8 +171,7 @@ class CurrencyManager extends Service {
    * @param  \App\Models\User\User          $recipient
    * @param  \App\Models\Currency\Currency  $currency
    * @param  int                            $quantity
-   * @return  bool
-   */
+   * @return  bool */
   public function transferCurrency($sender, $recipient, $currency, $quantity) {
     DB::beginTransaction();
 
@@ -230,8 +227,7 @@ class CurrencyManager extends Service {
    * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
    * @param  \App\Models\Currency\Currency                          $currency
    * @param  int                                                    $quantity
-   * @return  bool
-   */
+   * @return  bool */
   public function transferCharacterCurrency($sender, $recipient, $currency, $quantity) {
     DB::beginTransaction();
 
@@ -289,8 +285,7 @@ class CurrencyManager extends Service {
    * @param  string                                                 $data
    * @param  \App\Models\Currency\Currency                          $currency
    * @param  int                                                    $quantity
-   * @return  bool
-   */
+   * @return  bool */
   public function creditCurrency($sender, $recipient, $type, $data, $currency, $quantity) {
     DB::beginTransaction();
 
@@ -364,8 +359,7 @@ class CurrencyManager extends Service {
    * @param  string                                                 $data
    * @param  \App\Models\Currency\Currency                          $currency
    * @param  int                                                    $quantity
-   * @return  bool
-   */
+   * @return  bool */
   public function debitCurrency($sender, $recipient, $type, $data, $currency, $quantity) {
     DB::beginTransaction();
 
@@ -431,8 +425,7 @@ class CurrencyManager extends Service {
    * @param  string  $data
    * @param  int     $currencyId
    * @param  int     $quantity
-   * @return  int
-   */
+   * @return  int */
   public function createLog(
     $senderId,
     $senderType,

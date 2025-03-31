@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSales extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('sales', function (Blueprint $table) {
@@ -34,8 +33,7 @@ class AddSales extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('users', function (Blueprint $table) {

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddStackNameToCharacterItemsTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('character_items', function (Blueprint $table) {
       //
@@ -23,8 +22,7 @@ class AddStackNameToCharacterItemsTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('character_items', function (Blueprint $table) {
       $table->dropColumn('stack_name');

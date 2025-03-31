@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddParsedTextToSitePages extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('site_pages', function (Blueprint $table) {
       //
@@ -22,8 +21,7 @@ class AddParsedTextToSitePages extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('site_pages', function (Blueprint $table) {
       //

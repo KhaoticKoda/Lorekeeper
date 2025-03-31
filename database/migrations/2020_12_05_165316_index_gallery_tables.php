@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class IndexGalleryTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('galleries', function (Blueprint $table) {
@@ -25,8 +24,7 @@ class IndexGalleryTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('galleries', function (Blueprint $table) {

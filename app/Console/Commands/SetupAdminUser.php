@@ -14,28 +14,24 @@ use App\Models\Rank\Rank;
 class SetupAdminUser extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'setup-admin-user';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Creates the admin user account if no users exist, or resets the password if it does.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     $this->info('********************');
     $this->info('* ADMIN USER SETUP *');

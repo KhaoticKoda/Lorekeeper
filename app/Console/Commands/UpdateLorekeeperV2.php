@@ -8,28 +8,24 @@ use Illuminate\Console\Command;
 class UpdateLorekeeperV2 extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'update-lorekeeper-v2';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Runs commands to update Lorekeeper to version 2.0 from version 1.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return int
-   */
+   * @return int */
   public function handle() {
     $this->info('**************************');
     $this->info('* UPDATE LOREKEEPER (V2) *');

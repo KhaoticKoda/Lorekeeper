@@ -9,20 +9,17 @@ use DB;
 class AddSiteSettings extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'add-site-settings';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Adds the default site settings.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
@@ -35,8 +32,7 @@ class AddSiteSettings extends Command {
    *
    * @param  string  $key
    * @param  int     $value
-   * @param  string  $description
-   */
+   * @param  string  $description */
   private function addSiteSetting($key, $value, $description) {
     if (!DB::table('site_settings')->where('key', $key)->exists()) {
       DB::table('site_settings')->insert([
@@ -54,8 +50,7 @@ class AddSiteSettings extends Command {
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     $this->info('*********************');
     $this->info('* ADD SITE SETTINGS *');

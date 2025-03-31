@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSubmissionCountToUserSettings extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('user_settings', function (Blueprint $table) {
       //
@@ -21,8 +20,7 @@ class AddSubmissionCountToUserSettings extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('user_settings', function (Blueprint $table) {
       //

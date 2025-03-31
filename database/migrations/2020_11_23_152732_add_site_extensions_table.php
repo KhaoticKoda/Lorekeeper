@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSiteExtensionsTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::create('site_extensions', function (Blueprint $table) {
       $table->engine = 'InnoDB';
@@ -22,8 +21,7 @@ class AddSiteExtensionsTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('site_extensions');
   }

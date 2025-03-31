@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class ModifyTradeConfirmationFlags extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('trades', function (Blueprint $table) {
@@ -20,8 +19,7 @@ class ModifyTradeConfirmationFlags extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('trades', function (Blueprint $table) {

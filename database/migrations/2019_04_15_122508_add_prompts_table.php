@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddPromptsTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This will contain art prompts that users can submit art under.
     // Prompts can have a start and end time, so event-only prompts can be
@@ -45,8 +44,7 @@ class AddPromptsTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('prompts');

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddPromptSubmissions extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('submissions', function (Blueprint $table) {
@@ -68,8 +67,7 @@ class AddPromptSubmissions extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('claim_characters');

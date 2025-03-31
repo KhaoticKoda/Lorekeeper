@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddGalleryFavoritesTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::create('gallery_favorites', function (Blueprint $table) {
@@ -21,8 +20,7 @@ class AddGalleryFavoritesTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('gallery_favorites');

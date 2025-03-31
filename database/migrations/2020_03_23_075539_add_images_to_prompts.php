@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddImagesToPrompts extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('prompts', function (Blueprint $table) {
       //
@@ -18,8 +17,7 @@ class AddImagesToPrompts extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('prompts', function (Blueprint $table) {
       //

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class ItemEntryExtension extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Add columns for rarity, reference link, artist alias/URL, availability, use(s)
     Schema::table('items', function (Blueprint $table) {
@@ -21,8 +20,7 @@ class ItemEntryExtension extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('items', function (Blueprint $table) {
       //

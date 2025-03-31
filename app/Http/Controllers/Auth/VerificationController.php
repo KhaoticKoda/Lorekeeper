@@ -19,14 +19,12 @@ class VerificationController extends Controller {
 
   /**
    * Where to redirect users after verification.
-   * @var string
-   */
+   * @var string */
   protected $redirectTo = '/';
 
   /**
    * Create a new controller instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     $this->middleware('auth');
     $this->middleware('signed')->only('verify');

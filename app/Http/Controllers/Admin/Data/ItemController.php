@@ -35,8 +35,7 @@ class ItemController extends Controller {
 
   /**
    * Shows the item category index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.items.item_categories', [
       'categories' => ItemCategory::orderBy('sort', 'DESC')->get()
@@ -45,8 +44,7 @@ class ItemController extends Controller {
 
   /**
    * Shows the create item category page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateItemCategory() {
     return view('admin.items.create_edit_item_category', [
       'category' => new ItemCategory()
@@ -56,8 +54,7 @@ class ItemController extends Controller {
   /**
    * Shows the edit item category page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItemCategory($id) {
     $category = ItemCategory::find($id);
     if (!$category) {
@@ -73,8 +70,7 @@ class ItemController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int|null                  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditItemCategory(Request $request, ItemService $service, $id = null) {
     $id
       ? $request->validate(ItemCategory::$updateRules)
@@ -104,8 +100,7 @@ class ItemController extends Controller {
   /**
    * Gets the item category deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteItemCategory($id) {
     $category = ItemCategory::find($id);
     return view('admin.items._delete_item_category', [
@@ -118,8 +113,7 @@ class ItemController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteItemCategory(Request $request, ItemService $service, $id) {
     if ($id && $service->deleteItemCategory(ItemCategory::find($id))) {
       flash('Category deleted successfully.')->success();
@@ -135,8 +129,7 @@ class ItemController extends Controller {
    * Sorts item categories.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortItemCategory(Request $request, ItemService $service) {
     if ($service->sortItemCategory($request->get('sort'))) {
       flash('Category order updated successfully.')->success();
@@ -157,8 +150,7 @@ class ItemController extends Controller {
   /**
    * Shows the item index.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemIndex(Request $request) {
     $query = Item::query();
     $data = $request->only(['item_category_id', 'name']);
@@ -178,8 +170,7 @@ class ItemController extends Controller {
 
   /**
    * Shows the create item page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateItem() {
     return view('admin.items.create_edit_item', [
       'item' => new Item(),
@@ -197,8 +188,7 @@ class ItemController extends Controller {
   /**
    * Shows the edit item page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItem($id) {
     $item = Item::find($id);
     if (!$item) {
@@ -228,8 +218,7 @@ class ItemController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int|null                  $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditItem(Request $request, ItemService $service, $id = null) {
     $id ? $request->validate(Item::$updateRules) : $request->validate(Item::$createRules);
     $data = $request->only([
@@ -267,8 +256,7 @@ class ItemController extends Controller {
   /**
    * Gets the item deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteItem($id) {
     $item = Item::find($id);
     return view('admin.items._delete_item', [
@@ -281,8 +269,7 @@ class ItemController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteItem(Request $request, ItemService $service, $id) {
     if ($id && $service->deleteItem(Item::find($id))) {
       flash('Item deleted successfully.')->success();
@@ -304,8 +291,7 @@ class ItemController extends Controller {
    * Gets the tag addition page.
    * @param  App\Services\ItemService  $service
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getAddItemTag(ItemService $service, $id) {
     $item = Item::find($id);
     return view('admin.items.add_tag', [
@@ -319,8 +305,7 @@ class ItemController extends Controller {
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postAddItemTag(Request $request, ItemService $service, $id) {
     $item = Item::find($id);
     $tag = $request->get('tag');
@@ -338,8 +323,7 @@ class ItemController extends Controller {
   /**
    * Gets the tag editing page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItemTag(ItemService $service, $id, $tag) {
     $item = Item::find($id);
     $tag = $item->tags()->where('tag', $tag)->first();
@@ -361,8 +345,7 @@ class ItemController extends Controller {
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
    * @param  string                    $tag
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postEditItemTag(Request $request, ItemService $service, $id, $tag) {
     $item = Item::find($id);
     if ($service->editItemTag($item, $tag, $request->all())) {
@@ -379,8 +362,7 @@ class ItemController extends Controller {
    * Gets the item tag deletion modal.
    * @param  int  $id
    * @param  string                    $tag
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteItemTag($id, $tag) {
     $item = Item::find($id);
     $tag = $item->tags()->where('tag', $tag)->first();
@@ -396,8 +378,7 @@ class ItemController extends Controller {
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
    * @param  string                    $tag
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteItemTag(Request $request, ItemService $service, $id, $tag) {
     $item = Item::find($id);
     if ($service->deleteItemTag($item, $tag)) {

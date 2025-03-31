@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class FixCharacterItemLogTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     DB::statement('ALTER TABLE character_items_log CHANGE `count` `quantity` INT(10) unsigned;');
 
@@ -19,8 +18,7 @@ class FixCharacterItemLogTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     DB::statement('ALTER TABLE character_items_log CHANGE `quantity` `count` INT(10) unsigned;');
 

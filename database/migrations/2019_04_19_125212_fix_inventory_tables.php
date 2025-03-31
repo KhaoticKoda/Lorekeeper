@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class FixInventoryTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Turns out I made a user_currencies table on top of the banks one,
     // so gonna remove the banks ones and rename the logs,
@@ -32,8 +31,7 @@ class FixInventoryTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('currencies_log', function (Blueprint $table) {

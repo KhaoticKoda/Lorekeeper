@@ -20,8 +20,7 @@ class NewsService extends Service {
    * Creates a news post.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\News
-   */
+   * @return bool|\App\Models\News */
   public function createNews($data, $user) {
     DB::beginTransaction();
 
@@ -50,8 +49,7 @@ class NewsService extends Service {
    * @param  \App\Models\News       $news
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\News
-   */
+   * @return bool|\App\Models\News */
   public function updateNews($news, $data, $user) {
     DB::beginTransaction();
 
@@ -77,8 +75,7 @@ class NewsService extends Service {
   /**
    * Deletes a news post.
    * @param  \App\Models\News  $news
-   * @return bool
-   */
+   * @return bool */
   public function deleteNews($news) {
     DB::beginTransaction();
 
@@ -95,8 +92,7 @@ class NewsService extends Service {
   /**
    * Updates queued news posts to be visible and alert users when
    * they should be posted.
-   * @return bool
-   */
+   * @return bool */
   public function updateQueue() {
     $count = News::shouldBeVisible()->count();
     if ($count) {
@@ -117,8 +113,7 @@ class NewsService extends Service {
   /**
    * Updates the unread news flag for all users so that
    * the new news notification is displayed.
-   * @return bool
-   */
+   * @return bool */
   private function alertUsers() {
     User::query()->update(['is_news_unread' => 1]);
     return true;

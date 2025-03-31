@@ -26,8 +26,7 @@ class ShopService extends Service {
    * Creates a new shop.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Shop\Shop
-   */
+   * @return bool|\App\Models\Shop\Shop */
   public function createShop($data, $user) {
     DB::beginTransaction();
 
@@ -61,8 +60,7 @@ class ShopService extends Service {
    * @param  \App\Models\Shop\Shop  $shop
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Shop\Shop
-   */
+   * @return bool|\App\Models\Shop\Shop */
   public function updateShop($shop, $data, $user) {
     DB::beginTransaction();
 
@@ -99,8 +97,7 @@ class ShopService extends Service {
    * @param  \App\Models\Shop\Shop  $shop
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Shop\Shop
-   */
+   * @return bool|\App\Models\Shop\Shop */
   public function updateShopStock($shop, $data, $user) {
     DB::beginTransaction();
 
@@ -147,8 +144,7 @@ class ShopService extends Service {
    * Processes user input for creating/updating a shop.
    * @param  array                  $data
    * @param  \App\Models\Shop\Shop  $shop
-   * @return array
-   */
+   * @return array */
   private function populateShopData($data, $shop = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -169,8 +165,7 @@ class ShopService extends Service {
   /**
    * Deletes a shop.
    * @param  \App\Models\Shop\Shop  $shop
-   * @return bool
-   */
+   * @return bool */
   public function deleteShop($shop) {
     DB::beginTransaction();
 
@@ -193,8 +188,7 @@ class ShopService extends Service {
   /**
    * Sorts shop order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortShop($data) {
     DB::beginTransaction();
 

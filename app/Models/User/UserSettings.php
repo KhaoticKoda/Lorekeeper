@@ -7,8 +7,7 @@ use App\Models\Model;
 class UserSettings extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'is_fto',
     'submission_count',
@@ -19,20 +18,17 @@ class UserSettings extends Model {
 
   /**
    * The primary key of the model.
-   * @var string
-   */
+   * @var string */
   public $primaryKey = 'user_id';
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'user_settings';
 
   /**
    * Dates on the model to convert to Carbon instances.
-   * @var array
-   */
+   * @var array */
   protected $dates = ['banned_at'];
 
   /**********************************************************************************************
@@ -42,8 +38,7 @@ class UserSettings extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the user this set of settings belongs to.
-   */
+   * Get the user this set of settings belongs to. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }

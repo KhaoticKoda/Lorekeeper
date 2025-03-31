@@ -20,8 +20,7 @@ class RaffleController extends Controller {
   /**
    * Shows the raffle index.
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleIndex(Request $request) {
     $raffles = Raffle::query();
     if ($request->get('is_active')) {
@@ -42,8 +41,7 @@ class RaffleController extends Controller {
   /**
    * Shows the create/edit raffle modal.
    * @param  int|null  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateEditRaffle($id = null) {
     $raffle = null;
     if ($id) {
@@ -66,8 +64,7 @@ class RaffleController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleService  $service
    * @param  int|null                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditRaffle(Request $request, RaffleService $service, $id = null) {
     $data = $request->only(['name', 'is_active', 'winner_count', 'group_id', 'order']);
     $raffle = null;
@@ -88,8 +85,7 @@ class RaffleController extends Controller {
   /**
    * Shows the create/edit raffle group modal.
    * @param  int|null  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateEditRaffleGroup($id = null) {
     $group = null;
     if ($id) {
@@ -110,8 +106,7 @@ class RaffleController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleService  $service
    * @param  int|null                    $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditRaffleGroup(Request $request, RaffleService $service, $id = null) {
     $data = $request->only(['name', 'is_active']);
     $group = null;
@@ -133,8 +128,7 @@ class RaffleController extends Controller {
    * Shows the ticket index of a raffle.
    * @param  \Illuminate\Http\Request  $request
    * @param  int|\\                    $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleTickets(Request $request, $id) {
     $raffle = Raffle::find($id);
     if (!$raffle) {
@@ -153,8 +147,7 @@ class RaffleController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateRaffleTickets(Request $request, RaffleManager $service, $id) {
     $data = $request->get('names');
     if ($count = $service->addTickets(Raffle::find($id), $data)) {
@@ -171,8 +164,7 @@ class RaffleController extends Controller {
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteRaffleTicket(Request $request, RaffleManager $service, $id) {
     if ($service->removeTicket(RaffleTicket::find($id))) {
       flash('Ticket removed.')->success();
@@ -186,8 +178,7 @@ class RaffleController extends Controller {
   /**
    * Shows the confirmation modal for rolling a raffle.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRollRaffle($id) {
     $raffle = Raffle::find($id);
     if (!$raffle) {
@@ -203,8 +194,7 @@ class RaffleController extends Controller {
    * Rolls a raffle.
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postRollRaffle(RaffleManager $service, $id) {
     if ($service->rollRaffle(Raffle::find($id))) {
       flash('Winners rolled!')->success();
@@ -218,8 +208,7 @@ class RaffleController extends Controller {
   /**
    * Shows the confirmation modal for rolling a raffle group.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getRollRaffleGroup($id) {
     $group = RaffleGroup::find($id);
     if (!$group) {
@@ -235,8 +224,7 @@ class RaffleController extends Controller {
    * Rolls a raffle group.
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postRollRaffleGroup(RaffleManager $service, $id) {
     if ($service->rollRaffleGroup(RaffleGroup::find($id))) {
       flash('Winners rolled!')->success();

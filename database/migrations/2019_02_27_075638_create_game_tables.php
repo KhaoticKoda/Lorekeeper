@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateGameTables extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Tables for actual game use.
     // Most of these have a description field - these are intended for short descriptions, like
@@ -283,8 +282,7 @@ class CreateGameTables extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('user_character_log');
 

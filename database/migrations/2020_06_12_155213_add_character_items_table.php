@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddCharacterItemsTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // Create tables for storing character-owned items and the associated logs.
     Schema::create('character_items', function (Blueprint $table) {
@@ -47,8 +46,7 @@ class AddCharacterItemsTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('character_items');

@@ -24,8 +24,7 @@ class BankController extends Controller {
 
   /**
    * Shows the user's bank page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('home.bank', [
       'currencyOptions' => Currency::where('allow_user_to_user', 1)
@@ -51,8 +50,7 @@ class BankController extends Controller {
    * Transfers currency from the user to another.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postTransfer(Request $request, CurrencyManager $service) {
     if (
       $service->transferCurrency(

@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddItemTags extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This table tags items with a tag type and data.
     // Handlers can be implemented for different tag types.
@@ -34,8 +33,7 @@ class AddItemTags extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::dropIfExists('item_tags');

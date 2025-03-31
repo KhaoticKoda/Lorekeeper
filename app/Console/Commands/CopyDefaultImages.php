@@ -8,28 +8,24 @@ use Illuminate\Console\Command;
 class CopyDefaultImages extends Command {
   /**
    * The name and signature of the console command.
-   * @var string
-   */
+   * @var string */
   protected $signature = 'copy-default-images';
 
   /**
    * The console command description.
-   * @var string
-   */
+   * @var string */
   protected $description = 'Copies default images (as defined in the image_files config file) from the data/images directory to the public/images directory.';
 
   /**
    * Create a new command instance.
-   * @return void
-   */
+   * @return void */
   public function __construct() {
     parent::__construct();
   }
 
   /**
    * Execute the console command.
-   * @return mixed
-   */
+   * @return mixed */
   public function handle() {
     //
     $this->info('***********************');

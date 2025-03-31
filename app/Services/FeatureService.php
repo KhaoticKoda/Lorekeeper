@@ -28,8 +28,7 @@ class FeatureService extends Service {
    * Create a category.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
-   * @return \App\Models\Feature\FeatureCategory|bool
-   */
+   * @return \App\Models\Feature\FeatureCategory|bool */
   public function createFeatureCategory($data, $user) {
     DB::beginTransaction();
 
@@ -63,8 +62,7 @@ class FeatureService extends Service {
    * @param  \App\Models\Feature\FeatureCategory  $category
    * @param  array                                $data
    * @param  \App\Models\User\User                $user
-   * @return \App\Models\Feature\FeatureCategory|bool
-   */
+   * @return \App\Models\Feature\FeatureCategory|bool */
   public function updateFeatureCategory($category, $data, $user) {
     DB::beginTransaction();
 
@@ -102,8 +100,7 @@ class FeatureService extends Service {
    * Handle category data.
    * @param  array                                     $data
    * @param  \App\Models\Feature\FeatureCategory|null  $category
-   * @return array
-   */
+   * @return array */
   private function populateCategoryData($data, $category = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -123,8 +120,7 @@ class FeatureService extends Service {
   /**
    * Delete a category.
    * @param  \App\Models\Feature\FeatureCategory  $category
-   * @return bool
-   */
+   * @return bool */
   public function deleteFeatureCategory($category) {
     DB::beginTransaction();
 
@@ -151,8 +147,7 @@ class FeatureService extends Service {
   /**
    * Sorts category order.
    * @param  array  $data
-   * @return bool
-   */
+   * @return bool */
   public function sortFeatureCategory($data) {
     DB::beginTransaction();
 
@@ -181,8 +176,7 @@ class FeatureService extends Service {
    * Creates a new feature.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\Feature\Feature
-   */
+   * @return bool|\App\Models\Feature\Feature */
   public function createFeature($data, $user) {
     DB::beginTransaction();
 
@@ -250,8 +244,7 @@ class FeatureService extends Service {
    * @param  \App\Models\Feature\Feature  $feature
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
-   * @return bool|\App\Models\Feature\Feature
-   */
+   * @return bool|\App\Models\Feature\Feature */
   public function updateFeature($feature, $data, $user) {
     DB::beginTransaction();
 
@@ -320,8 +313,7 @@ class FeatureService extends Service {
    * Processes user input for creating/updating a feature.
    * @param  array                        $data
    * @param  \App\Models\Feature\Feature  $feature
-   * @return array
-   */
+   * @return array */
   private function populateData($data, $feature = null) {
     if (isset($data['description']) && $data['description']) {
       $data['parsed_description'] = parse($data['description']);
@@ -346,8 +338,7 @@ class FeatureService extends Service {
   /**
    * Deletes a feature.
    * @param  \App\Models\Feature\Feature  $feature
-   * @return bool
-   */
+   * @return bool */
   public function deleteFeature($feature) {
     DB::beginTransaction();
 

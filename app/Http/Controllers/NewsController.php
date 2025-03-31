@@ -19,8 +19,7 @@ class NewsController extends Controller {
 
   /**
    * Shows the news index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     if (Auth::check() && Auth::user()->is_news_unread) {
       Auth::user()->update(['is_news_unread' => 0]);
@@ -34,8 +33,7 @@ class NewsController extends Controller {
    * Shows a news post.
    * @param  int          $id
    * @param  string|null  $slug
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getNews($id, $slug = null) {
     $news = News::where('id', $id)->where('is_visible', 1)->first();
     if (!$news) {

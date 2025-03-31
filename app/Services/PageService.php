@@ -19,8 +19,7 @@ class PageService extends Service {
    * Creates a site page.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\SitePage
-   */
+   * @return bool|\App\Models\SitePage */
   public function createPage($data, $user) {
     DB::beginTransaction();
 
@@ -50,8 +49,7 @@ class PageService extends Service {
    * @param  \App\Models\SitePage   $news
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
-   * @return bool|\App\Models\SitePage
-   */
+   * @return bool|\App\Models\SitePage */
   public function updatePage($page, $data, $user) {
     DB::beginTransaction();
 
@@ -84,8 +82,7 @@ class PageService extends Service {
   /**
    * Deletes a site page.
    * @param  \App\Models\SitePage  $news
-   * @return bool
-   */
+   * @return bool */
   public function deletePage($page) {
     DB::beginTransaction();
 

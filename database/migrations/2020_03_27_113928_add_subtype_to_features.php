@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddSubtypeToFeatures extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This column was added to the wrong table
     Schema::table('character_features', function (Blueprint $table) {
@@ -21,8 +20,7 @@ class AddSubtypeToFeatures extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('features', function (Blueprint $table) {
       $table->dropColumn('subtype_id');

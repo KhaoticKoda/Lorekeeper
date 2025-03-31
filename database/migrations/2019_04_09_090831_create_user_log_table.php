@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUserLogTable extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     // This will log any changes made to user accounts, mainly:
     // 1. E-mail address changes (user side)
@@ -39,8 +38,7 @@ class CreateUserLogTable extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::dropIfExists('user_update_log');
   }

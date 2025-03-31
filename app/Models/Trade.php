@@ -12,8 +12,7 @@ use App\Models\Model;
 class Trade extends Model {
   /**
    * The attributes that are mass assignable.
-   * @var array
-   */
+   * @var array */
   protected $fillable = [
     'sender_id',
     'recipient_id',
@@ -30,14 +29,12 @@ class Trade extends Model {
 
   /**
    * The table associated with the model.
-   * @var string
-   */
+   * @var string */
   protected $table = 'trades';
 
   /**
    * Whether the model contains timestamps to be saved and updated.
-   * @var string
-   */
+   * @var string */
   public $timestamps = true;
 
   /**********************************************************************************************
@@ -47,22 +44,19 @@ class Trade extends Model {
     **********************************************************************************************/
 
   /**
-   * Get the user who initiated the trade.
-   */
+   * Get the user who initiated the trade. */
   public function sender() {
     return $this->belongsTo('App\Models\User\User', 'sender_id');
   }
 
   /**
-   * Get the user who received the trade.
-   */
+   * Get the user who received the trade. */
   public function recipient() {
     return $this->belongsTo('App\Models\User\User', 'recipient_id');
   }
 
   /**
-   * Get the staff member who approved the character transfer.
-   */
+   * Get the staff member who approved the character transfer. */
   public function staff() {
     return $this->belongsTo('App\Models\User\User', 'staff_id');
   }
@@ -85,8 +79,7 @@ class Trade extends Model {
 
   /**
    * Check if the trade is active.
-   * @return bool
-   */
+   * @return bool */
   public function getIsActiveAttribute() {
     if ($this->status == 'Pending') {
       return true;
@@ -103,8 +96,7 @@ class Trade extends Model {
 
   /**
    * Check if the trade can be confirmed.
-   * @return bool
-   */
+   * @return bool */
   public function getIsConfirmableAttribute() {
     if ($this->is_sender_confirmed && $this->is_recipient_confirmed) {
       return true;
@@ -114,16 +106,14 @@ class Trade extends Model {
 
   /**
    * Get the data attribute as an associative array.
-   * @return array
-   */
+   * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
   /**
    * Gets the URL of the trade.
-   * @return string
-   */
+   * @return string */
   public function getUrlAttribute() {
     return url('trades/' . $this->id);
   }
@@ -136,8 +126,7 @@ class Trade extends Model {
 
   /**
    * Gets all characters involved in the trade.
-   * @return \Illuminate\Support\Collection
-   */
+   * @return \Illuminate\Support\Collection */
   public function getCharacterData() {
     return Character::with('user')
       ->whereIn(
@@ -150,8 +139,7 @@ class Trade extends Model {
   /**
    * Gets the inventory of the given user for selection.
    * @param  \App\Models\User\User $user
-   * @return array
-   */
+   * @return array */
   public function getInventory($user) {
     $type = $this->sender_id == $user->id ? 'sender' : 'recipient';
     $inventory =
@@ -164,8 +152,7 @@ class Trade extends Model {
   /**
    * Gets the characters of the given user for selection.
    * @param  \App\Models\User\User $user
-   * @return array
-   */
+   * @return array */
   public function getCharacters($user) {
     $type = $this->sender_id == $user->id ? 'sender' : 'recipient';
     $characters =
@@ -181,8 +168,7 @@ class Trade extends Model {
   /**
    * Gets the currencies of the given user for selection.
    * @param  \App\Models\User\User $user
-   * @return array
-   */
+   * @return array */
   public function getCurrencies($user) {
     $type = $this->sender_id == $user->id ? 'sender' : 'recipient';
     return $this->data && isset($this->data[$type]) && isset($this->data[$type]['currencies'])

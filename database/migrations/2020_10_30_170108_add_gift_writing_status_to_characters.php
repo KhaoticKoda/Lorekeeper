@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddGiftWritingStatusToCharacters extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     Schema::table('characters', function (Blueprint $table) {
       //
@@ -23,8 +22,7 @@ class AddGiftWritingStatusToCharacters extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     Schema::table('characters', function (Blueprint $table) {
       //

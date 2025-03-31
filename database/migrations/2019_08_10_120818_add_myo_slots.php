@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddMyoSlots extends Migration {
   /**
    * Run the migrations.
-   * @return void
-   */
+   * @return void */
   public function up() {
     //
     Schema::table('characters', function (Blueprint $table) {
@@ -29,8 +28,7 @@ class AddMyoSlots extends Migration {
 
   /**
    * Reverse the migrations.
-   * @return void
-   */
+   * @return void */
   public function down() {
     //
     Schema::table('character_images', function (Blueprint $table) {

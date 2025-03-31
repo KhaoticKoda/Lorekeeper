@@ -24,8 +24,7 @@ class SpeciesController extends Controller {
 
   /**
    * Shows the species index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.specieses.specieses', [
       'specieses' => Species::orderBy('sort', 'DESC')->get()
@@ -34,8 +33,7 @@ class SpeciesController extends Controller {
 
   /**
    * Shows the create species page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSpecies() {
     return view('admin.specieses.create_edit_species', [
       'species' => new Species(),
@@ -47,8 +45,7 @@ class SpeciesController extends Controller {
   /**
    * Shows the edit species page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSpecies($id) {
     $species = Species::find($id);
     if (!$species) {
@@ -66,8 +63,7 @@ class SpeciesController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int|null                     $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditSpecies(Request $request, SpeciesService $service, $id = null) {
     $id ? $request->validate(Species::$updateRules) : $request->validate(Species::$createRules);
     $data = $request->only(['name', 'description', 'image', 'remove_image', 'masterlist_sub_id']);
@@ -87,8 +83,7 @@ class SpeciesController extends Controller {
   /**
    * Gets the species deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSpecies($id) {
     $species = Species::find($id);
     return view('admin.specieses._delete_species', [
@@ -101,8 +96,7 @@ class SpeciesController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int                          $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteSpecies(Request $request, SpeciesService $service, $id) {
     if ($id && $service->deleteSpecies(Species::find($id))) {
       flash('Species deleted successfully.')->success();
@@ -118,8 +112,7 @@ class SpeciesController extends Controller {
    * Sorts species.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortSpecies(Request $request, SpeciesService $service) {
     if ($service->sortSpecies($request->get('sort'))) {
       flash('Species order updated successfully.')->success();
@@ -133,8 +126,7 @@ class SpeciesController extends Controller {
 
   /**
    * Shows the subtype index.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubtypeIndex() {
     return view('admin.specieses.subtypes', [
       'subtypes' => Subtype::orderBy('sort', 'DESC')->get()
@@ -143,8 +135,7 @@ class SpeciesController extends Controller {
 
   /**
    * Shows the create subtype page.
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSubtype() {
     return view('admin.specieses.create_edit_subtype', [
       'subtype' => new Subtype(),
@@ -155,8 +146,7 @@ class SpeciesController extends Controller {
   /**
    * Shows the edit subtype page.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSubtype($id) {
     $subtype = Subtype::find($id);
     if (!$subtype) {
@@ -173,8 +163,7 @@ class SpeciesController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int|null                     $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postCreateEditSubtype(Request $request, SpeciesService $service, $id = null) {
     $id ? $request->validate(Subtype::$updateRules) : $request->validate(Subtype::$createRules);
     $data = $request->only(['species_id', 'name', 'description', 'image', 'remove_image']);
@@ -194,8 +183,7 @@ class SpeciesController extends Controller {
   /**
    * Gets the subtype deletion modal.
    * @param  int  $id
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
+   * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSubtype($id) {
     $subtype = Subtype::find($id);
     return view('admin.specieses._delete_subtype', [
@@ -208,8 +196,7 @@ class SpeciesController extends Controller {
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int                          $id
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postDeleteSubtype(Request $request, SpeciesService $service, $id) {
     if ($id && $service->deleteSubtype(Subtype::find($id))) {
       flash('Subtype deleted successfully.')->success();
@@ -225,8 +212,7 @@ class SpeciesController extends Controller {
    * Sorts subtypes.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
-   * @return \Illuminate\Http\RedirectResponse
-   */
+   * @return \Illuminate\Http\RedirectResponse */
   public function postSortSubtypes(Request $request, SpeciesService $service) {
     if ($service->sortSubtypes($request->get('sort'))) {
       flash('Subtype order updated successfully.')->success();
