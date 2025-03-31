@@ -17,8 +17,7 @@ use App\Models\Report\Report;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller {
-  /**
-   * Show the admin dashboard.
+  /** Show the admin dashboard.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     $openTransfersQueue = Settings::get('open_transfers_queue');

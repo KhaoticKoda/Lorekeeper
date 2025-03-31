@@ -22,8 +22,7 @@ class BankController extends Controller {
     | Handles displaying of the user's bank.
     */
 
-  /**
-   * Shows the user's bank page.
+  /** Shows the user's bank page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('home.bank', [
@@ -46,8 +45,7 @@ class BankController extends Controller {
     ]);
   }
 
-  /**
-   * Transfers currency from the user to another.
+  /** Transfers currency from the user to another.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
    * @return \Illuminate\Http\RedirectResponse */

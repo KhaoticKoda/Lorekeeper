@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class SetItemsLogSenderRecipientDefaultNull extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     //Change default to null going forward
@@ -26,8 +25,7 @@ class SetItemsLogSenderRecipientDefaultNull extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     //

@@ -17,8 +17,7 @@ class SalesController extends Controller {
     | Displays sales posts and updates the user's sales read status.
     */
 
-  /**
-   * Shows the sales index.
+  /** Shows the sales index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     if (Auth::check() && Auth::user()->is_sales_unread) {
@@ -29,8 +28,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a sales post.
+  /** Shows a sales post.
    * @param  int          $id
    * @param  string|null  $slug
    * @return \Illuminate\Contracts\Support\Renderable */

@@ -23,8 +23,7 @@ class LootTableController extends Controller {
     | Handles creation/editing of loot tables.
     */
 
-  /**
-   * Shows the loot table index.
+  /** Shows the loot table index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.loot_tables.loot_tables', [
@@ -32,8 +31,7 @@ class LootTableController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create loot table page.
+  /** Shows the create loot table page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateLootTable() {
     $rarities = Item::whereNotNull('data')->get()->pluck('rarity')->unique()->toArray();
@@ -49,8 +47,7 @@ class LootTableController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit loot table page.
+  /** Shows the edit loot table page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditLootTable($id) {
@@ -72,8 +69,7 @@ class LootTableController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a loot table.
+  /** Creates or edits a loot table.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int|null                  $id
@@ -103,8 +99,7 @@ class LootTableController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the loot table deletion modal.
+  /** Gets the loot table deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteLootTable($id) {
@@ -114,8 +109,7 @@ class LootTableController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes an item category.
+  /** Deletes an item category.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int                       $id
@@ -131,8 +125,7 @@ class LootTableController extends Controller {
     return redirect()->to('admin/data/loot-tables');
   }
 
-  /**
-   * Gets the loot table test roll modal.
+  /** Gets the loot table test roll modal.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\LootService  $service
    * @param  int                       $id

@@ -17,8 +17,7 @@ class SpeciesService extends Service {
     | Handles the creation and editing of character species.
     */
 
-  /**
-   * Creates a new species.
+  /** Creates a new species.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Species\Species */
@@ -50,8 +49,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a species.
+  /** Updates a species.
    * @param  \App\Models\Species\Species  $species
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
@@ -87,8 +85,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a species.
+  /** Processes user input for creating/updating a species.
    * @param  array                        $data
    * @param  \App\Models\Species\Species  $species
    * @return array */
@@ -108,8 +105,7 @@ class SpeciesService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a species.
+  /** Deletes a species.
    * @param  \App\Models\Species\Species  $species
    * @return bool */
   public function deleteSpecies($species) {
@@ -135,8 +131,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts species order.
+  /** Sorts species order.
    * @param  array  $data
    * @return bool */
   public function sortSpecies($data) {
@@ -157,8 +152,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Creates a new subtype.
+  /** Creates a new subtype.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Species\Subtype */
@@ -190,8 +184,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a subtype.
+  /** Updates a subtype.
    * @param  \App\Models\Species\Subtype  $subtype
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
@@ -222,8 +215,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a subtype.
+  /** Processes user input for creating/updating a subtype.
    * @param  array                        $data
    * @param  \App\Models\Species\Subtype  $subtype
    * @return array */
@@ -243,8 +235,7 @@ class SpeciesService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a subtype.
+  /** Deletes a subtype.
    * @param  \App\Models\Species\Subtype  $subtype
    * @return bool */
   public function deleteSubtype($subtype) {
@@ -270,8 +261,7 @@ class SpeciesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts subtype order.
+  /** Sorts subtype order.
    * @param  array  $data
    * @return bool */
   public function sortSubtypes($data) {

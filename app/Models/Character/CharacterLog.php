@@ -6,8 +6,7 @@ use Config;
 use App\Models\Model;
 
 class CharacterLog extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'character_id',
@@ -23,13 +22,11 @@ class CharacterLog extends Model {
     'recipient_url'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'character_log';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
@@ -39,20 +36,17 @@ class CharacterLog extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who initiated the logged action. */
+  /** Get the user who initiated the logged action. */
   public function sender() {
     return $this->belongsTo('App\Models\User\User', 'sender_id');
   }
 
-  /**
-   * Get the user who received the logged action. */
+  /** Get the user who received the logged action. */
   public function recipient() {
     return $this->belongsTo('App\Models\User\User', 'recipient_id');
   }
 
-  /**
-   * Get the character that is the target of the action. */
+  /** Get the character that is the target of the action. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character');
   }
@@ -63,8 +57,7 @@ class CharacterLog extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the recipient's alias if applicable.
+  /** Displays the recipient's alias if applicable.
    * @return string */
   public function getDisplayRecipientAliasAttribute() {
     if ($this->recipient_url) {
@@ -74,8 +67,7 @@ class CharacterLog extends Model {
     }
   }
 
-  /**
-   * Retrieves the changed data as an associative array.
+  /** Retrieves the changed data as an associative array.
    * @return array */
   public function getChangedDataAttribute() {
     return json_decode($this->change_log, true);

@@ -16,8 +16,7 @@ use App\Traits\Commentable;
 class GallerySubmission extends Model {
   use Commentable;
 
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'user_id',
@@ -41,18 +40,15 @@ class GallerySubmission extends Model {
     'parsed_staff_comments'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'gallery_submissions';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
-  /**
-   * Validation rules for character creation.
+  /** Validation rules for character creation.
    * @var array */
   public static $createRules = [
     'title' => 'required|between:3,200',
@@ -61,8 +57,7 @@ class GallerySubmission extends Model {
     'description' => 'nullable'
   ];
 
-  /**
-   * Validation rules for character updating.
+  /** Validation rules for character updating.
    * @var array */
   public static $updateRules = [
     'title' => 'required|between:3,200',
@@ -76,20 +71,17 @@ class GallerySubmission extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who made the submission. */
+  /** Get the user who made the submission. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
 
-  /**
-   * Get the staff member who last edited the submission's comments. */
+  /** Get the staff member who last edited the submission's comments. */
   public function staff() {
     return $this->belongsTo('App\Models\User\User', 'staff_id');
   }
 
-  /**
-   * Get the collaborating users on the submission. */
+  /** Get the collaborating users on the submission. */
   public function collaborators() {
     return $this->hasMany('App\Models\Gallery\GalleryCollaborator', 'gallery_submission_id')->where(
       'type',
@@ -97,8 +89,7 @@ class GallerySubmission extends Model {
     );
   }
 
-  /**
-   * Get the user(s) who are related to the submission in some way. */
+  /** Get the user(s) who are related to the submission in some way. */
   public function participants() {
     return $this->hasMany('App\Models\Gallery\GalleryCollaborator', 'gallery_submission_id')->where(
       'type',
@@ -107,26 +98,22 @@ class GallerySubmission extends Model {
     );
   }
 
-  /**
-   * Get the characters associated with the submission. */
+  /** Get the characters associated with the submission. */
   public function characters() {
     return $this->hasMany('App\Models\Gallery\GalleryCharacter', 'gallery_submission_id');
   }
 
-  /**
-   * Get any favorites on the submission. */
+  /** Get any favorites on the submission. */
   public function favorites() {
     return $this->hasMany('App\Models\Gallery\GalleryFavorite', 'gallery_submission_id');
   }
 
-  /**
-   * Get the gallery this submission is in. */
+  /** Get the gallery this submission is in. */
   public function gallery() {
     return $this->belongsTo('App\Models\Gallery\Gallery', 'gallery_id');
   }
 
-  /**
-   * Get the prompt this submission is for if relevant. */
+  /** Get the prompt this submission is for if relevant. */
   public function prompt() {
     return $this->belongsTo('App\Models\Prompt\Prompt', 'prompt_id');
   }
@@ -137,16 +124,14 @@ class GallerySubmission extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include pending submissions.
+  /** Scope a query to only include pending submissions.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopePending($query) {
     return $query->where('status', 'Pending');
   }
 
-  /**
-   * Scope a query to only include submissions where all collaborators have approved.
+  /** Scope a query to only include submissions where all collaborators have approved.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeCollaboratorApproved($query) {
@@ -156,24 +141,21 @@ class GallerySubmission extends Model {
     );
   }
 
-  /**
-   * Scope a query to only include accepted submissions.
+  /** Scope a query to only include accepted submissions.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeAccepted($query) {
     return $query->where('status', 'Accepted');
   }
 
-  /**
-   * Scope a query to only include rejected submissions.
+  /** Scope a query to only include rejected submissions.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeRejected($query) {
     return $query->where('status', 'Rejected');
   }
 
-  /**
-   * Scope a query to only include submissions that require currency awards.
+  /** Scope a query to only include submissions that require currency awards.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeRequiresAward($query) {
@@ -185,8 +167,7 @@ class GallerySubmission extends Model {
       ->whereIn('gallery_id', Gallery::where('currency_enabled', 1)->pluck('id')->toArray());
   }
 
-  /**
-   * Scope a query to only include submissions the user has either submitted or collaborated on.
+  /** Scope a query to only include submissions the user has either submitted or collaborated on.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param                                         $user
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -202,8 +183,7 @@ class GallerySubmission extends Model {
       );
   }
 
-  /**
-   * Scope a query to only include submissions visible within the gallery.
+  /** Scope a query to only include submissions visible within the gallery.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query, $user = null) {
@@ -219,29 +199,25 @@ class GallerySubmission extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/gallery/' . floor($this->id / 1000);
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getImageFileNameAttribute() {
     return $this->id . '_' . $this->hash . '.' . $this->extension;
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getImageUrlAttribute() {
     if (!isset($this->hash)) {
@@ -250,22 +226,19 @@ class GallerySubmission extends Model {
     return asset($this->imageDirectory . '/' . $this->imageFileName);
   }
 
-  /**
-   * Gets the file name of the model's thumbnail image.
+  /** Gets the file name of the model's thumbnail image.
    * @return string */
   public function getThumbnailFileNameAttribute() {
     return $this->id . '_' . $this->hash . '_th.' . $this->extension;
   }
 
-  /**
-   * Gets the path to the file directory containing the model's thumbnail image.
+  /** Gets the path to the file directory containing the model's thumbnail image.
    * @return string */
   public function getThumbnailPathAttribute() {
     return $this->imagePath;
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getThumbnailUrlAttribute() {
     if (!isset($this->hash)) {
@@ -274,43 +247,37 @@ class GallerySubmission extends Model {
     return asset($this->imageDirectory . '/' . $this->thumbnailFileName);
   }
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Gets the voting data of the gallery submission.
+  /** Gets the voting data of the gallery submission.
    * @return string */
   public function getVoteDataAttribute() {
     return collect(json_decode($this->attributes['vote_data'], true));
   }
 
-  /**
-   * Get the title of the submission, with prefix.
+  /** Get the title of the submission, with prefix.
    * @return string */
   public function getDisplayTitleAttribute() {
     return $this->prefix . $this->attributes['title'];
   }
 
-  /**
-   * Get the display name of the submission.
+  /** Get the display name of the submission.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '">' . $this->displayTitle . '</a>';
   }
 
-  /**
-   * Get the viewing URL of the submission.
+  /** Get the viewing URL of the submission.
    * @return string */
   public function getUrlAttribute() {
     return url('gallery/view/' . $this->id);
   }
 
-  /**
-   * Checks if all of a submission's collaborators have approved or no.
+  /** Checks if all of a submission's collaborators have approved or no.
    * @return string */
   public function getPrefixAttribute() {
     $currencyName = Currency::find(Settings::get('group_currency'))->abbreviation
@@ -350,15 +317,13 @@ class GallerySubmission extends Model {
     return null;
   }
 
-  /**
-   * Get the internal processing URL of the submission.
+  /** Get the internal processing URL of the submission.
    * @return string */
   public function getQueueUrlAttribute() {
     return url('gallery/queue/' . $this->id);
   }
 
-  /**
-   * Get whether or not the submission is generally viewable.
+  /** Get whether or not the submission is generally viewable.
    * @return bool */
   public function getIsVisibleAttribute() {
     if ($this->attributes['is_visible'] && $this->status == 'Accepted') {
@@ -366,8 +331,7 @@ class GallerySubmission extends Model {
     }
   }
 
-  /**
-   * Get the users responsible for the submission (submitting user or collaborators).
+  /** Get the users responsible for the submission (submitting user or collaborators).
    * @return string */
   public function getCreditsAttribute() {
     if ($this->collaborators->count()) {
@@ -380,8 +344,7 @@ class GallerySubmission extends Model {
     }
   }
 
-  /**
-   * Get the users responsible for the submission (submitting user or collaborators).
+  /** Get the users responsible for the submission (submitting user or collaborators).
    * @return string */
   public function getCreditsPlainAttribute() {
     if ($this->collaborators->count()) {
@@ -394,8 +357,7 @@ class GallerySubmission extends Model {
     }
   }
 
-  /**
-   * Checks if all of a submission's collaborators have approved or no.
+  /** Checks if all of a submission's collaborators have approved or no.
    * @return string */
   public function getCollaboratorApprovedAttribute() {
     if ($this->collaborators->where('has_approved', 0)->count()) {
@@ -404,8 +366,7 @@ class GallerySubmission extends Model {
     return true;
   }
 
-  /**
-   * Gets prompt submissions associated with this gallery submission.
+  /** Gets prompt submissions associated with this gallery submission.
    * @return array */
   public function getPromptSubmissionsAttribute() {
     // Only returns submissions which are viewable to everyone,
@@ -413,8 +374,7 @@ class GallerySubmission extends Model {
     return Submission::viewable()->whereNotNull('prompt_id')->where('url', $this->url)->get();
   }
 
-  /**
-   * Gets prompts associated with this gallery submission.
+  /** Gets prompts associated with this gallery submission.
    * @return array */
   public function getPromptsAttribute() {
     // Only returns submissions which are viewable to everyone,
@@ -422,8 +382,7 @@ class GallerySubmission extends Model {
     return Prompt::whereIn('id', $this->promptSubmissions->pluck('prompt_id'))->get();
   }
 
-  /**
-   * Gets the excerpt of text for a literature submission.
+  /** Gets the excerpt of text for a literature submission.
    * @return string */
   public function getExcerptAttribute() {
     if (!isset($this->parsed_text)) {

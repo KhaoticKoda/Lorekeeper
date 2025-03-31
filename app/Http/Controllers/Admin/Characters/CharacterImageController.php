@@ -27,8 +27,7 @@ class CharacterImageController extends Controller {
     | Handles admin creation/editing of character images.
     */
 
-  /**
-   * Shows the add image page. Existing characters only, not MYO slots.
+  /** Shows the add image page. Existing characters only, not MYO slots.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewImage($slug) {
@@ -56,8 +55,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit image subtype portion of the modal
+  /** Shows the edit image subtype portion of the modal
    * @param  Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewImageSubtype(Request $request) {
@@ -74,8 +72,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new image for a character.
+  /** Creates a new image for a character.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -117,8 +114,7 @@ class CharacterImageController extends Controller {
     return redirect()->to($this->character->url . '/images');
   }
 
-  /**
-   * Shows the edit image features modal.
+  /** Shows the edit image features modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageFeatures($id) {
@@ -141,8 +137,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Edits the features of an image.
+  /** Edits the features of an image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -163,8 +158,7 @@ class CharacterImageController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Shows the edit image subtype portion of the modal
+  /** Shows the edit image subtype portion of the modal
    * @param  Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageSubtype(Request $request) {
@@ -181,8 +175,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit image notes modal.
+  /** Shows the edit image notes modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageNotes($id) {
@@ -191,8 +184,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Edits the features of an image.
+  /** Edits the features of an image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -213,8 +205,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the edit image credits modal.
+  /** Shows the edit image credits modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditImageCredits($id) {
@@ -224,8 +215,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Edits the credits of an image.
+  /** Edits the credits of an image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -246,8 +236,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the reupload image modal.
+  /** Shows the reupload image modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageReupload($id) {
@@ -256,8 +245,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Reuploads an image.
+  /** Reuploads an image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -278,8 +266,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Edits an image's settings.
+  /** Edits an image's settings.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -300,8 +287,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the set active image modal.
+  /** Shows the set active image modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageActive($id) {
@@ -310,8 +296,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Sets an image to be the character's active image.
+  /** Sets an image to be the character's active image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -331,8 +316,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the delete image modal.
+  /** Shows the delete image modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getImageDelete($id) {
@@ -341,8 +325,7 @@ class CharacterImageController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes an image.
+  /** Deletes an image.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -362,8 +345,7 @@ class CharacterImageController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Sorts a character's images.
+  /** Sorts a character's images.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug

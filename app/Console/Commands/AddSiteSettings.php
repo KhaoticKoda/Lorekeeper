@@ -7,25 +7,21 @@ use Illuminate\Console\Command;
 use DB;
 
 class AddSiteSettings extends Command {
-  /**
-   * The name and signature of the console command.
+  /* The name and signature of the console command.
    * @var string */
   protected $signature = 'add-site-settings';
 
-  /**
-   * The console command description.
+  /** The console command description.
    * @var string */
   protected $description = 'Adds the default site settings.';
 
-  /**
-   * Create a new command instance.
+  /** Create a new command instance.
    * @return void */
   public function __construct() {
     parent::__construct();
   }
 
-  /**
-   * Add a site setting.
+  /** Add a site setting.
    *
    * Example usage:
    * $this->addSiteSetting("site_setting_key", 1, "0: does nothing. 1: does something.");
@@ -48,8 +44,7 @@ class AddSiteSettings extends Command {
     }
   }
 
-  /**
-   * Execute the console command.
+  /** Execute the console command.
    * @return mixed */
   public function handle() {
     $this->info('*********************');

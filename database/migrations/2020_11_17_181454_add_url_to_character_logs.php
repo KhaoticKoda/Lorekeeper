@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddUrlToCharacterLogs extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     Schema::table('character_log', function (Blueprint $table) {
@@ -22,8 +21,7 @@ class AddUrlToCharacterLogs extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     Schema::table('character_log', function (Blueprint $table) {

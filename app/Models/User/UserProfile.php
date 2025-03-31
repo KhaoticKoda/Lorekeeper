@@ -8,18 +8,15 @@ use App\Traits\Commentable;
 class UserProfile extends Model {
   use Commentable;
 
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['text', 'parsed_text'];
 
-  /**
-   * The primary key of the model.
+  /** The primary key of the model.
    * @var string */
   public $primaryKey = 'user_id';
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'user_profiles';
 
@@ -29,8 +26,7 @@ class UserProfile extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user this profile belongs to. */
+  /** Get the user this profile belongs to. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }

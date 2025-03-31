@@ -25,8 +25,7 @@ class PromptController extends Controller {
     | Handles creation/editing of prompt categories and prompts.
     */
 
-  /**
-   * Shows the prompt category index.
+  /** Shows the prompt category index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.prompts.prompt_categories', [
@@ -34,8 +33,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create prompt category page.
+  /** Shows the create prompt category page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreatePromptCategory() {
     return view('admin.prompts.create_edit_prompt_category', [
@@ -43,8 +41,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit prompt category page.
+  /** Shows the edit prompt category page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditPromptCategory($id) {
@@ -57,8 +54,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a prompt category.
+  /** Creates or edits a prompt category.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int|null                    $id
@@ -85,8 +81,7 @@ class PromptController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the prompt category deletion modal.
+  /** Gets the prompt category deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeletePromptCategory($id) {
@@ -96,8 +91,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a prompt category.
+  /** Deletes a prompt category.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int                         $id
@@ -113,8 +107,7 @@ class PromptController extends Controller {
     return redirect()->to('admin/data/prompt-categories');
   }
 
-  /**
-   * Sorts prompt categories.
+  /** Sorts prompt categories.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -135,8 +128,7 @@ class PromptController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the prompt category index.
+  /** Shows the prompt category index.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptIndex(Request $request) {
@@ -156,8 +148,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create prompt page.
+  /** Shows the create prompt page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreatePrompt() {
     return view('admin.prompts.create_edit_prompt', [
@@ -175,8 +166,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit prompt page.
+  /** Shows the edit prompt page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditPrompt($id) {
@@ -199,8 +189,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a prompt.
+  /** Creates or edits a prompt.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int|null                    $id
@@ -238,8 +227,7 @@ class PromptController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the prompt deletion modal.
+  /** Gets the prompt deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeletePrompt($id) {
@@ -249,8 +237,7 @@ class PromptController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a prompt.
+  /** Deletes a prompt.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\PromptService  $service
    * @param  int                         $id

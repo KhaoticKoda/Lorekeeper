@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddHoldingCountToUserItems extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     Schema::table('user_items', function (Blueprint $table) {
@@ -14,8 +13,7 @@ class AddHoldingCountToUserItems extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     Schema::table('user_items', function (Blueprint $table) {

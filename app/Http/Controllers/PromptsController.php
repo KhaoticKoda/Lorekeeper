@@ -19,15 +19,13 @@ class PromptsController extends Controller {
     | Pages displayed by this controller form the Prompts section of the site.
     */
 
-  /**
-   * Shows the index page.
+  /** Shows the index page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('prompts.index');
   }
 
-  /**
-   * Shows the prompt categories page.
+  /** Shows the prompt categories page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptCategories(Request $request) {
@@ -41,8 +39,7 @@ class PromptsController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the prompts page.
+  /** Shows the prompts page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPrompts(Request $request) {

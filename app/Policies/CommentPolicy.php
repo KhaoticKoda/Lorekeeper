@@ -6,16 +6,14 @@ use Auth;
 use App\Models\Comment;
 
 class CommentPolicy {
-  /**
-   * Can user create the comment
+  /** Can user create the comment
    * @param $user
    * @return bool */
   public function create($user): bool {
     return true;
   }
 
-  /**
-   * Can user delete the comment
+  /** Can user delete the comment
    * @param $user
    * @param Comment $comment
    * @return bool */
@@ -27,8 +25,7 @@ class CommentPolicy {
     }
   }
 
-  /**
-   * Can user update the comment
+  /** Can user update the comment
    * @param $user
    * @param Comment $comment
    * @return bool */
@@ -36,8 +33,7 @@ class CommentPolicy {
     return $user->getKey() == $comment->commenter_id;
   }
 
-  /**
-   * Can user reply to the comment
+  /** Can user reply to the comment
    * @param $user
    * @param Comment $comment
    * @return bool */

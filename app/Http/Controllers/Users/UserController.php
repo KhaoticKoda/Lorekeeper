@@ -37,8 +37,7 @@ class UserController extends Controller {
     | Displays user profile pages.
     */
 
-  /**
-   * Create a new controller instance.
+  /** Create a new controller instance.
    * @return void */
   public function __construct() {
     $name = Route::current()->parameter('name');
@@ -51,8 +50,7 @@ class UserController extends Controller {
     $this->user->updateArtDesignCredits();
   }
 
-  /**
-   * Shows a user's profile.
+  /** Shows a user's profile.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUser($name) {
@@ -74,8 +72,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's aliases.
+  /** Shows a user's aliases.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserAliases($name) {
@@ -90,8 +87,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's characters.
+  /** Shows a user's characters.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCharacters($name) {
@@ -127,8 +123,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's sublist characters.
+  /** Shows a user's sublist characters.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserSublist($name, $key) {
@@ -167,8 +162,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's MYO slots.
+  /** Shows a user's MYO slots.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserMyoSlots($name) {
@@ -184,8 +178,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's inventory.
+  /** Shows a user's inventory.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserInventory($name) {
@@ -222,8 +215,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's profile.
+  /** Shows a user's profile.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserBank($name) {
@@ -255,8 +247,7 @@ class UserController extends Controller {
     );
   }
 
-  /**
-   * Shows a user's currency logs.
+  /** Shows a user's currency logs.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCurrencyLogs($name) {
@@ -268,8 +259,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's item logs.
+  /** Shows a user's item logs.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserItemLogs($name) {
@@ -281,8 +271,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's character ownership logs.
+  /** Shows a user's character ownership logs.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserOwnershipLogs($name) {
@@ -293,8 +282,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's submissions.
+  /** Shows a user's submissions.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserSubmissions($name) {
@@ -305,8 +293,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's gallery submissions.
+  /** Shows a user's gallery submissions.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserGallery($name) {
@@ -320,8 +307,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's gallery submission favorites.
+  /** Shows a user's gallery submission favorites.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserFavorites($name) {
@@ -339,8 +325,7 @@ class UserController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a user's gallery submission favorites that contain characters they own.
+  /** Shows a user's gallery submission favorites that contain characters they own.
    * @param  string  $name
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserOwnCharacterFavorites($name) {

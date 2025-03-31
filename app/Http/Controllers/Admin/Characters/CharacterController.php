@@ -33,8 +33,7 @@ class CharacterController extends Controller {
     | Handles admin creation/editing of characters and MYO slots.
     */
 
-  /**
-   * Gets the next number for a character in a category.
+  /** Gets the next number for a character in a category.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @return string */
@@ -42,8 +41,7 @@ class CharacterController extends Controller {
     return $service->pullNumber($request->get('category'));
   }
 
-  /**
-   * Shows the create character page.
+  /** Shows the create character page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacter() {
     return view('admin.masterlist.create_character', [
@@ -60,8 +58,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create MYO slot page.
+  /** Shows the create MYO slot page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateMyo() {
     return view('admin.masterlist.create_character', [
@@ -77,8 +74,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit image subtype portion of the modal
+  /** Shows the edit image subtype portion of the modal
    * @param  Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacterMyoSubtype(Request $request) {
@@ -94,8 +90,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a character.
+  /** Creates a character.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -143,8 +138,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Creates an MYO slot.
+  /** Creates an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -189,8 +183,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Shows the edit character stats modal.
+  /** Shows the edit character stats modal.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterStats($slug) {
@@ -211,8 +204,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit MYO stats modal.
+  /** Shows the edit MYO stats modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditMyoStats($id) {
@@ -228,8 +220,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Edits a character's stats.
+  /** Edits a character's stats.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -261,8 +252,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Edits an MYO slot's stats.
+  /** Edits an MYO slot's stats.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -292,8 +282,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Shows the edit character description modal.
+  /** Shows the edit character description modal.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterDescription($slug) {
@@ -308,8 +297,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit MYO slot description modal.
+  /** Shows the edit MYO slot description modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditMyoDescription($id) {
@@ -324,8 +312,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Edits a character's description.
+  /** Edits a character's description.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -347,8 +334,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Edits an MYO slot's description.
+  /** Edits an MYO slot's description.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -370,8 +356,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Edits a character's settings.
+  /** Edits a character's settings.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -393,8 +378,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Edits an MYO slot's settings.
+  /** Edits an MYO slot's settings.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -416,8 +400,7 @@ class CharacterController extends Controller {
     return redirect()->back()->withInput();
   }
 
-  /**
-   * Shows the delete character modal.
+  /** Shows the delete character modal.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterDelete($slug) {
@@ -432,8 +415,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the delete MYO slot modal.
+  /** Shows the delete MYO slot modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyoDelete($id) {
@@ -448,8 +430,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a character.
+  /** Deletes a character.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -471,8 +452,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Deletes an MYO slot.
+  /** Deletes an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -494,8 +474,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Transfers a character.
+  /** Transfers a character.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  string                         $slug
@@ -522,8 +501,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Transfers an MYO slot.
+  /** Transfers an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -550,8 +528,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the character transfer queue.
+  /** Shows the character transfer queue.
    * @param  string  $type
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getTransferQueue($type) {
@@ -579,8 +556,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the character transfer action modal.
+  /** Shows the character transfer action modal.
    * @param  int     $id
    * @param  string  $action
    * @return \Illuminate\Contracts\Support\Renderable */
@@ -599,8 +575,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Acts on a transfer in the transfer queue.
+  /** Acts on a transfer in the transfer queue.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -631,8 +606,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the character trade queue.
+  /** Shows the character trade queue.
    * @param  string  $type
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getTradeQueue($type) {
@@ -678,8 +652,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the character trade action modal.
+  /** Shows the character trade action modal.
    * @param  int     $id
    * @param  string  $action
    * @return \Illuminate\Contracts\Support\Renderable */
@@ -698,8 +671,7 @@ class CharacterController extends Controller {
     ]);
   }
 
-  /**
-   * Acts on a trade in the trade queue.
+  /** Acts on a trade in the trade queue.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -728,8 +700,7 @@ class CharacterController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows a list of all existing MYO slots.
+  /** Shows a list of all existing MYO slots.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyoIndex() {
     return view('admin.masterlist.myo_index', [

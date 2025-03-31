@@ -16,8 +16,7 @@ class GalleryService extends Service {
     | Handles the creation and editing of galleries.
     */
 
-  /**
-   * Creates a new gallery.
+  /** Creates a new gallery.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Gallery */
@@ -50,8 +49,7 @@ class GalleryService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a gallery.
+  /** Updates a gallery.
    * @param  \App\Models\Gallery    $gallery
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -90,8 +88,7 @@ class GalleryService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes a gallery.
+  /** Deletes a gallery.
    * @param  \App\Models\Gallery  $gallery
    * @return bool */
   public function deleteGallery($gallery) {

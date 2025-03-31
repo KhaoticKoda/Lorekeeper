@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class ChangeItemTrackingSystem extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     DB::statement('ALTER TABLE user_items CHANGE `holding_count` `trade_count` INT(10) unsigned;');
@@ -16,8 +15,7 @@ class ChangeItemTrackingSystem extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     DB::statement('ALTER TABLE user_items CHANGE `trade_count` `holding_count` INT(10) unsigned;');

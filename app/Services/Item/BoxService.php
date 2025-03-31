@@ -19,8 +19,7 @@ class BoxService extends Service {
     | Handles the editing and usage of box type items.
     */
 
-  /**
-   * Retrieves any data that should be used in the item tag editing form.
+  /** Retrieves any data that should be used in the item tag editing form.
    * @return array */
   public function getEditData() {
     return [
@@ -37,8 +36,7 @@ class BoxService extends Service {
     ];
   }
 
-  /**
-   * Processes the data attribute of the tag and returns it in the preferred format.
+  /** Processes the data attribute of the tag and returns it in the preferred format.
    * @param  string  $tag
    * @return mixed */
   public function getTagData($tag) {
@@ -59,8 +57,7 @@ class BoxService extends Service {
     return $rewards;
   }
 
-  /**
-   * Processes the data attribute of the tag and returns it in the preferred format.
+  /** Processes the data attribute of the tag and returns it in the preferred format.
    * @param  string  $tag
    * @param  array   $data
    * @return bool */
@@ -105,8 +102,7 @@ class BoxService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Acts upon the item when used from the inventory.
+  /** Acts upon the item when used from the inventory.
    * @param  \App\Models\User\UserItem  $stacks
    * @param  \App\Models\User\User      $user
    * @param  array                      $data
@@ -158,8 +154,7 @@ class BoxService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Acts upon the item when used from the inventory.
+  /** Acts upon the item when used from the inventory.
    * @param  array                  $rewards
    * @return string */
   private function getBoxRewardsString($rewards) {

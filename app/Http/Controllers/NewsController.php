@@ -17,8 +17,7 @@ class NewsController extends Controller {
     | Displays news posts and updates the user's news read status.
     */
 
-  /**
-   * Shows the news index.
+  /** Shows the news index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     if (Auth::check() && Auth::user()->is_news_unread) {
@@ -29,8 +28,7 @@ class NewsController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a news post.
+  /** Shows a news post.
    * @param  int          $id
    * @param  string|null  $slug
    * @return \Illuminate\Contracts\Support\Renderable */

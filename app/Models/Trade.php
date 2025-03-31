@@ -10,8 +10,7 @@ use App\Models\Character\Character;
 use App\Models\Model;
 
 class Trade extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'sender_id',
@@ -27,13 +26,11 @@ class Trade extends Model {
     'data'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'trades';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
@@ -43,20 +40,17 @@ class Trade extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who initiated the trade. */
+  /** Get the user who initiated the trade. */
   public function sender() {
     return $this->belongsTo('App\Models\User\User', 'sender_id');
   }
 
-  /**
-   * Get the user who received the trade. */
+  /** Get the user who received the trade. */
   public function recipient() {
     return $this->belongsTo('App\Models\User\User', 'recipient_id');
   }
 
-  /**
-   * Get the staff member who approved the character transfer. */
+  /** Get the staff member who approved the character transfer. */
   public function staff() {
     return $this->belongsTo('App\Models\User\User', 'staff_id');
   }
@@ -77,8 +71,7 @@ class Trade extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Check if the trade is active.
+  /** Check if the trade is active.
    * @return bool */
   public function getIsActiveAttribute() {
     if ($this->status == 'Pending') {
@@ -94,8 +87,7 @@ class Trade extends Model {
     return false;
   }
 
-  /**
-   * Check if the trade can be confirmed.
+  /** Check if the trade can be confirmed.
    * @return bool */
   public function getIsConfirmableAttribute() {
     if ($this->is_sender_confirmed && $this->is_recipient_confirmed) {
@@ -104,15 +96,13 @@ class Trade extends Model {
     return false;
   }
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Gets the URL of the trade.
+  /** Gets the URL of the trade.
    * @return string */
   public function getUrlAttribute() {
     return url('trades/' . $this->id);
@@ -124,8 +114,7 @@ class Trade extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Gets all characters involved in the trade.
+  /** Gets all characters involved in the trade.
    * @return \Illuminate\Support\Collection */
   public function getCharacterData() {
     return Character::with('user')
@@ -136,8 +125,7 @@ class Trade extends Model {
       ->get();
   }
 
-  /**
-   * Gets the inventory of the given user for selection.
+  /** Gets the inventory of the given user for selection.
    * @param  \App\Models\User\User $user
    * @return array */
   public function getInventory($user) {
@@ -149,8 +137,7 @@ class Trade extends Model {
     return $inventory;
   }
 
-  /**
-   * Gets the characters of the given user for selection.
+  /** Gets the characters of the given user for selection.
    * @param  \App\Models\User\User $user
    * @return array */
   public function getCharacters($user) {
@@ -165,8 +152,7 @@ class Trade extends Model {
     return $characters;
   }
 
-  /**
-   * Gets the currencies of the given user for selection.
+  /** Gets the currencies of the given user for selection.
    * @param  \App\Models\User\User $user
    * @return array */
   public function getCurrencies($user) {

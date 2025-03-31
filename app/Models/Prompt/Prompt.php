@@ -9,8 +9,7 @@ use App\Models\Model;
 use App\Models\Prompt\PromptCategory;
 
 class Prompt extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'prompt_category_id',
@@ -28,18 +27,15 @@ class Prompt extends Model {
     'hide_submissions'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'prompts';
 
-  /**
-   * Dates on the model to convert to Carbon instances.
+  /** Dates on the model to convert to Carbon instances.
    * @var array */
   public $dates = ['start_at', 'end_at'];
 
-  /**
-   * Validation rules for character creation.
+  /** Validation rules for character creation.
    * @var array */
   public static $createRules = [
     'prompt_category_id' => 'nullable',
@@ -50,8 +46,7 @@ class Prompt extends Model {
     'image' => 'mimes:png'
   ];
 
-  /**
-   * Validation rules for character updating.
+  /** Validation rules for character updating.
    * @var array */
   public static $updateRules = [
     'prompt_category_id' => 'nullable',
@@ -68,14 +63,12 @@ class Prompt extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the category the prompt belongs to. */
+  /** Get the category the prompt belongs to. */
   public function category() {
     return $this->belongsTo('App\Models\Prompt\PromptCategory', 'prompt_category_id');
   }
 
-  /**
-   * Get the rewards attached to this prompt. */
+  /** Get the rewards attached to this prompt. */
   public function rewards() {
     return $this->hasMany('App\Models\Prompt\PromptReward', 'prompt_id');
   }
@@ -86,8 +79,7 @@ class Prompt extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include active prompts.
+  /** Scope a query to only include active prompts.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeActive($query) {
@@ -111,8 +103,7 @@ class Prompt extends Model {
       });
   }
 
-  /**
-   * Scope a query to sort prompts in alphabetical order.
+  /** Scope a query to sort prompts in alphabetical order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -120,8 +111,7 @@ class Prompt extends Model {
     return $query->orderBy('name', $reverse ? 'DESC' : 'ASC');
   }
 
-  /**
-   * Scope a query to sort prompts in category order.
+  /** Scope a query to sort prompts in category order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSortCategory($query) {
@@ -131,24 +121,21 @@ class Prompt extends Model {
       : $query;
   }
 
-  /**
-   * Scope a query to sort features by newest first.
+  /** Scope a query to sort features by newest first.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSortNewest($query) {
     return $query->orderBy('id', 'DESC');
   }
 
-  /**
-   * Scope a query to sort features oldest first.
+  /** Scope a query to sort features oldest first.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSortOldest($query) {
     return $query->orderBy('id');
   }
 
-  /**
-   * Scope a query to sort prompts by start date.
+  /** Scope a query to sort prompts by start date.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -156,8 +143,7 @@ class Prompt extends Model {
     return $query->orderBy('start_at', $reverse ? 'DESC' : 'ASC');
   }
 
-  /**
-   * Scope a query to sort prompts by end date.
+  /** Scope a query to sort prompts by end date.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -171,36 +157,31 @@ class Prompt extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the model's name, linked to its encyclopedia page.
+  /** Displays the model's name, linked to its encyclopedia page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '" class="display-prompt">' . $this->name . '</a>';
   }
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/data/prompts';
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getImageFileNameAttribute() {
     return $this->id . '-image.png';
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getImageUrlAttribute() {
     if (!$this->has_image) {
@@ -209,15 +190,13 @@ class Prompt extends Model {
     return asset($this->imageDirectory . '/' . $this->imageFileName);
   }
 
-  /**
-   * Gets the URL of the model's encyclopedia page.
+  /** Gets the URL of the model's encyclopedia page.
    * @return string */
   public function getUrlAttribute() {
     return url('prompts/prompts?name=' . $this->name);
   }
 
-  /**
-   * Gets the prompt's asset type for asset management.
+  /** Gets the prompt's asset type for asset management.
    * @return string */
   public function getAssetTypeAttribute() {
     return 'prompts';

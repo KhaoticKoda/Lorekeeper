@@ -13,8 +13,7 @@ class Notifications {
     | Creates user notifications.
     */
 
-  /**
-   * Creates a new notification.
+  /** Creates a new notification.
    * @param  string                 $type
    * @param  \App\Models\User\User  $user
    * @param  array                  $data

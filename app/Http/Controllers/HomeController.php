@@ -20,8 +20,7 @@ class HomeController extends Controller {
     | Displays the homepage and handles redirection for linking a user's social media account.
     */
 
-  /**
-   * Shows the homepage.
+  /** Shows the homepage.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('welcome', [
@@ -29,8 +28,7 @@ class HomeController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the account linking page.
+  /** Shows the account linking page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getLink(Request $request) {
     // If the user already has a username associated with their account, redirect them
@@ -42,8 +40,7 @@ class HomeController extends Controller {
     return view('auth.link');
   }
 
-  /**
-   * Redirects to the appropriate provider.
+  /** Redirects to the appropriate provider.
    * @param string $provider */
   public function getAuthRedirect(LinkService $service, $provider) {
     if (!$this->checkProvider($provider, Auth::user())) {
@@ -56,8 +53,7 @@ class HomeController extends Controller {
     return $service->getAuthRedirect($provider); //Socialite::driver($provider)->redirect();
   }
 
-  /**
-   * Redirects to the appropriate provider.
+  /** Redirects to the appropriate provider.
    * @param string $provider */
   public function getAuthCallback(LinkService $service, $provider) {
     if (!$this->checkProvider($provider, Auth::user())) {
@@ -89,8 +85,7 @@ class HomeController extends Controller {
     return redirect()->to('/');
   }
 
-  /**
-   * Shows the birthdaying page.
+  /** Shows the birthdaying page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getBirthday(Request $request) {
     // If the user already has a username associated with their account, redirect them
@@ -102,8 +97,7 @@ class HomeController extends Controller {
     return view('auth.birthday');
   }
 
-  /**
-   * Posts the birthdaying page.
+  /** Posts the birthdaying page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function postBirthday(Request $request) {
     $service = new UserService();
@@ -125,8 +119,7 @@ class HomeController extends Controller {
     }
   }
 
-  /**
-   * Shows the birthdaying page.
+  /** Shows the birthdaying page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getBirthdayBlocked(Request $request) {
     // If the user already has a username associated with their account, redirect them

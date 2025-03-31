@@ -6,18 +6,15 @@ use Config;
 use App\Models\Model;
 
 class Rarity extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['name', 'sort', 'color', 'has_image', 'description', 'parsed_description'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'rarities';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'name' => 'required|unique:rarities|between:3,100',
@@ -26,8 +23,7 @@ class Rarity extends Model {
     'image' => 'mimes:png'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'name' => 'required|between:3,100',
@@ -42,8 +38,7 @@ class Rarity extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the model's name, linked to its encyclopedia page.
+  /** Displays the model's name, linked to its encyclopedia page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' .
@@ -55,29 +50,25 @@ class Rarity extends Model {
       '</a>';
   }
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/data/rarities';
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getRarityImageFileNameAttribute() {
     return $this->id . '-image.png';
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getRarityImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getRarityImageUrlAttribute() {
     if (!$this->has_image) {
@@ -86,22 +77,19 @@ class Rarity extends Model {
     return asset($this->imageDirectory . '/' . $this->rarityImageFileName);
   }
 
-  /**
-   * Gets the URL of the model's encyclopedia page.
+  /** Gets the URL of the model's encyclopedia page.
    * @return string */
   public function getUrlAttribute() {
     return url('world/rarities?name=' . $this->name);
   }
 
-  /**
-   * Gets the URL for an encyclopedia search of features (character traits) in this category.
+  /** Gets the URL for an encyclopedia search of features (character traits) in this category.
    * @return string */
   public function getSearchFeaturesUrlAttribute() {
     return url('world/traits?rarity_id=' . $this->id);
   }
 
-  /**
-   * Gets the URL for a masterlist search of characters of this rarity.
+  /** Gets the URL for a masterlist search of characters of this rarity.
    * @return string */
   public function getSearchCharactersUrlAttribute() {
     return url('masterlist?rarity_id=' . $this->id);

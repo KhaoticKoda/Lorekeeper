@@ -18,8 +18,7 @@ class PageController extends Controller {
     | Displays site pages, editable from the admin panel.
     */
 
-  /**
-   * Shows the page with the given key.
+  /** Shows the page with the given key.
    * @param  string  $key
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPage($key) {
@@ -30,8 +29,7 @@ class PageController extends Controller {
     return view('pages.page', ['page' => $page]);
   }
 
-  /**
-   * Shows the credits page.
+  /** Shows the credits page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreditsPage() {
     return view('pages.credits', [

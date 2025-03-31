@@ -23,8 +23,7 @@ class SublistService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Create a sublist.
+  /** Create a sublist.
    * @param  array                 $data
    * @param  array                 $contents
    * @return \App\Models\Character\Sublist|bool */
@@ -51,8 +50,7 @@ class SublistService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Update a sublist.
+  /** Update a sublist.
    * @param  \App\Models\Character\Sublist        $sublist
    * @param  array                                $data
    * @param  array                                $contents
@@ -91,8 +89,7 @@ class SublistService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Delete a sublist.
+  /** Delete a sublist.
    * @param  \App\Models\Character\Sublist  $sublist
    * @return bool */
   public function deleteSublist($sublist) {
@@ -114,8 +111,7 @@ class SublistService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts sublist  order.
+  /** Sorts sublist  order.
    * @param  array  $data
    * @return bool */
   public function sortSublist($data) {

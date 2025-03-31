@@ -6,8 +6,7 @@ use Config;
 use App\Models\Model;
 
 class Loot extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'loot_table_id',
@@ -18,13 +17,11 @@ class Loot extends Model {
     'data'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'loots';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'rewardable_type' => 'required',
@@ -33,8 +30,7 @@ class Loot extends Model {
     'weight' => 'required|integer|min:1'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'rewardable_type' => 'required',
@@ -49,8 +45,7 @@ class Loot extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the reward attached to the loot entry. */
+  /** Get the reward attached to the loot entry. */
   public function reward() {
     switch ($this->rewardable_type) {
       case 'Item':
@@ -82,8 +77,7 @@ class Loot extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     if (!$this->attributes['data']) {

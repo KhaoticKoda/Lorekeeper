@@ -14,8 +14,7 @@ use App\Services\SalesService;
 use App\Http\Controllers\Controller;
 
 class SalesController extends Controller {
-  /**
-   * Shows the Sales index.
+  /** Shows the Sales index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.sales.sales', [
@@ -23,8 +22,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create Sales page.
+  /** Shows the create Sales page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSales() {
     return view('admin.sales.create_edit_sales', [
@@ -32,8 +30,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit Sales page.
+  /** Shows the edit Sales page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSales($id) {
@@ -46,8 +43,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows character information.
+  /** Shows character information.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterInfo($slug) {
@@ -58,8 +54,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a Sales page.
+  /** Creates or edits a Sales page.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\SalesService  $service
    * @param  int|null                  $id
@@ -101,8 +96,7 @@ class SalesController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the Sales deletion modal.
+  /** Gets the Sales deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSales($id) {
@@ -112,8 +106,7 @@ class SalesController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a Sales page.
+  /** Deletes a Sales page.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\SalesService  $service
    * @param  int                       $id

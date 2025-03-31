@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
-  /**
-   * Register any application services. */
+  /** Register any application services. */
   public function register() {
     //
   }
 
-  /**
-   * Bootstrap any application services. */
+  /** Bootstrap any application services. */
   public function boot() {
     //
     Schema::defaultStringLength(191);
@@ -55,8 +53,7 @@ class AppServiceProvider extends ServiceProvider {
     $this->bootToyhouseSocialite();
   }
 
-  /**
-   * Boot Toyhouse Socialite provider. */
+  /** Boot Toyhouse Socialite provider. */
   private function bootToyhouseSocialite() {
     $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
     $socialite->extend('toyhouse', function ($app) use ($socialite) {

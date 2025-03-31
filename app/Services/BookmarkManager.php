@@ -14,8 +14,7 @@ class BookmarkManager extends Service {
     | Handles creation, modification and usage of character bookmarks.
     */
 
-  /**
-   * Create a bookmark.
+  /** Create a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return \App\Models\Character\CharacterBookmark|bool */
@@ -63,8 +62,7 @@ class BookmarkManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Update a bookmark.
+  /** Update a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return \App\Models\Character\CharacterBookmark|bool */
@@ -108,8 +106,7 @@ class BookmarkManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Delete a bookmark.
+  /** Delete a bookmark.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return bool */
@@ -138,8 +135,7 @@ class BookmarkManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes bookmarks associated with a character.
+  /** Deletes bookmarks associated with a character.
    * For use when a character is deleted.
    * @param  \App\Models\Character\Character $character
    * @return bool */

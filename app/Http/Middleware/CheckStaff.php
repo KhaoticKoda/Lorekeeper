@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 class CheckStaff {
-  /**
-   * Check if the user is a staff member.
+  /** Check if the user is a staff member.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next
    * @return mixed */

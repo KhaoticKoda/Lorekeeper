@@ -19,8 +19,7 @@ class GalleryController extends Controller {
     | Handles creation/editing of galleries.
     */
 
-  /**
-   * Shows the gallery index.
+  /** Shows the gallery index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.galleries.galleries', [
@@ -28,8 +27,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create gallery page.
+  /** Shows the create gallery page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateGallery() {
     return view('admin.galleries.create_edit_gallery', [
@@ -38,8 +36,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit gallery page.
+  /** Shows the edit gallery page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditGallery($id) {
@@ -53,8 +50,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a gallery.
+  /** Creates or edits a gallery.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\GalleryService $service
    * @param  int|null                    $id
@@ -87,8 +83,7 @@ class GalleryController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the gallery deletion modal.
+  /** Gets the gallery deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteGallery($id) {
@@ -98,8 +93,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a gallery.
+  /** Deletes a gallery.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\GalleryService  $service
    * @param  int                         $id

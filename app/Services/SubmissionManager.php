@@ -30,8 +30,7 @@ class SubmissionManager extends Service {
     | Handles creation and modification of submission data.
     */
 
-  /**
-   * Creates a new submission.
+  /** Creates a new submission.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isClaim
@@ -224,8 +223,7 @@ class SubmissionManager extends Service {
     return array_values(array_filter($value));
   }
 
-  /**
-   * Processes reward data into a format that can be used for distribution.
+  /** Processes reward data into a format that can be used for distribution.
    * @param  array $data
    * @param  bool  $isCharacter
    * @param  bool  $isStaff
@@ -329,8 +327,7 @@ class SubmissionManager extends Service {
     }
   }
 
-  /**
-   * Rejects a submission.
+  /** Rejects a submission.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return mixed */
@@ -424,8 +421,7 @@ class SubmissionManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Approves a submission.
+  /** Approves a submission.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return mixed */

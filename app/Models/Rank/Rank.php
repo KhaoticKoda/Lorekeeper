@@ -7,18 +7,15 @@ use App\Models\Model;
 use Illuminate\Support\Arr;
 
 class Rank extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['name', 'description', 'parsed_description', 'sort', 'color', 'icon'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'ranks';
 
-  /**
-   * Validation rules for ranks.
+  /** Validation rules for ranks.
    * @var array */
   public static $rules = [
     'name' => 'required|between:3,100',
@@ -33,8 +30,7 @@ class Rank extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the powers attached to this rank. */
+  /** Get the powers attached to this rank. */
   public function powers() {
     return $this->hasMany('App\Models\Rank\RankPower');
   }
@@ -45,8 +41,7 @@ class Rank extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Display the rank with its associated colour.
+  /** Display the rank with its associated colour.
    * @return string */
   public function getDisplayNameAttribute() {
     if ($this->color) {
@@ -55,8 +50,7 @@ class Rank extends Model {
     return $this->name;
   }
 
-  /**
-   * Check if the rank is the admin rank.
+  /** Check if the rank is the admin rank.
    * @return bool */
   public function getIsAdminAttribute() {
     if ($this->id == Rank::orderBy('sort', 'DESC')->first()->id) {
@@ -71,8 +65,7 @@ class Rank extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Checks if the current rank is high enough to edit a given rank.
+  /** Checks if the current rank is high enough to edit a given rank.
    * @param  \App\Models\Rank\Rank $rank
    * @return int */
   public function canEditRank($rank) {
@@ -95,8 +88,7 @@ class Rank extends Model {
     return 0;
   }
 
-  /**
-   * Checks if the rank has a given power.
+  /** Checks if the rank has a given power.
    * @param  \App\Models\Rank\RankPower $power
    * @return bool */
   public function hasPower($power) {
@@ -106,8 +98,7 @@ class Rank extends Model {
     return $this->powers()->where('power', $power)->exists();
   }
 
-  /**
-   * Get the powers associated with the rank.
+  /** Get the powers associated with the rank.
    * @return array */
   public function getPowers() {
     if ($this->isAdmin) {

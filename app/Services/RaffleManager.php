@@ -16,8 +16,7 @@ class RaffleManager extends Service {
     | Handles creation and modification of raffle ticket data.
     */
 
-  /**
-   * Adds tickets to a raffle.
+  /** Adds tickets to a raffle.
    * One ticket is added per name in $names, which is a
    * string containing comma-separated names.
    * @param  \App\Models\Raffle\Raffle $raffle
@@ -40,8 +39,7 @@ class RaffleManager extends Service {
     return $count;
   }
 
-  /**
-   * Adds one or more tickets to a single user for a raffle.
+  /** Adds one or more tickets to a single user for a raffle.
    * @param  \App\Models\User\User     $user
    * @param  \App\Models\Raffle\Raffle $raffle
    * @param  int                       $count
@@ -69,8 +67,7 @@ class RaffleManager extends Service {
     return 0;
   }
 
-  /**
-   * Removes a single ticket.
+  /** Removes a single ticket.
    * @param  \App\Models\Raffle\RaffleTicket $ticket
    * @return bool */
   public function removeTicket($ticket) {
@@ -83,8 +80,7 @@ class RaffleManager extends Service {
     return false;
   }
 
-  /**
-   * Rolls a raffle group consecutively.
+  /** Rolls a raffle group consecutively.
    * If the $updateGroup flag is true, winners will be removed
    * from other raffles in the group.
    * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
@@ -107,8 +103,7 @@ class RaffleManager extends Service {
     return true;
   }
 
-  /**
-   * Rolls a single raffle and marks it as completed.
+  /** Rolls a single raffle and marks it as completed.
    * If the $updateGroup flag is true, winners will be removed
    * from other raffles in the group.
    * @param  \App\Models\Raffle\Raffle $raffle
@@ -138,8 +133,7 @@ class RaffleManager extends Service {
     return false;
   }
 
-  /**
-   * Rolls the winners of a raffle.
+  /** Rolls the winners of a raffle.
    * @param  \App\Models\Raffle\Raffle $raffle
    * @return array */
   private function rollWinners($raffle) {
@@ -185,8 +179,7 @@ class RaffleManager extends Service {
     return $winners;
   }
 
-  /**
-   * Rolls the winners of a raffle.
+  /** Rolls the winners of a raffle.
    * @param  array                          $winners
    * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
    * @param  \App\Models\Raffle\Raffle      $raffle

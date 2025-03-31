@@ -16,8 +16,7 @@ class RaffleService extends Service {
     | Handles creation and modification of raffles.
     */
 
-  /**
-   * Creates a raffle.
+  /** Creates a raffle.
    * @param  array  $data
    * @return \App\Models\Raffle\Raffle */
   public function createRaffle($data) {
@@ -32,8 +31,7 @@ class RaffleService extends Service {
     return $raffle;
   }
 
-  /**
-   * Updates a raffle.
+  /** Updates a raffle.
    * @param  array                     $data
    * @param  \App\Models\Raffle\Raffle $raffle
    * @return \App\Models\Raffle\Raffle */
@@ -47,8 +45,7 @@ class RaffleService extends Service {
     return $raffle;
   }
 
-  /**
-   * Deletes a raffle.
+  /** Deletes a raffle.
    * @param  \App\Models\Raffle\Raffle $raffle
    * @return bool */
   public function deleteRaffle($raffle) {
@@ -61,8 +58,7 @@ class RaffleService extends Service {
     return true;
   }
 
-  /**
-   * Creates a raffle group.
+  /** Creates a raffle group.
    * @param  array  $data
    * @return \App\Models\Raffle\RaffleGroup */
   public function createRaffleGroup($data) {
@@ -75,8 +71,7 @@ class RaffleService extends Service {
     return $group;
   }
 
-  /**
-   * Updates a raffle group.
+  /** Updates a raffle group.
    * @param  array                          $data
    * @param  \App\Models\Raffle\RaffleGroup $raffle
    * @return \App\Models\Raffle\Raffle */
@@ -93,8 +88,7 @@ class RaffleService extends Service {
     return $group;
   }
 
-  /**
-   * Deletes a raffle group.
+  /** Deletes a raffle group.
    * @param  \App\Models\Raffle\RaffleGroup $raffle
    * @return bool */
   public function deleteRaffleGroup($group) {

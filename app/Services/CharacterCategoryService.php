@@ -16,8 +16,7 @@ class CharacterCategoryService extends Service {
     | Handles the creation and editing of character categories.
     */
 
-  /**
-   * Create a category.
+  /** Create a category.
    * @param  array  $data
    * @return \App\Models\Character\CharacterCategory|bool */
   public function createCharacterCategory($data) {
@@ -48,8 +47,7 @@ class CharacterCategoryService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Update a category.
+  /** Update a category.
    * @param  \App\Models\Character\CharacterCategory  $category
    * @param  array                                    $data
    * @return \App\Models\Character\CharacterCategory|bool */
@@ -90,8 +88,7 @@ class CharacterCategoryService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handle category data.
+  /** Handle category data.
    * @param  array                                         $data
    * @param  \App\Models\Character\CharacterCategory|null  $category
    * @return array */
@@ -111,8 +108,7 @@ class CharacterCategoryService extends Service {
     return $data;
   }
 
-  /**
-   * Delete a category.
+  /** Delete a category.
    * @param  \App\Models\Character\CharacterCategory  $category
    * @return bool */
   public function deleteCharacterCategory($category) {
@@ -138,8 +134,7 @@ class CharacterCategoryService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts category order.
+  /** Sorts category order.
    * @param  array  $data
    * @return bool */
   public function sortCharacterCategory($data) {

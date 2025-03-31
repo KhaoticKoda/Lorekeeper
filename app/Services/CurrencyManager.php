@@ -20,8 +20,7 @@ class CurrencyManager extends Service {
     | Handles the modification of currencies owned by users and characters.
     */
 
-  /**
-   * Admin function for granting currency to multiple users.
+  /** Admin function for granting currency to multiple users.
    * @param  array                  $data
    * @param  \App\Models\User\User  $staff
    * @return  bool */
@@ -91,8 +90,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Admin function for granting currency to a character.
+  /** Admin function for granting currency to a character.
    * Removes currency if the quantity given is less than 0.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $staff
@@ -165,8 +163,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Transfers currency between users.
+  /** Transfers currency between users.
    * @param  \App\Models\User\User          $sender
    * @param  \App\Models\User\User          $recipient
    * @param  \App\Models\Currency\Currency  $currency
@@ -221,8 +218,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Transfers currency between a user and character.
+  /** Transfers currency between a user and character.
    * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
    * @param  \App\Models\Currency\Currency                          $currency
@@ -277,8 +273,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Credits currency to a user or character.
+  /** Credits currency to a user or character.
    * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
    * @param  string                                                 $type
@@ -351,8 +346,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Debits currency from a user or character.
+  /** Debits currency from a user or character.
    * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
    * @param  string                                                 $type
@@ -415,8 +409,7 @@ class CurrencyManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Creates a currency log.
+  /** Creates a currency log.
    * @param  int     $senderId
    * @param  string  $senderType
    * @param  int     $recipientId

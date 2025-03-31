@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CharacterImage extends Model {
   use SoftDeletes;
 
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'character_id',
@@ -36,18 +35,15 @@ class CharacterImage extends Model {
     'is_valid'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'character_images';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
-  /**
-   * Validation rules for image creation.
+  /** Validation rules for image creation.
    * @var array */
   public static $createRules = [
     'species_id' => 'required',
@@ -56,8 +52,7 @@ class CharacterImage extends Model {
     'thumbnail' => 'nullable|mimes:jpeg,jpg,gif,png|max:20000'
   ];
 
-  /**
-   * Validation rules for image updating.
+  /** Validation rules for image updating.
    * @var array */
   public static $updateRules = [
     'character_id' => 'required',
@@ -73,38 +68,32 @@ class CharacterImage extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the character associated with the image. */
+  /** Get the character associated with the image. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character', 'character_id');
   }
 
-  /**
-   * Get the user who owned the character at the time of image creation. */
+  /** Get the user who owned the character at the time of image creation. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
 
-  /**
-   * Get the species of the character image. */
+  /** Get the species of the character image. */
   public function species() {
     return $this->belongsTo('App\Models\Species\Species', 'species_id');
   }
 
-  /**
-   * Get the subtype of the character image. */
+  /** Get the subtype of the character image. */
   public function subtype() {
     return $this->belongsTo('App\Models\Species\Subtype', 'subtype_id');
   }
 
-  /**
-   * Get the rarity of the character image. */
+  /** Get the rarity of the character image. */
   public function rarity() {
     return $this->belongsTo('App\Models\Rarity', 'rarity_id');
   }
 
-  /**
-   * Get the features (traits) attached to the character image, ordered by display order. */
+  /** Get the features (traits) attached to the character image, ordered by display order. */
   public function features() {
     $ids = FeatureCategory::orderBy('sort', 'DESC')->pluck('id')->toArray();
 
@@ -124,22 +113,19 @@ class CharacterImage extends Model {
       : $query;
   }
 
-  /**
-   * Get the designers/artists attached to the character image. */
+  /** Get the designers/artists attached to the character image. */
   public function creators() {
     return $this->hasMany('App\Models\Character\CharacterImageCreator', 'character_image_id');
   }
 
-  /**
-   * Get the designers attached to the character image. */
+  /** Get the designers attached to the character image. */
   public function designers() {
     return $this->hasMany('App\Models\Character\CharacterImageCreator', 'character_image_id')
       ->where('type', 'Designer')
       ->where('character_type', 'Character');
   }
 
-  /**
-   * Get the artists attached to the character image. */
+  /** Get the artists attached to the character image. */
   public function artists() {
     return $this->hasMany('App\Models\Character\CharacterImageCreator', 'character_image_id')
       ->where('type', 'Artist')
@@ -152,8 +138,7 @@ class CharacterImage extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include images visible to guests and regular logged-in users.
+  /** Scope a query to only include images visible to guests and regular logged-in users.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeImages($query, $user = null) {
@@ -170,50 +155,43 @@ class CharacterImage extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/characters/' . floor($this->id / 1000);
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getImageFileNameAttribute() {
     return $this->id . '_' . $this->hash . '.' . $this->extension;
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getImageUrlAttribute() {
     return asset($this->imageDirectory . '/' . $this->imageFileName);
   }
 
-  /**
-   * Gets the file name of the model's fullsize image.
+  /** Gets the file name of the model's fullsize image.
    * @return string */
   public function getFullsizeFileNameAttribute() {
     return $this->id . '_' . $this->hash . '_' . $this->fullsize_hash . '_full.' . $this->extension;
   }
 
-  /**
-   * Gets the file name of the model's fullsize image.
+  /** Gets the file name of the model's fullsize image.
    * @return string */
   public function getFullsizeUrlAttribute() {
     return asset($this->imageDirectory . '/' . $this->fullsizeFileName);
   }
 
-  /**
-   * Gets the file name of the model's fullsize image.
+  /** Gets the file name of the model's fullsize image.
    * @param  user
    * @return string */
   public function canViewFull($user = null) {
@@ -228,22 +206,19 @@ class CharacterImage extends Model {
     }
   }
 
-  /**
-   * Gets the file name of the model's thumbnail image.
+  /** Gets the file name of the model's thumbnail image.
    * @return string */
   public function getThumbnailFileNameAttribute() {
     return $this->id . '_' . $this->hash . '_th.' . $this->extension;
   }
 
-  /**
-   * Gets the path to the file directory containing the model's thumbnail image.
+  /** Gets the path to the file directory containing the model's thumbnail image.
    * @return string */
   public function getThumbnailPathAttribute() {
     return $this->imagePath;
   }
 
-  /**
-   * Gets the URL of the model's thumbnail image.
+  /** Gets the URL of the model's thumbnail image.
    * @return string */
   public function getThumbnailUrlAttribute() {
     return asset($this->imageDirectory . '/' . $this->thumbnailFileName);

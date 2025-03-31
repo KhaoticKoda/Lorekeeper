@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddParsedSubmissionComments extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     Schema::table('submissions', function (Blueprint $table) {
@@ -15,8 +14,7 @@ class AddParsedSubmissionComments extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     Schema::table('submissions', function (Blueprint $table) {

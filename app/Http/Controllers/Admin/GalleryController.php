@@ -16,8 +16,7 @@ use App\Services\GalleryManager;
 use App\Http\Controllers\Controller;
 
 class GalleryController extends Controller {
-  /**
-   * Shows the submission index page.
+  /** Shows the submission index page.
    * @param  string  $status
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionIndex(Request $request, $status = null) {
@@ -42,8 +41,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the index of submissions in the context of currency rewards.
+  /** Shows the index of submissions in the context of currency rewards.
    * @param  string  $status
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCurrencyIndex(Request $request, $status = null) {
@@ -69,8 +67,7 @@ class GalleryController extends Controller {
     ]);
   }
 
-  /**
-   * Edits gallery submissions.
+  /** Edits gallery submissions.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\GalleryManager    $service
    * @param  int                            $id
@@ -107,8 +104,7 @@ class GalleryController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Casts a vote for a submission's approval or denial.
+  /** Casts a vote for a submission's approval or denial.
    * @param  int                            $id
    * @param  string                         $action
    * @param  \Illuminate\Http\Request       $request
@@ -132,8 +128,7 @@ class GalleryController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Posts staff comments for a gallery submission.
+  /** Posts staff comments for a gallery submission.
    * @param  int                             $id
    * @param  string                          $data
    * @param  App\Services\GalleryManager     $service
@@ -149,8 +144,7 @@ class GalleryController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Posts group currency evaluation for a gallery submission.
+  /** Posts group currency evaluation for a gallery submission.
    * @param  int                             $id
    * @param  string                          $data
    * @param  App\Services\GalleryManager     $service

@@ -12,8 +12,7 @@ use App\Services\FileManager;
 use App\Http\Controllers\Controller;
 
 class FileController extends Controller {
-  /**
-   * Shows the files index.
+  /** Shows the files index.
    * @param  string  $folder
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex($folder = null) {
@@ -46,8 +45,7 @@ class FileController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new directory in the files directory.
+  /** Creates a new directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -64,8 +62,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Moves a file in the files directory.
+  /** Moves a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -90,8 +87,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Renames a file in the files directory.
+  /** Renames a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -113,8 +109,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Deletes a file in the files directory.
+  /** Deletes a file in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -133,8 +128,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Uploads a file to the files directory.
+  /** Uploads a file to the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -153,8 +147,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Renames a directory in the files directory.
+  /** Renames a directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -175,8 +168,7 @@ class FileController extends Controller {
     return redirect()->to('admin/files/' . $newName);
   }
 
-  /**
-   * Deletes a directory in the files directory.
+  /** Deletes a directory in the files directory.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -195,8 +187,7 @@ class FileController extends Controller {
     return redirect()->to('admin/files');
   }
 
-  /**
-   * Shows the site images index.
+  /** Shows the site images index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSiteImages() {
     return view('admin.files.images', [
@@ -204,8 +195,7 @@ class FileController extends Controller {
     ]);
   }
 
-  /**
-   * Uploads a site image file.
+  /** Uploads a site image file.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -225,8 +215,7 @@ class FileController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Uploads a custom site CSS file.
+  /** Uploads a custom site CSS file.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\FileManager  $service
    * @return \Illuminate\Http\RedirectResponse */

@@ -24,8 +24,7 @@ class InventoryManager extends Service {
     | Handles modification of user-owned items.
     */
 
-  /**
-   * Grants an item to multiple users.
+  /** Grants an item to multiple users.
    * @param  array                 $data
    * @param  \App\Models\User\User $staff
    * @return bool */
@@ -88,8 +87,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Grants an item to a character.
+  /** Grants an item to a character.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $staff
@@ -154,8 +152,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Transfers items between a user and character.
+  /** Transfers items between a user and character.
    * @param  \App\Models\User\User|\App\Models\Character\Character          $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character          $recipient
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
@@ -266,8 +263,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Transfers items between user stacks.
+  /** Transfers items between user stacks.
    * @param  \App\Models\User\User      $sender
    * @param  \App\Models\User\User      $recipient
    * @param  \App\Models\User\UserItem  $stacks
@@ -349,8 +345,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes items from stack.
+  /** Deletes items from stack.
    * @param  \App\Models\User\User|\App\Models\Character\Character          $owner
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
    * @param  int                                                            $quantities
@@ -454,8 +449,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sells items from stack.
+  /** Sells items from stack.
    * @param  \App\Models\User\User      $user
    * @param  \App\Models\User\UserItem  $stacks
    * @param  int                        $quantities
@@ -534,8 +528,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Credits an item to a user or character.
+  /** Credits an item to a user or character.
    * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
    * @param  string                                                 $type
@@ -606,8 +599,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Moves items from one user or character stack to another.
+  /** Moves items from one user or character stack to another.
    * @param  \App\Models\User\User|\App\Models\Character\Character          $sender
    * @param  \App\Models\User\User|\App\Models\Character\Character          $recipient
    * @param  string                                                         $type
@@ -661,8 +653,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Debits an item from a user or character.
+  /** Debits an item from a user or character.
    * @param  \App\Models\User\User|\App\Models\Character\Character  $owner
    * @param  string                                                 $type
    * @param  array                                                  $data
@@ -699,8 +690,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Names an item stack.
+  /** Names an item stack.
    * @param  \App\Models\User\User|\App\Models\Character\Character          $owner
    * @param  \App\Models\User\UserItem|\App\Models\Character\CharacterItem  $stacks
    * @param  int                                                            $quantities
@@ -733,8 +723,7 @@ class InventoryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Creates an inventory log.
+  /** Creates an inventory log.
    * @param  int     $senderId
    * @param  string  $senderType
    * @param  int     $recipientId

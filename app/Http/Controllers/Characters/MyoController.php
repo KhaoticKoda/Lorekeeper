@@ -29,8 +29,7 @@ class MyoController extends Controller {
     | Handles displaying and acting on an MYO slot.
     */
 
-  /**
-   * Create a new controller instance.
+  /** Create a new controller instance.
    * @return void */
   public function __construct() {
     $this->middleware(function ($request, $next) {
@@ -57,8 +56,7 @@ class MyoController extends Controller {
     });
   }
 
-  /**
-   * Shows an MYO slot's masterlist entry.
+  /** Shows an MYO slot's masterlist entry.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacter($id) {
@@ -67,8 +65,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an MYO slot's profile.
+  /** Shows an MYO slot's profile.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterProfile($id) {
@@ -77,8 +74,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an MYO slot's edit profile page.
+  /** Shows an MYO slot's edit profile page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterProfile($id) {
@@ -97,8 +93,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Edits an MYO slot's profile.
+  /** Edits an MYO slot's profile.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -131,8 +126,7 @@ class MyoController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows an MYO slot's ownership logs.
+  /** Shows an MYO slot's ownership logs.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterOwnershipLogs($id) {
@@ -142,8 +136,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an MYO slot's ownership logs.
+  /** Shows an MYO slot's ownership logs.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterLogs($id) {
@@ -153,8 +146,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an MYO slot's submissions.
+  /** Shows an MYO slot's submissions.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterSubmissions($id) {
@@ -164,8 +156,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an MYO slot's transfer page.
+  /** Shows an MYO slot's transfer page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getTransfer($id) {
@@ -190,8 +181,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Opens a transfer request for an MYO slot.
+  /** Opens a transfer request for an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -217,8 +207,7 @@ class MyoController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Cancels a transfer request for an MYO slot.
+  /** Cancels a transfer request for an MYO slot.
    * @param  \Illuminate\Http\Request       $request
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
@@ -239,8 +228,7 @@ class MyoController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows an MYO slot's approval page.
+  /** Shows an MYO slot's approval page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterApproval($id) {
@@ -255,8 +243,7 @@ class MyoController extends Controller {
     ]);
   }
 
-  /**
-   * Opens a new design approval request for an MYO slot.
+  /** Opens a new design approval request for an MYO slot.
    * @param  App\Services\CharacterManager  $service
    * @param  int                            $id
    * @return \Illuminate\Http\RedirectResponse */

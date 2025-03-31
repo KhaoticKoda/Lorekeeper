@@ -6,8 +6,7 @@ use Config;
 use App\Models\Model;
 
 class UserCharacterLog extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'character_id',
@@ -22,13 +21,11 @@ class UserCharacterLog extends Model {
     'recipient_url'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'user_character_log';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
@@ -38,20 +35,17 @@ class UserCharacterLog extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who initiated the logged action. */
+  /** Get the user who initiated the logged action. */
   public function sender() {
     return $this->belongsTo('App\Models\User\User', 'sender_id');
   }
 
-  /**
-   * Get the user who received the logged action. */
+  /** Get the user who received the logged action. */
   public function recipient() {
     return $this->belongsTo('App\Models\User\User', 'recipient_id');
   }
 
-  /**
-   * Get the character that is the target of the action. */
+  /** Get the character that is the target of the action. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character');
   }
@@ -62,15 +56,13 @@ class UserCharacterLog extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the sender's alias, linked to their profile.
+  /** Displays the sender's alias, linked to their profile.
    * @return string */
   public function getDisplaySenderAliasAttribute() {
     return prettyProfileLink($this->sender_url);
   }
 
-  /**
-   * Displays the recipient's alias, linked to their profile.
+  /** Displays the recipient's alias, linked to their profile.
    * @return string */
   public function getDisplayRecipientAliasAttribute() {
     return prettyProfileLink($this->recipient_url);

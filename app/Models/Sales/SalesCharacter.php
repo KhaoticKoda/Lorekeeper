@@ -10,8 +10,7 @@ use App\Models\Character\CharacterImage;
 use App\Models\Model;
 
 class SalesCharacter extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'sales_id',
@@ -23,13 +22,11 @@ class SalesCharacter extends Model {
     'is_open'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'sales_characters';
 
-  /**
-   * Validation rules.
+  /** Validation rules.
    * @var array */
   public static $rules = [
     'type' => 'required',
@@ -50,14 +47,12 @@ class SalesCharacter extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the sale this is attached to. */
+  /** Get the sale this is attached to. */
   public function sales() {
     return $this->belongsTo('App\Models\Sales\Sales', 'sales_id');
   }
 
-  /**
-   * Get the character being attached to the sale. */
+  /** Get the character being attached to the sale. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character', 'character_id');
   }
@@ -68,15 +63,13 @@ class SalesCharacter extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return string */
   public function getDisplayTypeAttribute() {
     switch ($this->attributes['type']) {
@@ -104,8 +97,7 @@ class SalesCharacter extends Model {
     }
   }
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return string */
   public function getTypeLinkAttribute() {
     switch ($this->attributes['type']) {
@@ -133,8 +125,7 @@ class SalesCharacter extends Model {
     }
   }
 
-  /**
-   * Get formatted pricing information.
+  /** Get formatted pricing information.
    * @return string */
   public function getPriceAttribute() {
     if ($this->type == 'raffle') {
@@ -185,8 +176,7 @@ class SalesCharacter extends Model {
     }
   }
 
-  /**
-   * Get the first image for the associated character.
+  /** Get the first image for the associated character.
    * @return App\Models\Character\CharacterImage */
   public function getImageAttribute() {
     return CharacterImage::where('is_visible', 1)

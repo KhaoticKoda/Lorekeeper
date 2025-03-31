@@ -26,8 +26,7 @@ class ReportManager extends Service {
     | Handles creation and modification of report data.
     */
 
-  /**
-   * Creates a new report.
+  /** Creates a new report.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isClaim
@@ -63,8 +62,7 @@ class ReportManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Approves a report.
+  /** Approves a report.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return mixed */
@@ -95,8 +93,7 @@ class ReportManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Closes a report.
+  /** Closes a report.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return mixed */

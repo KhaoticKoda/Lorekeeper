@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 class CheckAlias {
-  /**
-   * Redirects users without an alias to the dA account linking page,
+  /** Redirects users without an alias to the dA account linking page,
    * and banned users to the ban page.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next

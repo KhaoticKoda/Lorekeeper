@@ -24,8 +24,7 @@ class SlotService extends Service {
     | Handles the editing and usage of slot type items.
     */
 
-  /**
-   * Retrieves any data that should be used in the item tag editing form.
+  /** Retrieves any data that should be used in the item tag editing form.
    * @return array */
   public function getEditData() {
     return [
@@ -41,8 +40,7 @@ class SlotService extends Service {
     ];
   }
 
-  /**
-   * Processes the data attribute of the tag and returns it in the preferred format for edits.
+  /** Processes the data attribute of the tag and returns it in the preferred format for edits.
    * @param  string  $tag
    * @return mixed */
   public function getTagData($tag) {
@@ -85,8 +83,7 @@ class SlotService extends Service {
     return $characterData;
   }
 
-  /**
-   * Processes the data attribute of the tag and returns it in the preferred format for DB storage.
+  /** Processes the data attribute of the tag and returns it in the preferred format for DB storage.
    * @param  string  $tag
    * @param  array   $data
    * @return bool */
@@ -122,8 +119,7 @@ class SlotService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Acts upon the item when used from the inventory.
+  /** Acts upon the item when used from the inventory.
    * @param  \App\Models\User\UserItem  $stacks
    * @param  \App\Models\User\User      $user
    * @param  array                      $data

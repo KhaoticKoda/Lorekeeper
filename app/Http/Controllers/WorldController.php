@@ -29,15 +29,13 @@ class WorldController extends Controller {
     | Pages displayed by this controller form the site's encyclopedia.
     */
 
-  /**
-   * Shows the index page.
+  /** Shows the index page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('world.index');
   }
 
-  /**
-   * Shows the currency page.
+  /** Shows the currency page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCurrencies(Request $request) {
@@ -53,8 +51,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the rarity page.
+  /** Shows the rarity page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRarities(Request $request) {
@@ -68,8 +65,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the species page.
+  /** Shows the species page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSpecieses(Request $request) {
@@ -91,8 +87,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the subtypes page.
+  /** Shows the subtypes page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubtypes(Request $request) {
@@ -110,8 +105,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the item categories page.
+  /** Shows the item categories page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemCategories(Request $request) {
@@ -125,8 +119,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the trait categories page.
+  /** Shows the trait categories page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatureCategories(Request $request) {
@@ -140,8 +133,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the traits page.
+  /** Shows the traits page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatures(Request $request) {
@@ -204,8 +196,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a species' visual trait list.
+  /** Shows a species' visual trait list.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSpeciesFeatures($id) {
@@ -246,8 +237,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the items page.
+  /** Shows the items page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItems(Request $request) {
@@ -299,8 +289,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows an individual item's page.
+  /** Shows an individual item's page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItem($id) {
@@ -325,8 +314,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the character categories page.
+  /** Shows the character categories page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterCategories(Request $request) {
@@ -340,8 +328,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the prompt categories page.
+  /** Shows the prompt categories page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptCategories(Request $request) {
@@ -355,8 +342,7 @@ class WorldController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the prompts page.
+  /** Shows the prompts page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPrompts(Request $request) {

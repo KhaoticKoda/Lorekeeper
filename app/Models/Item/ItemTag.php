@@ -7,13 +7,11 @@ use DB;
 use App\Models\Model;
 
 class ItemTag extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['item_id', 'tag', 'data', 'is_active'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'item_tags';
 
@@ -23,8 +21,7 @@ class ItemTag extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the item that this tag is attached to. */
+  /** Get the item that this tag is attached to. */
   public function item() {
     return $this->belongsTo('App\Models\Item\Item');
   }
@@ -35,16 +32,14 @@ class ItemTag extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to retrieve only active tags.
+  /** Scope a query to retrieve only active tags.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeActive($query) {
     return $query->where('is_active', 1);
   }
 
-  /**
-   * Scope a query to retrieve only a certain tag.
+  /** Scope a query to retrieve only a certain tag.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  string                                 $tag
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -58,8 +53,7 @@ class ItemTag extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the tag name formatted according to its colours as defined in the config file.
+  /** Displays the tag name formatted according to its colours as defined in the config file.
    * @return string */
   public function getDisplayTagAttribute() {
     $tag = Config::get('lorekeeper.item_tags.' . $this->tag);
@@ -75,29 +69,25 @@ class ItemTag extends Model {
     return null;
   }
 
-  /**
-   * Get the tag's display name.
+  /** Get the tag's display name.
    * @return mixed */
   public function getName() {
     return Config::get('lorekeeper.item_tags.' . $this->tag . '.name');
   }
 
-  /**
-   * Gets the URL of the tag's editing page.
+  /** Gets the URL of the tag's editing page.
    * @return string */
   public function getAdminUrlAttribute() {
     return url('admin/data/items/tag/' . $this->item_id . '/' . $this->tag);
   }
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Get the service associated with this tag.
+  /** Get the service associated with this tag.
    * @return mixed */
   public function getServiceAttribute() {
     $class =
@@ -113,15 +103,13 @@ class ItemTag extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the data used for editing the tag.
+  /** Get the data used for editing the tag.
    * @return mixed */
   public function getEditData() {
     return $this->service->getEditData();
   }
 
-  /**
-   * Get the data associated with the tag.
+  /** Get the data associated with the tag.
    * @return mixed */
   public function getData() {
     return $this->service->getTagData($this);

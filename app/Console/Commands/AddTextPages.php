@@ -8,25 +8,21 @@ use DB;
 use Carbon\Carbon;
 
 class AddTextPages extends Command {
-  /**
-   * The name and signature of the console command.
+  /** The name and signature of the console command.
    * @var string */
   protected $signature = 'add-text-pages';
 
-  /**
-   * The console command description.
+  /** The console command description.
    * @var string */
   protected $description = 'Adds the default text pages that are present on every site.';
 
-  /**
-   * Create a new command instance.
+  /** Create a new command instance.
    * @return void */
   public function __construct() {
     parent::__construct();
   }
 
-  /**
-   * Execute the console command.
+  /** Execute the console command.
    * @return mixed */
   public function handle() {
     //

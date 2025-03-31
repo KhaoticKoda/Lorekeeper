@@ -19,8 +19,7 @@ class SalesService extends Service {
     | Handles the creation and editing of Sales posts.
     */
 
-  /**
-   * Creates a Sales post.
+  /** Creates a Sales post.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Sales\Sales */
@@ -66,8 +65,7 @@ class SalesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a Sales post.
+  /** Updates a Sales post.
    * @param  \App\Models\Sales\Sales       $Sales
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -115,8 +113,7 @@ class SalesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes sales data entered for characters.
+  /** Processes sales data entered for characters.
    * @param  App\Models\Sales\Sales                   $sales
    * @param  array                                    $data
    * @return bool */
@@ -196,8 +193,7 @@ class SalesService extends Service {
     }
   }
 
-  /**
-   * Deletes a Sales post.
+  /** Deletes a Sales post.
    * @param  \App\Models\Sales\Sales  $Sales
    * @return bool */
   public function deleteSales($sales) {
@@ -213,8 +209,7 @@ class SalesService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates queued Sales posts to be visible and alert users when
+  /** Updates queued Sales posts to be visible and alert users when
    * they should be posted.
    * @return bool */
   public function updateQueue() {
@@ -234,8 +229,7 @@ class SalesService extends Service {
     }
   }
 
-  /**
-   * Updates the unread Sales flag for all users so that
+  /** Updates the unread Sales flag for all users so that
    * the new Sales notification is displayed.
    * @return bool */
   private function alertUsers() {

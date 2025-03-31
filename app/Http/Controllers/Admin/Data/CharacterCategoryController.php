@@ -19,8 +19,7 @@ class CharacterCategoryController extends Controller {
     | Handles creation/editing of character categories.
     */
 
-  /**
-   * Shows the character category index.
+  /** Shows the character category index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.characters.character_categories', [
@@ -28,8 +27,7 @@ class CharacterCategoryController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create character category page.
+  /** Shows the create character category page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCharacterCategory() {
     return view('admin.characters.create_edit_character_category', [
@@ -39,8 +37,7 @@ class CharacterCategoryController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit character category page.
+  /** Shows the edit character category page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCharacterCategory($id) {
@@ -55,8 +52,7 @@ class CharacterCategoryController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a character category.
+  /** Creates or edits a character category.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int|null                               $id
@@ -90,8 +86,7 @@ class CharacterCategoryController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the character category deletion modal.
+  /** Gets the character category deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteCharacterCategory($id) {
@@ -101,8 +96,7 @@ class CharacterCategoryController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a character category.
+  /** Deletes a character category.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int                                    $id
@@ -122,8 +116,7 @@ class CharacterCategoryController extends Controller {
     return redirect()->to('admin/data/character-categories');
   }
 
-  /**
-   * Sorts character categories.
+  /** Sorts character categories.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @return \Illuminate\Http\RedirectResponse */

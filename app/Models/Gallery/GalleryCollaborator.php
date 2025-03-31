@@ -12,13 +12,11 @@ use App\Models\Currency\Currency;
 use App\Models\Model;
 
 class GalleryCollaborator extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['gallery_submission_id', 'user_id', 'has_approved', 'data', 'type'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'gallery_submission_collaborators';
 
@@ -28,14 +26,12 @@ class GalleryCollaborator extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the submission this is attached to. */
+  /** Get the submission this is attached to. */
   public function submission() {
     return $this->belongsTo('App\Models\Gallery\GallerySubmission', 'gallery_submission_id');
   }
 
-  /**
-   * Get the user being attached to the submission. */
+  /** Get the user being attached to the submission. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
@@ -46,8 +42,7 @@ class GalleryCollaborator extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the display name of the participant's type.
+  /** Get the display name of the participant's type.
    * @return string */
   public function getDisplayTypeAttribute() {
     switch ($this->type) {

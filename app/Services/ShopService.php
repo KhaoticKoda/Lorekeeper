@@ -22,8 +22,7 @@ class ShopService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Creates a new shop.
+  /** Creates a new shop.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Shop\Shop */
@@ -55,8 +54,7 @@ class ShopService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a shop.
+  /** Updates a shop.
    * @param  \App\Models\Shop\Shop  $shop
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -92,8 +90,7 @@ class ShopService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates shop stock.
+  /** Updates shop stock.
    * @param  \App\Models\Shop\Shop  $shop
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -140,8 +137,7 @@ class ShopService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a shop.
+  /** Processes user input for creating/updating a shop.
    * @param  array                  $data
    * @param  \App\Models\Shop\Shop  $shop
    * @return array */
@@ -162,8 +158,7 @@ class ShopService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a shop.
+  /** Deletes a shop.
    * @param  \App\Models\Shop\Shop  $shop
    * @return bool */
   public function deleteShop($shop) {
@@ -185,8 +180,7 @@ class ShopService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts shop order.
+  /** Sorts shop order.
    * @param  array  $data
    * @return bool */
   public function sortShop($data) {

@@ -10,8 +10,7 @@ use App\Models\Species\Species;
 use App\Models\Rarity;
 
 class Feature extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'feature_category_id',
@@ -24,13 +23,11 @@ class Feature extends Model {
     'parsed_description'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'features';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'feature_category_id' => 'nullable',
@@ -42,8 +39,7 @@ class Feature extends Model {
     'image' => 'mimes:png'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'feature_category_id' => 'nullable',
@@ -61,26 +57,22 @@ class Feature extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the rarity of this feature. */
+  /** Get the rarity of this feature. */
   public function rarity() {
     return $this->belongsTo('App\Models\Rarity');
   }
 
-  /**
-   * Get the species the feature belongs to. */
+  /** Get the species the feature belongs to. */
   public function species() {
     return $this->belongsTo('App\Models\Species\Species');
   }
 
-  /**
-   * Get the subtype the feature belongs to. */
+  /** Get the subtype the feature belongs to. */
   public function subtype() {
     return $this->belongsTo('App\Models\Species\Subtype');
   }
 
-  /**
-   * Get the category the feature belongs to. */
+  /** Get the category the feature belongs to. */
   public function category() {
     return $this->belongsTo('App\Models\Feature\FeatureCategory', 'feature_category_id');
   }
@@ -91,8 +83,7 @@ class Feature extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to sort features in alphabetical order.
+  /** Scope a query to sort features in alphabetical order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -100,8 +91,7 @@ class Feature extends Model {
     return $query->orderBy('name', $reverse ? 'DESC' : 'ASC');
   }
 
-  /**
-   * Scope a query to sort features in category order.
+  /** Scope a query to sort features in category order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -112,8 +102,7 @@ class Feature extends Model {
       : $query;
   }
 
-  /**
-   * Scope a query to sort features in species order.
+  /** Scope a query to sort features in species order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -124,8 +113,7 @@ class Feature extends Model {
       : $query;
   }
 
-  /**
-   * Scope a query to sort features in rarity order.
+  /** Scope a query to sort features in rarity order.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $reverse
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -138,16 +126,14 @@ class Feature extends Model {
       : $query;
   }
 
-  /**
-   * Scope a query to sort features by newest first.
+  /** Scope a query to sort features by newest first.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSortNewest($query) {
     return $query->orderBy('id', 'DESC');
   }
 
-  /**
-   * Scope a query to sort features oldest first.
+  /** Scope a query to sort features oldest first.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeSortOldest($query) {
@@ -160,8 +146,7 @@ class Feature extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the model's name, linked to its encyclopedia page.
+  /** Displays the model's name, linked to its encyclopedia page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' .
@@ -172,29 +157,25 @@ class Feature extends Model {
       ($this->rarity ? ' (' . $this->rarity->displayName . ')' : '');
   }
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/data/traits';
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getImageFileNameAttribute() {
     return $this->id . '-image.png';
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getImageUrlAttribute() {
     if (!$this->has_image) {
@@ -203,15 +184,13 @@ class Feature extends Model {
     return asset($this->imageDirectory . '/' . $this->imageFileName);
   }
 
-  /**
-   * Gets the URL of the model's encyclopedia page.
+  /** Gets the URL of the model's encyclopedia page.
    * @return string */
   public function getUrlAttribute() {
     return url('world/traits?name=' . $this->name);
   }
 
-  /**
-   * Gets the URL for a masterlist search of characters in this category.
+  /** Gets the URL for a masterlist search of characters in this category.
    * @return string */
   public function getSearchUrlAttribute() {
     return url('masterlist?feature_id[]=' . $this->id);

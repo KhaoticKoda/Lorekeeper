@@ -8,26 +8,22 @@ use App\Models\Item\Item;
 use App\Models\Model;
 
 class LootTable extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['name', 'display_name'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'loot_tables';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'name' => 'required',
     'display_name' => 'required'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'name' => 'required',
@@ -40,8 +36,7 @@ class LootTable extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the loot data for this loot table. */
+  /** Get the loot data for this loot table. */
   public function loot() {
     return $this->hasMany('App\Models\Loot\Loot', 'loot_table_id');
   }
@@ -52,8 +47,7 @@ class LootTable extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the model's name, linked to its encyclopedia page.
+  /** Displays the model's name, linked to its encyclopedia page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<span class="display-loot">' .
@@ -62,8 +56,7 @@ class LootTable extends Model {
       add_help('This reward is random.');
   }
 
-  /**
-   * Gets the loot table's asset type for asset management.
+  /** Gets the loot table's asset type for asset management.
    * @return string */
   public function getAssetTypeAttribute() {
     return 'loot_tables';
@@ -75,8 +68,7 @@ class LootTable extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Rolls on the loot table and consolidates the rewards.
+  /** Rolls on the loot table and consolidates the rewards.
    * @param  int  $quantity
    * @return \Illuminate\Support\Collection */
   public function roll($quantity = 1) {
@@ -140,8 +132,7 @@ class LootTable extends Model {
     return $rewards;
   }
 
-  /**
-   * Rolls on an item category.
+  /** Rolls on an item category.
    * @param  int    $id
    * @param  int    $quantity
    * @param  string $condition
@@ -187,8 +178,7 @@ class LootTable extends Model {
     return $rewards;
   }
 
-  /**
-   * Rolls on an item rarity.
+  /** Rolls on an item rarity.
    * @param  int    $quantity
    * @param  string $condition
    * @param  string $rarity

@@ -30,8 +30,7 @@ class TradeManager extends Service {
     | Handles creation and modification of trade data.
     */
 
-  /**
-   * Creates a new trade.
+  /** Creates a new trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -79,8 +78,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Edits a user's side of a trade.
+  /** Edits a user's side of a trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -121,8 +119,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handles modification of assets on the user's side of a trade.
+  /** Handles modification of assets on the user's side of a trade.
    * @param  \App\Models\Trade      $trade
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -276,8 +273,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Cancels a trade.
+  /** Cancels a trade.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -324,8 +320,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Confirms the user's offer.
+  /** Confirms the user's offer.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -389,8 +384,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Confirms the trade for a user.
+  /** Confirms the trade for a user.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -478,8 +472,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Approves a trade in the admin panel.
+  /** Approves a trade in the admin panel.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -520,8 +513,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Rejects a trade in the admin panel.
+  /** Rejects a trade in the admin panel.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Trade */
@@ -561,8 +553,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Returns trade attachments to their owners.
+  /** Returns trade attachments to their owners.
    * @param  \App\Models\Trade  $trade
    * @return bool */
   private function returnAttachments($trade) {
@@ -618,8 +609,7 @@ class TradeManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Credits trade attachments to their new owners.
+  /** Credits trade attachments to their new owners.
    * @param  \App\Models\Trade  $trade
    * @param  array              $data
    * @return bool */

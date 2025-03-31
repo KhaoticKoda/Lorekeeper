@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 
 class CommentProvider extends ServiceProvider {
-  /**
-   * If for some reason you want to override the component. */
+  /** If for some reason you want to override the component. */
   protected function includeBladeComponent() {
     Blade::include('comments::comments', 'comments');
   }
 
-  /**
-   * Define permission defined in the config. */
+  /** Define permission defined in the config. */
   protected function definePermissions() {
     foreach (Config::get('lorekeeper.comments.permissions', []) as $permission => $policy) {
       Gate::define($permission, $policy);

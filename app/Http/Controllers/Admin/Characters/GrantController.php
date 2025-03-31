@@ -16,8 +16,7 @@ use App\Services\InventoryManager;
 use App\Http\Controllers\Controller;
 
 class GrantController extends Controller {
-  /**
-   * Grants or removes currency from a character.
+  /** Grants or removes currency from a character.
    * @param  string                        $slug
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
@@ -40,8 +39,7 @@ class GrantController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Grants items to characters.
+  /** Grants items to characters.
    * @param  string                          $slug
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\InventoryManager   $service

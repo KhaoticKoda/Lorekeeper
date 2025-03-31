@@ -6,18 +6,15 @@ use Config;
 use App\Models\Model;
 
 class Notification extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['user_id', 'notification_type_id', 'is_unread', 'data'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'notifications';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
@@ -27,8 +24,7 @@ class Notification extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who owns notification. */
+  /** Get the user who owns notification. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }
@@ -39,15 +35,13 @@ class Notification extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Get the notification message using the stored data.
+  /** Get the notification message using the stored data.
    * @return array */
   public function getMessageAttribute() {
     $notification = Config::get('lorekeeper.notifications.' . $this->notification_type_id);
@@ -68,8 +62,7 @@ class Notification extends Model {
     return $message;
   }
 
-  /**
-   * Get the notification ID from type.
+  /** Get the notification ID from type.
    * @return array */
   public static function getNotificationId($type) {
     return constant('self::' . $type);

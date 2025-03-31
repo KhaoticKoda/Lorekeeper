@@ -25,8 +25,7 @@ class PromptService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Create a category.
+  /** Create a category.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return \App\Models\Prompt\PromptCategory|bool */
@@ -58,8 +57,7 @@ class PromptService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Update a category.
+  /** Update a category.
    * @param  \App\Models\Prompt\PromptCategory  $category
    * @param  array                              $data
    * @param  \App\Models\User\User              $user
@@ -97,8 +95,7 @@ class PromptService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handle category data.
+  /** Handle category data.
    * @param  array                                   $data
    * @param  \App\Models\Prompt\PromptCategory|null  $category
    * @return array */
@@ -120,8 +117,7 @@ class PromptService extends Service {
     return $data;
   }
 
-  /**
-   * Delete a category.
+  /** Delete a category.
    * @param  \App\Models\Prompt\PromptCategory  $category
    * @return bool */
   public function deletePromptCategory($category) {
@@ -147,8 +143,7 @@ class PromptService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts category order.
+  /** Sorts category order.
    * @param  array  $data
    * @return bool */
   public function sortPromptCategory($data) {
@@ -175,8 +170,7 @@ class PromptService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Creates a new prompt.
+  /** Creates a new prompt.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Prompt\Prompt */
@@ -245,8 +239,7 @@ class PromptService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a prompt.
+  /** Updates a prompt.
    * @param  \App\Models\Prompt\Prompt  $prompt
    * @param  array                      $data
    * @param  \App\Models\User\User      $user
@@ -324,8 +317,7 @@ class PromptService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a prompt.
+  /** Processes user input for creating/updating a prompt.
    * @param  array                      $data
    * @param  \App\Models\Prompt\Prompt  $prompt
    * @return array */
@@ -355,8 +347,7 @@ class PromptService extends Service {
     return $data;
   }
 
-  /**
-   * Processes user input for creating/updating prompt rewards.
+  /** Processes user input for creating/updating prompt rewards.
    * @param  array                      $data
    * @param  \App\Models\Prompt\Prompt  $prompt */
   private function populateRewards($data, $prompt) {
@@ -375,8 +366,7 @@ class PromptService extends Service {
     }
   }
 
-  /**
-   * Deletes a prompt.
+  /** Deletes a prompt.
    * @param  \App\Models\Prompt\Prompt  $prompt
    * @return bool */
   public function deletePrompt($prompt) {

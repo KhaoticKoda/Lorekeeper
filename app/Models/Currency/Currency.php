@@ -6,8 +6,7 @@ use Config;
 use App\Models\Model;
 
 class Currency extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'is_user_owned',
@@ -26,13 +25,11 @@ class Currency extends Model {
     'has_image'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'currencies';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'name' => 'required|unique:currencies|between:3,100',
@@ -42,8 +39,7 @@ class Currency extends Model {
     'image' => 'mimes:png'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'name' => 'required|between:3,100',
@@ -59,8 +55,7 @@ class Currency extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the currency as an icon with tooltip.
+  /** Displays the currency as an icon with tooltip.
    * @return string */
   public function getDisplayIconAttribute() {
     return '<img src="' .
@@ -73,43 +68,37 @@ class Currency extends Model {
       '"/>';
   }
 
-  /**
-   * Gets the file directory containing the model's image.
+  /** Gets the file directory containing the model's image.
    * @return string */
   public function getImageDirectoryAttribute() {
     return 'images/data/currencies';
   }
 
-  /**
-   * Gets the file name of the model's image.
+  /** Gets the file name of the model's image.
    * @return string */
   public function getCurrencyImageFileNameAttribute() {
     return $this->id . '-image.png';
   }
 
-  /**
-   * Gets the file name of the model's icon image.
+  /** Gets the file name of the model's icon image.
    * @return string */
   public function getCurrencyIconFileNameAttribute() {
     return $this->id . '-icon.png';
   }
 
-  /**
-   * Gets the path to the file directory containing the model's image.
+  /** Gets the path to the file directory containing the model's image.
    * @return string */
   public function getCurrencyImagePathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the path to the file directory containing the model's icon image.
+  /** Gets the path to the file directory containing the model's icon image.
    * @return string */
   public function getCurrencyIconPathAttribute() {
     return public_path($this->imageDirectory);
   }
 
-  /**
-   * Gets the URL of the model's image.
+  /** Gets the URL of the model's image.
    * @return string */
   public function getCurrencyImageUrlAttribute() {
     if (!$this->has_image) {
@@ -118,8 +107,7 @@ class Currency extends Model {
     return asset($this->imageDirectory . '/' . $this->currencyImageFileName);
   }
 
-  /**
-   * Gets the URL of the model's icon image.
+  /** Gets the URL of the model's icon image.
    * @return string */
   public function getCurrencyIconUrlAttribute() {
     if (!$this->has_icon) {
@@ -134,22 +122,19 @@ class Currency extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays the model's name, linked to its encyclopedia page.
+  /** Displays the model's name, linked to its encyclopedia page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '" class="display-currency">' . $this->name . '</a>';
   }
 
-  /**
-   * Gets the URL of the model's encyclopedia page.
+  /** Gets the URL of the model's encyclopedia page.
    * @return string */
   public function getUrlAttribute() {
     return url('world/currencies?name=' . $this->name);
   }
 
-  /**
-   * Gets the currency's asset type for asset management.
+  /** Gets the currency's asset type for asset management.
    * @return string */
   public function getAssetTypeAttribute() {
     return 'currencies';
@@ -161,8 +146,7 @@ class Currency extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Displays a given value of the currency with icon, abbreviation or name.
+  /** Displays a given value of the currency with icon, abbreviation or name.
    * @return string */
   public function display($value) {
     $ret = '<span class="display-currency">' . $value . ' ';

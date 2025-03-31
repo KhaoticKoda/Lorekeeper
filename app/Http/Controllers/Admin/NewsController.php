@@ -12,8 +12,7 @@ use App\Services\NewsService;
 use App\Http\Controllers\Controller;
 
 class NewsController extends Controller {
-  /**
-   * Shows the news index.
+  /** Shows the news index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.news.news', [
@@ -21,8 +20,7 @@ class NewsController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create news page.
+  /** Shows the create news page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateNews() {
     return view('admin.news.create_edit_news', [
@@ -30,8 +28,7 @@ class NewsController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit news page.
+  /** Shows the edit news page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditNews($id) {
@@ -44,8 +41,7 @@ class NewsController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a news page.
+  /** Creates or edits a news page.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\NewsService  $service
    * @param  int|null                  $id
@@ -66,8 +62,7 @@ class NewsController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the news deletion modal.
+  /** Gets the news deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteNews($id) {
@@ -77,8 +72,7 @@ class NewsController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a news page.
+  /** Deletes a news page.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\NewsService  $service
    * @param  int                       $id

@@ -25,8 +25,7 @@ class ReportController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the user's report log.
+  /** Shows the user's report log.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getReportsIndex(Request $request) {
@@ -43,8 +42,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the bug report log.
+  /** Shows the bug report log.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getBugIndex(Request $request) {
@@ -61,8 +59,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the report page.
+  /** Shows the report page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getReport($id) {
@@ -78,8 +75,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the submit report page.
+  /** Shows the submit report page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewReport(Request $request) {
@@ -89,8 +85,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new report.
+  /** Creates a new report.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\ReportManager  $service
    * @return \Illuminate\Http\RedirectResponse */

@@ -27,8 +27,7 @@ class GalleryManager extends Service {
     | Handles creation and modification of gallery submissions.
     */
 
-  /**
-   * Creates a new gallery submission.
+  /** Creates a new gallery submission.
    * @param  array                  $data
    * @param  array                  $currencyFormData
    * @param  \App\Models\User\User  $user
@@ -181,8 +180,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a gallery submission.
+  /** Updates a gallery submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  array                                  $data
    * @param  \App\Models\User\User                  $user
@@ -355,8 +353,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a gallery submission.
+  /** Processes user input for creating/updating a gallery submission.
    * @param  array                                  $data
    * @return array */
   private function populateData($data) {
@@ -371,8 +368,7 @@ class GalleryManager extends Service {
     return $data;
   }
 
-  /**
-   * Processes gallery submission images.
+  /** Processes gallery submission images.
    * @param  array                                  $data
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @return array */
@@ -405,8 +401,7 @@ class GalleryManager extends Service {
     return $submission;
   }
 
-  /**
-   * Processes collaborator edits/approvals on a submission.
+  /** Processes collaborator edits/approvals on a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
    * @return bool|\App\Models\Gallery\GalleryFavorite */
@@ -458,8 +453,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Votes on a gallery submission.
+  /** Votes on a gallery submission.
    * @param  string                                 $action
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
@@ -525,8 +519,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes staff comments for a submission.
+  /** Processes staff comments for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
    * @return bool|\App\Models\Gallery\GalleryFavorite */
@@ -570,8 +563,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes acceptance for a submission.
+  /** Processes acceptance for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @return bool|\App\Models\Gallery\GallerySubmission */
   private function acceptSubmission($submission) {
@@ -639,8 +631,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes rejection for a submission.
+  /** Processes rejection for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @return bool|\App\Models\Gallery\GallerySubmission */
   private function rejectSubmission($submission) {
@@ -669,8 +660,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Archives a submission.
+  /** Archives a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @return bool */
   public function archiveSubmission($submission, $user) {
@@ -697,8 +687,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes group currency evaluation for a submission.
+  /** Processes group currency evaluation for a submission.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
    * @return bool|\App\Models\Gallery\GalleryFavorite */
@@ -857,8 +846,7 @@ class GalleryManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Toggles favorite status on a submission for a user.
+  /** Toggles favorite status on a submission for a user.
    * @param  \App\Models\Gallery\GallerySubmission  $submission
    * @param  \App\Models\User\User                  $user
    * @return bool|\App\Models\Gallery\GalleryFavorite */

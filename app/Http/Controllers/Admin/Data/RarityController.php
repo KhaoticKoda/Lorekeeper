@@ -20,8 +20,7 @@ class RarityController extends Controller {
     | Handles creation/editing of rarities.
     */
 
-  /**
-   * Shows the rarity index.
+  /** Shows the rarity index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.rarities.rarities', [
@@ -29,8 +28,7 @@ class RarityController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create rarity page.
+  /** Shows the create rarity page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateRarity() {
     return view('admin.rarities.create_edit_rarity', [
@@ -38,8 +36,7 @@ class RarityController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit rarity page.
+  /** Shows the edit rarity page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditRarity($id) {
@@ -52,8 +49,7 @@ class RarityController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a rarity.
+  /** Creates or edits a rarity.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RarityService  $service
    * @param  int|null                    $id
@@ -74,8 +70,7 @@ class RarityController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the rarity deletion modal.
+  /** Gets the rarity deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteRarity($id) {
@@ -85,8 +80,7 @@ class RarityController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a rarity.
+  /** Deletes a rarity.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RarityService  $service
    * @param  int                         $id
@@ -102,8 +96,7 @@ class RarityController extends Controller {
     return redirect()->to('admin/data/rarities');
   }
 
-  /**
-   * Sorts rarities.
+  /** Sorts rarities.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RarityService  $service
    * @return \Illuminate\Http\RedirectResponse */

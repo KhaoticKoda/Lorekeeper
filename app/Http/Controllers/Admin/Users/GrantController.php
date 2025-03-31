@@ -23,8 +23,7 @@ use App\Services\InventoryManager;
 use App\Http\Controllers\Controller;
 
 class GrantController extends Controller {
-  /**
-   * Show the currency grant page.
+  /** Show the currency grant page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUserCurrency() {
     return view('admin.grants.user_currency', [
@@ -35,8 +34,7 @@ class GrantController extends Controller {
     ]);
   }
 
-  /**
-   * Grants or removes currency from multiple users.
+  /** Grants or removes currency from multiple users.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\CurrencyManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -52,8 +50,7 @@ class GrantController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Show the item grant page.
+  /** Show the item grant page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItems() {
     return view('admin.grants.items', [
@@ -62,8 +59,7 @@ class GrantController extends Controller {
     ]);
   }
 
-  /**
-   * Grants or removes items from multiple users.
+  /** Grants or removes items from multiple users.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\InventoryManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -86,8 +82,7 @@ class GrantController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Show the item search page.
+  /** Show the item search page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemSearch(Request $request) {
     $item = Item::find($request->only(['item_id']))->first();

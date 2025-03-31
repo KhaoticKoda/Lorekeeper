@@ -22,8 +22,7 @@ class SpeciesController extends Controller {
     | Handles creation/editing of character species.
     */
 
-  /**
-   * Shows the species index.
+  /** Shows the species index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.specieses.specieses', [
@@ -31,8 +30,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create species page.
+  /** Shows the create species page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSpecies() {
     return view('admin.specieses.create_edit_species', [
@@ -42,8 +40,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit species page.
+  /** Shows the edit species page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSpecies($id) {
@@ -58,8 +55,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a species.
+  /** Creates or edits a species.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int|null                     $id
@@ -80,8 +76,7 @@ class SpeciesController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the species deletion modal.
+  /** Gets the species deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSpecies($id) {
@@ -91,8 +86,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a species.
+  /** Deletes a species.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int                          $id
@@ -108,8 +102,7 @@ class SpeciesController extends Controller {
     return redirect()->to('admin/data/species');
   }
 
-  /**
-   * Sorts species.
+  /** Sorts species.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -124,8 +117,7 @@ class SpeciesController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the subtype index.
+  /** Shows the subtype index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubtypeIndex() {
     return view('admin.specieses.subtypes', [
@@ -133,8 +125,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create subtype page.
+  /** Shows the create subtype page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSubtype() {
     return view('admin.specieses.create_edit_subtype', [
@@ -143,8 +134,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit subtype page.
+  /** Shows the edit subtype page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSubtype($id) {
@@ -158,8 +148,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a subtype.
+  /** Creates or edits a subtype.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int|null                     $id
@@ -180,8 +169,7 @@ class SpeciesController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the subtype deletion modal.
+  /** Gets the subtype deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSubtype($id) {
@@ -191,8 +179,7 @@ class SpeciesController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a subtype.
+  /** Deletes a subtype.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @param  int                          $id
@@ -208,8 +195,7 @@ class SpeciesController extends Controller {
     return redirect()->to('admin/data/subtypes');
   }
 
-  /**
-   * Sorts subtypes.
+  /** Sorts subtypes.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\SpeciesService  $service
    * @return \Illuminate\Http\RedirectResponse */

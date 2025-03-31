@@ -10,23 +10,20 @@ use Laravel\Socialite\Two\User;
 class ToyhouseProvider extends AbstractProvider implements ProviderInterface {
   protected $scopes = [];
 
-  /**
-   * Get the authentication URL for the provider.
+  /** Get the authentication URL for the provider.
    * @param string $state
    * @return string */
   protected function getAuthUrl($state) {
     return $this->buildAuthUrlFromBase('https://toyhou.se/~oauth/authorize', $state);
   }
 
-  /**
-   * Get the token URL for the provider.
+  /** Get the token URL for the provider.
    * @return string */
   protected function getTokenUrl() {
     return 'https://toyhou.se/~oauth/token';
   }
 
-  /**
-   * Get the raw user for the given access token.
+  /** Get the raw user for the given access token.
    * @param string $token
    * @return array */
   protected function getUserByToken($token) {
@@ -39,8 +36,7 @@ class ToyhouseProvider extends AbstractProvider implements ProviderInterface {
     return json_decode($response->getBody(), true);
   }
 
-  /**
-   * Map the raw user array to a Socialite User instance.
+  /** Map the raw user array to a Socialite User instance.
    * @return \Laravel\Socialite\Two\User */
   protected function mapUserToObject(array $user) {
     return (new User())->setRaw($user)->map([

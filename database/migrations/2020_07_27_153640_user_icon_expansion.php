@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class UserIconExpansion extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     // Add columns for avatar / references your default icon. If you prefer a png etc make sure to change the extension
@@ -15,8 +14,7 @@ class UserIconExpansion extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     Schema::table('users', function (Blueprint $table) {

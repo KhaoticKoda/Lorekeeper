@@ -31,8 +31,7 @@ class UserService extends Service {
     | Handles the creation and editing of users.
     */
 
-  /**
-   * Create a user.
+  /** Create a user.
    * @param  array  $data
    * @return \App\Models\User\User */
   public function createUser($data) {
@@ -62,8 +61,7 @@ class UserService extends Service {
     return $user;
   }
 
-  /**
-   * Updates a user. Used in modifying the admin user on the command line.
+  /** Updates a user. Used in modifying the admin user on the command line.
    * @param  array  $data
    * @return \App\Models\User\User */
   public function updateUser($data) {
@@ -78,8 +76,7 @@ class UserService extends Service {
     return $user;
   }
 
-  /**
-   * Updates the user's password.
+  /** Updates the user's password.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool */
@@ -104,8 +101,7 @@ class UserService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates the user's email and resends a verification email.
+  /** Updates the user's email and resends a verification email.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool */
@@ -119,8 +115,7 @@ class UserService extends Service {
     return true;
   }
 
-  /**
-   * Updates user's birthday */
+  /** Updates user's birthday */
   public function updateBirthday($data, $user) {
     $user->birthday = $data;
     $user->save();
@@ -128,8 +123,7 @@ class UserService extends Service {
     return true;
   }
 
-  /**
-   * Updates user's birthday setting */
+  /** Updates user's birthday setting */
   public function updateDOB($data, $user) {
     $user->settings->birthday_setting = $data;
     $user->settings->save();
@@ -137,8 +131,7 @@ class UserService extends Service {
     return true;
   }
 
-  /**
-   * Updates the user's avatar.
+  /** Updates the user's avatar.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool */
@@ -193,8 +186,7 @@ class UserService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Bans a user.
+  /** Bans a user.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  \App\Models\User\User  $staff
@@ -324,8 +316,7 @@ class UserService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Unbans a user.
+  /** Unbans a user.
    * @param  \App\Models\User\User  $user
    * @param  \App\Models\User\User  $staff
    * @return bool */

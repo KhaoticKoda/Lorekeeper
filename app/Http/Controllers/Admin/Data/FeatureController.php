@@ -31,8 +31,7 @@ class FeatureController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the feature category index.
+  /** Shows the feature category index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.features.feature_categories', [
@@ -40,8 +39,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create feature category page.
+  /** Shows the create feature category page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateFeatureCategory() {
     return view('admin.features.create_edit_feature_category', [
@@ -49,8 +47,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit feature category page.
+  /** Shows the edit feature category page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditFeatureCategory($id) {
@@ -63,8 +60,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a feature category.
+  /** Creates or edits a feature category.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
@@ -91,8 +87,7 @@ class FeatureController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the feature category deletion modal.
+  /** Gets the feature category deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteFeatureCategory($id) {
@@ -102,8 +97,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a feature category.
+  /** Creates or edits a feature category.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
@@ -119,8 +113,7 @@ class FeatureController extends Controller {
     return redirect()->to('admin/data/trait-categories');
   }
 
-  /**
-   * Sorts feature categories.
+  /** Sorts feature categories.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -141,8 +134,7 @@ class FeatureController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the feature index.
+  /** Shows the feature index.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getFeatureIndex(Request $request) {
@@ -179,8 +171,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create feature page.
+  /** Shows the create feature page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateFeature() {
     return view('admin.features.create_edit_feature', [
@@ -199,8 +190,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit feature page.
+  /** Shows the edit feature page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditFeature($id) {
@@ -224,8 +214,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a feature.
+  /** Creates or edits a feature.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int|null                     $id
@@ -255,8 +244,7 @@ class FeatureController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the feature deletion modal.
+  /** Gets the feature deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteFeature($id) {
@@ -266,8 +254,7 @@ class FeatureController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a feature.
+  /** Deletes a feature.
    * @param  \Illuminate\Http\Request     $request
    * @param  App\Services\FeatureService  $service
    * @param  int                          $id

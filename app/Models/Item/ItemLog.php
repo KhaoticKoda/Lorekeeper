@@ -6,8 +6,7 @@ use Config;
 use App\Models\Model;
 
 class ItemLog extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'sender_id',
@@ -22,13 +21,11 @@ class ItemLog extends Model {
     'recipient_type'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'items_log';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
@@ -38,8 +35,7 @@ class ItemLog extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who initiated the logged action. */
+  /** Get the user who initiated the logged action. */
   public function sender() {
     if ($this->sender_type == 'User') {
       return $this->belongsTo('App\Models\User\User', 'sender_id');
@@ -47,8 +43,7 @@ class ItemLog extends Model {
     return $this->belongsTo('App\Models\Character\Character', 'sender_id');
   }
 
-  /**
-   * Get the user who received the logged action. */
+  /** Get the user who received the logged action. */
   public function recipient() {
     if ($this->recipient_type == 'User') {
       return $this->belongsTo('App\Models\User\User', 'recipient_id');
@@ -56,8 +51,7 @@ class ItemLog extends Model {
     return $this->belongsTo('App\Models\Character\Character', 'recipient_id');
   }
 
-  /**
-   * Get the item that is the target of the action. */
+  /** Get the item that is the target of the action. */
   public function item() {
     return $this->belongsTo('App\Models\Item\Item');
   }

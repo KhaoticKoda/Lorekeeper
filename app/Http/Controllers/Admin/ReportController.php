@@ -17,8 +17,7 @@ use App\Services\ReportManager;
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller {
-  /**
-   * Shows the report index page.
+  /** Shows the report index page.
    * @param  string  $status
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getReportIndex(Request $request, $status = null) {
@@ -33,8 +32,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the report detail page.
+  /** Shows the report detail page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getReport($id) {
@@ -47,8 +45,7 @@ class ReportController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new report.
+  /** Creates a new report.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\ReportManager  $service
    * @param  int                             $id

@@ -18,8 +18,7 @@ class LootService extends Service {
     | Handles the creation and editing of loot tables.
     */
 
-  /**
-   * Creates a loot table.
+  /** Creates a loot table.
    * @param  array  $data
    * @return bool|\App\Models\Loot\LootTable */
   public function createLootTable($data) {
@@ -71,8 +70,7 @@ class LootService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a loot table.
+  /** Updates a loot table.
    * @param  \App\Models\Loot\LootTable  $table
    * @param  array                       $data
    * @return bool|\App\Models\Loot\LootTable */
@@ -125,8 +123,7 @@ class LootService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handles the creation of loot for a loot table.
+  /** Handles the creation of loot for a loot table.
    * @param  \App\Models\Loot\LootTable  $table
    * @param  array                       $data */
   private function populateLootTable($table, $data) {
@@ -152,8 +149,7 @@ class LootService extends Service {
     }
   }
 
-  /**
-   * Deletes a loot table.
+  /** Deletes a loot table.
    * @param  \App\Models\Loot\LootTable  $table
    * @return bool */
   public function deleteLootTable($table) {

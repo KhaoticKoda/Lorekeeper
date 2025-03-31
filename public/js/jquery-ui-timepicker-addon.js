@@ -1688,8 +1688,7 @@
     return strictParse(timeFormat, timeString, o);
   };
 
-  /**
-   * Public utility to format the time
+  /** Public utility to format the time
    * @param {string} format format of the time
    * @param {Object} time Object not a Date for timezones
    * @param {Object} [options] essentially the regional[].. amNames, pmNames, ampm
@@ -2426,8 +2425,7 @@
    * Create a Singleton Instance */
   $.timepicker = new Timepicker();
 
-  /**
-   * Get the timezone offset as string from a date object (eg '+0530' for UTC+5.5)
+  /** Get the timezone offset as string from a date object (eg '+0530' for UTC+5.5)
    * @param {number} tzMinutes if not a number, less than -720 (-1200), or greater than 840 (+1400) this value is returned
    * @param {boolean} iso8601 if true formats in accordance to iso8601 "+12:45"
    * @return {string} */
@@ -2452,8 +2450,7 @@
     return tz;
   };
 
-  /**
-   * Get the number in minutes that represents a timezone string
+  /** Get the number in minutes that represents a timezone string
    * @param  {string} tzString formatted like "+0500", "-1245", "Z"
    * @return {number} the offset minutes or the original string if it doesn't match expectations */
   $.timepicker.timezoneOffsetNumber = function (tzString) {
@@ -2476,8 +2473,7 @@
     ); // minutes
   };
 
-  /**
-   * No way to set timezone in js Date, so we must adjust the minutes to compensate. (think setDate, getDate)
+  /** No way to set timezone in js Date, so we must adjust the minutes to compensate. (think setDate, getDate)
    * @param  {Date} date
    * @param  {string} fromTimezone formatted like "+0500", "-1245"
    * @param  {string} toTimezone formatted like "+0500", "-1245"
@@ -2491,8 +2487,7 @@
     return date;
   };
 
-  /**
-   * Calls `timepicker()` on the `startTime` and `endTime` elements, and configures them to
+  /** Calls `timepicker()` on the `startTime` and `endTime` elements, and configures them to
    * enforce date range limits.
    * n.b. The input value must be correctly formatted (reformatting is not supported)
    * @param  {Element} startTime
@@ -2503,8 +2498,7 @@
     return $.timepicker.handleRange('timepicker', startTime, endTime, options);
   };
 
-  /**
-   * Calls `datetimepicker` on the `startTime` and `endTime` elements, and configures them to
+  /** Calls `datetimepicker` on the `startTime` and `endTime` elements, and configures them to
    * enforce date range limits.
    * @param  {Element} startTime
    * @param  {Element} endTime
@@ -2516,8 +2510,7 @@
     $.timepicker.handleRange('datetimepicker', startTime, endTime, options);
   };
 
-  /**
-   * Calls `datepicker` on the `startTime` and `endTime` elements, and configures them to
+  /** Calls `datepicker` on the `startTime` and `endTime` elements, and configures them to
    * enforce date range limits.
    * @param  {Element} startTime
    * @param  {Element} endTime
@@ -2528,8 +2521,7 @@
     $.timepicker.handleRange('datepicker', startTime, endTime, options);
   };
 
-  /**
-   * Calls `method` on the `startTime` and `endTime` elements, and configures them to
+  /** Calls `method` on the `startTime` and `endTime` elements, and configures them to
    * enforce date range limits.
    * @param  {string} method Can be used to specify the type of picker to be added
    * @param  {Element} startTime
@@ -2640,8 +2632,7 @@
     return $([startTime.get(0), endTime.get(0)]);
   };
 
-  /**
-   * Log error or data to the console during error or debugging
+  /** Log error or data to the console during error or debugging
    * @param  {Object} err pass any type object to log to the console during error or debugging
    * @return {void} */
   $.timepicker.log = function () {

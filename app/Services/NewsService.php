@@ -16,8 +16,7 @@ class NewsService extends Service {
     | Handles the creation and editing of news posts.
     */
 
-  /**
-   * Creates a news post.
+  /** Creates a news post.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\News */
@@ -44,8 +43,7 @@ class NewsService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a news post.
+  /** Updates a news post.
    * @param  \App\Models\News       $news
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -72,8 +70,7 @@ class NewsService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes a news post.
+  /** Deletes a news post.
    * @param  \App\Models\News  $news
    * @return bool */
   public function deleteNews($news) {
@@ -89,8 +86,7 @@ class NewsService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates queued news posts to be visible and alert users when
+  /** Updates queued news posts to be visible and alert users when
    * they should be posted.
    * @return bool */
   public function updateQueue() {
@@ -110,8 +106,7 @@ class NewsService extends Service {
     }
   }
 
-  /**
-   * Updates the unread news flag for all users so that
+  /** Updates the unread news flag for all users so that
    * the new news notification is displayed.
    * @return bool */
   private function alertUsers() {

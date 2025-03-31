@@ -6,13 +6,11 @@ use Config;
 use App\Models\Model;
 
 class UserAlias extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['user_id', 'site', 'alias', 'is_visible', 'is_primary_alias'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'user_aliases';
 
@@ -22,8 +20,7 @@ class UserAlias extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user this set of settings belongs to. */
+  /** Get the user this set of settings belongs to. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
@@ -34,8 +31,7 @@ class UserAlias extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include visible aliases.
+  /** Scope a query to only include visible aliases.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query) {
@@ -48,8 +44,7 @@ class UserAlias extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Gets the URL for the user's account on a given site.
+  /** Gets the URL for the user's account on a given site.
    * @return string */
   public function getUrlAttribute() {
     if ($this->site == 'tumblr') {
@@ -62,29 +57,25 @@ class UserAlias extends Model {
     }
   }
 
-  /**
-   * Displays the user's alias, linked to the appropriate site.
+  /** Displays the user's alias, linked to the appropriate site.
    * @return string */
   public function getDisplayAliasAttribute() {
     return '<a href="' . $this->url . '">' . $this->alias . '@' . $this->siteDisplayName . '</a>';
   }
 
-  /**
-   * Retrieves the config data for the site.
+  /** Retrieves the config data for the site.
    * @return string */
   public function getConfigAttribute() {
     return Config::get('lorekeeper.sites.' . $this->site);
   }
 
-  /**
-   * Retrieves the display name of the alias's site.
+  /** Retrieves the display name of the alias's site.
    * @return string */
   public function getSiteDisplayNameAttribute() {
     return Config::get('lorekeeper.sites.' . $this->site . '.display_name');
   }
 
-  /**
-   * Checks if this alias can be made a primary alias.
+  /** Checks if this alias can be made a primary alias.
    * @return string */
   public function getCanMakePrimaryAttribute() {
     return Config::get('lorekeeper.sites.' . $this->site . '.primary_alias');

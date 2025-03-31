@@ -27,8 +27,7 @@ class BrowseController extends Controller {
     | Displays lists of users and characters.
     */
 
-  /**
-   * Shows the user list.
+  /** Shows the user list.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getUsers(Request $request) {
@@ -75,8 +74,7 @@ class BrowseController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the user blacklist.
+  /** Shows the user blacklist.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getBlacklist(Request $request) {
@@ -111,8 +109,7 @@ class BrowseController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the character masterlist.
+  /** Shows the character masterlist.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacters(Request $request) {
@@ -314,8 +311,7 @@ class BrowseController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the MYO slot masterlist.
+  /** Shows the MYO slot masterlist.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getMyos(Request $request) {
@@ -453,8 +449,7 @@ class BrowseController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the Sub masterlists.
+  /** Shows the Sub masterlists.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSublist(Request $request, $key) {

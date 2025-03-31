@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use App\Models\User\User;
 
 class DropCharacterMyoCounts extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     // This count is not being used anywhere and is inaccurate
@@ -19,8 +18,7 @@ class DropCharacterMyoCounts extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     //

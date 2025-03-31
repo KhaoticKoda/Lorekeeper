@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreatePromptCategories extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     // Prompt categories are for neatly categorising prompts, e.g. regular prompts and event-specific prompts
@@ -27,8 +26,7 @@ class CreatePromptCategories extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     Schema::table('prompts', function (Blueprint $table) {

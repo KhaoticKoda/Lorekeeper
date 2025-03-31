@@ -18,8 +18,7 @@ class ShopManager extends Service {
     | Handles purchasing of items from shops.
     */
 
-  /**
-   * Buys an item from a shop.
+  /** Buys an item from a shop.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return bool|App\Models\Shop\Shop */
@@ -158,8 +157,7 @@ class ShopManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Checks if the purchase limit for an item from a shop has been reached.
+  /** Checks if the purchase limit for an item from a shop has been reached.
    * @param  \App\Models\Shop\ShopStock  $shopStock
    * @param  \App\Models\User\User      $user
    * @return bool */
@@ -170,8 +168,7 @@ class ShopManager extends Service {
     return false;
   }
 
-  /**
-   * Checks how many times a user has purchased a shop item.
+  /** Checks how many times a user has purchased a shop item.
    * @param  \App\Models\Shop\ShopStock  $shopStock
    * @param  \App\Models\User\User      $user
    * @return int */

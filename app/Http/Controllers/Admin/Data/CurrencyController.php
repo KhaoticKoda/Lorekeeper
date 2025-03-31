@@ -20,8 +20,7 @@ class CurrencyController extends Controller {
     | Handles creation/editing of currencies.
     */
 
-  /**
-   * Shows the currency index.
+  /** Shows the currency index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.currencies.currencies', [
@@ -29,8 +28,7 @@ class CurrencyController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create currency page.
+  /** Shows the create currency page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateCurrency() {
     return view('admin.currencies.create_edit_currency', [
@@ -38,8 +36,7 @@ class CurrencyController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit currency page.
+  /** Shows the edit currency page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditCurrency($id) {
@@ -52,8 +49,7 @@ class CurrencyController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a currency.
+  /** Creates or edits a currency.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int|null                               $id
@@ -88,8 +84,7 @@ class CurrencyController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the currency deletion modal.
+  /** Gets the currency deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteCurrency($id) {
@@ -99,8 +94,7 @@ class CurrencyController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a currency.
+  /** Deletes a currency.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  int                                    $id
@@ -116,8 +110,7 @@ class CurrencyController extends Controller {
     return redirect()->to('admin/data/currencies');
   }
 
-  /**
-   * Shows the sort currency page.
+  /** Shows the sort currency page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSort() {
     return view('admin.currencies.sort', [
@@ -128,8 +121,7 @@ class CurrencyController extends Controller {
     ]);
   }
 
-  /**
-   * Sorts currencies.
+  /** Sorts currencies.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\CharacterCategoryService  $service
    * @param  string                                 $type

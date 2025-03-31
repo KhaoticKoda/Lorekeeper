@@ -23,8 +23,7 @@ class ShopController extends Controller {
     | Handles creation/editing of shops and shop stock.
     */
 
-  /**
-   * Shows the shop index.
+  /** Shows the shop index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.shops.shops', [
@@ -32,8 +31,7 @@ class ShopController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create shop page.
+  /** Shows the create shop page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateShop() {
     return view('admin.shops.create_edit_shop', [
@@ -41,8 +39,7 @@ class ShopController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit shop page.
+  /** Shows the edit shop page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditShop($id) {
@@ -57,8 +54,7 @@ class ShopController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a shop.
+  /** Creates or edits a shop.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ShopService  $service
    * @param  int|null                  $id
@@ -79,8 +75,7 @@ class ShopController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Edits a shop's stock.
+  /** Edits a shop's stock.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ShopService  $service
    * @param  int                       $id
@@ -108,8 +103,7 @@ class ShopController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the shop deletion modal.
+  /** Gets the shop deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteShop($id) {
@@ -119,8 +113,7 @@ class ShopController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a shop.
+  /** Deletes a shop.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ShopService  $service
    * @param  int                       $id
@@ -136,8 +129,7 @@ class ShopController extends Controller {
     return redirect()->to('admin/data/shops');
   }
 
-  /**
-   * Sorts shops.
+  /** Sorts shops.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ShopService  $service
    * @return \Illuminate\Http\RedirectResponse */

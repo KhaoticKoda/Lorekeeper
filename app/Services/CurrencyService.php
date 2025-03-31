@@ -17,8 +17,7 @@ class CurrencyService extends Service {
     | Handles the creation and editing of currency.
     */
 
-  /**
-   * Creates a new currency.
+  /** Creates a new currency.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Currency\Currency */
@@ -68,8 +67,7 @@ class CurrencyService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a currency.
+  /** Updates a currency.
    * @param  \App\Models\Currency\Currency  $currency
    * @param  array                          $data
    * @param  \App\Models\User\User          $user
@@ -127,8 +125,7 @@ class CurrencyService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a currency.
+  /** Processes user input for creating/updating a currency.
    * @param  array                          $data
    * @param  \App\Models\Currency\Currency  $currency
    * @return array */
@@ -186,8 +183,7 @@ class CurrencyService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a currency.
+  /** Deletes a currency.
    * @param  \App\Models\Currency\Currency  $currency
    * @return bool */
   public function deleteCurrency($currency) {
@@ -244,8 +240,7 @@ class CurrencyService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts currency order.
+  /** Sorts currency order.
    * @param  array   $data
    * @param  string  $type
    * @return bool */

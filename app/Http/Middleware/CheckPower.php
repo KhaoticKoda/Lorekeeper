@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 class CheckPower {
-  /**
-   * Check if the user has the power to access the current page.
+  /** Check if the user has the power to access the current page.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next
    * @return mixed */

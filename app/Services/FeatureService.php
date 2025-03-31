@@ -24,8 +24,7 @@ class FeatureService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Create a category.
+  /** Create a category.
    * @param  array                 $data
    * @param  \App\Models\User\User $user
    * @return \App\Models\Feature\FeatureCategory|bool */
@@ -57,8 +56,7 @@ class FeatureService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Update a category.
+  /** Update a category.
    * @param  \App\Models\Feature\FeatureCategory  $category
    * @param  array                                $data
    * @param  \App\Models\User\User                $user
@@ -96,8 +94,7 @@ class FeatureService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handle category data.
+  /** Handle category data.
    * @param  array                                     $data
    * @param  \App\Models\Feature\FeatureCategory|null  $category
    * @return array */
@@ -117,8 +114,7 @@ class FeatureService extends Service {
     return $data;
   }
 
-  /**
-   * Delete a category.
+  /** Delete a category.
    * @param  \App\Models\Feature\FeatureCategory  $category
    * @return bool */
   public function deleteFeatureCategory($category) {
@@ -144,8 +140,7 @@ class FeatureService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts category order.
+  /** Sorts category order.
    * @param  array  $data
    * @return bool */
   public function sortFeatureCategory($data) {
@@ -172,8 +167,7 @@ class FeatureService extends Service {
 
     **********************************************************************************************/
 
-  /**
-   * Creates a new feature.
+  /** Creates a new feature.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Feature\Feature */
@@ -239,8 +233,7 @@ class FeatureService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a feature.
+  /** Updates a feature.
    * @param  \App\Models\Feature\Feature  $feature
    * @param  array                        $data
    * @param  \App\Models\User\User        $user
@@ -309,8 +302,7 @@ class FeatureService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a feature.
+  /** Processes user input for creating/updating a feature.
    * @param  array                        $data
    * @param  \App\Models\Feature\Feature  $feature
    * @return array */
@@ -335,8 +327,7 @@ class FeatureService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a feature.
+  /** Deletes a feature.
    * @param  \App\Models\Feature\Feature  $feature
    * @return bool */
   public function deleteFeature($feature) {

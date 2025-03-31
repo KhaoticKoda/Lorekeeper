@@ -14,8 +14,7 @@ class RaffleController extends Controller {
     | Displays raffles and raffle tickets.
     */
 
-  /**
-   * Shows the raffle index.
+  /** Shows the raffle index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleIndex() {
     $raffles = Raffle::query();
@@ -34,8 +33,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Shows tickets for a given raffle.
+  /** Shows tickets for a given raffle.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleTickets($id) {

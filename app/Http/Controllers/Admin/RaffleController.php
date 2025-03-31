@@ -17,8 +17,7 @@ use App\Services\RaffleManager;
 use App\Http\Controllers\Controller;
 
 class RaffleController extends Controller {
-  /**
-   * Shows the raffle index.
+  /** Shows the raffle index.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRaffleIndex(Request $request) {
@@ -38,8 +37,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create/edit raffle modal.
+  /** Shows the create/edit raffle modal.
    * @param  int|null  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateEditRaffle($id = null) {
@@ -59,8 +57,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a raffle.
+  /** Creates or edits a raffle.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleService  $service
    * @param  int|null                    $id
@@ -82,8 +79,7 @@ class RaffleController extends Controller {
     }
   }
 
-  /**
-   * Shows the create/edit raffle group modal.
+  /** Shows the create/edit raffle group modal.
    * @param  int|null  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateEditRaffleGroup($id = null) {
@@ -101,8 +97,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a raffle group.
+  /** Creates or edits a raffle group.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleService  $service
    * @param  int|null                    $id
@@ -124,8 +119,7 @@ class RaffleController extends Controller {
     }
   }
 
-  /**
-   * Shows the ticket index of a raffle.
+  /** Shows the ticket index of a raffle.
    * @param  \Illuminate\Http\Request  $request
    * @param  int|\\                    $id
    * @return \Illuminate\Contracts\Support\Renderable */
@@ -142,8 +136,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Creates raffle tickets for a raffle.
+  /** Creates raffle tickets for a raffle.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
@@ -159,8 +152,7 @@ class RaffleController extends Controller {
     }
   }
 
-  /**
-   * Deletes a raffle ticket.
+  /** Deletes a raffle ticket.
    * @param  \Illuminate\Http\Request    $request
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
@@ -175,8 +167,7 @@ class RaffleController extends Controller {
     }
   }
 
-  /**
-   * Shows the confirmation modal for rolling a raffle.
+  /** Shows the confirmation modal for rolling a raffle.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRollRaffle($id) {
@@ -190,8 +181,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Rolls a raffle.
+  /** Rolls a raffle.
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
    * @return \Illuminate\Http\RedirectResponse */
@@ -205,8 +195,7 @@ class RaffleController extends Controller {
     }
   }
 
-  /**
-   * Shows the confirmation modal for rolling a raffle group.
+  /** Shows the confirmation modal for rolling a raffle group.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getRollRaffleGroup($id) {
@@ -220,8 +209,7 @@ class RaffleController extends Controller {
     ]);
   }
 
-  /**
-   * Rolls a raffle group.
+  /** Rolls a raffle group.
    * @param  App\Services\RaffleManager  $service
    * @param  int                         $id
    * @return \Illuminate\Http\RedirectResponse */

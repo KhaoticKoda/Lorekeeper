@@ -8,8 +8,7 @@ use DB;
 use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller {
-  /**
-   * Shows the settings index.
+  /** Shows the settings index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.settings.settings', [
@@ -17,8 +16,7 @@ class SettingsController extends Controller {
     ]);
   }
 
-  /**
-   * Edits a setting.
+  /** Edits a setting.
    * @param  \Illuminate\Http\Request       $request
    * @param  string                         $key
    * @return \Illuminate\Http\RedirectResponse */

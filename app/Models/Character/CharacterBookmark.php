@@ -5,8 +5,7 @@ namespace App\Models\Character;
 use App\Models\Model;
 
 class CharacterBookmark extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'user_id',
@@ -19,21 +18,18 @@ class CharacterBookmark extends Model {
     'comment'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'character_bookmarks';
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'character_id' => 'required',
     'comment' => 'string|nullable|max:500'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'comment' => 'string|nullable|max:500'
@@ -45,8 +41,7 @@ class CharacterBookmark extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include visible characters.
+  /** Scope a query to only include visible characters.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query) {
@@ -61,14 +56,12 @@ class CharacterBookmark extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the character the record belongs to. */
+  /** Get the character the record belongs to. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character');
   }
 
-  /**
-   * Get the user the record belongs to. */
+  /** Get the user the record belongs to. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }

@@ -18,8 +18,7 @@ class SublistController extends Controller {
     | Handles creation/editing of sub masterlists.
     */
 
-  /**
-   * Shows the sub masterlist index.
+  /** Shows the sub masterlist index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.sublist.sublist', [
@@ -27,8 +26,7 @@ class SublistController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create sublist page.
+  /** Shows the create sublist page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateSublist() {
     return view('admin.sublist.create_edit_sublist', [
@@ -40,8 +38,7 @@ class SublistController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit sublist page.
+  /** Shows the edit sublist page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditSublist($id) {
@@ -58,8 +55,7 @@ class SublistController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a sublist.
+  /** Creates or edits a sublist.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService             $service
    * @param  int|null                               $id
@@ -87,8 +83,7 @@ class SublistController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the sublist deletion modal.
+  /** Gets the sublist deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteSublist($id) {
@@ -98,8 +93,7 @@ class SublistController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a sublist.
+  /** Deletes a sublist.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService             $service
    * @param  int                                    $id
@@ -115,8 +109,7 @@ class SublistController extends Controller {
     return redirect()->to('admin/data/sublists');
   }
 
-  /**
-   * Sorts sublist order.
+  /** Sorts sublist order.
    * @param  \Illuminate\Http\Request               $request
    * @param  App\Services\SublistService              $service
    * @return \Illuminate\Http\RedirectResponse */

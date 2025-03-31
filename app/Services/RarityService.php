@@ -17,8 +17,7 @@ class RarityService extends Service {
     | Handles the creation and editing of rarities.
     */
 
-  /**
-   * Creates a new rarity.
+  /** Creates a new rarity.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\Rarity */
@@ -50,8 +49,7 @@ class RarityService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a rarity.
+  /** Updates a rarity.
    * @param  \App\Models\Rarity     $rarity
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -87,8 +85,7 @@ class RarityService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes user input for creating/updating a rarity.
+  /** Processes user input for creating/updating a rarity.
    * @param  array               $data
    * @param  \App\Models\Rarity  $rarity
    * @return array */
@@ -112,8 +109,7 @@ class RarityService extends Service {
     return $data;
   }
 
-  /**
-   * Deletes a rarity.
+  /** Deletes a rarity.
    * @param  \App\Models\Rarity  $rarity
    * @return bool */
   public function deleteRarity($rarity) {
@@ -142,8 +138,7 @@ class RarityService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts rarity order.
+  /** Sorts rarity order.
    * @param  array  $data
    * @return bool */
   public function sortRarity($data) {

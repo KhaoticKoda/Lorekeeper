@@ -33,8 +33,7 @@ class ItemController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the item category index.
+  /** Shows the item category index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.items.item_categories', [
@@ -42,8 +41,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create item category page.
+  /** Shows the create item category page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateItemCategory() {
     return view('admin.items.create_edit_item_category', [
@@ -51,8 +49,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit item category page.
+  /** Shows the edit item category page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItemCategory($id) {
@@ -65,8 +62,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits an item category.
+  /** Creates or edits an item category.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int|null                  $id
@@ -97,8 +93,7 @@ class ItemController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the item category deletion modal.
+  /** Gets the item category deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteItemCategory($id) {
@@ -108,8 +103,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes an item category.
+  /** Deletes an item category.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
@@ -125,8 +119,7 @@ class ItemController extends Controller {
     return redirect()->to('admin/data/item-categories');
   }
 
-  /**
-   * Sorts item categories.
+  /** Sorts item categories.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -147,8 +140,7 @@ class ItemController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the item index.
+  /** Shows the item index.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getItemIndex(Request $request) {
@@ -168,8 +160,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the create item page.
+  /** Shows the create item page.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateItem() {
     return view('admin.items.create_edit_item', [
@@ -185,8 +176,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the edit item page.
+  /** Shows the edit item page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItem($id) {
@@ -213,8 +203,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits an item.
+  /** Creates or edits an item.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int|null                  $id
@@ -253,8 +242,7 @@ class ItemController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the item deletion modal.
+  /** Gets the item deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteItem($id) {
@@ -264,8 +252,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits an item.
+  /** Creates or edits an item.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
@@ -287,8 +274,7 @@ class ItemController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Gets the tag addition page.
+  /** Gets the tag addition page.
    * @param  App\Services\ItemService  $service
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
@@ -300,8 +286,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Adds a tag to an item.
+  /** Adds a tag to an item.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
@@ -320,8 +305,7 @@ class ItemController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the tag editing page.
+  /** Gets the tag editing page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditItemTag(ItemService $service, $id, $tag) {
@@ -339,8 +323,7 @@ class ItemController extends Controller {
     );
   }
 
-  /**
-   * Edits tag data for an item.
+  /** Edits tag data for an item.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id
@@ -358,8 +341,7 @@ class ItemController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the item tag deletion modal.
+  /** Gets the item tag deletion modal.
    * @param  int  $id
    * @param  string                    $tag
    * @return \Illuminate\Contracts\Support\Renderable */
@@ -372,8 +354,7 @@ class ItemController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a tag from an item.
+  /** Deletes a tag from an item.
    * @param  \Illuminate\Http\Request  $request
    * @param  App\Services\ItemService  $service
    * @param  int                       $id

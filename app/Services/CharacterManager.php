@@ -40,8 +40,7 @@ class CharacterManager extends Service {
     | Handles creation and modification of character data.
     */
 
-  /**
-   * Retrieves the next number to be used for a character's masterlist code.
+  /** Retrieves the next number to be used for a character's masterlist code.
    * @param  int  $categoryId
    * @return string */
   public function pullNumber($categoryId) {
@@ -80,8 +79,7 @@ class CharacterManager extends Service {
     return $result;
   }
 
-  /**
-   * Creates a new character or MYO slot.
+  /** Creates a new character or MYO slot.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @param  bool                   $isMyo
@@ -205,8 +203,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Handles character data.
+  /** Handles character data.
    * @param  array                  $data
    * @param  bool                   $isMyo
    * @return \App\Models\Character\Character|bool */
@@ -263,8 +260,7 @@ class CharacterManager extends Service {
     return false;
   }
 
-  /**
-   * Handles character image data.
+  /** Handles character image data.
    * @param  array                            $data
    * @return \App\Models\Character\Character  $character
    * @param  bool                             $isMyo
@@ -418,8 +414,7 @@ class CharacterManager extends Service {
     return false;
   }
 
-  /**
-   * Trims and optionally resizes and watermarks an image.
+  /** Trims and optionally resizes and watermarks an image.
    *
    * @param  \App\Models\Character\CharacterImage  $characterImage */
   private function processImage($characterImage) {
@@ -552,8 +547,7 @@ class CharacterManager extends Service {
     );
   }
 
-  /**
-   * Crops a thumbnail for the given image.
+  /** Crops a thumbnail for the given image.
    * @param  array                                 $points
    * @param  \App\Models\Character\CharacterImage  $characterImage */
   private function cropThumbnail($points, $characterImage, $isMyo = false) {
@@ -703,8 +697,7 @@ class CharacterManager extends Service {
     );
   }
 
-  /**
-   * Creates a character log.
+  /** Creates a character log.
    * @param  int     $senderId
    * @param  string  $senderUrl
    * @param  int     $recipientId
@@ -756,8 +749,7 @@ class CharacterManager extends Service {
     );
   }
 
-  /**
-   * Creates a character image.
+  /** Creates a character image.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
@@ -832,8 +824,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character image.
+  /** Updates a character image.
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
@@ -913,8 +904,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Generates a list of features for displaying.
+  /** Generates a list of features for displaying.
    * @param  \App\Models\Character\CharacterImage  $image
    * @return  string */
   private function generateFeatureList($image) {
@@ -931,8 +921,7 @@ class CharacterManager extends Service {
     return $result;
   }
 
-  /**
-   * Updates image data.
+  /** Updates image data.
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
@@ -971,8 +960,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates image credits.
+  /** Updates image credits.
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
@@ -1065,8 +1053,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Generates a list of image credits for displaying.
+  /** Generates a list of image credits for displaying.
    * @param  \App\Models\Character\CharacterImage  $image
    * @return  string */
   private function generateCredits($image) {
@@ -1080,8 +1067,7 @@ class CharacterManager extends Service {
     return $result;
   }
 
-  /**
-   * Reuploads an image.
+  /** Reuploads an image.
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
@@ -1147,8 +1133,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes an image.
+  /** Deletes an image.
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
    * @return  bool */
@@ -1195,8 +1180,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates image settings.
+  /** Updates image settings.
    * @param  array                                 $data
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
@@ -1233,8 +1217,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character's active image.
+  /** Updates a character's active image.
    * @param  \App\Models\Character\CharacterImage  $image
    * @param  \App\Models\User\User                 $user
    * @return  bool */
@@ -1272,8 +1255,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts a character's images
+  /** Sorts a character's images
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
@@ -1328,8 +1310,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Sorts a user's characters.
+  /** Sorts a user's characters.
    * @param  array                                 $data
    * @param  \App\Models\User\User                 $user
    * @return  bool */
@@ -1363,8 +1344,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character's stats.
+  /** Updates a character's stats.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
@@ -1474,8 +1454,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character's description.
+  /** Updates a character's description.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
@@ -1514,8 +1493,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character's settings.
+  /** Updates a character's settings.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $image
    * @param  \App\Models\User\User            $user
@@ -1552,8 +1530,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a character's profile.
+  /** Updates a character's profile.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
@@ -1646,8 +1623,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes a character.
+  /** Deletes a character.
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
    * @return  bool */
@@ -1687,8 +1663,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Creates a character transfer.
+  /** Creates a character transfer.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
@@ -1771,8 +1746,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Forces an admin transfer of a character.
+  /** Forces an admin transfer of a character.
    * @param  array                            $data
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
@@ -1865,8 +1839,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes a character transfer.
+  /** Processes a character transfer.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
    * @return  bool */
@@ -1937,8 +1910,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Cancels a character transfer.
+  /** Cancels a character transfer.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
    * @return  bool */
@@ -1972,8 +1944,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Processes a character transfer in the approvals queue.
+  /** Processes a character transfer in the approvals queue.
    * @param  array                            $data
    * @param  \App\Models\User\User            $user
    * @return  bool */
@@ -2060,8 +2031,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Moves a character from one user to another.
+  /** Moves a character from one user to another.
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $recipient
    * @param  string                           $data
@@ -2150,8 +2120,7 @@ class CharacterManager extends Service {
     );
   }
 
-  /**
-   * Creates a character design update request (or a MYO design approval request).
+  /** Creates a character design update request (or a MYO design approval request).
    * @param  \App\Models\Character\Character  $character
    * @param  \App\Models\User\User            $user
    * @return  \App\Models\Character\CharacterDesignUpdate|bool */
@@ -2215,8 +2184,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Saves the comment section of a character design update request.
+  /** Saves the comment section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @return  bool */
@@ -2236,8 +2204,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Saves the image upload section of a character design update request.
+  /** Saves the image upload section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  bool                                         $isAdmin
@@ -2367,8 +2334,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Saves the addons section of a character design update request.
+  /** Saves the addons section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @return  bool */
@@ -2498,8 +2464,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Saves the character features (traits) section of a character design update request.
+  /** Saves the character features (traits) section of a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @return  bool */
@@ -2593,8 +2558,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Submit a character design update request to the approval queue.
+  /** Submit a character design update request to the approval queue.
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @return  bool */
   public function submitRequest($request) {
@@ -2625,8 +2589,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Approves a character design update request and processes it.
+  /** Approves a character design update request and processes it.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
@@ -2926,8 +2889,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Rejects a character design update request and processes it.
+  /** Rejects a character design update request and processes it.
    * Rejection can be a soft rejection (reopens the request so the user can edit it and resubmit)
    * or a hard rejection (takes the request out of the queue completely).
    * @param  array                                        $data
@@ -3036,8 +2998,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Cancels a character design update request.
+  /** Cancels a character design update request.
    * @param  array                                        $data
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user
@@ -3078,8 +3039,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes a character design update request.
+  /** Deletes a character design update request.
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @return  bool */
   public function deleteRequest($request) {
@@ -3166,8 +3126,7 @@ class CharacterManager extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Votes on a a character design update request.
+  /** Votes on a a character design update request.
    * @param  string                                       $action
    * @param  \App\Models\Character\CharacterDesignUpdate  $request
    * @param  \App\Models\User\User                        $user

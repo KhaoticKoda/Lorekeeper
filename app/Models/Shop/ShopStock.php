@@ -5,8 +5,7 @@ namespace App\Models\Shop;
 use App\Models\Model;
 
 class ShopStock extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'shop_id',
@@ -21,8 +20,7 @@ class ShopStock extends Model {
     'purchase_limit'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'shop_stock';
 
@@ -32,20 +30,17 @@ class ShopStock extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the item being stocked. */
+  /** Get the item being stocked. */
   public function item() {
     return $this->belongsTo('App\Models\Item\Item');
   }
 
-  /**
-   * Get the shop that holds this item. */
+  /** Get the shop that holds this item. */
   public function shop() {
     return $this->belongsTo('App\Models\Shop\Shop');
   }
 
-  /**
-   * Get the currency the item must be purchased with. */
+  /** Get the currency the item must be purchased with. */
   public function currency() {
     return $this->belongsTo('App\Models\Currency\Currency');
   }

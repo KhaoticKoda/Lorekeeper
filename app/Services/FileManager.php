@@ -13,8 +13,7 @@ class FileManager extends Service {
     | Handles uploading and manipulation of files.
     */
 
-  /**
-   * Creates a directory.
+  /** Creates a directory.
    * @param  string  $dir
    * @return bool */
   public function createDirectory($dir) {
@@ -31,8 +30,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Deletes a directory if it exists and doesn't contain files.
+  /** Deletes a directory if it exists and doesn't contain files.
    * @param  string  $dir
    * @return bool */
   public function deleteDirectory($dir) {
@@ -49,8 +47,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Renames a directory.
+  /** Renames a directory.
    * @param  string  $dir
    * @param  string  $oldName
    * @param  string  $newName
@@ -69,8 +66,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Uploads a file.
+  /** Uploads a file.
    * @param  array   $file
    * @param  string  $dir
    * @param  string  $name
@@ -87,8 +83,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Uploads a custom CSS file.
+  /** Uploads a custom CSS file.
    * @param  array  $file
    * @return bool */
   public function uploadCss($file) {
@@ -98,8 +93,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Deletes a file.
+  /** Deletes a file.
    * @param  string  $path
    * @return bool */
   public function deleteFile($path) {
@@ -111,8 +105,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Moves a file.
+  /** Moves a file.
    * @param  string  $oldDir
    * @param  string  $newDir
    * @param  string  $name
@@ -129,8 +122,7 @@ class FileManager extends Service {
     return true;
   }
 
-  /**
-   * Renames a file.
+  /** Renames a file.
    * @param  string  $dir
    * @param  string  $oldName
    * @param  string  $newName

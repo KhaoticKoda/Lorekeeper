@@ -11,8 +11,7 @@ use App\Services\RankService;
 use App\Http\Controllers\Controller;
 
 class RankController extends Controller {
-  /**
-   * Show the rank index.
+  /** Show the rank index.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex() {
     return view('admin.users.ranks', [
@@ -20,8 +19,7 @@ class RankController extends Controller {
     ]);
   }
 
-  /**
-   * Get the rank creation modal.
+  /** Get the rank creation modal.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateRank() {
     return view('admin.users._create_edit_rank', [
@@ -32,8 +30,7 @@ class RankController extends Controller {
     ]);
   }
 
-  /**
-   * Get the rank editing modal.
+  /** Get the rank editing modal.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditRank($id) {
     $rank = Rank::find($id);
@@ -64,8 +61,7 @@ class RankController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Get the rank deletion modal.
+  /** Get the rank deletion modal.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteRank($id) {
     $rank = Rank::find($id);

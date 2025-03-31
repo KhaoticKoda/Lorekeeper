@@ -15,8 +15,7 @@ use App\Models\Comment;
 use App\Models\Report\Report;
 
 class PermalinkController extends Controller {
-  /**
-   * returns replies recursively
+  /** returns replies recursively
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getComment($id) {
     $comments = Comment::all();

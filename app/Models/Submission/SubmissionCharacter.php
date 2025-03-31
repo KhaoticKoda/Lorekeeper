@@ -8,13 +8,11 @@ use Carbon\Carbon;
 use App\Models\Model;
 
 class SubmissionCharacter extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = ['submission_id', 'character_id', 'data'];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'submission_characters';
 
@@ -24,14 +22,12 @@ class SubmissionCharacter extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the submission this is attached to. */
+  /** Get the submission this is attached to. */
   public function submission() {
     return $this->belongsTo('App\Models\Submission\Submission', 'submission_id');
   }
 
-  /**
-   * Get the character being attached to the submission. */
+  /** Get the character being attached to the submission. */
   public function character() {
     return $this->belongsTo('App\Models\Character\Character', 'character_id');
   }
@@ -42,15 +38,13 @@ class SubmissionCharacter extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the data attribute as an associative array.
+  /** Get the data attribute as an associative array.
    * @return array */
   public function getDataAttribute() {
     return json_decode($this->attributes['data'], true);
   }
 
-  /**
-   * Get the rewards for the character.
+  /** Get the rewards for the character.
    * @return array */
   public function getRewardsAttribute() {
     $assets = parseAssetData($this->data);

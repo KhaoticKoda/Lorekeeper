@@ -15,8 +15,7 @@ class PageService extends Service {
     | Handles the creation and editing of site pages.
     */
 
-  /**
-   * Creates a site page.
+  /** Creates a site page.
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
    * @return bool|\App\Models\SitePage */
@@ -44,8 +43,7 @@ class PageService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Updates a site page.
+  /** Updates a site page.
    * @param  \App\Models\SitePage   $news
    * @param  array                  $data
    * @param  \App\Models\User\User  $user
@@ -79,8 +77,7 @@ class PageService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes a site page.
+  /** Deletes a site page.
    * @param  \App\Models\SitePage  $news
    * @return bool */
   public function deletePage($page) {

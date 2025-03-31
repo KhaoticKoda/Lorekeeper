@@ -19,8 +19,7 @@ class BookmarkController extends Controller {
     | Handles the user's character bookmarks.
     */
 
-  /**
-   * Shows the bookmarks page.
+  /** Shows the bookmarks page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getBookmarks(Request $request) {
@@ -88,8 +87,7 @@ class BookmarkController extends Controller {
     ]);
   }
 
-  /**
-   * Gets the bookmark creation modal.
+  /** Gets the bookmark creation modal.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateBookmark() {
     return view('account.bookmarks._create_edit_bookmark', [
@@ -97,8 +95,7 @@ class BookmarkController extends Controller {
     ]);
   }
 
-  /**
-   * Gets the bookmark editing modal.
+  /** Gets the bookmark editing modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditBookmark($id) {
@@ -114,8 +111,7 @@ class BookmarkController extends Controller {
     ]);
   }
 
-  /**
-   * Creates or edits a bookmark.
+  /** Creates or edits a bookmark.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\BookmarkManager  $service
    * @param  int|null                      $id
@@ -146,8 +142,7 @@ class BookmarkController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Gets the bookmark deletion modal.
+  /** Gets the bookmark deletion modal.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDeleteBookmark($id) {
@@ -163,8 +158,7 @@ class BookmarkController extends Controller {
     ]);
   }
 
-  /**
-   * Deletes a bookmark.
+  /** Deletes a bookmark.
    * @param  \Illuminate\Http\Request      $request
    * @param  App\Services\BookmarkManager  $service
    * @param  int                           $id

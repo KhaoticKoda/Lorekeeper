@@ -15,8 +15,7 @@ class ExtensionService extends Service {
     | Handles functions relating to extensions.
     */
 
-  /**
-   * Updates existing notifications in the database.
+  /** Updates existing notifications in the database.
    * Part of the project to move each author's works to
    * using a distinct notifications prefix.
    * Should be called with a command instructing it

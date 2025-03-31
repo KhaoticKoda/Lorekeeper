@@ -14,8 +14,7 @@ use App\Services\CharacterManager;
 use App\Http\Controllers\Controller;
 
 class DesignController extends Controller {
-  /**
-   * Show the design index page.
+  /** Show the design index page.
    * @param  \Illuminate\Http\Request  $request
    * @param  string                    $type
    * @param  string                    $id
@@ -34,8 +33,7 @@ class DesignController extends Controller {
     ]);
   }
 
-  /**
-   * Show the design action confirmation modal.
+  /** Show the design action confirmation modal.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getDesignConfirmation($id, $action) {
     $r = CharacterDesignUpdate::where('id', $id)->where('status', 'Pending')->first();
@@ -101,8 +99,7 @@ class DesignController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Casts a vote for a design's approval or denial.
+  /** Casts a vote for a design's approval or denial.
    * @return \Illuminate\Contracts\Support\Renderable */
   public function postVote($id, $action, Request $request, CharacterManager $service) {
     $r = CharacterDesignUpdate::where('id', $id)->where('status', 'Pending')->first();

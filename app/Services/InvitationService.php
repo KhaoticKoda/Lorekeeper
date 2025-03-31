@@ -13,8 +13,7 @@ class InvitationService extends Service {
     | Handles creation and usage of site registration invitation codes.
     */
 
-  /**
-   * Generates an invitation code, saving the user who generated it.
+  /** Generates an invitation code, saving the user who generated it.
    * @param  \App\Models\User\User $user
    * @return \App\Models\Invitation|bool */
   public function generateInvitation($user) {
@@ -33,8 +32,7 @@ class InvitationService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Marks an invitation code as used, saving the user who used it.
+  /** Marks an invitation code as used, saving the user who used it.
    * @param  \App\Models\User\User $user
    * @return \App\Models\Invitation|bool */
   public function useInvitation($invitation, $user) {
@@ -56,8 +54,7 @@ class InvitationService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Deletes an unused invitation code.
+  /** Deletes an unused invitation code.
    * @param  \App\Models\Invitation $invitation
    * @return bool */
   public function deleteInvitation($invitation) {
@@ -77,8 +74,7 @@ class InvitationService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Generates a string for an invitation code.
+  /** Generates a string for an invitation code.
    * @return string */
   private function generateCode() {
     return randomString(10);

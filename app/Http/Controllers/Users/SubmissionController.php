@@ -37,8 +37,7 @@ class SubmissionController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the user's submission log.
+  /** Shows the user's submission log.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex(Request $request) {
@@ -61,8 +60,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the submission page.
+  /** Shows the submission page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmission($id) {
@@ -85,8 +83,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the submit page.
+  /** Shows the submit page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewSubmission(Request $request) {
@@ -132,8 +129,7 @@ class SubmissionController extends Controller {
     );
   }
 
-  /**
-   * Shows character information.
+  /** Shows character information.
    * @param  string  $slug
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCharacterInfo($slug) {
@@ -144,8 +140,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows prompt information.
+  /** Shows prompt information.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getPromptInfo($id) {
@@ -163,8 +158,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new submission.
+  /** Creates a new submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\SubmissionManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -207,8 +201,7 @@ class SubmissionController extends Controller {
 
     **********************************************************************************************/
 
-  /**
-   * Shows the user's claim log.
+  /** Shows the user's claim log.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaimsIndex(Request $request) {
@@ -229,8 +222,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the claim page.
+  /** Shows the claim page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaim($id) {
@@ -253,8 +245,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the submit claim page.
+  /** Shows the submit claim page.
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getNewClaim(Request $request) {
@@ -296,8 +287,7 @@ class SubmissionController extends Controller {
     );
   }
 
-  /**
-   * Creates a new claim.
+  /** Creates a new claim.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\SubmissionManager  $service
    * @return \Illuminate\Http\RedirectResponse */

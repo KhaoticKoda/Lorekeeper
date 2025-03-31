@@ -10,8 +10,7 @@ use Illuminate\Support\Str;
 
 class Sales extends Model {
   use Commentable;
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'user_id',
@@ -24,31 +23,26 @@ class Sales extends Model {
     'comments_open_at'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'sales';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
-  /**
-   * Dates on the model to convert to Carbon instances.
+  /** Dates on the model to convert to Carbon instances.
    * @var array */
   public $dates = ['post_at', 'comments_open_at'];
 
-  /**
-   * Validation rules for creation.
+  /** Validation rules for creation.
    * @var array */
   public static $createRules = [
     'title' => 'required|between:3,100',
     'text' => 'required'
   ];
 
-  /**
-   * Validation rules for updating.
+  /** Validation rules for updating.
    * @var array */
   public static $updateRules = [
     'title' => 'required|between:3,100',
@@ -61,14 +55,12 @@ class Sales extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who created the Sales post. */
+  /** Get the user who created the Sales post. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }
 
-  /**
-   * Get the characters associated with the sales post. */
+  /** Get the characters associated with the sales post. */
   public function characters() {
     return $this->hasMany('App\Models\Sales\SalesCharacter', 'sales_id');
   }
@@ -79,16 +71,14 @@ class Sales extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include visible posts.
+  /** Scope a query to only include visible posts.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query) {
     return $query->orderBy('updated_at', 'DESC')->where('is_visible', 1);
   }
 
-  /**
-   * Scope a query to only include posts that are scheduled to be posted and are ready to post.
+  /** Scope a query to only include posts that are scheduled to be posted and are ready to post.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeShouldBeVisible($query) {
@@ -104,15 +94,13 @@ class Sales extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the Sales slug.
+  /** Get the Sales slug.
    * @return bool */
   public function getSlugAttribute() {
     return $this->id . '.' . Str::slug($this->title);
   }
 
-  /**
-   * Displays the Sales post title, linked to the Sales post itself.
+  /** Displays the Sales post title, linked to the Sales post itself.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' .
@@ -128,8 +116,7 @@ class Sales extends Model {
       '</a>';
   }
 
-  /**
-   * Gets the Sales post URL.
+  /** Gets the Sales post URL.
    * @return string */
   public function getUrlAttribute() {
     return url('sales/' . $this->slug);

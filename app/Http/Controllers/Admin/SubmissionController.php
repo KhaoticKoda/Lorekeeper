@@ -19,8 +19,7 @@ use App\Services\SubmissionManager;
 use App\Http\Controllers\Controller;
 
 class SubmissionController extends Controller {
-  /**
-   * Shows the submission index page.
+  /** Shows the submission index page.
    * @param  string  $status
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmissionIndex(Request $request, $status = null) {
@@ -54,8 +53,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the submission detail page.
+  /** Shows the submission detail page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getSubmission($id) {
@@ -103,8 +101,7 @@ class SubmissionController extends Controller {
     );
   }
 
-  /**
-   * Shows the claim index page.
+  /** Shows the claim index page.
    * @param  string  $status
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaimIndex(Request $request, $status = null) {
@@ -130,8 +127,7 @@ class SubmissionController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the claim detail page.
+  /** Shows the claim detail page.
    * @param  int  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getClaim($id) {
@@ -178,8 +174,7 @@ class SubmissionController extends Controller {
     );
   }
 
-  /**
-   * Creates a new submission.
+  /** Creates a new submission.
    * @param  \Illuminate\Http\Request        $request
    * @param  App\Services\SubmissionManager  $service
    * @param  int                             $id

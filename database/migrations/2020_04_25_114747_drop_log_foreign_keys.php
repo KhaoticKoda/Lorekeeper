@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class DropLogForeignKeys extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     // This will drop the currency log foreign keys, so that currencies can be deleted without issue
@@ -16,8 +15,7 @@ class DropLogForeignKeys extends Migration {
     });
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     // This is not actually a very accurate opposite of the above,

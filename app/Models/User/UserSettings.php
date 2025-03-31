@@ -5,8 +5,7 @@ namespace App\Models\User;
 use App\Models\Model;
 
 class UserSettings extends Model {
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'is_fto',
@@ -16,18 +15,15 @@ class UserSettings extends Model {
     'birthday_setting'
   ];
 
-  /**
-   * The primary key of the model.
+  /** The primary key of the model.
    * @var string */
   public $primaryKey = 'user_id';
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'user_settings';
 
-  /**
-   * Dates on the model to convert to Carbon instances.
+  /** Dates on the model to convert to Carbon instances.
    * @var array */
   protected $dates = ['banned_at'];
 
@@ -37,8 +33,7 @@ class UserSettings extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user this set of settings belongs to. */
+  /** Get the user this set of settings belongs to. */
   public function user() {
     return $this->belongsTo('App\Models\User\User');
   }

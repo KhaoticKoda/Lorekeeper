@@ -31,8 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Character extends Model {
   use SoftDeletes;
 
-  /**
-   * The attributes that are mass assignable.
+  /** The attributes that are mass assignable.
    * @var array */
   protected $fillable = [
     'character_image_id',
@@ -60,28 +59,23 @@ class Character extends Model {
     'owner_url'
   ];
 
-  /**
-   * The table associated with the model.
+  /** The table associated with the model.
    * @var string */
   protected $table = 'characters';
 
-  /**
-   * Whether the model contains timestamps to be saved and updated.
+  /** Whether the model contains timestamps to be saved and updated.
    * @var string */
   public $timestamps = true;
 
-  /**
-   * Dates on the model to convert to Carbon instances.
+  /** Dates on the model to convert to Carbon instances.
    * @var array */
   public $dates = ['transferrable_at'];
 
-  /**
-   * Accessors to append to the model.
+  /** Accessors to append to the model.
    * @var array */
   public $appends = ['is_available'];
 
-  /**
-   * Validation rules for character creation.
+  /** Validation rules for character creation.
    * @var array */
   public static $createRules = [
     'character_category_id' => 'required',
@@ -96,8 +90,7 @@ class Character extends Model {
     'owner_url' => 'url|nullable'
   ];
 
-  /**
-   * Validation rules for character updating.
+  /** Validation rules for character updating.
    * @var array */
   public static $updateRules = [
     'character_category_id' => 'required',
@@ -107,8 +100,7 @@ class Character extends Model {
     'sale_value' => 'nullable'
   ];
 
-  /**
-   * Validation rules for MYO slots.
+  /** Validation rules for MYO slots.
    * @var array */
   public static $myoRules = [
     'rarity_id' => 'nullable',
@@ -128,62 +120,52 @@ class Character extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the user who owns the character. */
+  /** Get the user who owns the character. */
   public function user() {
     return $this->belongsTo('App\Models\User\User', 'user_id');
   }
 
-  /**
-   * Get the category the character belongs to. */
+  /** Get the category the character belongs to. */
   public function category() {
     return $this->belongsTo('App\Models\Character\CharacterCategory', 'character_category_id');
   }
 
-  /**
-   * Get the masterlist image of the character. */
+  /** Get the masterlist image of the character. */
   public function image() {
     return $this->belongsTo('App\Models\Character\CharacterImage', 'character_image_id');
   }
 
-  /**
-   * Get all images associated with the character. */
+  /** Get all images associated with the character. */
   public function images($user = null) {
     return $this->hasMany('App\Models\Character\CharacterImage', 'character_id')->images($user);
   }
 
-  /**
-   * Get the user-editable profile data of the character. */
+  /** Get the user-editable profile data of the character. */
   public function profile() {
     return $this->hasOne('App\Models\Character\CharacterProfile', 'character_id');
   }
 
-  /**
-   * Get the character's active design update. */
+  /** Get the character's active design update. */
   public function designUpdate() {
     return $this->hasMany('App\Models\Character\CharacterDesignUpdate', 'character_id');
   }
 
-  /**
-   * Get the trade this character is attached to. */
+  /** Get the trade this character is attached to. */
   public function trade() {
     return $this->belongsTo('App\Models\Trade', 'trade_id');
   }
 
-  /**
-   * Get the rarity of this character. */
+  /** Get the rarity of this character. */
   public function rarity() {
     return $this->belongsTo('App\Models\Rarity', 'rarity_id');
   }
 
-  /**
-   * Get the character's associated gallery submissions. */
+  /** Get the character's associated gallery submissions. */
   public function gallerySubmissions() {
     return $this->hasMany('App\Models\Gallery\GalleryCharacter', 'character_id');
   }
 
-  /**
-   * Get the character's items. */
+  /** Get the character's items. */
   public function items() {
     return $this->belongsToMany('App\Models\Item\Item', 'character_items')
       ->withPivot('count', 'data', 'updated_at', 'id')
@@ -196,8 +178,7 @@ class Character extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Scope a query to only include either characters of MYO slots.
+  /** Scope a query to only include either characters of MYO slots.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @param  bool                                   $isMyo
    * @return \Illuminate\Database\Eloquent\Builder */
@@ -205,24 +186,21 @@ class Character extends Model {
     return $query->where('is_myo_slot', $isMyo);
   }
 
-  /**
-   * Scope a query to only include visible characters.
+  /** Scope a query to only include visible characters.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeVisible($query) {
     return $query->where('is_visible', 1);
   }
 
-  /**
-   * Scope a query to only include characters that the owners are interested in trading.
+  /** Scope a query to only include characters that the owners are interested in trading.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeTrading($query) {
     return $query->where('is_trading', 1);
   }
 
-  /**
-   * Scope a query to only include characters that can be traded.
+  /** Scope a query to only include characters that can be traded.
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder */
   public function scopeTradable($query) {
@@ -241,8 +219,7 @@ class Character extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Get the character's availability for activities/transfer.
+  /** Get the character's availability for activities/transfer.
    * @return bool */
   public function getIsAvailableAttribute() {
     if ($this->designUpdate()->active()->exists()) {
@@ -257,8 +234,7 @@ class Character extends Model {
     return true;
   }
 
-  /**
-   * Display the owner's name.
+  /** Display the owner's name.
    * If the owner is not a registered user on the site, this displays the owner's dA name.
    * @return string */
   public function getDisplayOwnerAttribute() {
@@ -269,8 +245,7 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Gets the character's code.
+  /** Gets the character's code.
    * If this is a MYO slot, it will return the MYO slot's name.
    * @return string */
   public function getSlugAttribute() {
@@ -281,15 +256,13 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Displays the character's name, linked to their character page.
+  /** Displays the character's name, linked to their character page.
    * @return string */
   public function getDisplayNameAttribute() {
     return '<a href="' . $this->url . '" class="display-character">' . $this->fullName . '</a>';
   }
 
-  /**
-   * Gets the character's name, including their code and user-assigned name.
+  /** Gets the character's name, including their code and user-assigned name.
    * If this is a MYO slot, simply returns the slot's name.
    * @return string */
   public function getFullNameAttribute() {
@@ -300,8 +273,7 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Gets the character's page's URL.
+  /** Gets the character's page's URL.
    * @return string */
   public function getUrlAttribute() {
     if ($this->is_myo_slot) {
@@ -311,15 +283,13 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Gets the character's asset type for asset management.
+  /** Gets the character's asset type for asset management.
    * @return string */
   public function getAssetTypeAttribute() {
     return 'characters';
   }
 
-  /**
-   * Gets the character's log type for log creation.
+  /** Gets the character's log type for log creation.
    * @return string */
   public function getLogTypeAttribute() {
     return 'Character';
@@ -331,8 +301,7 @@ class Character extends Model {
 
     **********************************************************************************************/
 
-  /**
-   * Checks if the character's owner has registered on the site and updates ownership accordingly. */
+  /** Checks if the character's owner has registered on the site and updates ownership accordingly. */
   public function updateOwner() {
     // Return if the character has an owner on the site already.
     if ($this->user_id) {
@@ -351,8 +320,7 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Get the character's held currencies.
+  /** Get the character's held currencies.
    * @param  bool  $displayedOnly
    * @return \Illuminate\Support\Collection */
   public function getCurrencies($displayedOnly = false) {
@@ -382,8 +350,7 @@ class Character extends Model {
     return $currencies;
   }
 
-  /**
-   * Get the character's held currencies as an array for select inputs.
+  /** Get the character's held currencies as an array for select inputs.
    * @return array */
   public function getCurrencySelect() {
     return CharacterCurrency::where('character_id', $this->id)
@@ -394,8 +361,7 @@ class Character extends Model {
       ->toArray();
   }
 
-  /**
-   * Get the character's currency logs.
+  /** Get the character's currency logs.
    * @param  int  $limit
    * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator */
   public function getCurrencyLogs($limit = 10) {
@@ -423,8 +389,7 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Get the character's item logs.
+  /** Get the character's item logs.
    * @param  int  $limit
    * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator */
   public function getItemLogs($limit = 10) {
@@ -454,8 +419,7 @@ class Character extends Model {
     }
   }
 
-  /**
-   * Get the character's ownership logs.
+  /** Get the character's ownership logs.
    * @return \Illuminate\Pagination\LengthAwarePaginator */
   public function getOwnershipLogs() {
     $query = UserCharacterLog::with('sender.rank')
@@ -465,8 +429,7 @@ class Character extends Model {
     return $query->paginate(30);
   }
 
-  /**
-   * Get the character's update logs.
+  /** Get the character's update logs.
    * @return \Illuminate\Pagination\LengthAwarePaginator */
   public function getCharacterLogs() {
     $query = CharacterLog::with('sender.rank')
@@ -475,8 +438,7 @@ class Character extends Model {
     return $query->paginate(30);
   }
 
-  /**
-   * Get submissions that the character has been included in.
+  /** Get submissions that the character has been included in.
    * @return \Illuminate\Pagination\LengthAwarePaginator */
   public function getSubmissions() {
     return Submission::with('user.rank')
@@ -499,8 +461,7 @@ class Character extends Model {
     //return Submission::where('status', 'Approved')->where('user_id', $this->id)->orderBy('id', 'DESC')->paginate(30);
   }
 
-  /**
-   * Notifies character's bookmarkers in case of a change. */
+  /** Notifies character's bookmarkers in case of a change. */
   public function notifyBookmarkers($type) {
     // Bookmarkers will not be notified if the character is set to not visible
     if ($this->is_visible) {

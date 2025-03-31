@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddRejectedStatusToGallerySubmissions extends Migration {
-  /**
-   * Run the migrations.
+  /** Run the migrations.
    * @return void */
   public function up() {
     DB::statement(
@@ -14,8 +13,7 @@ class AddRejectedStatusToGallerySubmissions extends Migration {
     );
   }
 
-  /**
-   * Reverse the migrations.
+  /** Reverse the migrations.
    * @return void */
   public function down() {
     DB::statement(

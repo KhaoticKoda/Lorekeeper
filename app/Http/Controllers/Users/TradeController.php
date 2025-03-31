@@ -25,8 +25,7 @@ class TradeController extends Controller {
     | Handles viewing the user's trade index, creating and acting on trades.
     */
 
-  /**
-   * Shows the user's trades.
+  /** Shows the user's trades.
    * @param  string  $type
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getIndex($status = 'open') {
@@ -63,8 +62,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Shows a trade.
+  /** Shows a trade.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getTrade($id) {
@@ -92,8 +90,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the trade creation page.
+  /** Shows the trade creation page.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCreateTrade() {
@@ -126,8 +123,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Shows the trade edit page.
+  /** Shows the trade edit page.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getEditTrade($id) {
@@ -164,8 +160,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Creates a new trade.
+  /** Creates a new trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -194,8 +189,7 @@ class TradeController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Edits a trade.
+  /** Edits a trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @param  integer  $id
@@ -223,8 +217,7 @@ class TradeController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the offer confirmation modal.
+  /** Shows the offer confirmation modal.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getConfirmOffer($id) {
@@ -240,8 +233,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Confirms or unconfirms an offer.
+  /** Confirms or unconfirms an offer.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -257,8 +249,7 @@ class TradeController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the trade confirmation modal.
+  /** Shows the trade confirmation modal.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getConfirmTrade($id) {
@@ -274,8 +265,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Confirms or unconfirms a trade.
+  /** Confirms or unconfirms a trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @return \Illuminate\Http\RedirectResponse */
@@ -291,8 +281,7 @@ class TradeController extends Controller {
     return redirect()->back();
   }
 
-  /**
-   * Shows the trade cancellation modal.
+  /** Shows the trade cancellation modal.
    * @param  integer  $id
    * @return \Illuminate\Contracts\Support\Renderable */
   public function getCancelTrade($id) {
@@ -308,8 +297,7 @@ class TradeController extends Controller {
     ]);
   }
 
-  /**
-   * Cancels a trade.
+  /** Cancels a trade.
    * @param  \Illuminate\Http\Request   $request
    * @param  App\Services\TradeManager  $service
    * @return \Illuminate\Http\RedirectResponse */

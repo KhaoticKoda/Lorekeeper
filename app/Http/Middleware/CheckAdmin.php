@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 class CheckAdmin {
-  /**
-   * Redirect non-admins to the home page.
+  /** Redirect non-admins to the home page.
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next
    * @return mixed */

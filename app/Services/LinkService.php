@@ -14,8 +14,7 @@ class LinkService extends Service {
     | Handles connection to social media sites to verify a user's identity.
     */
 
-  /**
-   * Get the Auth URL for dA.
+  /** Get the Auth URL for dA.
    * @return string */
   public function getAuthRedirect($provider) {
     if ($provider == 'deviantart') {
@@ -27,8 +26,7 @@ class LinkService extends Service {
     }
   }
 
-  /**
-   * Link the user's social media account name to their account
+  /** Link the user's social media account name to their account
    *
    * @param  \App\Models\User\User  $user */
   public function saveProvider($provider, $result, $user) {
@@ -76,8 +74,7 @@ class LinkService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Makes the selected alias the user's primary alias.
+  /** Makes the selected alias the user's primary alias.
    *
    * @param  \App\Models\User\User  $user */
   public function makePrimary($aliasId, $user) {
@@ -119,8 +116,7 @@ class LinkService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Hides or unhides the selected alias.
+  /** Hides or unhides the selected alias.
    *
    * @param  \App\Models\User\User  $user */
   public function hideAlias($aliasId, $user) {
@@ -153,8 +149,7 @@ class LinkService extends Service {
     return $this->rollbackReturn(false);
   }
 
-  /**
-   * Removes the selected alias.
+  /** Removes the selected alias.
    *
    * @param  \App\Models\User\User  $user */
   public function removeAlias($aliasId, $user) {
