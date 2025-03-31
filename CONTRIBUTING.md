@@ -3,10 +3,12 @@
 For support and general questions and discussions, please visit the [support Discord server](https://discord.gg/U4JZfsu)! Please do not use the issue tracker for general support questions. Please also remember that unless explicitly stated otherwise/you have hired services to that end, all support is free and offered on a volunteer basis, and there is no guarantee or obligation upon maintainers and/or community members to provide support.
 
 The following are accepted uses for the [issue tracker](https://github.com/corowne/Lorekeeper/issues):
+
 - Bug reports
 - Feature or enhancement requests (within reason)-- note that these may be denied if they are deemed out of scope of the project and/or are not feasible to implement for any reason.
 
 ## Opening an Issue
+
 ### Reporting a bug
 
 File bugs in the [issue tracker](https://github.com/corowne/Lorekeeper/issues). Please follow these guidelines:

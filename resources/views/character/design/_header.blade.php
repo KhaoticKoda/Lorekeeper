@@ -16,12 +16,16 @@
 
 @if($request->status != 'Draft' && Auth::user()->hasPower('manage_characters') && Config::get('lorekeeper.extensions.design_update_voting'))
     <?php
-        $rejectSum = 0;
-        $approveSum = 0;
-        foreach($request->voteData as $voter=>$vote) {
-            if($vote == 1) $rejectSum += 1;
-            if($vote == 2) $approveSum += 1;
-        }
+    $rejectSum = 0;
+    $approveSum = 0;
+    foreach ($request->voteData as $voter => $vote) {
+      if ($vote == 1) {
+        $rejectSum += 1;
+      }
+      if ($vote == 2) {
+        $approveSum += 1;
+      }
+    }
     ?>
     <div class="card mb-3">
 <div class="card-body">

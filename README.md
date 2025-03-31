@@ -14,7 +14,7 @@ Lorekeeper is a framework for managing deviantART-based ARPGs/closed species mas
 - Users can submit art to the submission queue, which mods can approve/reject. This dispenses rewards automagically.
 - Users can spend their hard-earned rewards immediately, without requiring mods to look over their trackers (because it's all been pre-approved).
 - Characters, items and currency can be transferred between users. Plus...secure trading between users for game items/currency/characters on-site is also a thing.
-- Logs for all transfers are kept, so it's easy to check where everything went. 
+- Logs for all transfers are kept, so it's easy to check where everything went.
 - The masterlist is king, so ownership can't be ambiguous, and the current design of a character is always easily accessible.
 - Speaking of which, you can search for characters based on traits, rarity, etc. Also, trait/item/etc. data get their own searchable lists - no need to create additional pages detailing restrictions on how a trait should be drawn/described.
 - Unless you want to, in which case you can add custom pages in HTML without touching the codebase!
@@ -40,6 +40,7 @@ $ cp .env.example .env
 Client ID and secret for at least one supported social media platform are required for this step. See [the Wiki](http://wiki.lorekeeper.me/index.php?title=Category:Social_Media_Authentication) for platform-specific instructions.
 
 Add the following to .env, filling them in as required (also fill in the rest of .env where relevant):
+
 ```
 CONTACT_ADDRESS=(contact email address)
 DEVIANTART_ACCOUNT=(username of ARPG group account)
@@ -48,17 +49,20 @@ DEVIANTART_ACCOUNT=(username of ARPG group account)
 ## Setting up
 
 Composer install:
+
 ```
 $ composer install
 ```
 
 Generate app key and run database migrations:
+
 ```
-$ php artisan key:generate 
+$ php artisan key:generate
 $ php artisan migrate
 ```
 
 Add basic site data:
+
 ```
 $ php artisan add-site-settings
 $ php artisan add-text-pages
@@ -66,6 +70,7 @@ $ php artisan copy-default-images
 ```
 
 Finally, set up the admin account for logging in:
+
 ```
 $ php artisan setup-admin-user
 ```

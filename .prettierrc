@@ -18,7 +18,14 @@
         "singleAttributePerLine": false
       }
     },
-    { "files": ["*.php"], "options": { "parser": "php", "tabWidth": 2, "braceStyle": "1tbs" } }
-  ],
-  "removedTemp": { "objectWrap": "collapse" }
+    {
+      "files": ["*.php"],
+      "options": {
+        "parser": "php",
+        "tabWidth": 2,
+        "trailingCommaPHP": false,
+        "braceStyle": "1tbs"
+      }
+    }
+  ]
 }

@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User\User;
 
-class LoginController extends Controller
-{
-    /*
+class LoginController extends Controller {
+  /*
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------
@@ -17,29 +16,27 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     */
 
-    use AuthenticatesUsers;
+  use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     * @var string
-     */
-    protected $redirectTo = '/';
+  /**
+   * Where to redirect users after login.
+   * @var string
+   */
+  protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+  /**
+   * Create a new controller instance.
+   * @return void
+   */
+  public function __construct() {
+    $this->middleware('guest')->except('logout');
+  }
 
-    /**
-     * Show the application's login form.
-     * @return \Illuminate\Http\Response
-     */
-    public function showLoginForm()
-    {
-        return view('auth.login', ['userCount' => User::count()]);
-    }
+  /**
+   * Show the application's login form.
+   * @return \Illuminate\Http\Response
+   */
+  public function showLoginForm() {
+    return view('auth.login', ['userCount' => User::count()]);
+  }
 }

@@ -46,7 +46,10 @@
                                 </div>
                             @else
                                 <div>
-                                    <?php $features = $character->image->features()->with('feature.category')->get(); ?>
+                                    <?php $features = $character->image
+                                      ->features()
+                                      ->with('feature.category')
+                                      ->get(); ?>
                                     @if($features->count())
                                         @foreach($features as $feature)
                                             <div>@if($feature->feature->feature_category_id) <strong>{!! $feature->feature->category->displayName !!}:</strong> @endif {!! $feature->feature->displayName !!} @if($feature->data) ({{ $feature->data }}) @endif</div>

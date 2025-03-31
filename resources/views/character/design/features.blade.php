@@ -132,7 +132,7 @@
 <script>
   $( "#species" ).change(function() {
     var species = $('#species').val();
-    var id = '<?php echo($request->id); ?>';
+    var id = '<?php echo $request->id; ?>';
     $.ajax({
       type: "GET", url: "{{ url('designs/traits/subtype') }}?species="+species+"&id="+id, dataType: "text"
     }).done(function (res) { $("#subtypes").html(res); }).fail(function (jqXHR, textStatus, errorThrown) { alert("AJAX call failed: " + textStatus + ", " + errorThrown); });

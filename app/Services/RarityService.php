@@ -9,151 +9,163 @@ use App\Models\Rarity;
 use App\Models\Character\Character;
 use App\Models\Character\CharacterImage;
 
-class RarityService extends Service
-{
-    /*
+class RarityService extends Service {
+  /*
     |--------------------------------------------------------------------------
     | Rarity Service
     |--------------------------------------------------------------------------
     | Handles the creation and editing of rarities.
     */
 
-    /**
-     * Creates a new rarity.
-     * @param  array                  $data
-     * @param  \App\Models\User\User  $user
-     * @return bool|\App\Models\Rarity
-     */
-    public function createRarity($data, $user)
-    {
-        DB::beginTransaction();
+  /**
+   * Creates a new rarity.
+   * @param  array                  $data
+   * @param  \App\Models\User\User  $user
+   * @return bool|\App\Models\Rarity
+   */
+  public function createRarity($data, $user) {
+    DB::beginTransaction();
 
-        try {
-            $data = $this->populateData($data);
+    try {
+      $data = $this->populateData($data);
 
-            $image = null;
-            if(isset($data['image']) && $data['image']) {
-                $data['has_image'] = 1;
-                $image = $data['image'];
-                unset($data['image']);
-            }
-            else $data['has_image'] = 0;
+      $image = null;
+      if (isset($data['image']) && $data['image']) {
+        $data['has_image'] = 1;
+        $image = $data['image'];
+        unset($data['image']);
+      } else {
+        $data['has_image'] = 0;
+      }
 
-            $rarity = Rarity::create($data);
+      $rarity = Rarity::create($data);
 
-            if ($image) $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
+      if ($image) {
+        $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
+      }
 
-            return $this->commitReturn($rarity);
-        } catch(\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-        return $this->rollbackReturn(false);
+      return $this->commitReturn($rarity);
+    } catch (\Exception $e) {
+      $this->setError('error', $e->getMessage());
+    }
+    return $this->rollbackReturn(false);
+  }
+
+  /**
+   * Updates a rarity.
+   * @param  \App\Models\Rarity     $rarity
+   * @param  array                  $data
+   * @param  \App\Models\User\User  $user
+   * @return bool|\App\Models\Rarity
+   */
+  public function updateRarity($rarity, $data, $user) {
+    DB::beginTransaction();
+
+    try {
+      // More specific validation
+      if (Rarity::where('name', $data['name'])->where('id', '!=', $rarity->id)->exists()) {
+        throw new \Exception('The name has already been taken.');
+      }
+
+      $data = $this->populateData($data, $rarity);
+
+      $image = null;
+      if (isset($data['image']) && $data['image']) {
+        $data['has_image'] = 1;
+        $image = $data['image'];
+        unset($data['image']);
+      }
+
+      $rarity->update($data);
+
+      if ($rarity) {
+        $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
+      }
+
+      return $this->commitReturn($rarity);
+    } catch (\Exception $e) {
+      $this->setError('error', $e->getMessage());
+    }
+    return $this->rollbackReturn(false);
+  }
+
+  /**
+   * Processes user input for creating/updating a rarity.
+   * @param  array               $data
+   * @param  \App\Models\Rarity  $rarity
+   * @return array
+   */
+  private function populateData($data, $rarity = null) {
+    if (isset($data['description']) && $data['description']) {
+      $data['parsed_description'] = parse($data['description']);
     }
 
-    /**
-     * Updates a rarity.
-     * @param  \App\Models\Rarity     $rarity
-     * @param  array                  $data
-     * @param  \App\Models\User\User  $user
-     * @return bool|\App\Models\Rarity
-     */
-    public function updateRarity($rarity, $data, $user)
-    {
-        DB::beginTransaction();
-
-        try {
-            // More specific validation
-            if(Rarity::where('name', $data['name'])->where('id', '!=', $rarity->id)->exists()) throw new \Exception("The name has already been taken.");
-
-            $data = $this->populateData($data, $rarity);
-
-            $image = null;
-            if(isset($data['image']) && $data['image']) {
-                $data['has_image'] = 1;
-                $image = $data['image'];
-                unset($data['image']);
-            }
-
-            $rarity->update($data);
-
-            if ($rarity) $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
-
-            return $this->commitReturn($rarity);
-        } catch(\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-        return $this->rollbackReturn(false);
+    if (isset($data['color'])) {
+      $data['color'] = str_replace('#', '', $data['color']);
     }
 
-    /**
-     * Processes user input for creating/updating a rarity.
-     * @param  array               $data
-     * @param  \App\Models\Rarity  $rarity
-     * @return array
-     */
-    private function populateData($data, $rarity = null)
-    {
-        if(isset($data['description']) && $data['description']) $data['parsed_description'] = parse($data['description']);
-
-        if(isset($data['color'])) $data['color'] = str_replace('#', '', $data['color']);
-
-        if(isset($data['remove_image']))
-        {
-            if($rarity && $rarity->has_image && $data['remove_image'])
-            {
-                $data['has_image'] = 0;
-                $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
-            }
-            unset($data['remove_image']);
-        }
-
-        return $data;
+    if (isset($data['remove_image'])) {
+      if ($rarity && $rarity->has_image && $data['remove_image']) {
+        $data['has_image'] = 0;
+        $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
+      }
+      unset($data['remove_image']);
     }
 
-    /**
-     * Deletes a rarity.
-     * @param  \App\Models\Rarity  $rarity
-     * @return bool
-     */
-    public function deleteRarity($rarity)
-    {
-        DB::beginTransaction();
+    return $data;
+  }
 
-        try {
-            // Check first if characters with this rarity exist
-            if(CharacterImage::where('rarity_id', $rarity->id)->exists() || Character::where('rarity_id', $rarity->id)->exists()) throw new \Exception("A character or character image with this rarity exists. Please change its rarity first.");
+  /**
+   * Deletes a rarity.
+   * @param  \App\Models\Rarity  $rarity
+   * @return bool
+   */
+  public function deleteRarity($rarity) {
+    DB::beginTransaction();
 
-            if($rarity->has_image) $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
-            $rarity->delete();
+    try {
+      // Check first if characters with this rarity exist
+      if (
+        CharacterImage::where('rarity_id', $rarity->id)->exists() ||
+        Character::where('rarity_id', $rarity->id)->exists()
+      ) {
+        throw new \Exception(
+          'A character or character image with this rarity exists. Please change its rarity first.'
+        );
+      }
 
-            return $this->commitReturn(true);
-        } catch(\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-        return $this->rollbackReturn(false);
+      if ($rarity->has_image) {
+        $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
+      }
+      $rarity->delete();
+
+      return $this->commitReturn(true);
+    } catch (\Exception $e) {
+      $this->setError('error', $e->getMessage());
     }
+    return $this->rollbackReturn(false);
+  }
 
-    /**
-     * Sorts rarity order.
-     * @param  array  $data
-     * @return bool
-     */
-    public function sortRarity($data)
-    {
-        DB::beginTransaction();
+  /**
+   * Sorts rarity order.
+   * @param  array  $data
+   * @return bool
+   */
+  public function sortRarity($data) {
+    DB::beginTransaction();
 
-        try {
-            // explode the sort array and reverse it since the order is inverted
-            $sort = array_reverse(explode(',', $data));
+    try {
+      // explode the sort array and reverse it since the order is inverted
+      $sort = array_reverse(explode(',', $data));
 
-            foreach($sort as $key => $s) {
-                Rarity::where('id', $s)->update(['sort' => $key]);
-            }
+      foreach ($sort as $key => $s) {
+        Rarity::where('id', $s)->update(['sort' => $key]);
+      }
 
-            return $this->commitReturn(true);
-        } catch(\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-        return $this->rollbackReturn(false);
+      return $this->commitReturn(true);
+    } catch (\Exception $e) {
+      $this->setError('error', $e->getMessage());
     }
+    return $this->rollbackReturn(false);
+  }
 }

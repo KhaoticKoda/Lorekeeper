@@ -14,17 +14,16 @@
 */
 
 return [
-
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Version
     |--------------------------------------------------------------------------
     | This is the current version of Lorekeeper that your site is on.
     | Do not change this value!
     */
-    'version' => '2.1.7',
+  'version' => '2.1.7',
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Site Name
     |--------------------------------------------------------------------------
@@ -32,9 +31,9 @@ return [
     | (APP_NAME in .env cannot take spaces). This will be displayed on the
     | site wherever the name needs to be displayed.
     */
-    'site_name' => 'Lorekeeper',
+  'site_name' => 'Lorekeeper',
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Site Description
     |--------------------------------------------------------------------------
@@ -42,9 +41,9 @@ return [
     | displayed on various social media sites, discord, and the like.
     | It is not, however, displayed on the site itself. This should be kept short and snappy!
     */
-    'site_desc' => 'A Lorekeeper ARPG',
+  'site_desc' => 'A Lorekeeper ARPG',
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Character Codes
     |--------------------------------------------------------------------------
@@ -89,15 +88,15 @@ return [
     |       the slot becomes a full character.
     |       Default: 0/Disabled, 1 to enable.
     */
-    'character_codes' => '{category}-{number}',
-    'character_number_digits' => 3,
-    'character_pull_number' => 'all',
+  'character_codes' => '{category}-{number}',
+  'character_number_digits' => 3,
+  'character_pull_number' => 'all',
 
-    'reset_character_status_on_transfer' => 0,
-    'reset_character_profile_on_transfer' => 0,
-    'clear_myo_slot_name_on_approval' => 0,
+  'reset_character_status_on_transfer' => 0,
+  'reset_character_profile_on_transfer' => 0,
+  'clear_myo_slot_name_on_approval' => 0,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Masterlist Images
     |--------------------------------------------------------------------------
@@ -114,12 +113,12 @@ return [
     | Example:
     | 'masterlist_image_background' => 'png',
     */
-    'watermark_masterlist_images' => 0,
-    'masterlist_image_dimension' => 0,
-    'masterlist_image_format' => null,
-    'masterlist_image_background' => '#ffffff',
+  'watermark_masterlist_images' => 0,
+  'masterlist_image_dimension' => 0,
+  'masterlist_image_format' => null,
+  'masterlist_image_background' => '#ffffff',
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Masterlist Image Fullsizes
     |--------------------------------------------------------------------------
@@ -128,10 +127,10 @@ return [
     | Size, in pixels, to cap full-sized masterlist images at (if storing full-sized images is enabled).
     | Images above this cap in either dimension will be resized to suit. Enter "0" to disable resizing.
     */
-    'store_masterlist_fullsizes' => 0,
-    'masterlist_fullsizes_cap' => 0,
+  'store_masterlist_fullsizes' => 0,
+  'masterlist_fullsizes_cap' => 0,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Masterlist Thumbnail Dimensions & Watermarking
     |--------------------------------------------------------------------------
@@ -141,13 +140,13 @@ return [
     | 0: Default thumbnail cropping behavior. 1: Watermark thumbnails.
     | Expects the whole of the character to be visible in the thumbnail.
     */
-    'masterlist_thumbnails' => [
-        'width' => 200,
-        'height' => 200
-    ],
-    'watermark_masterlist_thumbnails' => 0,
+  'masterlist_thumbnails' => [
+    'width' => 200,
+    'height' => 200
+  ],
+  'watermark_masterlist_thumbnails' => 0,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Masterlist Image Automation Replacing Cropper
     |--------------------------------------------------------------------------
@@ -158,9 +157,9 @@ return [
     | This feature will not replace the manual uploading of thumbnails.
     | Simply change to "1" to enable, or keep at "0" to disable.
     */
-    'masterlist_image_automation' => 0,
+  'masterlist_image_automation' => 0,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Trade Asset Limit
     |--------------------------------------------------------------------------
@@ -168,23 +167,22 @@ return [
     | characters) a trade can contain. While this can potentially be higher,
     | there are limits on data storage, so raising this is not recommended.
     */
-    'trade_asset_limit' => 20,
+  'trade_asset_limit' => 20,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Shop Purchase Limit
     |--------------------------------------------------------------------------
     | This is an arbitrary upper limit on how many items a uses can buy in a
     | single shop transaction.
     */
-    'default_purchase_limit' => 99,
+  'default_purchase_limit' => 99,
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Currency Symbol
     |--------------------------------------------------------------------------
     | Symbol for the (real world) currency used for sales posts.
     */
-    'currency_symbol' => '$'
-
+  'currency_symbol' => '$'
 ];

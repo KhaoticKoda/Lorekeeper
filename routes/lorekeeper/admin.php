@@ -11,71 +11,71 @@
 
 Route::get('/', 'HomeController@getIndex');
 
-Route::group(['prefix' => 'users', 'namespace' => 'Users'], function() {
+Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
+  # USER LIST
+  Route::group(['middleware' => 'power:edit_user_info'], function () {
+    Route::get('/', 'UserController@getIndex');
 
-    # USER LIST
-    Route::group(['middleware' => 'power:edit_user_info'], function() {
-        Route::get('/', 'UserController@getIndex');
+    Route::get('{name}/edit', 'UserController@getUser');
+    Route::post('{name}/basic', 'UserController@postUserBasicInfo');
+    Route::post('{name}/alias/{id}', 'UserController@postUserAlias');
+    Route::post('{name}/account', 'UserController@postUserAccount');
+    Route::post('{name}/birthday', 'UserController@postUserBirthday');
+    Route::get('{name}/updates', 'UserController@getUserUpdates');
+    Route::get('{name}/ban', 'UserController@getBan');
+    Route::get('{name}/ban-confirm', 'UserController@getBanConfirmation');
+    Route::post('{name}/ban', 'UserController@postBan');
+    Route::get('{name}/unban-confirm', 'UserController@getUnbanConfirmation');
+    Route::post('{name}/unban', 'UserController@postUnban');
+  });
 
-        Route::get('{name}/edit', 'UserController@getUser');
-        Route::post('{name}/basic', 'UserController@postUserBasicInfo');
-        Route::post('{name}/alias/{id}', 'UserController@postUserAlias');
-        Route::post('{name}/account', 'UserController@postUserAccount');
-        Route::post('{name}/birthday', 'UserController@postUserBirthday');
-        Route::get('{name}/updates', 'UserController@getUserUpdates');
-        Route::get('{name}/ban', 'UserController@getBan');
-        Route::get('{name}/ban-confirm', 'UserController@getBanConfirmation');
-        Route::post('{name}/ban', 'UserController@postBan');
-        Route::get('{name}/unban-confirm', 'UserController@getUnbanConfirmation');
-        Route::post('{name}/unban', 'UserController@postUnban');
-    });
-
-    # RANKS
-    Route::group(['middleware' => 'admin'], function() {
-        Route::get('ranks', 'RankController@getIndex');
-        Route::get('ranks/create', 'RankController@getCreateRank');
-        Route::get('ranks/edit/{id}', 'RankController@getEditRank');
-        Route::get('ranks/delete/{id}', 'RankController@getDeleteRank');
-        Route::post('ranks/create', 'RankController@postCreateEditRank');
-        Route::post('ranks/edit/{id?}', 'RankController@postCreateEditRank');
-        Route::post('ranks/delete/{id}', 'RankController@postDeleteRank');
-        Route::post('ranks/sort', 'RankController@postSortRanks');
-    });
+  # RANKS
+  Route::group(['middleware' => 'admin'], function () {
+    Route::get('ranks', 'RankController@getIndex');
+    Route::get('ranks/create', 'RankController@getCreateRank');
+    Route::get('ranks/edit/{id}', 'RankController@getEditRank');
+    Route::get('ranks/delete/{id}', 'RankController@getDeleteRank');
+    Route::post('ranks/create', 'RankController@postCreateEditRank');
+    Route::post('ranks/edit/{id?}', 'RankController@postCreateEditRank');
+    Route::post('ranks/delete/{id}', 'RankController@postDeleteRank');
+    Route::post('ranks/sort', 'RankController@postSortRanks');
+  });
 });
 
 # SETTINGS
-Route::group(['prefix' => 'invitations', 'middleware' => 'power:edit_site_settings'], function() {
-    Route::get('/', 'InvitationController@getIndex');
+Route::group(['prefix' => 'invitations', 'middleware' => 'power:edit_site_settings'], function () {
+  Route::get('/', 'InvitationController@getIndex');
 
-    Route::post('create', 'InvitationController@postGenerateKey');
-    Route::post('delete/{id}', 'InvitationController@postDeleteKey');
+  Route::post('create', 'InvitationController@postGenerateKey');
+  Route::post('delete/{id}', 'InvitationController@postDeleteKey');
 });
 
 # FILE MANAGER
-Route::group(['prefix' => 'files', 'middleware' => 'power:edit_site_settings'], function() {
-    Route::get('/{folder?}', 'FileController@getIndex');
+Route::group(['prefix' => 'files', 'middleware' => 'power:edit_site_settings'], function () {
+  Route::get('/{folder?}', 'FileController@getIndex');
 
-    Route::post('upload', 'FileController@postUploadFile');
-    Route::post('move', 'FileController@postMoveFile');
-    Route::post('rename', 'FileController@postRenameFile');
-    Route::post('delete', 'FileController@postDeleteFile');
-    Route::post('folder/create', 'FileController@postCreateFolder');
-    Route::post('folder/delete', 'FileController@postDeleteFolder');
-    Route::post('folder/rename', 'FileController@postRenameFolder');
+  Route::post('upload', 'FileController@postUploadFile');
+  Route::post('move', 'FileController@postMoveFile');
+  Route::post('rename', 'FileController@postRenameFile');
+  Route::post('delete', 'FileController@postDeleteFile');
+  Route::post('folder/create', 'FileController@postCreateFolder');
+  Route::post('folder/delete', 'FileController@postDeleteFolder');
+  Route::post('folder/rename', 'FileController@postRenameFolder');
 });
 
 # SITE IMAGES
-Route::group(['prefix' => 'images', 'middleware' => 'power:edit_site_settings'], function() {
-    Route::get('/', 'FileController@getSiteImages');
+Route::group(['prefix' => 'images', 'middleware' => 'power:edit_site_settings'], function () {
+  Route::get('/', 'FileController@getSiteImages');
 
-    Route::post('upload/css', 'FileController@postUploadCss');
-    Route::post('upload', 'FileController@postUploadImage');
-    Route::post('reset', 'FileController@postResetFile');
+  Route::post('upload/css', 'FileController@postUploadCss');
+  Route::post('upload', 'FileController@postUploadImage');
+  Route::post('reset', 'FileController@postResetFile');
 });
 
 # DATA
-Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:edit_data'], function() {
-
+Route::group(
+  ['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:edit_data'],
+  function () {
     # GALLERIES
     Route::get('galleries', 'GalleryController@getIndex');
     Route::get('galleries/create', 'GalleryController@getCreateGallery');
@@ -95,7 +95,10 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('currencies/create', 'CurrencyController@postCreateEditCurrency');
     Route::post('currencies/edit/{id?}', 'CurrencyController@postCreateEditCurrency');
     Route::post('currencies/delete/{id}', 'CurrencyController@postDeleteCurrency');
-    Route::post('currencies/sort/{type}', 'CurrencyController@postSortCurrency')->where('type', 'user|character');
+    Route::post('currencies/sort/{type}', 'CurrencyController@postSortCurrency')->where(
+      'type',
+      'user|character'
+    );
 
     # RARITIES
     Route::get('rarities', 'RarityController@getIndex');
@@ -181,13 +184,34 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
 
     # CHARACTER CATEGORIES
     Route::get('character-categories', 'CharacterCategoryController@getIndex');
-    Route::get('character-categories/create', 'CharacterCategoryController@getCreateCharacterCategory');
-    Route::get('character-categories/edit/{id}', 'CharacterCategoryController@getEditCharacterCategory');
-    Route::get('character-categories/delete/{id}', 'CharacterCategoryController@getDeleteCharacterCategory');
-    Route::post('character-categories/create', 'CharacterCategoryController@postCreateEditCharacterCategory');
-    Route::post('character-categories/edit/{id?}', 'CharacterCategoryController@postCreateEditCharacterCategory');
-    Route::post('character-categories/delete/{id}', 'CharacterCategoryController@postDeleteCharacterCategory');
-    Route::post('character-categories/sort', 'CharacterCategoryController@postSortCharacterCategory');
+    Route::get(
+      'character-categories/create',
+      'CharacterCategoryController@getCreateCharacterCategory'
+    );
+    Route::get(
+      'character-categories/edit/{id}',
+      'CharacterCategoryController@getEditCharacterCategory'
+    );
+    Route::get(
+      'character-categories/delete/{id}',
+      'CharacterCategoryController@getDeleteCharacterCategory'
+    );
+    Route::post(
+      'character-categories/create',
+      'CharacterCategoryController@postCreateEditCharacterCategory'
+    );
+    Route::post(
+      'character-categories/edit/{id?}',
+      'CharacterCategoryController@postCreateEditCharacterCategory'
+    );
+    Route::post(
+      'character-categories/delete/{id}',
+      'CharacterCategoryController@postDeleteCharacterCategory'
+    );
+    Route::post(
+      'character-categories/sort',
+      'CharacterCategoryController@postSortCharacterCategory'
+    );
 
     # SUB MASTERLISTS
     Route::get('sublists', 'SublistController@getIndex');
@@ -226,56 +250,54 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('prompts/create', 'PromptController@postCreateEditPrompt');
     Route::post('prompts/edit/{id?}', 'PromptController@postCreateEditPrompt');
     Route::post('prompts/delete/{id}', 'PromptController@postDeletePrompt');
-});
-
+  }
+);
 
 # PAGES
-Route::group(['prefix' => 'pages', 'middleware' => 'power:edit_pages'], function() {
-
-    Route::get('/', 'PageController@getIndex');
-    Route::get('create', 'PageController@getCreatePage');
-    Route::get('edit/{id}', 'PageController@getEditPage');
-    Route::get('delete/{id}', 'PageController@getDeletePage');
-    Route::post('create', 'PageController@postCreateEditPage');
-    Route::post('edit/{id?}', 'PageController@postCreateEditPage');
-    Route::post('delete/{id}', 'PageController@postDeletePage');
+Route::group(['prefix' => 'pages', 'middleware' => 'power:edit_pages'], function () {
+  Route::get('/', 'PageController@getIndex');
+  Route::get('create', 'PageController@getCreatePage');
+  Route::get('edit/{id}', 'PageController@getEditPage');
+  Route::get('delete/{id}', 'PageController@getDeletePage');
+  Route::post('create', 'PageController@postCreateEditPage');
+  Route::post('edit/{id?}', 'PageController@postCreateEditPage');
+  Route::post('delete/{id}', 'PageController@postDeletePage');
 });
 
-
 # NEWS
-Route::group(['prefix' => 'news', 'middleware' => 'power:edit_pages'], function() {
-
-    Route::get('/', 'NewsController@getIndex');
-    Route::get('create', 'NewsController@getCreateNews');
-    Route::get('edit/{id}', 'NewsController@getEditNews');
-    Route::get('delete/{id}', 'NewsController@getDeleteNews');
-    Route::post('create', 'NewsController@postCreateEditNews');
-    Route::post('edit/{id?}', 'NewsController@postCreateEditNews');
-    Route::post('delete/{id}', 'NewsController@postDeleteNews');
+Route::group(['prefix' => 'news', 'middleware' => 'power:edit_pages'], function () {
+  Route::get('/', 'NewsController@getIndex');
+  Route::get('create', 'NewsController@getCreateNews');
+  Route::get('edit/{id}', 'NewsController@getEditNews');
+  Route::get('delete/{id}', 'NewsController@getDeleteNews');
+  Route::post('create', 'NewsController@postCreateEditNews');
+  Route::post('edit/{id?}', 'NewsController@postCreateEditNews');
+  Route::post('delete/{id}', 'NewsController@postDeleteNews');
 });
 
 # SALES
-Route::group(['prefix' => 'sales', 'middleware' => 'power:edit_pages'], function() {
+Route::group(['prefix' => 'sales', 'middleware' => 'power:edit_pages'], function () {
+  Route::get('/', 'SalesController@getIndex');
+  Route::get('create', 'SalesController@getCreateSales');
+  Route::get('edit/{id}', 'SalesController@getEditSales');
+  Route::get('delete/{id}', 'SalesController@getDeleteSales');
+  Route::post('create', 'SalesController@postCreateEditSales');
+  Route::post('edit/{id?}', 'SalesController@postCreateEditSales');
+  Route::post('delete/{id}', 'SalesController@postDeleteSales');
 
-    Route::get('/', 'SalesController@getIndex');
-    Route::get('create', 'SalesController@getCreateSales');
-    Route::get('edit/{id}', 'SalesController@getEditSales');
-    Route::get('delete/{id}', 'SalesController@getDeleteSales');
-    Route::post('create', 'SalesController@postCreateEditSales');
-    Route::post('edit/{id?}', 'SalesController@postCreateEditSales');
-    Route::post('delete/{id}', 'SalesController@postDeleteSales');
-
-    Route::get('character/{slug}', 'SalesController@getCharacterInfo');
+  Route::get('character/{slug}', 'SalesController@getCharacterInfo');
 });
 
 # SITE SETTINGS
-Route::group(['prefix' => 'settings', 'middleware' => 'power:edit_site_settings'], function() {
-    Route::get('/', 'SettingsController@getIndex');
-    Route::post('{key}', 'SettingsController@postEditSetting');
+Route::group(['prefix' => 'settings', 'middleware' => 'power:edit_site_settings'], function () {
+  Route::get('/', 'SettingsController@getIndex');
+  Route::post('{key}', 'SettingsController@postEditSetting');
 });
 
 # GRANTS
-Route::group(['prefix' => 'grants', 'namespace' => 'Users', 'middleware' => 'power:edit_inventories'], function() {
+Route::group(
+  ['prefix' => 'grants', 'namespace' => 'Users', 'middleware' => 'power:edit_inventories'],
+  function () {
     Route::get('user-currency', 'GrantController@getUserCurrency');
     Route::post('user-currency', 'GrantController@postUserCurrency');
 
@@ -283,11 +305,17 @@ Route::group(['prefix' => 'grants', 'namespace' => 'Users', 'middleware' => 'pow
     Route::post('items', 'GrantController@postItems');
 
     Route::get('item-search', 'GrantController@getItemSearch');
-});
-
+  }
+);
 
 # MASTERLIST
-Route::group(['prefix' => 'masterlist', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'], function() {
+Route::group(
+  [
+    'prefix' => 'masterlist',
+    'namespace' => 'Characters',
+    'middleware' => 'power:manage_characters'
+  ],
+  function () {
     Route::get('create-character', 'CharacterController@getCreateCharacter');
     Route::post('create-character', 'CharacterController@postCreateCharacter');
 
@@ -307,13 +335,18 @@ Route::group(['prefix' => 'masterlist', 'namespace' => 'Characters', 'middleware
     Route::post('create-myo', 'CharacterController@postCreateMyo');
 
     Route::get('check-subtype', 'CharacterController@getCreateCharacterMyoSubtype');
-});
-Route::group(['prefix' => 'character', 'namespace' => 'Characters', 'middleware' => 'power:edit_inventories'], function() {
+  }
+);
+Route::group(
+  ['prefix' => 'character', 'namespace' => 'Characters', 'middleware' => 'power:edit_inventories'],
+  function () {
     Route::post('{slug}/grant', 'GrantController@postCharacterCurrency');
     Route::post('{slug}/grant-items', 'GrantController@postCharacterItems');
-});
-Route::group(['prefix' => 'character', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'], function() {
-
+  }
+);
+Route::group(
+  ['prefix' => 'character', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'],
+  function () {
     # IMAGES
     Route::get('{slug}/image', 'CharacterImageController@getNewImage');
     Route::post('{slug}/image', 'CharacterImageController@postNewImage');
@@ -358,9 +391,12 @@ Route::group(['prefix' => 'character', 'namespace' => 'Characters', 'middleware'
     Route::post('{slug}/settings', 'CharacterController@postCharacterSettings');
 
     Route::post('{slug}/transfer', 'CharacterController@postTransfer');
-});
+  }
+);
 // Might rewrite these parts eventually so there's less code duplication...
-Route::group(['prefix' => 'myo', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'], function() {
+Route::group(
+  ['prefix' => 'myo', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'],
+  function () {
     # CHARACTER
     Route::get('{id}/stats', 'CharacterController@getEditMyoStats');
     Route::post('{id}/stats', 'CharacterController@postEditMyoStats');
@@ -377,63 +413,96 @@ Route::group(['prefix' => 'myo', 'namespace' => 'Characters', 'middleware' => 'p
     Route::post('{id}/settings', 'CharacterController@postMyoSettings');
 
     Route::post('{id}/transfer', 'CharacterController@postMyoTransfer');
-});
+  }
+);
 
 # RAFFLES
-Route::group(['prefix' => 'raffles', 'middleware' => 'power:manage_raffles'], function() {
-    Route::get('/', 'RaffleController@getRaffleIndex');
-    Route::get('edit/group/{id?}', 'RaffleController@getCreateEditRaffleGroup');
-    Route::post('edit/group/{id?}', 'RaffleController@postCreateEditRaffleGroup');
-    Route::get('edit/raffle/{id?}', 'RaffleController@getCreateEditRaffle');
-    Route::post('edit/raffle/{id?}', 'RaffleController@postCreateEditRaffle');
+Route::group(['prefix' => 'raffles', 'middleware' => 'power:manage_raffles'], function () {
+  Route::get('/', 'RaffleController@getRaffleIndex');
+  Route::get('edit/group/{id?}', 'RaffleController@getCreateEditRaffleGroup');
+  Route::post('edit/group/{id?}', 'RaffleController@postCreateEditRaffleGroup');
+  Route::get('edit/raffle/{id?}', 'RaffleController@getCreateEditRaffle');
+  Route::post('edit/raffle/{id?}', 'RaffleController@postCreateEditRaffle');
 
-    Route::get('view/{id}', 'RaffleController@getRaffleTickets');
-    Route::post('view/ticket/{id}', 'RaffleController@postCreateRaffleTickets');
-    Route::post('view/ticket/delete/{id}', 'RaffleController@postDeleteRaffleTicket');
+  Route::get('view/{id}', 'RaffleController@getRaffleTickets');
+  Route::post('view/ticket/{id}', 'RaffleController@postCreateRaffleTickets');
+  Route::post('view/ticket/delete/{id}', 'RaffleController@postDeleteRaffleTicket');
 
-    Route::get('roll/raffle/{id}', 'RaffleController@getRollRaffle');
-    Route::post('roll/raffle/{id}', 'RaffleController@postRollRaffle');
-    Route::get('roll/group/{id}', 'RaffleController@getRollRaffleGroup');
-    Route::post('roll/group/{id}', 'RaffleController@postRollRaffleGroup');
+  Route::get('roll/raffle/{id}', 'RaffleController@getRollRaffle');
+  Route::post('roll/raffle/{id}', 'RaffleController@postRollRaffle');
+  Route::get('roll/group/{id}', 'RaffleController@getRollRaffleGroup');
+  Route::post('roll/group/{id}', 'RaffleController@postRollRaffleGroup');
 });
 
 # SUBMISSIONS
-Route::group(['prefix' => 'submissions', 'middleware' => 'power:manage_submissions'], function() {
-    Route::get('/', 'SubmissionController@getSubmissionIndex');
-    Route::get('/{status}', 'SubmissionController@getSubmissionIndex')->where('status', 'pending|approved|rejected');
-    Route::get('edit/{id}', 'SubmissionController@getSubmission');
-    Route::post('edit/{id}/{action}', 'SubmissionController@postSubmission')->where('action', 'approve|reject');
+Route::group(['prefix' => 'submissions', 'middleware' => 'power:manage_submissions'], function () {
+  Route::get('/', 'SubmissionController@getSubmissionIndex');
+  Route::get('/{status}', 'SubmissionController@getSubmissionIndex')->where(
+    'status',
+    'pending|approved|rejected'
+  );
+  Route::get('edit/{id}', 'SubmissionController@getSubmission');
+  Route::post('edit/{id}/{action}', 'SubmissionController@postSubmission')->where(
+    'action',
+    'approve|reject'
+  );
 });
 
 # CLAIMS
-Route::group(['prefix' => 'claims', 'middleware' => 'power:manage_submissions'], function() {
-    Route::get('/', 'SubmissionController@getClaimIndex');
-    Route::get('/{status}', 'SubmissionController@getClaimIndex')->where('status', 'pending|approved|rejected');
-    Route::get('edit/{id}', 'SubmissionController@getClaim');
-    Route::post('edit/{id}/{action}', 'SubmissionController@postSubmission')->where('action', 'approve|reject');
+Route::group(['prefix' => 'claims', 'middleware' => 'power:manage_submissions'], function () {
+  Route::get('/', 'SubmissionController@getClaimIndex');
+  Route::get('/{status}', 'SubmissionController@getClaimIndex')->where(
+    'status',
+    'pending|approved|rejected'
+  );
+  Route::get('edit/{id}', 'SubmissionController@getClaim');
+  Route::post('edit/{id}/{action}', 'SubmissionController@postSubmission')->where(
+    'action',
+    'approve|reject'
+  );
 });
 
 # SUBMISSIONS
-Route::group(['prefix' => 'gallery', 'middleware' => 'power:manage_submissions'], function() {
-    Route::get('/submissions', 'GalleryController@getSubmissionIndex');
-    Route::get('/submissions/{status}', 'GalleryController@getSubmissionIndex')->where('status', 'pending|accepted|rejected');
-    Route::get('/currency', 'GalleryController@getCurrencyIndex');
-    Route::get('/currency/{status}', 'GalleryController@getCurrencyIndex')->where('status', 'pending|valued');
-    Route::post('edit/{id}/{action}', 'GalleryController@postEditSubmission')->where('action', 'accept|reject|comment|move|value');
+Route::group(['prefix' => 'gallery', 'middleware' => 'power:manage_submissions'], function () {
+  Route::get('/submissions', 'GalleryController@getSubmissionIndex');
+  Route::get('/submissions/{status}', 'GalleryController@getSubmissionIndex')->where(
+    'status',
+    'pending|accepted|rejected'
+  );
+  Route::get('/currency', 'GalleryController@getCurrencyIndex');
+  Route::get('/currency/{status}', 'GalleryController@getCurrencyIndex')->where(
+    'status',
+    'pending|valued'
+  );
+  Route::post('edit/{id}/{action}', 'GalleryController@postEditSubmission')->where(
+    'action',
+    'accept|reject|comment|move|value'
+  );
 });
 
 # REPORTS
-Route::group(['prefix' => 'reports', 'middleware' => 'power:manage_reports'], function() {
-    Route::get('/', 'ReportController@getReportIndex');
-    Route::get('/{status}', 'ReportController@getReportIndex')->where('status', 'pending|assigned|assigned-to-me|closed');
-    Route::get('edit/{id}', 'ReportController@getReport');
-    Route::post('edit/{id}/{action}', 'ReportController@postReport')->where('action', 'assign|close');
+Route::group(['prefix' => 'reports', 'middleware' => 'power:manage_reports'], function () {
+  Route::get('/', 'ReportController@getReportIndex');
+  Route::get('/{status}', 'ReportController@getReportIndex')->where(
+    'status',
+    'pending|assigned|assigned-to-me|closed'
+  );
+  Route::get('edit/{id}', 'ReportController@getReport');
+  Route::post('edit/{id}/{action}', 'ReportController@postReport')->where('action', 'assign|close');
 });
 
 # DESIGN APPROVALS
-Route::group(['prefix' => 'designs', 'middleware' => 'power:manage_characters'], function() {
-    Route::get('edit/{id}/{action}', 'DesignController@getDesignConfirmation')->where('action', 'cancel|approve|reject');
-    Route::post('edit/{id}/{action}', 'DesignController@postDesign')->where('action', 'cancel|approve|reject');
-    Route::post('vote/{id}/{action}', 'DesignController@postVote')->where('action', 'approve|reject');
+Route::group(['prefix' => 'designs', 'middleware' => 'power:manage_characters'], function () {
+  Route::get('edit/{id}/{action}', 'DesignController@getDesignConfirmation')->where(
+    'action',
+    'cancel|approve|reject'
+  );
+  Route::post('edit/{id}/{action}', 'DesignController@postDesign')->where(
+    'action',
+    'cancel|approve|reject'
+  );
+  Route::post('vote/{id}/{action}', 'DesignController@postVote')->where('action', 'approve|reject');
 });
-Route::get('{type}/{status}', 'DesignController@getDesignIndex')->where('type', 'myo-approvals|design-approvals')->where('status', 'pending|approved|rejected');
+Route::get('{type}/{status}', 'DesignController@getDesignIndex')
+  ->where('type', 'myo-approvals|design-approvals')
+  ->where('status', 'pending|approved|rejected');

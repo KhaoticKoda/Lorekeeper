@@ -47,12 +47,12 @@
         $rejectSum = 0;
         $approveSum = 0;
         foreach ($r->voteData as $voter => $vote) {
-            if ($vote == 1) {
-                $rejectSum += 1;
-            }
-            if ($vote == 2) {
-                $approveSum += 1;
-            }
+          if ($vote == 1) {
+            $rejectSum += 1;
+          }
+          if ($vote == 2) {
+            $approveSum += 1;
+          }
         }
         ?>
       @endif

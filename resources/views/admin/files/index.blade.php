@@ -178,7 +178,7 @@
             <?php
             $folderSelection = ['root' => 'Root'];
             foreach ($folders as $f) {
-                $folderSelection[basename($f)] = basename($f);
+              $folderSelection[basename($f)] = basename($f);
             }
             ?>
             {!! Form::select('destination', $folderSelection, null, [

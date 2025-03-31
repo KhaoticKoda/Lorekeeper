@@ -32,7 +32,12 @@
     @if((isset($sales->comments_open_at) && $sales->comments_open_at < Carbon\Carbon::now() ||
     (Auth::check() && Auth::user()->hasPower('edit_pages'))) ||
     !isset($sales->comments_open_at))
-        <?php $commentCount = App\Models\Comment::where('commentable_type', 'App\Models\Sales\Sales')->where('commentable_id', $sales->id)->count(); ?>
+        <?php $commentCount = App\Models\Comment::where(
+          'commentable_type',
+          'App\Models\Sales\Sales'
+        )
+          ->where('commentable_id', $sales->id)
+          ->count(); ?>
         @if(!$page)
             <div class="text-right mb-2 mr-2">
                 <a class="btn" href="{{ $sales->url }}">

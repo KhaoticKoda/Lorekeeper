@@ -20,12 +20,16 @@
 
                 @if($submission->status == 'Pending' && $submission->collaboratorApproved && Auth::user()->hasPower('manage_submissions'))
                     <?php
-                        $rejectSum[$key] = 0;
-                        $approveSum[$key] = 0;
-                        foreach($submission->voteData as $voter=>$vote) {
-                            if($vote == 1) $rejectSum[$key] += 1;
-                            if($vote == 2) $approveSum[$key] += 1;
-                        }
+                    $rejectSum[$key] = 0;
+                    $approveSum[$key] = 0;
+                    foreach ($submission->voteData as $voter => $vote) {
+                      if ($vote == 1) {
+                        $rejectSum[$key] += 1;
+                      }
+                      if ($vote == 2) {
+                        $approveSum[$key] += 1;
+                      }
+                    }
                     ?>
                     <div class="row mt-2">
                         <div class="col-6 text-right text-danger">

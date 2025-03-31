@@ -129,7 +129,10 @@
                     <small>v. {{ $extension->version }}</small>
                 </a>
                 by
-                <?php $extension->array = json_decode($extension->creators,true); $extension->end = end($extension->array); ?>
+                <?php
+                $extension->array = json_decode($extension->creators, true);
+                $extension->end = end($extension->array);
+                ?>
                 @foreach(json_decode($extension->creators,true) as $name => $url)
                     <a href="{{ $url }}">{{ $name }}</a>{{$extension->end != $extension->array[$name] ? ',' : '' }}
                 @endforeach
