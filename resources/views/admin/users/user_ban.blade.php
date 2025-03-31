@@ -16,7 +16,8 @@
       <a class="nav-link" href="{{ $user->adminUrl }}">Account</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account Updates</a>
+      <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account
+        Updates</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" href="{{ url('admin/users/' . $user->name . '/ban') }}">Ban</a>
@@ -24,13 +25,20 @@
   </ul>
 
   <h3>{{ $user->is_banned ? 'Edit ' : '' }}Ban</h3>
-  <p>Banning the user will remove their rank, cancel all of their queued submissions and transfers, and prevent them from
-    using any other site features. The ban reason will be displayed on the blacklist.</p>
+  <p>Banning the user will remove their rank, cancel all of their queued
+    submissions and transfers, and prevent them from
+    using any other site features. The ban reason will be displayed on the
+    blacklist.</p>
 
-  {!! Form::open(['url' => 'admin/users/' . $user->name . '/ban', 'id' => 'banForm']) !!}
+  {!! Form::open([
+      'url' => 'admin/users/' . $user->name . '/ban',
+      'id' => 'banForm',
+  ]) !!}
   <div class="form-group">
     {!! Form::label('Reason (Optional; no HTML)') !!}
-    {!! Form::textarea('ban_reason', $user->settings->ban_reason, ['class' => 'form-control']) !!}
+    {!! Form::textarea('ban_reason', $user->settings->ban_reason, [
+        'class' => 'form-control',
+    ]) !!}
   </div>
   <div class="text-right">
     {!! Form::submit($user->is_banned ? 'Edit' : 'Ban', [
@@ -41,7 +49,8 @@
 
   @if ($user->is_banned)
     <h3>Unban</h3>
-    <p>Unbanning the user will grant them access to site features again. However, if they had a rank before being banned,
+    <p>Unbanning the user will grant them access to site features again. However,
+      if they had a rank before being banned,
       it will not be restored.</p>
     <div class="text-right">
       <a href="#" class="btn btn-outline-danger unban-button">Unban</a>
@@ -56,12 +65,16 @@
       @if (!$user->is_banned)
         $('.ban-button').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('admin/users/' . $user->name . '/ban-confirm') }}", 'Ban User');
+          loadModal(
+            "{{ url('admin/users/' . $user->name . '/ban-confirm') }}",
+            'Ban User');
         });
       @else
         $('.unban-button').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('admin/users/' . $user->name . '/unban-confirm') }}", 'Unban User');
+          loadModal(
+            "{{ url('admin/users/' . $user->name . '/unban-confirm') }}",
+            'Unban User');
         });
       @endif
     });

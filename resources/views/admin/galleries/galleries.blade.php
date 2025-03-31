@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Galleries' => 'admin/data/galleries']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Galleries' => 'admin/data/galleries',
+  ]) !!}
 
   <h1>Galleries</h1>
 
@@ -25,14 +28,18 @@
       <div class="col-6 col-md-1 font-weight-bold">Open</div>
       <div class="col-6 col-md-2 font-weight-bold">Name</div>
       <div class="col-6 col-md-1 font-weight-bold">
-        {{ Settings::get('gallery_submissions_reward_currency') ? 'Rewards' : '' }}</div>
+        {{ Settings::get('gallery_submissions_reward_currency') ? 'Rewards' : '' }}
+      </div>
       <div class="col-6 col-md-2 font-weight-bold">
-        {{ Settings::get('gallery_submissions_require_approval') ? 'Votes Needed' : '' }}</div>
+        {{ Settings::get('gallery_submissions_require_approval') ? 'Votes Needed' : '' }}
+      </div>
       <div class="col-4 col-md-2 font-weight-bold">Start</div>
       <div class="col-4 col-md-2 font-weight-bold">End</div>
     </div>
     @foreach ($galleries as $gallery)
-      @include('admin.galleries._galleries', ['gallery' => $gallery])
+      @include('admin.galleries._galleries', [
+          'gallery' => $gallery,
+      ])
     @endforeach
 
     {!! $galleries->render() !!}

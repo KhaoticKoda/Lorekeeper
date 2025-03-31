@@ -8,19 +8,26 @@
   {!! breadcrumbs([
       'Admin Panel' => 'admin',
       'Pages' => 'admin/pages',
-      ($page->id ? 'Edit' : 'Create') . ' Page' => $page->id ? 'admin/pages/edit/' . $page->id : 'admin/pages/create',
+      ($page->id ? 'Edit' : 'Create') . ' Page' => $page->id
+          ? 'admin/pages/edit/' . $page->id
+          : 'admin/pages/create',
   ]) !!}
 
   <h1>{{ $page->id ? 'Edit' : 'Create' }} Page
     @if ($page->id && !Config::get('lorekeeper.text_pages.' . $page->key))
-      <a href="#" class="btn btn-danger float-right delete-page-button">Delete Page</a>
+      <a href="#" class="btn btn-danger float-right delete-page-button">Delete
+        Page</a>
     @endif
     @if ($page->id)
-      <a href="{{ $page->url }}" class="btn btn-info float-right mr-md-2">View Page</a>
+      <a href="{{ $page->url }}" class="btn btn-info float-right mr-md-2">View
+        Page</a>
     @endif
   </h1>
 
-  {!! Form::open(['url' => $page->id ? 'admin/pages/edit/' . $page->id : 'admin/pages/create', 'files' => true]) !!}
+  {!! Form::open([
+      'url' => $page->id ? 'admin/pages/edit/' . $page->id : 'admin/pages/create',
+      'files' => true,
+  ]) !!}
 
   <h3>Basic Information</h3>
 
@@ -44,7 +51,9 @@
 
   <div class="form-group">
     {!! Form::label('Page Content') !!}
-    {!! Form::textarea('text', $page->text, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('text', $page->text, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="row">
@@ -54,7 +63,11 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('is_visible', 'Is Viewable', ['class' => 'form-check-label ml-3']) !!} {!! add_help('If this is turned off, users will not be able to view the page even if they have the link to it.') !!}
+        {!! Form::label('is_visible', 'Is Viewable', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
+            'If this is turned off, users will not be able to view the page even if they have the link to it.',
+        ) !!}
       </div>
     </div>
 
@@ -64,13 +77,17 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('can_comment', 'Commentable', ['class' => 'form-check-label ml-3']) !!} {!! add_help('If this is turned on, users will be able to comment on the page.') !!}
+        {!! Form::label('can_comment', 'Commentable', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help('If this is turned on, users will be able to comment on the page.') !!}
       </div>
     </div>
   </div>
 
   <div class="text-right">
-    {!! Form::submit($page->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($page->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -82,7 +99,8 @@
     $(document).ready(function() {
       $('.delete-page-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/pages/delete') }}/{{ $page->id }}", 'Delete Page');
+        loadModal("{{ url('admin/pages/delete') }}/{{ $page->id }}",
+          'Delete Page');
       });
     });
   </script>

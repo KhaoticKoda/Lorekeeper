@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Species' => 'admin/data/species']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Species' => 'admin/data/species',
+  ]) !!}
 
   <h1>Species</h1>
 
@@ -42,7 +45,8 @@
               @endif
             </td>
             <td class="text-right">
-              <a href="{{ url('admin/data/species/edit/' . $species->id) }}" class="btn btn-primary">Edit</a>
+              <a href="{{ url('admin/data/species/edit/' . $species->id) }}"
+                 class="btn btn-primary">Edit</a>
             </td>
           </tr>
         @endforeach

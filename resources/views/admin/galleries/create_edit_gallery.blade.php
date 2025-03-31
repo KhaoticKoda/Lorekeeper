@@ -15,12 +15,15 @@
 
   <h1>{{ $gallery->id ? 'Edit' : 'Create' }} Gallery
     @if ($gallery->id)
-      <a href="#" class="btn btn-danger float-right delete-gallery-button">Delete Gallery</a>
+      <a href="#" class="btn btn-danger float-right delete-gallery-button">Delete
+        Gallery</a>
     @endif
   </h1>
 
   {!! Form::open([
-      'url' => $gallery->id ? 'admin/data/galleries/edit/' . $gallery->id : 'admin/data/galleries/create',
+      'url' => $gallery->id
+          ? 'admin/data/galleries/edit/' . $gallery->id
+          : 'admin/data/galleries/create',
   ]) !!}
 
   <h3>Basic Information</h3>
@@ -52,7 +55,9 @@
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $gallery->description, ['class' => 'form-control']) !!}
+    {!! Form::textarea('description', $gallery->description, [
+        'class' => 'form-control',
+    ]) !!}
   </div>
 
   <div class="row">
@@ -62,7 +67,9 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('submissions_open', 'Submissions Open', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('submissions_open', 'Submissions Open', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'Whether or not users can submit to this gallery. Admins can submit regardless of this setting. Does not override global setting. Leave this on for time-limited galleries; users wll not be able to submit outside of the start and end times regardless of this setting, but will not be able to submit at all if this is off.',
         ) !!}
       </div>
@@ -74,7 +81,11 @@
               'class' => 'form-check-input',
               'data-toggle' => 'toggle',
           ]) !!}
-          {!! Form::label('currency_enabled', 'Enable Currency Rewards', ['class' => 'form-check-label ml-3']) !!} {!! add_help('Whether or not submissions to this gallery are eligible for rewards of group currency.') !!}
+          {!! Form::label('currency_enabled', 'Enable Currency Rewards', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help(
+              'Whether or not submissions to this gallery are eligible for rewards of group currency.',
+          ) !!}
         </div>
       </div>
     @endif
@@ -84,7 +95,9 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('prompt_selection', 'Prompt Selection', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('prompt_selection', 'Prompt Selection', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'Whether or not users can select a prompt to associate a gallery submission with when creating it. Gallery submissions will still auto-associate, prefix, etc. themselves with prompts if approved prompt submissions using the gallery submission exist.',
         ) !!}
       </div>
@@ -95,14 +108,18 @@
       {!! Form::label('Votes Required') !!} {!! add_help(
           'How many votes are required for submissions to this gallery to be accepted. Set to 0 to automatically accept submissions.',
       ) !!}
-      {!! Form::number('votes_required', $gallery->votes_required, ['class' => 'form-control']) !!}
+      {!! Form::number('votes_required', $gallery->votes_required, [
+          'class' => 'form-control',
+      ]) !!}
     </div>
   @endif
 
   <div class="row">
     <div class="col-md">
       <div class="form-group">
-        {!! Form::label('hide_before_start', 'Hide Before Start Time', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('hide_before_start', 'Hide Before Start Time', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'If hidden, the gallery will not be shown on the gallery list before the starting time is reached. A starting time needs to be set. Galleries are always visible after the end time.',
         ) !!}<br />
         {!! Form::checkbox('hide_before_start', 1, $gallery->id ? $gallery->hide_before_start : 0, [
@@ -114,19 +131,25 @@
     <div class="col-md">
       <div class="form-group">
         {!! Form::label('start_at', 'Start Time (Optional)') !!} {!! add_help('Pieces cannot be submitted to the gallery before the starting time.') !!}
-        {!! Form::text('start_at', $gallery->start_at, ['class' => 'form-control datepicker']) !!}
+        {!! Form::text('start_at', $gallery->start_at, [
+            'class' => 'form-control datepicker',
+        ]) !!}
       </div>
     </div>
     <div class="col-md">
       <div class="form-group">
         {!! Form::label('end_at', 'End Time (Optional)') !!} {!! add_help('Pieces cannot be submitted to the gallery after the ending time.') !!}
-        {!! Form::text('end_at', $gallery->end_at, ['class' => 'form-control datepicker']) !!}
+        {!! Form::text('end_at', $gallery->end_at, [
+            'class' => 'form-control datepicker',
+        ]) !!}
       </div>
     </div>
   </div>
 
   <div class="text-right">
-    {!! Form::submit($gallery->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($gallery->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -138,7 +161,9 @@
     $(document).ready(function() {
       $('.delete-gallery-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/galleries/delete') }}/{{ $gallery->id }}", 'Delete Gallery');
+        loadModal(
+          "{{ url('admin/data/galleries/delete') }}/{{ $gallery->id }}",
+          'Delete Gallery');
       });
 
       $(".datepicker").datetimepicker({

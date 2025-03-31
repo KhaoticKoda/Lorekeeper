@@ -32,7 +32,8 @@
   {!! $requests->render() !!}
   <div class="row ml-md-2">
     <div class="d-flex row flex-wrap col-12 pb-1 px-0 ubt-bottom">
-      <div class="col-md-3 font-weight-bold">{{ $isMyo ? 'MYO Slot' : 'Character' }}</div>
+      <div class="col-md-3 font-weight-bold">
+        {{ $isMyo ? 'MYO Slot' : 'Character' }}</div>
       <div class="col-3 col-md-3 font-weight-bold">User</div>
       <div class="col-2 col-md-2 font-weight-bold">Submitted</div>
       @if (Config::get('lorekeeper.extensions.design_update_voting'))
@@ -56,14 +57,19 @@
         ?>
       @endif
       <div class="d-flex row flex-wrap col-12 mt-1 pt-1 px-0 ubt-top">
-        <div class="col-md-3">{!! $r->character ? $r->character->displayName : 'Deleted Character [#' . $r->character_id . ']' !!}</div>
+        <div class="col-md-3">{!! $r->character
+            ? $r->character->displayName
+            : 'Deleted Character [#' . $r->character_id . ']' !!}</div>
         <div class="col-3 col-md-3">{!! $r->user->displayName !!}</div>
         <div class="col-2 col-md-2">{!! $r->submitted_at ? pretty_date($r->submitted_at) : '---' !!}</div>
         @if (Config::get('lorekeeper.extensions.design_update_voting'))
           <div class="col-2 col-md-2">
             <strong>
-              <span class="text-danger">{{ $rejectSum }}/{{ Settings::get('design_votes_needed') }}</span> :
-              <span class="text-success">{{ $approveSum }}/{{ Settings::get('design_votes_needed') }}</span>
+              <span
+                    class="text-danger">{{ $rejectSum }}/{{ Settings::get('design_votes_needed') }}</span>
+              :
+              <span
+                    class="text-success">{{ $approveSum }}/{{ Settings::get('design_votes_needed') }}</span>
             </strong>
           </div>
         @endif
@@ -79,6 +85,7 @@
   </div>
   {!! $requests->render() !!}
 
-  <div class="text-center mt-4 small text-muted">{{ $requests->total() }} result{{ $requests->total() == 1 ? '' : 's' }}
+  <div class="text-center mt-4 small text-muted">{{ $requests->total() }}
+    result{{ $requests->total() == 1 ? '' : 's' }}
     found.</div>
 @endsection

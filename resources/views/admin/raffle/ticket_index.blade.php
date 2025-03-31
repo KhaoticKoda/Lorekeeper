@@ -15,14 +15,18 @@
     Raffle Tickets: {{ $raffle->name }}</h1>
 
   @if ($raffle->is_active == 0)
-    <p>This raffle is currently hidden. (Number of winners to be drawn: {{ $raffle->winner_count }})</p>
+    <p>This raffle is currently hidden. (Number of winners to be drawn:
+      {{ $raffle->winner_count }})</p>
     <div class="text-right form-group">
-      <a class="btn btn-success edit-tickets" href="#" data-id="">Add Tickets</a>
+      <a class="btn btn-success edit-tickets" href="#" data-id="">Add
+        Tickets</a>
     </div>
   @elseif($raffle->is_active == 1)
-    <p>This raffle is currently open. (Number of winners to be drawn: {{ $raffle->winner_count }})</p>
+    <p>This raffle is currently open. (Number of winners to be drawn:
+      {{ $raffle->winner_count }})</p>
     <div class="text-right form-group">
-      <a class="btn btn-success edit-tickets" href="#" data-id="">Add Tickets</a>
+      <a class="btn btn-success edit-tickets" href="#" data-id="">Add
+        Tickets</a>
     </div>
   @elseif($raffle->is_active == 2)
     <p>This raffle is closed. Rolled: {!! format_date($raffle->rolled_at) !!}</p>
@@ -66,7 +70,11 @@
             <td class="text-center">{{ $page * 200 + $count + 1 }}</td>
             <td>{!! $ticket->displayHolderName !!}</td>
             @if ($raffle->is_active < 2)
-              <td class="text-right">{!! Form::open(['url' => 'admin/raffles/view/ticket/delete/' . $ticket->id]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
+              <td class="text-right">
+                {!! Form::open([
+                    'url' => 'admin/raffles/view/ticket/delete/' . $ticket->id,
+                ]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}
+              </td>
             @endif
           </tr>
         @endforeach

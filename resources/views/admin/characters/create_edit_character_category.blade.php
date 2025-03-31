@@ -15,7 +15,8 @@
 
   <h1>{{ $category->id ? 'Edit' : 'Create' }} Category
     @if ($category->id)
-      <a href="#" class="btn btn-danger float-right delete-category-button">Delete Category</a>
+      <a href="#" class="btn btn-danger float-right delete-category-button">Delete
+        Category</a>
     @endif
   </h1>
 
@@ -42,7 +43,9 @@
 
   <div class="form-group">
     {!! Form::label('Sub Masterlist (Optional)') !!} {!! add_help('This puts it onto a sub masterlist.') !!}
-    {!! Form::select('masterlist_sub_id', $sublists, $category->masterlist_sub_id, ['class' => 'form-control']) !!}
+    {!! Form::select('masterlist_sub_id', $sublists, $category->masterlist_sub_id, [
+        'class' => 'form-control',
+    ]) !!}
   </div>
 
   <div class="form-group">
@@ -51,19 +54,27 @@
     <div class="text-muted">Recommended size: 200px x 200px</div>
     @if ($category->has_image)
       <div class="form-check">
-        {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-        {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+        {!! Form::checkbox('remove_image', 1, false, [
+            'class' => 'form-check-input',
+        ]) !!}
+        {!! Form::label('remove_image', 'Remove current image', [
+            'class' => 'form-check-label',
+        ]) !!}
       </div>
     @endif
   </div>
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $category->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $category->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="text-right">
-    {!! Form::submit($category->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($category->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -88,7 +99,9 @@
     $(document).ready(function() {
       $('.delete-category-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/character-categories/delete') }}/{{ $category->id }}", 'Delete Category');
+        loadModal(
+          "{{ url('admin/data/character-categories/delete') }}/{{ $category->id }}",
+          'Delete Category');
       });
     });
   </script>

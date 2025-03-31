@@ -5,13 +5,19 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Trait Categories' => 'admin/data/trait-categories']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Trait Categories' => 'admin/data/trait-categories',
+  ]) !!}
 
   <h1>Trait Categories</h1>
 
-  <p>This is a list of trait categories that will be used to sort traits in the inventory. Creating trait categories is
-    entirely optional, but recommended if you have a lot of traits in the game.</p>
-  <p>The sorting order reflects the order in which the trait categories will be displayed in the inventory, as well as on
+  <p>This is a list of trait categories that will be used to sort traits in the
+    inventory. Creating trait categories is
+    entirely optional, but recommended if you have a lot of traits in the game.
+  </p>
+  <p>The sorting order reflects the order in which the trait categories will be
+    displayed in the inventory, as well as on
     the world pages.</p>
 
   <div class="text-right mb-3">
@@ -32,7 +38,8 @@
               {!! $category->displayName !!}
             </td>
             <td class="text-right">
-              <a href="{{ url('admin/data/trait-categories/edit/' . $category->id) }}" class="btn btn-primary">Edit</a>
+              <a href="{{ url('admin/data/trait-categories/edit/' . $category->id) }}"
+                 class="btn btn-primary">Edit</a>
             </td>
           </tr>
         @endforeach

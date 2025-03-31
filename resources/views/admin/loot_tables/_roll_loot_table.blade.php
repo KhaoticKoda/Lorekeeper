@@ -1,4 +1,5 @@
-<p>You rolled {{ $quantity }} time{{ $quantity != 1 ? 's' : '' }} for the following:</p>
+<p>You rolled {{ $quantity }} time{{ $quantity != 1 ? 's' : '' }} for the
+  following:</p>
 <table class="table table-sm table-striped">
   <thead>
     <th>#</th>

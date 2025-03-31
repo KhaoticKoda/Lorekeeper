@@ -15,12 +15,15 @@
 
   <h1>{{ $currency->id ? 'Edit' : 'Create' }} Currency
     @if ($currency->id)
-      <a href="#" class="btn btn-danger float-right delete-currency-button">Delete Currency</a>
+      <a href="#" class="btn btn-danger float-right delete-currency-button">Delete
+        Currency</a>
     @endif
   </h1>
 
   {!! Form::open([
-      'url' => $currency->id ? 'admin/data/currencies/edit/' . $currency->id : 'admin/data/currencies/create',
+      'url' => $currency->id
+          ? 'admin/data/currencies/edit/' . $currency->id
+          : 'admin/data/currencies/create',
       'files' => true,
   ]) !!}
 
@@ -37,7 +40,9 @@
         {!! Form::label('Abbreviation (Optional)') !!} {!! add_help(
             'This will be used to denote the currency if an icon is not provided. If an abbreviation is not given, the currency\'s full name will be used.',
         ) !!}
-        {!! Form::text('abbreviation', $currency->abbreviation, ['class' => 'form-control']) !!}
+        {!! Form::text('abbreviation', $currency->abbreviation, [
+            'class' => 'form-control',
+        ]) !!}
       </div>
     </div>
   </div>
@@ -45,13 +50,19 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        {!! Form::label('Icon Image (Optional)') !!} {!! add_help('This will be used to denote the currency. If not provided, the abbreviation will be used.') !!}
+        {!! Form::label('Icon Image (Optional)') !!} {!! add_help(
+            'This will be used to denote the currency. If not provided, the abbreviation will be used.',
+        ) !!}
         {!! Form::file('icon') !!}
         <div class="text-muted">Recommended height: 16px</div>
         @if ($currency->has_icon)
           <div class="form-check">
-            {!! Form::checkbox('remove_icon', 1, false, ['class' => 'form-check-input']) !!}
-            {!! Form::label('remove_icon', 'Remove current image', ['class' => 'form-check-label']) !!}
+            {!! Form::checkbox('remove_icon', 1, false, [
+                'class' => 'form-check-input',
+            ]) !!}
+            {!! Form::label('remove_icon', 'Remove current image', [
+                'class' => 'form-check-label',
+            ]) !!}
           </div>
         @endif
       </div>
@@ -63,8 +74,12 @@
         <div class="text-muted">Recommended size: 200px x 200px</div>
         @if ($currency->has_image)
           <div class="form-check">
-            {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-            {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+            {!! Form::checkbox('remove_image', 1, false, [
+                'class' => 'form-check-input',
+            ]) !!}
+            {!! Form::label('remove_image', 'Remove current image', [
+                'class' => 'form-check-label',
+            ]) !!}
           </div>
         @endif
       </div>
@@ -73,11 +88,14 @@
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $currency->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $currency->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <h3>Usage</h3>
-  <p>Choose whether this currency should be attached to users and/or characters. Both can be selected at the same time,
+  <p>Choose whether this currency should be attached to users and/or characters.
+    Both can be selected at the same time,
     but at least one must be selected.</p>
   <div class="form-group">
     <div class="form-check">
@@ -97,7 +115,9 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('is_displayed', 'Profile Display', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('is_displayed', 'Profile Display', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'If this is on, it will be displayed on users\' main profile pages. Additionally, if the user does not own the currency, it will be displayed as 0 currency. (If this is off, currencies not owned will not be displayed at all.) All owned currencies will still be visible from the user\'s bank page.',
         ) !!}
       </div>
@@ -108,7 +128,11 @@
             'data-on' => 'Allow',
             'data-off' => 'Disallow',
         ]) !!}
-        {!! Form::label('allow_user_to_user', 'User → User Transfers', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will allow users to transfer this currency to other users from their bank.') !!}
+        {!! Form::label('allow_user_to_user', 'User → User Transfers', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
+            'This will allow users to transfer this currency to other users from their bank.',
+        ) !!}
       </div>
     </div>
   </div>
@@ -132,7 +156,11 @@
             'data-on' => 'Allow',
             'data-off' => 'Disallow',
         ]) !!}
-        {!! Form::label('allow_user_to_character', 'User → Character Transfers', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will allow a user to transfer this currency to their own characters unidirectionally.') !!}
+        {!! Form::label('allow_user_to_character', 'User → Character Transfers', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
+            'This will allow a user to transfer this currency to their own characters unidirectionally.',
+        ) !!}
       </div>
       <div>
         {!! Form::checkbox('allow_character_to_user', 1, $currency->allow_character_to_user, [
@@ -141,7 +169,9 @@
             'data-on' => 'Allow',
             'data-off' => 'Disallow',
         ]) !!}
-        {!! Form::label('allow_character_to_user', 'Character → User Transfers', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('allow_character_to_user', 'Character → User Transfers', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'This will allow a user to transfer this currency from their own characters to their bank unidirectionally.',
         ) !!}
       </div>
@@ -149,7 +179,9 @@
   </div>
 
   <div class="text-right">
-    {!! Form::submit($currency->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($currency->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -167,7 +199,9 @@
     <h5>World Page Entry</h5>
     <div class="card mb-3">
       <div class="card-body">
-        @include('world._currency_entry', ['currency' => $currency])
+        @include('world._currency_entry', [
+            'currency' => $currency,
+        ])
       </div>
     </div>
   @endif
@@ -202,7 +236,8 @@
         if (userOwned) $userOptions.removeClass('hide');
         else $userOptions.addClass('hide');
 
-        if (userOwned && characterOwned) $characterOptions.removeClass('hide');
+        if (userOwned && characterOwned) $characterOptions.removeClass(
+          'hide');
         else $characterOptions.addClass('hide');
       }
 
@@ -210,7 +245,9 @@
 
       $('.delete-currency-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/currencies/delete') }}/{{ $currency->id }}", 'Delete Currency');
+        loadModal(
+          "{{ url('admin/data/currencies/delete') }}/{{ $currency->id }}",
+          'Delete Currency');
       });
     });
   </script>

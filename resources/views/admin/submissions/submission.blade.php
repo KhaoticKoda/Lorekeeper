@@ -22,7 +22,8 @@
   @if ($submission->status == 'Pending')
 
     <h1>
-      {{ $submission->prompt_id ? 'Submission' : 'Claim' }} (#{{ $submission->id }})
+      {{ $submission->prompt_id ? 'Submission' : 'Claim' }}
+      (#{{ $submission->id }})
       <span
             class="float-right badge badge-{{ $submission->status == 'Pending' ? 'secondary' : ($submission->status == 'Approved' ? 'success' : 'danger') }}">{{ $submission->status }}</span>
     </h1>
@@ -47,7 +48,8 @@
           </div>
           <div class="col-md-10 col-8">{{ $count }} {!! add_help(
               'This is the number of times the user has submitted this prompt before and had their submission approved.',
-          ) !!}</div>
+          ) !!}
+          </div>
         </div>
       @endif
       <div class="row">
@@ -62,7 +64,8 @@
         <div class="col-md-2 col-4">
           <h5>Submitted</h5>
         </div>
-        <div class="col-md-10 col-8">{!! format_date($submission->created_at) !!} ({{ $submission->created_at->diffForHumans() }})</div>
+        <div class="col-md-10 col-8">{!! format_date($submission->created_at) !!}
+          ({{ $submission->created_at->diffForHumans() }})</div>
       </div>
     </div>
     <h2>Comments</h2>
@@ -94,7 +97,10 @@
     ])
     @if ($submission->prompt_id)
       <div class="mb-3">
-        @include('home._prompt', ['prompt' => $submission->prompt, 'staffView' => true])
+        @include('home._prompt', [
+            'prompt' => $submission->prompt,
+            'staffView' => true,
+        ])
       </div>
     @endif
 
@@ -111,13 +117,16 @@
       @endforeach
     </div>
     <div class="text-right mb-3">
-      <a href="#" class="btn btn-outline-info" id="addCharacter">Add Character</a>
+      <a href="#" class="btn btn-outline-info" id="addCharacter">Add
+        Character</a>
     </div>
 
     @if (isset($inventory['user_items']))
       <h2>Add-Ons</h2>
-      <p>These items have been removed from the {{ $submission->prompt_id ? 'submitter' : 'claimant' }}'s inventory and
-        will be refunded if the request is rejected or consumed if it is approved.</p>
+      <p>These items have been removed from the
+        {{ $submission->prompt_id ? 'submitter' : 'claimant' }}'s inventory and
+        will be refunded if the request is rejected or consumed if it is approved.
+      </p>
       <table class="table table-sm">
         <thead class="thead-light">
           <tr class="d-flex">
@@ -132,7 +141,8 @@
             <tr class="d-flex">
               <td class="col-2">
                 @if (isset($itemsrow[$itemRow['asset']->item_id]->image_url))
-                  <img class="small-icon" src="{{ $itemsrow[$itemRow['asset']->item_id]->image_url }}"
+                  <img class="small-icon"
+                       src="{{ $itemsrow[$itemRow['asset']->item_id]->image_url }}"
                        alt="{{ $itemsrow[$itemRow['asset']->item_id]->name }}">
                 @endif {!! $itemsrow[$itemRow['asset']->item_id]->name !!}
               <td class="col-4">{!! array_key_exists('data', $itemRow['asset']->data)
@@ -174,7 +184,9 @@
 
     <div class="form-group">
       {!! Form::label('staff_comments', 'Staff Comments (Optional)') !!}
-      {!! Form::textarea('staff_comments', $submission->staffComments, ['class' => 'form-control wysiwyg']) !!}
+      {!! Form::textarea('staff_comments', $submission->staffComments, [
+          'class' => 'form-control wysiwyg',
+      ]) !!}
     </div>
 
     <div class="text-right">
@@ -206,7 +218,9 @@
               </a>
               <div class="form-group">
                 {!! Form::label('slug[]', 'Character Code') !!}
-                {!! Form::text('slug[]', null, ['class' => 'form-control character-code']) !!}
+                {!! Form::text('slug[]', null, [
+                    'class' => 'form-control character-code',
+                ]) !!}
               </div>
               <div class="character-rewards hide">
                 <h4>Character Rewards</h4>
@@ -226,7 +240,8 @@
                   </tbody>
                 </table>
                 <div class="text-right">
-                  <a href="#" class="btn btn-outline-primary btn-sm add-reward">Add Reward</a>
+                  <a href="#" class="btn btn-outline-primary btn-sm add-reward">Add
+                    Reward</a>
                 </div>
               </div>
             </div>
@@ -242,14 +257,18 @@
                   'character_rewardable_type[]',
                   ['Item' => 'Item', 'Currency' => 'Currency', 'LootTable' => 'Loot Table'],
                   null,
-                  ['class' => 'form-control character-rewardable-type', 'placeholder' => 'Select Reward Type'],
+                  [
+                      'class' => 'form-control character-rewardable-type',
+                      'placeholder' => 'Select Reward Type',
+                  ],
               ) !!}
             </td>
             <td class="lootDivs">
               <div class="character-currencies hide">{!! Form::select('character_rewardable_id[]', $characterCurrencies, 0, [
                   'class' => 'form-control character-currency-id',
                   'placeholder' => 'Select Currency',
-              ]) !!}</div>
+              ]) !!}
+              </div>
               <div class="character-items hide">{!! Form::select('character_rewardable_id[]', $items, 0, [
                   'class' => 'form-control character-item-id',
                   'placeholder' => 'Select Item',
@@ -261,7 +280,9 @@
             </td>
           @else
             <td class="lootDivs">
-              {!! Form::hidden('character_rewardable_type[]', 'Currency', ['class' => 'character-rewardable-type']) !!}
+              {!! Form::hidden('character_rewardable_type[]', 'Currency', [
+                  'class' => 'character-rewardable-type',
+              ]) !!}
               {!! Form::select('character_rewardable_id[]', $characterCurrencies, 0, [
                   'class' => 'form-control character-currency-id',
                   'placeholder' => 'Select Currency',
@@ -270,7 +291,9 @@
           @endif
 
           <td class="d-flex align-items-center">
-            {!! Form::text('character_quantity[]', 0, ['class' => 'form-control mr-2  character-rewardable-quantity']) !!}
+            {!! Form::text('character_quantity[]', 0, [
+                'class' => 'form-control mr-2  character-rewardable-quantity',
+            ]) !!}
             <a href="#" class="remove-reward d-block">
               <i class="fas fa-times text-muted">
               </i>
@@ -294,7 +317,9 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <p>This will approve the {{ $submission->prompt_id ? 'submission' : 'claim' }} and distribute the above
+            <p>This will approve the
+              {{ $submission->prompt_id ? 'submission' : 'claim' }} and
+              distribute the above
               rewards to the user.</p>
             <div class="text-right">
               <a href="#" id="approvalSubmit" class="btn btn-success">Approve</a>
@@ -307,7 +332,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <p>This will reject the {{ $submission->prompt_id ? 'submission' : 'claim' }}.</p>
+            <p>This will reject the
+              {{ $submission->prompt_id ? 'submission' : 'claim' }}.</p>
             <div class="text-right">
               <a href="#" id="rejectionSubmit" class="btn btn-danger">Reject</a>
             </div>
@@ -316,9 +342,12 @@
       </div>
     </div>
   @else
-    <div class="alert alert-danger">This {{ $submission->prompt_id ? 'submission' : 'claim' }} has already been
+    <div class="alert alert-danger">This
+      {{ $submission->prompt_id ? 'submission' : 'claim' }} has already been
       processed.</div>
-    @include('home._submission_content', ['submission' => $submission])
+    @include('home._submission_content', [
+        'submission' => $submission,
+    ])
   @endif
 
 @endsection
@@ -326,7 +355,10 @@
 @section('scripts')
   @parent
   @if ($submission->status == 'Pending')
-    @include('js._loot_js', ['showLootTables' => true, 'showRaffles' => true])
+    @include('js._loot_js', [
+        'showLootTables' => true,
+        'showRaffles' => true,
+    ])
     @include('js._character_select_js')
 
     <script>

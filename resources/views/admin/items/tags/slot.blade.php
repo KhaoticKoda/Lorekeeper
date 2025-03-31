@@ -5,7 +5,9 @@
   {!! Form::label('Name') !!} {!! add_help(
       'Enter a descriptive name for the type of character this slot can create, e.g. Rare MYO Slot. This will be listed on the MYO slot masterlist.',
   ) !!}
-  {!! Form::text('name', $tag->getData()['name'], ['class' => 'form-control']) !!}
+  {!! Form::text('name', $tag->getData()['name'], [
+      'class' => 'form-control',
+  ]) !!}
 </div>
 
 <div class="form-group">
@@ -19,7 +21,9 @@
         'This section is for making additional notes about the character and is separate from the character\'s profile (this is not editable by the user).',
     ) !!}
   @endif
-  {!! Form::textarea('description', $tag->getData()['description'], ['class' => 'form-control wysiwyg']) !!}
+  {!! Form::textarea('description', $tag->getData()['description'], [
+      'class' => 'form-control wysiwyg',
+  ]) !!}
 </div>
 
 <div class="form-group">
@@ -27,7 +31,9 @@
       'class' => 'form-check-input',
       'data-toggle' => 'toggle',
   ]) !!}
-  {!! Form::label('is_visible', 'Is Visible', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+  {!! Form::label('is_visible', 'Is Visible', [
+      'class' => 'form-check-label ml-3',
+  ]) !!} {!! add_help(
       'Turn this off to hide the ' .
           ($isMyo ? 'MYO slot' : 'character') .
           '. Only mods with the Manage Masterlist power (that\'s you!) can view it - the owner will also not be able to see the ' .
@@ -39,11 +45,14 @@
 <h3>Transfer Information</h3>
 
 <div class="alert alert-info">
-  These are displayed on the MYO slot's profile, but don't have any effect on site functionality except for the
+  These are displayed on the MYO slot's profile, but don't have any effect on
+  site functionality except for the
   following:
   <ul>
-    <li>If all switches are off, the MYO slot cannot be transferred by the user (directly or through trades).</li>
-    <li>If a transfer cooldown is set, the MYO slot also cannot be transferred by the user (directly or through trades)
+    <li>If all switches are off, the MYO slot cannot be transferred by the user
+      (directly or through trades).</li>
+    <li>If a transfer cooldown is set, the MYO slot also cannot be transferred
+      by the user (directly or through trades)
       until the cooldown is up.</li>
   </ul>
 </div>
@@ -52,14 +61,18 @@
       'class' => 'form-check-input',
       'data-toggle' => 'toggle',
   ]) !!}
-  {!! Form::label('is_giftable', 'Is Giftable', ['class' => 'form-check-label ml-3']) !!}
+  {!! Form::label('is_giftable', 'Is Giftable', [
+      'class' => 'form-check-label ml-3',
+  ]) !!}
 </div>
 <div class="form-group">
   {!! Form::checkbox('is_tradeable', 1, $tag->getData()['is_tradeable'], [
       'class' => 'form-check-input',
       'data-toggle' => 'toggle',
   ]) !!}
-  {!! Form::label('is_tradeable', 'Is Tradeable', ['class' => 'form-check-label ml-3']) !!}
+  {!! Form::label('is_tradeable', 'Is Tradeable', [
+      'class' => 'form-check-label ml-3',
+  ]) !!}
 </div>
 <div class="form-group">
   {!! Form::checkbox('is_sellable', 1, $tag->getData()['is_sellable'], [
@@ -67,12 +80,16 @@
       'data-toggle' => 'toggle',
       'id' => 'resellable',
   ]) !!}
-  {!! Form::label('is_sellable', 'Is Resellable', ['class' => 'form-check-label ml-3']) !!}
+  {!! Form::label('is_sellable', 'Is Resellable', [
+      'class' => 'form-check-label ml-3',
+  ]) !!}
 </div>
 <div class="card mb-3" id="resellOptions">
   <div class="card-body">
     {!! Form::label('Resale Value') !!} {!! add_help('This value is publicly displayed on the MYO slot\'s page.') !!}
-    {!! Form::text('sale_value', $tag->getData()['sale_value'], ['class' => 'form-control']) !!}
+    {!! Form::text('sale_value', $tag->getData()['sale_value'], [
+        'class' => 'form-control',
+    ]) !!}
   </div>
 </div>
 
@@ -102,7 +119,9 @@
   {!! Form::label('Character Rarity') !!} {!! add_help(
       'This will lock the slot into a particular rarity. Leave it blank if you would like to give the user more choices.',
   ) !!}
-  {!! Form::select('rarity_id', $rarities, $tag->getData()['rarity_id'], ['class' => 'form-control']) !!}
+  {!! Form::select('rarity_id', $rarities, $tag->getData()['rarity_id'], [
+      'class' => 'form-control',
+  ]) !!}
 </div>
 
 @section('scripts')

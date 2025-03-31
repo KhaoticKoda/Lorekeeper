@@ -12,13 +12,16 @@
           <a href="{{ $transfer->character->url }}">{{ $transfer->character->fullName }}</a>
         </h3>
         <div class="transfer-info-body mb-3">
-          <p>Transfer from {!! $transfer->sender->displayName !!} to {!! $transfer->recipient->displayName !!}, {!! format_date($transfer->created_at) !!}</p>
+          <p>Transfer from {!! $transfer->sender->displayName !!} to {!! $transfer->recipient->displayName !!},
+            {!! format_date($transfer->created_at) !!}</p>
           <p>Reason stated: {!! $transfer->user_reason !!}</p>
           @if ($transfer->isActive && $transfersQueue)
             @if ($transfer->is_approved)
               <h5 class="mb-0">
                 <i class="text-success far fa-circle fa-fw mr-2">
-                </i> Transfer approved {!! add_help('This transfer has been approved by a mod and will be processed once accepted.') !!}
+                </i> Transfer approved {!! add_help(
+                    'This transfer has been approved by a mod and will be processed once accepted.',
+                ) !!}
               </h5>
             @else
               <h5 class="mb-0">
@@ -38,10 +41,10 @@
           @if ($transfer->isActive)
             @if (!$transfer->is_approved)
               <div class="text-right">
-                <a href="#" class="btn btn-outline-success transfer-action-button" data-id="{{ $transfer->id }}"
-                   data-action="approve">Approve</a>
-                <a href="#" class="btn btn-outline-danger transfer-action-button" data-id="{{ $transfer->id }}"
-                   data-action="reject">Reject</a>
+                <a href="#" class="btn btn-outline-success transfer-action-button"
+                   data-id="{{ $transfer->id }}" data-action="approve">Approve</a>
+                <a href="#" class="btn btn-outline-danger transfer-action-button"
+                   data-id="{{ $transfer->id }}" data-action="reject">Reject</a>
               </div>
             @else
               Currently awaiting mod approval

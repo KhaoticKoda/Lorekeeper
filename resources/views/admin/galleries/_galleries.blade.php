@@ -7,7 +7,7 @@
 <div class="d-flex row flex-wrap col-12 mt-1 pt-1 px-0 ubt-top">
   <div class="col-6 col-md-1">{!! $gallery->submissions_open
       ? '<i class="text-success fas fa-check">
-      </i>'
+                </i>'
       : '-' !!}</div>
   <div class="col-6 col-md-2">
     <h6>
@@ -21,7 +21,7 @@
   <div class="col-6 col-md-1">{!! Settings::get('gallery_submissions_reward_currency')
       ? ($gallery->currency_enabled
           ? '<i class="text-success fas fa-check">
-      </i>'
+                </i>'
           : '-')
       : '' !!}</div>
   <div class="col-6 col-md-2">{!! Settings::get('gallery_submissions_require_approval')
@@ -36,7 +36,8 @@
     {!! $gallery->end_at ? pretty_date($gallery->end_at) : '-' !!}
   </div>
   <div class="col-6 col-md-2 text-right">
-    <a href="{{ url('admin/data/galleries/edit/' . $gallery->id) }}" class="btn btn-primary">Edit</a>
+    <a href="{{ url('admin/data/galleries/edit/' . $gallery->id) }}"
+       class="btn btn-primary">Edit</a>
   </div>
 </div>
 

@@ -15,12 +15,15 @@
 
   <h1>{{ $sublist->id ? 'Edit' : 'Create' }} Sub Masterlist
     @if ($sublist->id)
-      <a href="#" class="btn btn-danger float-right delete-sublist-button">Delete Sub Masterlist</a>
+      <a href="#" class="btn btn-danger float-right delete-sublist-button">Delete Sub
+        Masterlist</a>
     @endif
   </h1>
 
   {!! Form::open([
-      'url' => $sublist->id ? 'admin/data/sublists/edit/' . $sublist->id : 'admin/data/sublists/create',
+      'url' => $sublist->id
+          ? 'admin/data/sublists/edit/' . $sublist->id
+          : 'admin/data/sublists/create',
       'files' => true,
   ]) !!}
 
@@ -42,9 +45,12 @@
   </div>
 
   <h3>Contents</h3>
-  <p>Each category and species can only have ONE sublist. If you assign a sublist here, it will be removed from any other
-    sublists. If you want a species shared across multiple lists, it is suggested you only use character categories.
-    Likewise, if you want a category shared across multiple lists, it is suggested you only use species.</p>
+  <p>Each category and species can only have ONE sublist. If you assign a sublist
+    here, it will be removed from any other
+    sublists. If you want a species shared across multiple lists, it is suggested
+    you only use character categories.
+    Likewise, if you want a category shared across multiple lists, it is suggested
+    you only use species.</p>
 
   <div class="form-group">
     {!! Form::label('categories[]', 'Categories') !!}
@@ -69,13 +75,17 @@
         'class' => 'form-check-input',
         'data-toggle' => 'toggle',
     ]) !!}
-    {!! Form::label('show_main', 'Show on Main', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+    {!! Form::label('show_main', 'Show on Main', [
+        'class' => 'form-check-label ml-3',
+    ]) !!} {!! add_help(
         'Turn on to include these characters in the main masterlist as well. Turn off to entirely seperate them into the sub masterlist.',
     ) !!}
   </div>
 
   <div class="text-right">
-    {!! Form::submit($sublist->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($sublist->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -87,7 +97,9 @@
     $(document).ready(function() {
       $('.delete-sublist-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/sublists/delete') }}/{{ $sublist->id }}", 'Delete Sub Masterlist');
+        loadModal(
+          "{{ url('admin/data/sublists/delete') }}/{{ $sublist->id }}",
+          'Delete Sub Masterlist');
       });
     });
 

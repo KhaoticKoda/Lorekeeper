@@ -5,13 +5,18 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Character Categories' => 'admin/data/character-categories']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Character Categories' => 'admin/data/character-categories',
+  ]) !!}
 
   <h1>Character Categories</h1>
 
-  <p>This is a list of character categories that will be used to classify characters. Creating character categories is
+  <p>This is a list of character categories that will be used to classify
+    characters. Creating character categories is
     entirely optional, but recommended for organisational purposes.</p>
-  <p>The sorting order reflects the order in which the character categories will be displayed on the world pages.</p>
+  <p>The sorting order reflects the order in which the character categories will
+    be displayed on the world pages.</p>
 
   <div class="text-right mb-3">
     <a class="btn btn-primary" href="{{ url('admin/data/character-categories/create') }}">

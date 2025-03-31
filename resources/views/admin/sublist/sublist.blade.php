@@ -5,14 +5,20 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Sub Masterlists' => 'admin/data/sublists']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Sub Masterlists' => 'admin/data/sublists',
+  ]) !!}
 
   <h1>Sub Masterlists</h1>
 
-  <p>Sub masterlists are additional masterlists which can be separate or alternative to the main masterlist. This can be
-    used to divide a masterlist up between species, player versus non-player-character, characters vs pets/mounts, etc.
+  <p>Sub masterlists are additional masterlists which can be separate or
+    alternative to the main masterlist. This can be
+    used to divide a masterlist up between species, player versus
+    non-player-character, characters vs pets/mounts, etc.
   </p>
-  <p>Both categories and species can be assigned to sublists, but each can only be assigned to ONE sublist.</p>
+  <p>Both categories and species can be assigned to sublists, but each can only be
+    assigned to ONE sublist.</p>
 
   <div class="text-right mb-3">
     <a class="btn btn-primary" href="{{ url('admin/data/sublists/create') }}">
@@ -43,11 +49,12 @@
             </td>
             <td>{!! $sublist->show_main
                 ? '<i class="text-success fas fa-check">
-                                    </i>'
+                                                                                                </i>'
                 : '' !!}</td>
             <td>{!! $sublist->key !!}</td>
             <td class="text-right">
-              <a href="{{ url('admin/data/sublists/edit/' . $sublist->id) }}" class="btn btn-primary">Edit</a>
+              <a href="{{ url('admin/data/sublists/edit/' . $sublist->id) }}"
+                 class="btn btn-primary">Edit</a>
             </td>
           </tr>
         @endforeach

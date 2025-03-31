@@ -15,7 +15,8 @@
       <a class="nav-link active" href="{{ $user->adminUrl }}">Account</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account Updates</a>
+      <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account
+        Updates</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/ban') }}">Ban</a>
@@ -41,9 +42,14 @@
       </label>
       <div class="col-md-10">
         @if (!$user->isAdmin && Auth::user()->canEditRank($user->rank))
-          {!! Form::select('rank_id', $ranks, $user->rank_id, ['class' => 'form-control']) !!}
+          {!! Form::select('rank_id', $ranks, $user->rank_id, [
+              'class' => 'form-control',
+          ]) !!}
         @else
-          {!! Form::text('rank_id', $ranks[$user->rank_id], ['class' => 'form-control', 'disabled']) !!}
+          {!! Form::text('rank_id', $ranks[$user->rank_id], [
+              'class' => 'form-control',
+              'disabled',
+          ]) !!}
         @endif
       </div>
     </div>
@@ -59,22 +65,32 @@
     <div class="form-group row">
       <label class="col-md-2 col-form-label">Email Address</label>
       <div class="col-md-10">
-        {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
+        {!! Form::text('email', $user->email, [
+            'class' => 'form-control',
+            'disabled',
+        ]) !!}
       </div>
     </div>
     <div class="form-group row">
       <label class="col-md-2 col-form-label">Join Date</label>
       <div class="col-md-10">
-        {!! Form::text('created_at', format_date($user->created_at, false), ['class' => 'form-control', 'disabled']) !!}
+        {!! Form::text('created_at', format_date($user->created_at, false), [
+            'class' => 'form-control',
+            'disabled',
+        ]) !!}
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-md-2 col-form-label">Is an FTO {!! add_help(
-          'FTO (First Time Owner) means that they have no record of possessing a character from this world. This status is automatically updated when they earn their first character, but can be toggled manually in case off-record transfers have happened before.',
-      ) !!}</label>
+      <label class="col-md-2 col-form-label">Is an FTO
+        {!! add_help(
+            'FTO (First Time Owner) means that they have no record of possessing a character from this world. This status is automatically updated when they earn their first character, but can be toggled manually in case off-record transfers have happened before.',
+        ) !!}</label>
       <div class="col-md-10">
         <div class="form-check form-control-plaintext">
-          {!! Form::checkbox('is_fto', 1, $user->settings->is_fto, ['class' => 'form-check-input', 'id' => 'checkFTO']) !!}
+          {!! Form::checkbox('is_fto', 1, $user->settings->is_fto, [
+              'class' => 'form-check-input',
+              'id' => 'checkFTO',
+          ]) !!}
         </div>
       </div>
     </div>
@@ -106,10 +122,14 @@
 
   <div class="card p-3 mb-2">
     <h3>Aliases</h3>
-    <p>As users are supposed to verify that they own their account(s) themselves, aliases cannot be edited directly. If a
-      user wants to change their alias, clear it here and ask them to go through the verification process again while
-      logged into their new account. If the alias is the user's primary alias, their remaining aliases will be checked to
-      see if they have a valid primary alias. If they do, it will become their new primary alias.</p>
+    <p>As users are supposed to verify that they own their account(s) themselves,
+      aliases cannot be edited directly. If a
+      user wants to change their alias, clear it here and ask them to go through
+      the verification process again while
+      logged into their new account. If the alias is the user's primary alias,
+      their remaining aliases will be checked to
+      see if they have a valid primary alias. If they do, it will become their new
+      primary alias.</p>
     @if ($user->aliases->count())
       @foreach ($user->aliases as $alias)
         <div class="form-group row">
@@ -123,7 +143,9 @@
                   $alias->alias . '@' . $alias->siteDisplayName . (!$alias->is_visible ? ' (Hidden)' : ''),
                   ['class' => 'form-control', 'disabled'],
               ) !!}
-              {!! Form::open(['url' => 'admin/users/' . $user->name . '/alias/' . $alias->id]) !!}
+              {!! Form::open([
+                  'url' => 'admin/users/' . $user->name . '/alias/' . $alias->id,
+              ]) !!}
               <div class="text-right ml-2">{!! Form::submit('Clear Alias', ['class' => 'btn btn-danger']) !!}</div>
             </div>
           </div>

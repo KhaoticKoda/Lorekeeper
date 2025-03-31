@@ -5,12 +5,17 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Items' => 'admin/data/items']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Items' => 'admin/data/items',
+  ]) !!}
 
   <h1>Items</h1>
 
-  <p>This is a list of items in the game. Specific details about items can be added when they are granted to users (e.g.
-    reason for grant). By default, items are merely collectibles and any additional functionality must be manually
+  <p>This is a list of items in the game. Specific details about items can be
+    added when they are granted to users (e.g.
+    reason for grant). By default, items are merely collectibles and any
+    additional functionality must be manually
     processed, or custom coded in for the specific item.</p>
 
   <div class="text-right mb-3">
@@ -28,12 +33,20 @@
   </div>
 
   <div>
-    {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
+    {!! Form::open([
+        'method' => 'GET',
+        'class' => 'form-inline justify-content-end',
+    ]) !!}
     <div class="form-group mr-3 mb-3">
-      {!! Form::text('name', Request::get('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
+      {!! Form::text('name', Request::get('name'), [
+          'class' => 'form-control',
+          'placeholder' => 'Name',
+      ]) !!}
     </div>
     <div class="form-group mr-3 mb-3">
-      {!! Form::select('item_category_id', $categories, Request::get('name'), ['class' => 'form-control']) !!}
+      {!! Form::select('item_category_id', $categories, Request::get('name'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mb-3">
       {!! Form::submit('Search', ['class' => 'btn btn-primary']) !!}
@@ -54,9 +67,11 @@
       @foreach ($items as $item)
         <div class="d-flex row flex-wrap col-12 mt-1 pt-2 px-0 ubt-top">
           <div class="col-5 col-md-6"> {{ $item->name }} </div>
-          <div class="col-4 col-md-5"> {{ $item->category ? $item->category->name : '' }} </div>
+          <div class="col-4 col-md-5">
+            {{ $item->category ? $item->category->name : '' }} </div>
           <div class="col-3 col-md-1 text-right">
-            <a href="{{ url('admin/data/items/edit/' . $item->id) }}" class="btn btn-primary py-0 px-2">Edit</a>
+            <a href="{{ url('admin/data/items/edit/' . $item->id) }}"
+               class="btn btn-primary py-0 px-2">Edit</a>
           </div>
         </div>
       @endforeach

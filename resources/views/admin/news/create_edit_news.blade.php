@@ -8,16 +8,22 @@
   {!! breadcrumbs([
       'Admin Panel' => 'admin',
       'News' => 'admin/news',
-      ($news->id ? 'Edit' : 'Create') . ' Post' => $news->id ? 'admin/news/edit/' . $news->id : 'admin/news/create',
+      ($news->id ? 'Edit' : 'Create') . ' Post' => $news->id
+          ? 'admin/news/edit/' . $news->id
+          : 'admin/news/create',
   ]) !!}
 
   <h1>{{ $news->id ? 'Edit' : 'Create' }} Post
     @if ($news->id)
-      <a href="#" class="btn btn-danger float-right delete-news-button">Delete Post</a>
+      <a href="#" class="btn btn-danger float-right delete-news-button">Delete
+        Post</a>
     @endif
   </h1>
 
-  {!! Form::open(['url' => $news->id ? 'admin/news/edit/' . $news->id : 'admin/news/create', 'files' => true]) !!}
+  {!! Form::open([
+      'url' => $news->id ? 'admin/news/edit/' . $news->id : 'admin/news/create',
+      'files' => true,
+  ]) !!}
 
   <h3>Basic Information</h3>
 
@@ -31,15 +37,22 @@
 
     <div class="col-md-6">
       <div class="form-group">
-        {!! Form::label('Post Time (Optional)') !!} {!! add_help('This is the time that the news post should be posted. Make sure the Is Viewable switch is off.') !!}
-        {!! Form::text('post_at', $news->post_at, ['class' => 'form-control', 'id' => 'datepicker']) !!}
+        {!! Form::label('Post Time (Optional)') !!} {!! add_help(
+            'This is the time that the news post should be posted. Make sure the Is Viewable switch is off.',
+        ) !!}
+        {!! Form::text('post_at', $news->post_at, [
+            'class' => 'form-control',
+            'id' => 'datepicker',
+        ]) !!}
       </div>
     </div>
   </div>
 
   <div class="form-group">
     {!! Form::label('Post Content') !!}
-    {!! Form::textarea('text', $news->text, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('text', $news->text, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="row">
@@ -49,7 +62,9 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('is_visible', 'Is Viewable', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('is_visible', 'Is Viewable', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'If this is turned off, the post will not be visible. If the post time is set, it will automatically become visible at/after the given post time, so make sure the post time is empty if you want it to be completely hidden.',
         ) !!}
       </div>
@@ -57,8 +72,13 @@
     @if ($news->id && $news->is_visible)
       <div class="col-md">
         <div class="form-group">
-          {!! Form::checkbox('bump', 1, null, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
-          {!! Form::label('bump', 'Bump News', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+          {!! Form::checkbox('bump', 1, null, [
+              'class' => 'form-check-input',
+              'data-toggle' => 'toggle',
+          ]) !!}
+          {!! Form::label('bump', 'Bump News', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help(
               'If toggled on, this will alert users that there is new news. Best in conjunction with a clear notification of changes!',
           ) !!}
         </div>
@@ -67,7 +87,9 @@
   </div>
 
   <div class="text-right">
-    {!! Form::submit($news->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($news->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -79,7 +101,8 @@
     $(document).ready(function() {
       $('.delete-news-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/news/delete') }}/{{ $news->id }}", 'Delete Post');
+        loadModal("{{ url('admin/news/delete') }}/{{ $news->id }}",
+          'Delete Post');
       });
       $("#datepicker").datetimepicker({
         dateFormat: "yy-mm-dd",

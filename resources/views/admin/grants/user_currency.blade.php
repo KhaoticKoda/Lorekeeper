@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Grant Currency' => 'admin/grants/user-currency']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Grant Currency' => 'admin/grants/user-currency',
+  ]) !!}
 
   <h1>Grant User Currency</h1>
 
@@ -15,14 +18,20 @@
 
   <div class="form-group">
     {!! Form::label('names[]', 'Username(s)') !!} {!! add_help('You can select up to 10 users at once.') !!}
-    {!! Form::select('names[]', $users, null, ['id' => 'usernameList', 'class' => 'form-control', 'multiple']) !!}
+    {!! Form::select('names[]', $users, null, [
+        'id' => 'usernameList',
+        'class' => 'form-control',
+        'multiple',
+    ]) !!}
   </div>
 
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
         {!! Form::label('currency_id', 'Currency') !!}
-        {!! Form::select('currency_id', $userCurrencies, null, ['class' => 'form-control']) !!}
+        {!! Form::select('currency_id', $userCurrencies, null, [
+            'class' => 'form-control',
+        ]) !!}
       </div>
     </div>
     <div class="col-md-6">

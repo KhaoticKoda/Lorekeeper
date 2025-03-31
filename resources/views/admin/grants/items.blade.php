@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Grant Items' => 'admin/grants/items']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Grant Items' => 'admin/grants/items',
+  ]) !!}
 
   <h1>Grant Items</h1>
 
@@ -15,7 +18,11 @@
 
   <div class="form-group">
     {!! Form::label('names[]', 'Username(s)') !!} {!! add_help('You can select up to 10 users at once.') !!}
-    {!! Form::select('names[]', $users, null, ['id' => 'usernameList', 'class' => 'form-control', 'multiple']) !!}
+    {!! Form::select('names[]', $users, null, [
+        'id' => 'usernameList',
+        'class' => 'form-control',
+        'multiple',
+    ]) !!}
   </div>
 
   <div class="form-group">
@@ -26,7 +33,10 @@
             'class' => 'form-control mr-2 default item-select',
             'placeholder' => 'Select Item',
         ]) !!}
-        {!! Form::text('quantities[]', 1, ['class' => 'form-control mr-2', 'placeholder' => 'Quantity']) !!}
+        {!! Form::text('quantities[]', 1, [
+            'class' => 'form-control mr-2',
+            'placeholder' => 'Quantity',
+        ]) !!}
         <a href="#" class="remove-item btn btn-danger mb-2 disabled">×</a>
       </div>
     </div>
@@ -38,26 +48,44 @@
           'class' => 'form-control mr-2 item-select',
           'placeholder' => 'Select Item',
       ]) !!}
-      {!! Form::text('quantities[]', 1, ['class' => 'form-control mr-2', 'placeholder' => 'Quantity']) !!}
+      {!! Form::text('quantities[]', 1, [
+          'class' => 'form-control mr-2',
+          'placeholder' => 'Quantity',
+      ]) !!}
       <a href="#" class="remove-item btn btn-danger mb-2">×</a>
     </div>
   </div>
 
   <div class="form-group">
-    {!! Form::label('data', 'Reason (Optional)') !!} {!! add_help('A reason for the grant. This will be noted in the logs and in the inventory description.') !!}
-    {!! Form::text('data', null, ['class' => 'form-control', 'maxlength' => 400]) !!}
+    {!! Form::label('data', 'Reason (Optional)') !!} {!! add_help(
+        'A reason for the grant. This will be noted in the logs and in the inventory description.',
+    ) !!}
+    {!! Form::text('data', null, [
+        'class' => 'form-control',
+        'maxlength' => 400,
+    ]) !!}
   </div>
 
   <h3>Additional Data</h3>
 
   <div class="form-group">
-    {!! Form::label('notes', 'Notes (Optional)') !!} {!! add_help('Additional notes for the item. This will appear in the item\'s description, but not in the logs.') !!}
-    {!! Form::text('notes', null, ['class' => 'form-control', 'maxlength' => 400]) !!}
+    {!! Form::label('notes', 'Notes (Optional)') !!} {!! add_help(
+        'Additional notes for the item. This will appear in the item\'s description, but not in the logs.',
+    ) !!}
+    {!! Form::text('notes', null, [
+        'class' => 'form-control',
+        'maxlength' => 400,
+    ]) !!}
   </div>
 
   <div class="form-group">
-    {!! Form::checkbox('disallow_transfer', 1, 0, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
-    {!! Form::label('disallow_transfer', 'Account-bound', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+    {!! Form::checkbox('disallow_transfer', 1, 0, [
+        'class' => 'form-check-input',
+        'data-toggle' => 'toggle',
+    ]) !!}
+    {!! Form::label('disallow_transfer', 'Account-bound', [
+        'class' => 'form-check-label ml-3',
+    ]) !!} {!! add_help(
         'If this is on, the recipient(s) will not be able to transfer this item to other users. Items that disallow transfers by default will still not be transferrable.',
     ) !!}
   </div>

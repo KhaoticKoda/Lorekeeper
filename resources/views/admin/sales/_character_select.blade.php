@@ -20,7 +20,9 @@
           </a>
           <div class="form-group">
             {!! Form::label('slug[]', 'Character Code') !!}
-            {!! Form::text('slug[]', null, ['class' => 'form-control character-code']) !!}
+            {!! Form::text('slug[]', null, [
+                'class' => 'form-control character-code',
+            ]) !!}
           </div>
           <div class="character-details hide">
             <h4>Sale Details</h4>
@@ -39,7 +41,10 @@
                       'pwyw' => 'Pay What You Want',
                   ],
                   null,
-                  ['class' => 'form-control character-sale-type', 'placeholder' => 'Select Sale Type'],
+                  [
+                      'class' => 'form-control character-sale-type',
+                      'placeholder' => 'Select Sale Type',
+                  ],
               ) !!}
             </div>
 
@@ -47,14 +52,20 @@
               <div class="mb-3 hide flatOptions">
                 <div class="form-group">
                   {!! Form::label('Price') !!}
-                  {!! Form::number('price[]', null, ['class' => 'form-control', 'placeholder' => 'Enter a Cost']) !!}
+                  {!! Form::number('price[]', null, [
+                      'class' => 'form-control',
+                      'placeholder' => 'Enter a Cost',
+                  ]) !!}
                 </div>
               </div>
 
               <div class="mb-3 hide auctionOptions">
                 <div class="form-group">
                   {!! Form::label('Starting Bid') !!}
-                  {!! Form::number('starting_bid[]', null, ['class' => 'form-control', 'placeholder' => 'Enter a Starting Bid']) !!}
+                  {!! Form::number('starting_bid[]', null, [
+                      'class' => 'form-control',
+                      'placeholder' => 'Enter a Starting Bid',
+                  ]) !!}
                 </div>
                 <div class="form-group">
                   {!! Form::label('Minimum Increment') !!}
@@ -68,7 +79,10 @@
               <div class="mb-3 hide xtaOptions">
                 <div class="form-group">
                   {!! Form::label('Autobuy (Optional)') !!}
-                  {!! Form::number('autobuy[]', null, ['class' => 'form-control', 'placeholder' => 'Enter an Autobuy']) !!}
+                  {!! Form::number('autobuy[]', null, [
+                      'class' => 'form-control',
+                      'placeholder' => 'Enter an Autobuy',
+                  ]) !!}
                 </div>
                 <div class="form-group">
                   {!! Form::label('End Point (Optional)') !!}
@@ -82,7 +96,10 @@
               <div class="mb-3 hide pwywOptions">
                 <div class="form-group">
                   {!! Form::label('Minimum Offer (Optional)') !!}
-                  {!! Form::number('minimum[]', null, ['class' => 'form-control', 'placeholder' => 'Enter a Minimum']) !!}
+                  {!! Form::number('minimum[]', null, [
+                      'class' => 'form-control',
+                      'placeholder' => 'Enter a Minimum',
+                  ]) !!}
                 </div>
               </div>
             </div>
@@ -97,7 +114,10 @@
 
             <div class="form-group mb-4">
               {!! Form::label('Link (Optional)') !!} {!! add_help('The URL for where to buy, bid, etc. on the character.') !!}
-              {!! Form::text('link[]', null, ['class' => 'form-control', 'placeholder' => 'URL']) !!}
+              {!! Form::text('link[]', null, [
+                  'class' => 'form-control',
+                  'placeholder' => 'URL',
+              ]) !!}
             </div>
 
             {!! Form::hidden('new_entry[]', 1) !!}

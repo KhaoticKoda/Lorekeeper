@@ -15,12 +15,15 @@
 
   <h1>{{ $category->id ? 'Edit' : 'Create' }} Category
     @if ($category->id)
-      <a href="#" class="btn btn-danger float-right delete-category-button">Delete Category</a>
+      <a href="#" class="btn btn-danger float-right delete-category-button">Delete
+        Category</a>
     @endif
   </h1>
 
   {!! Form::open([
-      'url' => $category->id ? 'admin/data/item-categories/edit/' . $category->id : 'admin/data/item-categories/create',
+      'url' => $category->id
+          ? 'admin/data/item-categories/edit/' . $category->id
+          : 'admin/data/item-categories/create',
       'files' => true,
   ]) !!}
 
@@ -37,15 +40,21 @@
     <div class="text-muted">Recommended size: 200px x 200px</div>
     @if ($category->has_image)
       <div class="form-check">
-        {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-        {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+        {!! Form::checkbox('remove_image', 1, false, [
+            'class' => 'form-check-input',
+        ]) !!}
+        {!! Form::label('remove_image', 'Remove current image', [
+            'class' => 'form-check-label',
+        ]) !!}
       </div>
     @endif
   </div>
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $category->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $category->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="card mb-3" id="characterOptions">
@@ -58,7 +67,9 @@
               'data-on' => 'Allow',
               'data-off' => 'Disallow',
           ]) !!}
-          {!! Form::label('is_character_owned', 'Can Be Owned by Characters', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will allow items in this category to be owned by characters.') !!}
+          {!! Form::label('is_character_owned', 'Can Be Owned by Characters', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help('This will allow items in this category to be owned by characters.') !!}
         </div>
         <div class="form-group">
           {!! Form::label('character_limit', 'Character Hold Limit') !!} {!! add_help(
@@ -76,7 +87,9 @@
               'data-on' => 'Allow',
               'data-off' => 'Disallow',
           ]) !!}
-          {!! Form::label('can_name', 'Can be Named', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+          {!! Form::label('can_name', 'Can be Named', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help(
               'This will set items in this category to be able to be named when in character inventories-- for instance, for pets. Works best in conjunction with a hold limit on the category.',
           ) !!}
         </div>
@@ -85,7 +98,9 @@
   </div>
 
   <div class="text-right">
-    {!! Form::submit($category->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($category->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -111,7 +126,9 @@
     $(document).ready(function() {
       $('.delete-category-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/item-categories/delete') }}/{{ $category->id }}", 'Delete Category');
+        loadModal(
+          "{{ url('admin/data/item-categories/delete') }}/{{ $category->id }}",
+          'Delete Category');
       });
     });
   </script>

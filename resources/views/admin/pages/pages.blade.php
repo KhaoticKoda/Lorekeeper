@@ -9,9 +9,12 @@
 
   <h1>Pages</h1>
 
-  <p>Here you can create pages with custom HTML content. By default, these pages are not linked to by any other page - if
-    you would like users to look at the pages, you will need to link them manually (e.g. in the top navigation, footer,
-    etc.). Certain important pages such as the terms of service and privacy policy cannot be deleted. You can, however,
+  <p>Here you can create pages with custom HTML content. By default, these pages
+    are not linked to by any other page - if
+    you would like users to look at the pages, you will need to link them manually
+    (e.g. in the top navigation, footer,
+    etc.). Certain important pages such as the terms of service and privacy policy
+    cannot be deleted. You can, however,
     edit their names and visibility.</p>
 
   <div class="text-right mb-3">
@@ -37,14 +40,16 @@
           <div class="col-3 col-md-3">{{ $page->key }}</div>
           <div class="col-6 col-md-3">{!! pretty_date($page->updated_at) !!}</div>
           <div class="col-3 col-md-1 text-right">
-            <a href="{{ url('admin/pages/edit/' . $page->id) }}" class="btn btn-primary py-0 px-2">Edit</a>
+            <a href="{{ url('admin/pages/edit/' . $page->id) }}"
+               class="btn btn-primary py-0 px-2">Edit</a>
           </div>
         </div>
       @endforeach
     </div>
     {!! $pages->render() !!}
 
-    <div class="text-center mt-4 small text-muted">{{ $pages->total() }} result{{ $pages->total() == 1 ? '' : 's' }}
+    <div class="text-center mt-4 small text-muted">{{ $pages->total() }}
+      result{{ $pages->total() == 1 ? '' : 's' }}
       found.</div>
   @endif
 

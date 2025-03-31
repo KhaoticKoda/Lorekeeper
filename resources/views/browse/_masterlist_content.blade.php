@@ -3,18 +3,24 @@
   <div class="form-inline justify-content-end">
     <div class="form-group mr-3 mb-3">
       {!! Form::label('name', 'Character Name/Code: ', ['class' => 'mr-2']) !!}
-      {!! Form::text('name', Request::get('name'), ['class' => 'form-control']) !!}
+      {!! Form::text('name', Request::get('name'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mb-3">
-      {!! Form::select('rarity_id', $rarities, Request::get('rarity_id'), ['class' => 'form-control mr-3']) !!}
+      {!! Form::select('rarity_id', $rarities, Request::get('rarity_id'), [
+          'class' => 'form-control mr-3',
+      ]) !!}
     </div>
     <div class="form-group mb-3">
-      {!! Form::select('species_id', $specieses, Request::get('species_id'), ['class' => 'form-control']) !!}
+      {!! Form::select('species_id', $specieses, Request::get('species_id'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
   </div>
   <div class="text-right mb-3">
-    <a href="#advancedSearch" class="btn btn-sm btn-outline-info" data-toggle="collapse">Show Advanced Search Options <i
-         class="fas fa-caret-down">
+    <a href="#advancedSearch" class="btn btn-sm btn-outline-info" data-toggle="collapse">Show Advanced
+      Search Options <i class="fas fa-caret-down">
       </i>
     </a>
   </div>
@@ -23,13 +29,20 @@
       @if (!$isMyo)
         <div class="masterlist-search-field">
           {!! Form::label('character_category_id', 'Category: ') !!}
-          {!! Form::select('character_category_id', $categories, Request::get('character_category_id'), [
-              'class' => 'form-control',
-          ]) !!}
+          {!! Form::select(
+              'character_category_id',
+              $categories,
+              Request::get('character_category_id'),
+              [
+                  'class' => 'form-control',
+              ],
+          ) !!}
         </div>
         <div class="masterlist-search-field">
           {!! Form::label('subtype_id', 'Species Subtype: ') !!}
-          {!! Form::select('subtype_id', $subtypes, Request::get('subtype_id'), ['class' => 'form-control']) !!}
+          {!! Form::select('subtype_id', $subtypes, Request::get('subtype_id'), [
+              'class' => 'form-control',
+          ]) !!}
         </div>
       @endif
       <hr />
@@ -85,11 +98,15 @@
       <hr />
       <div class="masterlist-search-field">
         {!! Form::label('sale_value_min', 'Resale Minimum ($): ') !!}
-        {!! Form::text('sale_value_min', Request::get('sale_value_min'), ['class' => 'form-control']) !!}
+        {!! Form::text('sale_value_min', Request::get('sale_value_min'), [
+            'class' => 'form-control',
+        ]) !!}
       </div>
       <div class="masterlist-search-field">
         {!! Form::label('sale_value_max', 'Resale Maximum ($): ') !!}
-        {!! Form::text('sale_value_max', Request::get('sale_value_max'), ['class' => 'form-control']) !!}
+        {!! Form::text('sale_value_max', Request::get('sale_value_max'), [
+            'class' => 'form-control',
+        ]) !!}
       </div>
       @if (!$isMyo)
         <div class="masterlist-search-field">
@@ -154,8 +171,11 @@
         ]) !!}
       </div>
       <hr />
-      <a href="#" class="float-right btn btn-sm btn-outline-primary add-feature-button">Add Trait</a>
-      {!! Form::label('Has Traits: ') !!} {!! add_help('This will narrow the search to characters that have ALL of the selected traits at the same time.') !!}
+      <a href="#" class="float-right btn btn-sm btn-outline-primary add-feature-button">Add
+        Trait</a>
+      {!! Form::label('Has Traits: ') !!} {!! add_help(
+          'This will narrow the search to characters that have ALL of the selected traits at the same time.',
+      ) !!}
       <div id="featureBody" class="row">
         @if (Request::get('feature_id'))
           @foreach (Request::get('feature_id') as $featureId)
@@ -182,9 +202,10 @@
             'class' => 'form-check-input mr-3',
             'data-toggle' => 'toggle',
         ]) !!}
-        <span class="ml-2">Include all character images in search {!! add_help(
-            'Each character can have multiple images for each updated version of the character, which captures the traits on that character at that point in time. By default the search will only search on the most up-to-date image, but this option will retrieve characters that match the criteria on older images - you may get results that are outdated.',
-        ) !!}</span>
+        <span class="ml-2">Include all character images in search
+          {!! add_help(
+              'Each character can have multiple images for each updated version of the character, which captures the traits on that character at that point in time. By default the search will only search on the most up-to-date image, but this option will retrieve characters that match the criteria on older images - you may get results that are outdated.',
+          ) !!}</span>
       </div>
 
     </div>
@@ -229,13 +250,13 @@
 </div>
 <div class="text-right mb-3">
   <div class="btn-group">
-    <button type="button" class="btn btn-secondary active grid-view-button" data-toggle="tooltip" title="Grid View"
-            alt="Grid View">
+    <button type="button" class="btn btn-secondary active grid-view-button" data-toggle="tooltip"
+            title="Grid View" alt="Grid View">
       <i class="fas fa-th">
       </i>
     </button>
-    <button type="button" class="btn btn-secondary list-view-button" data-toggle="tooltip" title="List View"
-            alt="List View">
+    <button type="button" class="btn btn-secondary list-view-button" data-toggle="tooltip"
+            title="List View" alt="List View">
       <i class="fas fa-bars">
       </i>
     </button>
@@ -263,7 +284,8 @@
             </a>
           </div>
           <div class="small">
-            {!! $character->image->species_id ? $character->image->species->displayName : 'No Species' !!} ・ {!! $character->image->rarity_id ? $character->image->rarity->displayName : 'No Rarity' !!} ・ {!! $character->displayOwner !!}
+            {!! $character->image->species_id ? $character->image->species->displayName : 'No Species' !!} ・ {!! $character->image->rarity_id ? $character->image->rarity->displayName : 'No Rarity' !!} ・
+            {!! $character->displayOwner !!}
           </div>
         </div>
       @endforeach

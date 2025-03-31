@@ -9,7 +9,8 @@
 
   <h1>Sales</h1>
 
-  <p>You can create new sales posts here. Creating a sales post alerts every user that there is a new post, unless the
+  <p>You can create new sales posts here. Creating a sales post alerts every user
+    that there is a new post, unless the
     post is marked as not viewable (see the post creation page for details).</p>
 
   <div class="text-right mb-3">
@@ -37,7 +38,8 @@
             <td>
               @if (!$sales->is_visible)
                 @if ($sales->post_at)
-                  <i class="fas fa-clock" data-toggle="tooltip" title="This post is scheduled to be posted in the future.">
+                  <i class="fas fa-clock" data-toggle="tooltip"
+                     title="This post is scheduled to be posted in the future.">
                   </i>
                 @else
                   <i class="fas fa-eye-slash" data-toggle="tooltip" title="This post is hidden.">

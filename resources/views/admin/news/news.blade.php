@@ -9,7 +9,8 @@
 
   <h1>News</h1>
 
-  <p>You can create new news posts here. Creating a news post alerts every user that there is a new post, unless the post
+  <p>You can create new news posts here. Creating a news post alerts every user
+    that there is a new post, unless the post
     is marked as not viewable (see the post creation page for details).</p>
 
   <div class="text-right mb-3">
@@ -45,14 +46,16 @@
           <div class="col-6 col-md-3">{!! pretty_date($news->post_at ?: $news->created_at) !!}</div>
           <div class="col-6 col-md-3">{!! pretty_date($news->updated_at) !!}</div>
           <div class="col-12 col-md-1 text-right">
-            <a href="{{ url('admin/news/edit/' . $news->id) }}" class="btn btn-primary py-0 px-2 w-100">Edit</a>
+            <a href="{{ url('admin/news/edit/' . $news->id) }}"
+               class="btn btn-primary py-0 px-2 w-100">Edit</a>
           </div>
         </div>
       @endforeach
     </div>
     {!! $newses->render() !!}
 
-    <div class="text-center mt-4 small text-muted">{{ $newses->total() }} result{{ $newses->total() == 1 ? '' : 's' }}
+    <div class="text-center mt-4 small text-muted">{{ $newses->total() }}
+      result{{ $newses->total() == 1 ? '' : 's' }}
       found.</div>
   @endif
 

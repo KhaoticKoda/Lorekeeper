@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Report Queue' => 'admin/reports/pending']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Report Queue' => 'admin/reports/pending',
+  ]) !!}
 
   <h1>
     Report Queue
@@ -65,6 +68,7 @@
   </div>
 
   {!! $reports->render() !!}
-  <div class="text-center mt-4 small text-muted">{{ $reports->total() }} result{{ $reports->total() == 1 ? '' : 's' }}
+  <div class="text-center mt-4 small text-muted">{{ $reports->total() }}
+    result{{ $reports->total() == 1 ? '' : 's' }}
     found.</div>
 @endsection

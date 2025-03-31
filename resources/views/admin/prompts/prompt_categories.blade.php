@@ -5,14 +5,20 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Prompt Categories' => 'admin/data/prompt-categories']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Prompt Categories' => 'admin/data/prompt-categories',
+  ]) !!}
 
   <h1>Prompt Categories</h1>
 
-  <p>This is a list of prompt categories that will be used to classify prompts on the prompts page. Creating prompt
-    categories is entirely optional, but recommended if you need to sort prompts for mod work division, for example. The
+  <p>This is a list of prompt categories that will be used to classify prompts on
+    the prompts page. Creating prompt
+    categories is entirely optional, but recommended if you need to sort prompts
+    for mod work division, for example. The
     submission approval queue page can be sorted by prompt category.</p>
-  <p>The sorting order reflects the order in which the prompt categories will be displayed on the prompts page.</p>
+  <p>The sorting order reflects the order in which the prompt categories will be
+    displayed on the prompts page.</p>
 
   <div class="text-right mb-3">
     <a class="btn btn-primary" href="{{ url('admin/data/prompt-categories/create') }}">
@@ -32,7 +38,8 @@
               {!! $category->displayName !!}
             </td>
             <td class="text-right">
-              <a href="{{ url('admin/data/prompt-categories/edit/' . $category->id) }}" class="btn btn-primary">Edit</a>
+              <a href="{{ url('admin/data/prompt-categories/edit/' . $category->id) }}"
+                 class="btn btn-primary">Edit</a>
             </td>
           </tr>
         @endforeach

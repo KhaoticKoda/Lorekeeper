@@ -13,7 +13,8 @@
 
   <h1>Sort Currencies</h1>
 
-  <p>This is the order in which currencies will appear on a user or character's page. Both types are saved separately, so
+  <p>This is the order in which currencies will appear on a user or character's
+    page. Both types are saved separately, so
     remember to hit save before editing the other one.</p>
 
   <h3>User Currencies</h3>

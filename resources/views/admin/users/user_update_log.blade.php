@@ -16,7 +16,8 @@
       <a class="nav-link" href="{{ $user->adminUrl }}">Account</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account Updates</a>
+      <a class="nav-link active" href="{{ url('admin/users/' . $user->name . '/updates') }}">Account
+        Updates</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ url('admin/users/' . $user->name . '/ban') }}">Ban</a>
@@ -24,7 +25,8 @@
   </ul>
 
   <h3>Account Updates</h3>
-  <p>This is a list of changes that have been made to this account's information, whether by the user or by a staff
+  <p>This is a list of changes that have been made to this account's information,
+    whether by the user or by a staff
     member.</p>
 
   {!! $logs->render() !!}
@@ -46,7 +48,8 @@
             @foreach ($log->data as $key => $value)
               <div>
                 @if (is_string($value))
-                  <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}: </strong>{{ $value }}
+                  <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:
+                  </strong>{{ $value }}
                 @endif
               </div>
             @endforeach

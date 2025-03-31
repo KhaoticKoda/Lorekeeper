@@ -5,37 +5,49 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Raffle Index' => 'admin/raffles']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Raffle Index' => 'admin/raffles',
+  ]) !!}
 
   <h1>Raffle Index</h1>
   <div class="text-right form-group">
-    <a class="btn btn-success edit-group" href="#" data-id="">Create Raffle Group</a>
-    <a class="btn btn-success edit-raffle" href="#" data-id="">Create Raffle</a>
+    <a class="btn btn-success edit-group" href="#" data-id="">Create Raffle
+      Group</a>
+    <a class="btn btn-success edit-raffle" href="#" data-id="">Create
+      Raffle</a>
   </div>
   <ul class="nav nav-tabs mb-3">
     <li class="nav-item">
-      <a href="{{ url()->current() }}" class="nav-link {{ Request::get('is_active') ? '' : 'active' }}">Current Raffles</a>
+      <a href="{{ url()->current() }}"
+         class="nav-link {{ Request::get('is_active') ? '' : 'active' }}">Current
+        Raffles</a>
     </li>
     <li class="nav-item">
       <a href="{{ url()->current() }}?is_active=1"
-         class="nav-link {{ Request::get('is_active') == 1 ? 'active' : '' }}">Open Raffles</a>
+         class="nav-link {{ Request::get('is_active') == 1 ? 'active' : '' }}">Open
+        Raffles</a>
     </li>
     <li class="nav-item">
       <a href="{{ url()->current() }}?is_active=2"
-         class="nav-link {{ Request::get('is_active') == 2 ? 'active' : '' }}">Completed Raffles</a>
+         class="nav-link {{ Request::get('is_active') == 2 ? 'active' : '' }}">Completed
+        Raffles</a>
     </li>
   </ul>
   @if (Request::get('is_active') == 1)
     <p>
-      This is the list of raffles that are visible to users and have not been rolled.
+      This is the list of raffles that are visible to users and have not been
+      rolled.
     </p>
   @elseif(Request::get('is_active') == 2)
     <p>
-      This is the list of raffles that are complete (have been rolled). These will always be visible to users.
+      This is the list of raffles that are complete (have been rolled). These will
+      always be visible to users.
     </p>
   @elseif(!Request::get('is_active'))
     <p>
-      This is the list of raffles that have not been rolled, including hidden raffles.
+      This is the list of raffles that have not been rolled, including hidden
+      raffles.
     </p>
   @endif
 
@@ -72,10 +84,12 @@
         @if ($raffle->is_active < 2)
           <div class="float-right">
             @if (!$raffle->group_id)
-              <a href="#" class="roll-raffle btn btn-outline-danger btn-xs p-2" data-id="{{ $raffle->id }}">Roll
+              <a href="#" class="roll-raffle btn btn-outline-danger btn-xs p-2"
+                 data-id="{{ $raffle->id }}">Roll
                 Raffle</a>
             @endif
-            <a href="#" class="edit-raffle btn btn-xs btn-outline-primary p-2" data-id="{{ $raffle->id }}">
+            <a href="#" class="edit-raffle btn btn-xs btn-outline-primary p-2"
+               data-id="{{ $raffle->id }}">
               Edit Raffle
             </a>
           </div>
@@ -89,19 +103,23 @@
       <script>
         $('.edit-group').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('/admin/raffles/edit/group/') }}/" + $(this).data('id'), 'Edit Raffle Group');
+          loadModal("{{ url('/admin/raffles/edit/group/') }}/" + $(this).data(
+            'id'), 'Edit Raffle Group');
         });
         $('.edit-raffle').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('/admin/raffles/edit/raffle/') }}/" + $(this).data('id'), 'Edit Raffle');
+          loadModal("{{ url('/admin/raffles/edit/raffle/') }}/" + $(this).data(
+            'id'), 'Edit Raffle');
         });
         $('.roll-raffle').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('/admin/raffles/roll/raffle/') }}/" + $(this).data('id'), 'Roll Raffle');
+          loadModal("{{ url('/admin/raffles/roll/raffle/') }}/" + $(this).data(
+            'id'), 'Roll Raffle');
         });
         $('.roll-group').on('click', function(e) {
           e.preventDefault();
-          loadModal("{{ url('/admin/raffles/roll/group/') }}/" + $(this).data('id'), 'Roll Raffle Group');
+          loadModal("{{ url('/admin/raffles/roll/group/') }}/" + $(this).data(
+            'id'), 'Roll Raffle Group');
         });
       </script>
     @endsection

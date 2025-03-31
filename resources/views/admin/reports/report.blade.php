@@ -44,14 +44,16 @@
             <h5>Bug Type</h5>
           </div>
           <div class="col-md-10 col-8">
-            {{ ucfirst($report->error_type) . ($report->error_type != 'exploit' ? ' Error' : '') }}</div>
+            {{ ucfirst($report->error_type) . ($report->error_type != 'exploit' ? ' Error' : '') }}
+          </div>
         </div>
       @endif
       <div class="row">
         <div class="col-md-2 col-4">
           <h5>Submitted</h5>
         </div>
-        <div class="col-md-10 col-8">{!! format_date($report->created_at) !!} ({{ $report->created_at->diffForHumans() }})</div>
+        <div class="col-md-10 col-8">{!! format_date($report->created_at) !!}
+          ({{ $report->created_at->diffForHumans() }})</div>
       </div>
       <div class="row">
         <div class="col-md-2 col-4">
@@ -83,19 +85,25 @@
       </div>
     @endif
 
-    @if (($report->status == 'Assigned' && $report->user_id == Auth::user()->id) || Auth::user()->hasPower('manage_reports'))
+    @if (
+        ($report->status == 'Assigned' && $report->user_id == Auth::user()->id) ||
+            Auth::user()->hasPower('manage_reports'))
       @comments(['type' => 'Staff-User', 'model' => $report, 'perPage' => 5])
     @endif
 
     {!! Form::open(['url' => url()->current(), 'id' => 'reportForm']) !!}
     @if ($report->status == 'Assigned' && Auth::user()->id == $report->staff_id)
       @if (Auth::user()->hasPower('manage_reports'))
-        <div class="alert alert-warning">Please include a small paragraph on the solution and as many important details as
-          you deem necessary, as the user will no longer be able to view the comments after the report is closed</div>
+        <div class="alert alert-warning">Please include a small paragraph on the
+          solution and as many important details as
+          you deem necessary, as the user will no longer be able to view the
+          comments after the report is closed</div>
       @endif
       <div class="form-group">
         {!! Form::label('staff_comments', 'Staff Comments (Optional)') !!}
-        {!! Form::textarea('staff_comments', $report->staffComments, ['class' => 'form-control wysiwyg']) !!}
+        {!! Form::textarea('staff_comments', $report->staffComments, [
+            'class' => 'form-control wysiwyg',
+        ]) !!}
       </div>
     @endif
     <div class="text-right">

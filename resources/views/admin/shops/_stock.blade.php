@@ -20,10 +20,15 @@
           ]) !!}
         </div>
         <div class="col-8">
-          {!! Form::select('currency_id[' . $key . ']', $currencies, $stock ? $stock->currency_id : null, [
-              'class' => 'form-control stock-field',
-              'data-name' => 'currency_id',
-          ]) !!}
+          {!! Form::select(
+              'currency_id[' . $key . ']',
+              $currencies,
+              $stock ? $stock->currency_id : null,
+              [
+                  'class' => 'form-control stock-field',
+                  'data-name' => 'currency_id',
+              ],
+          ) !!}
         </div>
       </div>
     </div>
@@ -35,31 +40,48 @@
               'class' => 'form-check-input stock-toggle stock-field',
               'data-name' => 'use_user_bank',
           ]) !!}
-          {!! Form::label('use_user_bank[' . $key . ']', 'Use User Bank', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+          {!! Form::label('use_user_bank[' . $key . ']', 'Use User Bank', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help(
               'This will allow users to purchase the item using the currency in their accounts, provided that users can own that currency.',
           ) !!}
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group mb-0">
-          {!! Form::checkbox('use_character_bank[' . $key . ']', 1, $stock ? $stock->use_character_bank : 1, [
-              'class' => 'form-check-input stock-toggle stock-field',
-              'data-name' => 'use_character_bank',
-          ]) !!}
-          {!! Form::label('use_character_bank[' . $key . ']', 'Use Character Bank', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+          {!! Form::checkbox(
+              'use_character_bank[' . $key . ']',
+              1,
+              $stock ? $stock->use_character_bank : 1,
+              [
+                  'class' => 'form-check-input stock-toggle stock-field',
+                  'data-name' => 'use_character_bank',
+              ],
+          ) !!}
+          {!! Form::label('use_character_bank[' . $key . ']', 'Use Character Bank', [
+              'class' => 'form-check-label ml-3',
+          ]) !!} {!! add_help(
               'This will allow users to purchase the item using the currency belonging to characters they own, provided that characters can own that currency.',
           ) !!}
         </div>
       </div>
     </div>
     <div class="form-group">
-      {!! Form::checkbox('is_limited_stock[' . $key . ']', 1, $stock ? $stock->is_limited_stock : false, [
-          'class' => 'form-check-input stock-limited stock-toggle stock-field',
-          'data-name' => 'is_limited_stock',
-      ]) !!}
-      {!! Form::label('is_limited_stock[' . $key . ']', 'Set Limited Stock', ['class' => 'form-check-label ml-3']) !!} {!! add_help('If turned on, will limit the amount purchaseable to the quantity set below.') !!}
+      {!! Form::checkbox(
+          'is_limited_stock[' . $key . ']',
+          1,
+          $stock ? $stock->is_limited_stock : false,
+          [
+              'class' => 'form-check-input stock-limited stock-toggle stock-field',
+              'data-name' => 'is_limited_stock',
+          ],
+      ) !!}
+      {!! Form::label('is_limited_stock[' . $key . ']', 'Set Limited Stock', [
+          'class' => 'form-check-label ml-3',
+      ]) !!} {!! add_help('If turned on, will limit the amount purchaseable to the quantity set below.') !!}
     </div>
-    <div class="card mb-3 stock-limited-quantity {{ $stock && $stock->is_limited_stock ? '' : 'hide' }}">
+    <div
+         class="card mb-3 stock-limited-quantity {{ $stock && $stock->is_limited_stock ? '' : 'hide' }}">
       <div class="card-body">
         <div>
           {!! Form::label('quantity[' . $key . ']', 'Quantity') !!} {!! add_help('If left blank, will be set to 0 (sold out).') !!}

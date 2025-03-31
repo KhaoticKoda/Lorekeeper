@@ -6,9 +6,15 @@
 
 @section('admin-content')
   @if ($isClaims)
-    {!! breadcrumbs(['Admin Panel' => 'admin', 'Claim Queue' => 'admin/claims/pending']) !!}
+    {!! breadcrumbs([
+        'Admin Panel' => 'admin',
+        'Claim Queue' => 'admin/claims/pending',
+    ]) !!}
   @else
-    {!! breadcrumbs(['Admin Panel' => 'admin', 'Prompt Queue' => 'admin/submissions/pending']) !!}
+    {!! breadcrumbs([
+        'Admin Panel' => 'admin',
+        'Prompt Queue' => 'admin/submissions/pending',
+    ]) !!}
   @endif
 
   <h1>
@@ -30,7 +36,10 @@
     </li>
   </ul>
 
-  {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
+  {!! Form::open([
+      'method' => 'GET',
+      'class' => 'form-inline justify-content-end',
+  ]) !!}
   <div class="form-inline justify-content-end">
     @if (!$isClaims)
       <div class="form-group ml-3 mb-3">
@@ -65,8 +74,10 @@
       @if (!$isClaims)
         <div class="col-12 col-md-2 font-weight-bold">Prompt</div>
       @endif
-      <div class="col-6 {{ !$isClaims ? 'col-md-2' : 'col-md-3' }} font-weight-bold">User</div>
-      <div class="col-6 {{ !$isClaims ? 'col-md-3' : 'col-md-4' }} font-weight-bold">Link</div>
+      <div class="col-6 {{ !$isClaims ? 'col-md-2' : 'col-md-3' }} font-weight-bold">
+        User</div>
+      <div class="col-6 {{ !$isClaims ? 'col-md-3' : 'col-md-4' }} font-weight-bold">
+        Link</div>
       <div class="col-6 col-md-3 font-weight-bold">Submitted</div>
       <div class="col-6 col-md-1 font-weight-bold">Status</div>
     </div>
@@ -76,7 +87,8 @@
         @if (!$isClaims)
           <div class="col-12 col-md-2">{!! $submission->prompt->displayName !!}</div>
         @endif
-        <div class="col-6 {{ !$isClaims ? 'col-md-2' : 'col-md-3' }}">{!! $submission->user->displayName !!}</div>
+        <div class="col-6 {{ !$isClaims ? 'col-md-2' : 'col-md-3' }}">
+          {!! $submission->user->displayName !!}</div>
         <div class="col-6 {{ !$isClaims ? 'col-md-3' : 'col-md-4' }}">
           <span class="ubt-texthide">
             <a href="{{ $submission->url }}">{{ $submission->url }}</a>

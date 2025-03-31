@@ -3,19 +3,29 @@
 @section('admin-title') User Index @stop
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'User Index' => 'admin/users']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'User Index' => 'admin/users',
+  ]) !!}
 
   <h1>User Index</h1>
 
   <p>Click on a user's name to view/edit their information.</p>
 
   <div>
-    {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
+    {!! Form::open([
+        'method' => 'GET',
+        'class' => 'form-inline justify-content-end',
+    ]) !!}
     <div class="form-group mr-sm-3 mb-3">
-      {!! Form::text('name', Request::get('name'), ['class' => 'form-control']) !!}
+      {!! Form::text('name', Request::get('name'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mr-sm-3 mb-3">
-      {!! Form::select('rank_id', $ranks, Request::get('rank_id'), ['class' => 'form-control']) !!}
+      {!! Form::select('rank_id', $ranks, Request::get('rank_id'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mr-3 mb-3">
       {!! Form::select(
@@ -50,7 +60,8 @@
     @foreach ($users as $user)
       <div class="d-flex row flex-wrap col-12 mt-1 pt-1 px-0 ubt-top">
         <div class="col-12 col-md-4 ">
-          <a href="{{ $user->adminUrl }}">{!! $user->is_banned ? '<strike>' : '' !!}{{ $user->name }}{!! $user->is_banned ? '</strike>' : '' !!}</a>
+          <a
+             href="{{ $user->adminUrl }}">{!! $user->is_banned ? '<strike>' : '' !!}{{ $user->name }}{!! $user->is_banned ? '</strike>' : '' !!}</a>
         </div>
         <div class="col-4 col-md-3">{!! $user->displayAlias !!}</div>
         <div class="col-4 col-md-2">{!! $user->rank->displayName !!}</div>
@@ -60,6 +71,7 @@
   </div>
   {!! $users->render() !!}
 
-  <div class="text-center mt-4 small text-muted">{{ $count }} user{{ $count == 1 ? '' : 's' }} found.</div>
+  <div class="text-center mt-4 small text-muted">{{ $count }}
+    user{{ $count == 1 ? '' : 's' }} found.</div>
 
 @endsection

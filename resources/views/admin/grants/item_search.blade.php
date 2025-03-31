@@ -9,8 +9,10 @@
 
   <h1>Item Search</h1>
 
-  <p>Select an item to search for all occurrences of it in user and character inventories. It will only display currently
-    extant stacks (where the count is more than zero). If a stack is currently "held" in a trade, design update, or
+  <p>Select an item to search for all occurrences of it in user and character
+    inventories. It will only display currently
+    extant stacks (where the count is more than zero). If a stack is currently
+    "held" in a trade, design update, or
     submission, this will be stated and all held locations will be linked.</p>
 
   {!! Form::open(['method' => 'GET', 'class' => '']) !!}
@@ -31,17 +33,21 @@
   @if ($item)
     <h3>{{ $item->name }}</h3>
 
-    <p>There are currently {{ $userItems->pluck('count')->sum() + $characterItems->pluck('count')->sum() }} of this item
+    <p>There are currently
+      {{ $userItems->pluck('count')->sum() + $characterItems->pluck('count')->sum() }}
+      of this item
       owned by users and characters.</p>
 
     <ul>
       @foreach ($users as $user)
         <li>
-          {!! $user->displayName !!} has {{ $userItems->where('user_id', $user->id)->pluck('count')->sum() }}
+          {!! $user->displayName !!} has
+          {{ $userItems->where('user_id', $user->id)->pluck('count')->sum() }}
           @if (
               $userItems->where('user_id', $user->id)->pluck('count')->sum() >
                   $userItems->where('user_id', $user->id)->pluck('availableQuantity')->sum())
-            ({{ $userItems->where('user_id', $user->id)->pluck('availableQuantity')->sum() }} Available)
+            ({{ $userItems->where('user_id', $user->id)->pluck('availableQuantity')->sum() }}
+            Available)
             <ul>
               @foreach ($userItems->where('user_id', $user->id) as $item)
                 @if ($item->count > $item->availableQuantity)

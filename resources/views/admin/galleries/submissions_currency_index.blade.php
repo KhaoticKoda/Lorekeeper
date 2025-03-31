@@ -7,7 +7,8 @@
 @section('admin-content')
   {!! breadcrumbs([
       'Admin Panel' => 'admin',
-      ($currency ? $currency->name : 'Gallery Currency') . ' Queue' => 'admin/gallery/currency/pending',
+      ($currency ? $currency->name : 'Gallery Currency') .
+      ' Queue' => 'admin/gallery/currency/pending',
   ]) !!}
 
   <h1>
@@ -26,9 +27,14 @@
   </ul>
 
   <div>
-    {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
+    {!! Form::open([
+        'method' => 'GET',
+        'class' => 'form-inline justify-content-end',
+    ]) !!}
     <div class="form-group mr-sm-3 mb-3">
-      {!! Form::select('gallery_id', $galleries, Request::get('gallery_id'), ['class' => 'form-control']) !!}
+      {!! Form::select('gallery_id', $galleries, Request::get('gallery_id'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mb-3">
       {!! Form::submit('Search', ['class' => 'btn btn-primary']) !!}

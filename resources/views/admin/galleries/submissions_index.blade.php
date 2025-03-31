@@ -5,7 +5,10 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Gallery Submissions Queue' => 'admin/gallery/submissions/pending']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Gallery Submissions Queue' => 'admin/gallery/submissions/pending',
+  ]) !!}
 
   <h1>
     Gallery Submission Queue
@@ -27,9 +30,14 @@
   </ul>
 
   <div>
-    {!! Form::open(['method' => 'GET', 'class' => 'form-inline justify-content-end']) !!}
+    {!! Form::open([
+        'method' => 'GET',
+        'class' => 'form-inline justify-content-end',
+    ]) !!}
     <div class="form-group mr-sm-3 mb-3">
-      {!! Form::select('gallery_id', $galleries, Request::get('gallery_id'), ['class' => 'form-control']) !!}
+      {!! Form::select('gallery_id', $galleries, Request::get('gallery_id'), [
+          'class' => 'form-control',
+      ]) !!}
     </div>
     <div class="form-group mb-3">
       {!! Form::submit('Search', ['class' => 'btn btn-primary']) !!}

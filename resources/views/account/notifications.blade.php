@@ -5,7 +5,10 @@
 @endsection
 
 @section('account-content')
-  {!! breadcrumbs(['My Account' => Auth::user()->url, 'Notifications' => 'notifications']) !!}
+  {!! breadcrumbs([
+      'My Account' => Auth::user()->url,
+      'Notifications' => 'notifications',
+  ]) !!}
 
   <h1>Notifications</h1>
 
@@ -25,7 +28,10 @@
             <span class="badge badge-primary">
               {{ $notifications->where('notification_type_id', $type)->count() }}
             </span>
-            {!! Form::submit('x clear', ['class' => 'badge btn-primary', 'style' => 'display:inline; border: 0;']) !!}
+            {!! Form::submit('x clear', [
+                'class' => 'badge btn-primary',
+                'style' => 'display:inline; border: 0;',
+            ]) !!}
             {!! Form::close() !!}
           </span>
           <a class="card-title h5 collapse-title mb-2"
@@ -77,9 +83,11 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p>This will clear <strong>all</strong> of your notifications. Are you certain you wish to do so?</p>
+          <p>This will clear <strong>all</strong> of your notifications. Are you
+            certain you wish to do so?</p>
           <div class="text-right">
-            <a href="#" id="clearSubmit" class="btn btn-primary">Clear All</a>
+            <a href="#" id="clearSubmit" class="btn btn-primary">Clear
+              All</a>
           </div>
         </div>
       </div>
@@ -109,12 +117,13 @@
       $('.clear-notification').on('click', function(e) {
         e.preventDefault();
         var $row = $(this).parent().parent();
-        $.get("{{ url('notifications/delete') }}/" + $(this).data('id'), function(data) {
-          console.log($(this));
-          $row.fadeOut(300, function() {
-            $(this).remove();
+        $.get("{{ url('notifications/delete') }}/" + $(this).data('id'),
+          function(data) {
+            console.log($(this));
+            $row.fadeOut(300, function() {
+              $(this).remove();
+            });
           });
-        });
       });
 
     });

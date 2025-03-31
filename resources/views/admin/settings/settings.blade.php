@@ -5,12 +5,17 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Site Settings' => 'admin/settings']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Site Settings' => 'admin/settings',
+  ]) !!}
 
   <h1>Site Settings</h1>
 
-  <p>This is a list of settings that can be quickly modified to alter the site behaviour. Please make sure that the values
-    correspond to the possible options as stated in the descriptions! Incorrect values can cause the site to stop working.
+  <p>This is a list of settings that can be quickly modified to alter the site
+    behaviour. Please make sure that the values
+    correspond to the possible options as stated in the descriptions! Incorrect
+    values can cause the site to stop working.
     Additional settings can be found in the code config files.</p>
 
   @if (!count($settings))
@@ -33,7 +38,10 @@
             <td>{{ $setting->key }}</td>
             <td>{{ $setting->description }}</td>
             <td>
-              {!! Form::open(['url' => 'admin/settings/' . $setting->key, 'class' => 'd-flex justify-content-end']) !!}
+              {!! Form::open([
+                  'url' => 'admin/settings/' . $setting->key,
+                  'class' => 'd-flex justify-content-end',
+              ]) !!}
               <div class="form-group mr-3 mb-3">
                 {!! Form::text('value', $setting->value, ['class' => 'form-control']) !!}
               </div>

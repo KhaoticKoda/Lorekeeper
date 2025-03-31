@@ -5,11 +5,15 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Loot Tables' => 'admin/data/loot-tables']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Loot Tables' => 'admin/data/loot-tables',
+  ]) !!}
 
   <h1>Loot Tables</h1>
 
-  <p>Loot tables can be attached to prompts as a reward for doing the prompt. This will roll a random reward from the
+  <p>Loot tables can be attached to prompts as a reward for doing the prompt. This
+    will roll a random reward from the
     contents of the table. Tables can be chained as well.</p>
 
   <div class="text-right mb-3">
@@ -33,13 +37,15 @@
           <div class="col-3 col-md-4">{{ $table->name }}</div>
           <div class="col-3 col-md-5">{!! $table->display_name !!}</div>
           <div class="col-3 col-md-1 text-right">
-            <a href="{{ url('admin/data/loot-tables/edit/' . $table->id) }}" class="btn btn-primary py-0 px-2">Edit</a>
+            <a href="{{ url('admin/data/loot-tables/edit/' . $table->id) }}"
+               class="btn btn-primary py-0 px-2">Edit</a>
           </div>
         </div>
       @endforeach
     </div>
     {!! $tables->render() !!}
-    <div class="text-center mt-4 small text-muted">{{ $tables->total() }} result{{ $tables->total() == 1 ? '' : 's' }}
+    <div class="text-center mt-4 small text-muted">{{ $tables->total() }}
+      result{{ $tables->total() == 1 ? '' : 's' }}
       found.</div>
   @endif
 

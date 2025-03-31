@@ -5,17 +5,28 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Invitation Keys' => 'admin/invitations']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Invitation Keys' => 'admin/invitations',
+  ]) !!}
 
   <h1>Invitation Keys</h1>
 
-  <p>Invitation keys can be used to register an account when the site is closed for registration (see the setting
-    "is_registration_open" in <a href="{{ url('admin/settings') }}">Site Settings</a>). Users will be able to register by
-    entering the code that is generated with the key. Generated invitations can be deleted only if they have not been
+  <p>Invitation keys can be used to register an account when the site is closed
+    for registration (see the setting
+    "is_registration_open" in <a href="{{ url('admin/settings') }}">Site
+      Settings</a>). Users will be able to register by
+    entering the code that is generated with the key. Generated invitations can be
+    deleted only if they have not been
     used.</p>
 
-  {!! Form::open(['url' => 'admin/invitations/create', 'class' => 'text-right mb-3']) !!}
-  {!! Form::submit('Generate New Invitation', ['class' => 'btn btn-primary']) !!}
+  {!! Form::open([
+      'url' => 'admin/invitations/create',
+      'class' => 'text-right mb-3',
+  ]) !!}
+  {!! Form::submit('Generate New Invitation', [
+      'class' => 'btn btn-primary',
+  ]) !!}
   {!! Form::close() !!}
   @if (!count($invitations))
     <p>No invitations found.</p>

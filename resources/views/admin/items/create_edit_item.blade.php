@@ -15,7 +15,8 @@
 
   <h1>{{ $item->id ? 'Edit' : 'Create' }} Item
     @if ($item->id)
-      <a href="#" class="btn btn-outline-danger float-right delete-item-button">Delete Item</a>
+      <a href="#" class="btn btn-outline-danger float-right delete-item-button">Delete
+        Item</a>
     @endif
   </h1>
 
@@ -37,8 +38,12 @@
     <div class="text-muted">Recommended size: 100px x 100px</div>
     @if ($item->has_image)
       <div class="form-check">
-        {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-        {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+        {!! Form::checkbox('remove_image', 1, false, [
+            'class' => 'form-check-input',
+        ]) !!}
+        {!! Form::label('remove_image', 'Remove current image', [
+            'class' => 'form-check-label',
+        ]) !!}
       </div>
     @endif
   </div>
@@ -47,14 +52,18 @@
     <div class="col-md">
       <div class="form-group">
         {!! Form::label('Item Category (Optional)') !!}
-        {!! Form::select('item_category_id', $categories, $item->item_category_id, ['class' => 'form-control']) !!}
+        {!! Form::select('item_category_id', $categories, $item->item_category_id, [
+            'class' => 'form-control',
+        ]) !!}
       </div>
     </div>
     @if (Config::get('lorekeeper.extensions.item_entry_expansion.extra_fields'))
       <div class="col-md">
         <div class="form-group">
           {!! Form::label('Item Rarity (Optional)') !!} {!! add_help('This should be a number.') !!}
-          {!! Form::number('rarity', $item && $item->rarity ? $item->rarity : '', ['class' => 'form-control']) !!}
+          {!! Form::number('rarity', $item && $item->rarity ? $item->rarity : '', [
+              'class' => 'form-control',
+          ]) !!}
         </div>
       </div>
     @endif
@@ -65,7 +74,9 @@
       <div class="col-md">
         <div class="form-group">
           {!! Form::label('Reference Link (Optional)') !!} {!! add_help('An optional link to an additional reference') !!}
-          {!! Form::text('reference_url', $item->reference_url, ['class' => 'form-control']) !!}
+          {!! Form::text('reference_url', $item->reference_url, [
+              'class' => 'form-control',
+          ]) !!}
         </div>
       </div>
       <div class="col-md">
@@ -73,10 +84,15 @@
         <div class="row">
           <div class="col-md">
             <div class="form-group">
-              {!! Form::select('artist_id', $userOptions, $item && $item->artist_id ? $item->artist_id : null, [
-                  'class' => 'form-control mr-2 selectize',
-                  'placeholder' => 'Select a User',
-              ]) !!}
+              {!! Form::select(
+                  'artist_id',
+                  $userOptions,
+                  $item && $item->artist_id ? $item->artist_id : null,
+                  [
+                      'class' => 'form-control mr-2 selectize',
+                      'placeholder' => 'Select a User',
+                  ],
+              ) !!}
             </div>
           </div>
           <div class="col-md">
@@ -94,13 +110,19 @@
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $item->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $item->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   @if (Config::get('lorekeeper.extensions.item_entry_expansion.extra_fields'))
     <div class="form-group">
-      {!! Form::label('Uses (Optional)') !!} {!! add_help('A short description of the item\'s use(s). Supports raw HTML if need be, but keep it brief.') !!}
-      {!! Form::text('uses', $item && $item->uses ? $item->uses : '', ['class' => 'form-control']) !!}
+      {!! Form::label('Uses (Optional)') !!} {!! add_help(
+          'A short description of the item\'s use(s). Supports raw HTML if need be, but keep it brief.',
+      ) !!}
+      {!! Form::text('uses', $item && $item->uses ? $item->uses : '', [
+          'class' => 'form-control',
+      ]) !!}
     </div>
   @endif
 
@@ -110,7 +132,9 @@
           'class' => 'form-check-input',
           'data-toggle' => 'toggle',
       ]) !!}
-      {!! Form::label('allow_transfer', 'Allow User → User Transfer', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+      {!! Form::label('allow_transfer', 'Allow User → User Transfer', [
+          'class' => 'form-check-label ml-3',
+      ]) !!} {!! add_help(
           'If this is off, users will not be able to transfer this item to other users. Non-account-bound items can be account-bound when granted to users directly.',
       ) !!}
     </div>
@@ -120,7 +144,9 @@
             'class' => 'form-check-input',
             'data-toggle' => 'toggle',
         ]) !!}
-        {!! Form::label('is_released', 'Is Released', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
+        {!! Form::label('is_released', 'Is Released', [
+            'class' => 'form-check-label ml-3',
+        ]) !!} {!! add_help(
             'If this is off, users will not be able to view information for the item/it will be hidden from view. This is overridden by the item being owned at any point by anyone on the site.',
         ) !!}
       </div>
@@ -133,17 +159,24 @@
       <div class="col-md">
         <div class="form-group">
           {!! Form::label('release', 'Source (Optional)') !!} {!! add_help('The original and/or general source of the item. Should be brief.') !!}
-          {!! Form::text('release', $item && $item->source ? $item->source : '', ['class' => 'form-control']) !!}
+          {!! Form::text('release', $item && $item->source ? $item->source : '', [
+              'class' => 'form-control',
+          ]) !!}
         </div>
       </div>
       <div class="col-md">
         <div class="form-group">
           {!! Form::label('prompts[]', 'Drop Location(s) (Optional)') !!} {!! add_help('You can select up to 10 prompts at once.') !!}
-          {!! Form::select('prompts[]', $prompts, $item && isset($item->data['prompts']) ? $item->data['prompts'] : '', [
-              'id' => 'promptsList',
-              'class' => 'form-control',
-              'multiple',
-          ]) !!}
+          {!! Form::select(
+              'prompts[]',
+              $prompts,
+              $item && isset($item->data['prompts']) ? $item->data['prompts'] : '',
+              [
+                  'id' => 'promptsList',
+                  'class' => 'form-control',
+                  'multiple',
+              ],
+          ) !!}
         </div>
       </div>
     </div>
@@ -151,7 +184,8 @@
 
   @if (Config::get('lorekeeper.extensions.item_entry_expansion.resale_function'))
     <h3>Resale Information</h3>
-    <p>The currency and amount users will be able to sell this item from their inventory for. If quantity is not set, the
+    <p>The currency and amount users will be able to sell this item from their
+      inventory for. If quantity is not set, the
       item will be unable to be sold.</p>
     <div class="row">
       <div class="col-md">
@@ -160,7 +194,8 @@
           {!! Form::select(
               'currency_id',
               $userCurrencies,
-              isset($item->data['resell']) && App\Models\Currency\Currency::where('id', $item->resell->flip()->pop())->first()
+              isset($item->data['resell']) &&
+              App\Models\Currency\Currency::where('id', $item->resell->flip()->pop())->first()
                   ? $item->resell->flip()->pop()
                   : null,
               ['class' => 'form-control'],
@@ -170,23 +205,30 @@
       <div class="col-md">
         <div class="form-group">
           {!! Form::label('currency_quantity', 'Quantity') !!}
-          {!! Form::text('currency_quantity', isset($item->data['resell']) ? $item->resell->pop() : null, [
-              'class' => 'form-control',
-          ]) !!}
+          {!! Form::text(
+              'currency_quantity',
+              isset($item->data['resell']) ? $item->resell->pop() : null,
+              [
+                  'class' => 'form-control',
+              ],
+          ) !!}
         </div>
       </div>
     </div>
   @endif
 
   <div class="text-right">
-    {!! Form::submit($item->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($item->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
 
   @if ($item->id)
     <h3>Item Tags</h3>
-    <p>Item tags indicate extra functionality for the item. Click on the edit button to edit the specific item tag's data.
+    <p>Item tags indicate extra functionality for the item. Click on the edit
+      button to edit the specific item tag's data.
     </p>
     @if (count($item->tags))
       <table class="table">
@@ -201,7 +243,8 @@
         @foreach ($item->tags as $tag)
           <tr>
             <td>{!! $tag->displayTag !!}</td>
-            <td class="{{ $tag->is_active ? 'text-success' : 'text-danger' }}">{{ $tag->is_active ? 'Yes' : 'No' }}</td>
+            <td class="{{ $tag->is_active ? 'text-success' : 'text-danger' }}">
+              {{ $tag->is_active ? 'Yes' : 'No' }}</td>
             <td class="text-right">
               <a href="{{ url('admin/data/items/tag/' . $item->id . '/' . $tag->tag) }}"
                  class="btn btn-outline-primary">Edit</a>
@@ -213,7 +256,8 @@
       <p>No item tags attached to this item.</p>
     @endif
     <div class="text-right">
-      <a href="{{ url('admin/data/items/tag/' . $item->id) }}" class="btn btn-outline-primary">Add a Tag</a>
+      <a href="{{ url('admin/data/items/tag/' . $item->id) }}" class="btn btn-outline-primary">Add a
+        Tag</a>
     </div>
 
     <h3>Preview</h3>
@@ -243,7 +287,9 @@
 
       $('.delete-item-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/items/delete') }}/{{ $item->id }}", 'Delete Item');
+        loadModal(
+          "{{ url('admin/data/items/delete') }}/{{ $item->id }}",
+          'Delete Item');
       });
     });
   </script>

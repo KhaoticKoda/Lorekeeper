@@ -5,12 +5,17 @@
 @endsection
 
 @section('admin-content')
-  {!! breadcrumbs(['Admin Panel' => 'admin', 'Subtypes' => 'admin/data/subtypes']) !!}
+  {!! breadcrumbs([
+      'Admin Panel' => 'admin',
+      'Subtypes' => 'admin/data/subtypes',
+  ]) !!}
 
   <h1>Subtypes</h1>
 
-  <p>Subtypes are optional categories that can be added to species. Characters require a species, but do not require a
-    subtype. Note that the sort order here reflects the sort order under the species name as well.</p>
+  <p>Subtypes are optional categories that can be added to species. Characters
+    require a species, but do not require a
+    subtype. Note that the sort order here reflects the sort order under the
+    species name as well.</p>
 
   <div class="text-right mb-3">
     <a class="btn btn-primary" href="{{ url('admin/data/subtypes/create') }}">
@@ -33,7 +38,8 @@
               {!! $subtype->species->displayName !!}
             </td>
             <td class="text-right">
-              <a href="{{ url('admin/data/subtypes/edit/' . $subtype->id) }}" class="btn btn-primary">Edit</a>
+              <a href="{{ url('admin/data/subtypes/edit/' . $subtype->id) }}"
+                 class="btn btn-primary">Edit</a>
             </td>
           </tr>
         @endforeach

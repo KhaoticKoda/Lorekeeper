@@ -50,19 +50,27 @@
     <div class="text-muted">Recommended size: 200px x 200px</div>
     @if ($rarity->has_image)
       <div class="form-check">
-        {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-        {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+        {!! Form::checkbox('remove_image', 1, false, [
+            'class' => 'form-check-input',
+        ]) !!}
+        {!! Form::label('remove_image', 'Remove current image', [
+            'class' => 'form-check-label',
+        ]) !!}
       </div>
     @endif
   </div>
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $rarity->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $rarity->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="text-right">
-    {!! Form::submit($rarity->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($rarity->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -87,7 +95,9 @@
     $(document).ready(function() {
       $('.delete-rarity-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/rarities/delete') }}/{{ $rarity->id }}", 'Delete Rarity');
+        loadModal(
+          "{{ url('admin/data/rarities/delete') }}/{{ $rarity->id }}",
+          'Delete Rarity');
       });
     });
   </script>

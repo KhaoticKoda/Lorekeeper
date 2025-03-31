@@ -15,12 +15,15 @@
 
   <h1>{{ $subtype->id ? 'Edit' : 'Create' }} Subtype
     @if ($subtype->id)
-      <a href="#" class="btn btn-danger float-right delete-subtype-button">Delete Subtype</a>
+      <a href="#" class="btn btn-danger float-right delete-subtype-button">Delete
+        Subtype</a>
     @endif
   </h1>
 
   {!! Form::open([
-      'url' => $subtype->id ? 'admin/data/subtypes/edit/' . $subtype->id : 'admin/data/subtypes/create',
+      'url' => $subtype->id
+          ? 'admin/data/subtypes/edit/' . $subtype->id
+          : 'admin/data/subtypes/create',
       'files' => true,
   ]) !!}
 
@@ -33,7 +36,9 @@
 
   <div class="form-group">
     {!! Form::label('Species') !!}
-    {!! Form::select('species_id', $specieses, $subtype->species_id, ['class' => 'form-control']) !!}
+    {!! Form::select('species_id', $specieses, $subtype->species_id, [
+        'class' => 'form-control',
+    ]) !!}
   </div>
 
   <div class="form-group">
@@ -42,19 +47,27 @@
     <div class="text-muted">Recommended size: 200px x 200px</div>
     @if ($subtype->has_image)
       <div class="form-check">
-        {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
-        {!! Form::label('remove_image', 'Remove current image', ['class' => 'form-check-label']) !!}
+        {!! Form::checkbox('remove_image', 1, false, [
+            'class' => 'form-check-input',
+        ]) !!}
+        {!! Form::label('remove_image', 'Remove current image', [
+            'class' => 'form-check-label',
+        ]) !!}
       </div>
     @endif
   </div>
 
   <div class="form-group">
     {!! Form::label('Description (Optional)') !!}
-    {!! Form::textarea('description', $subtype->description, ['class' => 'form-control wysiwyg']) !!}
+    {!! Form::textarea('description', $subtype->description, [
+        'class' => 'form-control wysiwyg',
+    ]) !!}
   </div>
 
   <div class="text-right">
-    {!! Form::submit($subtype->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($subtype->id ? 'Edit' : 'Create', [
+        'class' => 'btn btn-primary',
+    ]) !!}
   </div>
 
   {!! Form::close() !!}
@@ -75,7 +88,9 @@
     $(document).ready(function() {
       $('.delete-subtype-button').on('click', function(e) {
         e.preventDefault();
-        loadModal("{{ url('admin/data/subtypes/delete') }}/{{ $subtype->id }}", 'Delete Subtype');
+        loadModal(
+          "{{ url('admin/data/subtypes/delete') }}/{{ $subtype->id }}",
+          'Delete Subtype');
       });
     });
   </script>
