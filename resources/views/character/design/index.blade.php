@@ -39,7 +39,8 @@
                 @if ($status != 'draft')
                     <th width="20%">Status</th>
                 @endif
-                <th></th>
+                <th>
+</th>
             </tr>
         </thead>
         <tbody>
@@ -52,13 +53,15 @@
                             <span class="badge badge-{{ $r->status == 'Pending' ? 'secondary' : ($r->status == 'Approved' ? 'success' : 'danger') }}">{{ $r->status }}</span>
                         </td>
                     @endif
-                    <td class="text-right"><a href="{{ $r->url }}" class="btn btn-primary btn-sm">Details</a></td>
+                    <td class="text-right">
+<a href="{{ $r->url }}" class="btn btn-primary btn-sm">Details</a>
+</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     {!! $requests->render() !!}
-@else 
+@else
     <p>No {{ 'requests' }} found.</p>
 @endif
 

@@ -6,7 +6,9 @@
 @if(isset($request->staff_id))
     @if($request->staff_comments && ($request->user_id == Auth::user()->id || Auth::user()->hasPower('manage_submissions')))
         <h5 class="text-danger">Staff Comments ({!! $request->staff->displayName !!})</h5>
-        <div class="card border-danger mb-3"><div class="card-body">{!! nl2br(htmlentities($request->staff_comments)) !!}</div></div>
+        <div class="card border-danger mb-3">
+<div class="card-body">{!! nl2br(htmlentities($request->staff_comments)) !!}</div>
+</div>
     @else
         <p>No staff comment was provided.</p>
     @endif
@@ -21,7 +23,8 @@
             if($vote == 2) $approveSum += 1;
         }
     ?>
-    <div class="card mb-3"><div class="card-body">
+    <div class="card mb-3">
+<div class="card-body">
         <h5 class="text-left">{{$request->status == 'Pending' ? 'Vote' : 'Past Votes'}} on this {{ $request->update_type == 'MYO' ? 'MYO Submission' : 'Design Update' }}
         @if($request->status == 'Pending')
             <span class="text-right float-right">
@@ -29,13 +32,19 @@
                     <div class="col-sm-6 text-center text-danger">
                         {{ $rejectSum }}/{{ Settings::get('design_votes_needed') }}
                         {!! Form::open(['url' => 'admin/designs/vote/'.$request->id.'/reject', 'id' => 'voteRejectForm']) !!}
-                            <button class="btn {{ $request->voteData->get(Auth::user()->id) == 1 ? 'btn-danger' : 'btn-outline-danger' }}" style="min-width:40px;" data-action="reject"><i class="fas fa-times"></i></button>
+                            <button class="btn {{ $request->voteData->get(Auth::user()->id) == 1 ? 'btn-danger' : 'btn-outline-danger' }}" style="min-width:40px;" data-action="reject">
+<i class="fas fa-times">
+</i>
+</button>
                         {!! Form::close() !!}
                     </div>
                     <div class="col-sm-6 text-center text-success">
                         {{ $approveSum }}/{{ Settings::get('design_votes_needed') }}
                         {!! Form::open(['url' => 'admin/designs/vote/'.$request->id.'/approve', 'id' => 'voteApproveForm']) !!}
-                            <button class="btn {{ $request->voteData->get(Auth::user()->id) == 2 ? 'btn-success' : 'btn-outline-success' }}" style="min-width:40px;" data-action="approve"><i class="fas fa-check"></i></button>
+                            <button class="btn {{ $request->voteData->get(Auth::user()->id) == 2 ? 'btn-success' : 'btn-outline-success' }}" style="min-width:40px;" data-action="approve">
+<i class="fas fa-check">
+</i>
+</button>
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -77,23 +86,33 @@
         @else
             <p>No votes have been cast yet!</p>
         @endif
-    </div></div>
+    </div>
+</div>
 @endif
 
 <ul class="nav nav-tabs mb-3">
     <li class="nav-item">
-        <a class="nav-link {{ set_active('designs/' . $request->id) }}" href="{{ url('designs/' . $request->id) }}">@if($request->is_complete)<i class="text-success fas fa-check-circle fa-fw mr-2"></i> @endif Status</a>
+        <a class="nav-link {{ set_active('designs/' . $request->id) }}" href="{{ url('designs/' . $request->id) }}">@if($request->is_complete)<i class="text-success fas fa-check-circle fa-fw mr-2">
+</i> @endif Status</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ set_active('designs/' . $request->id . '/comments') }}" href="{{ url('designs/' . $request->id . '/comments') }}"><i class="text-{{ $request->has_comments ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2"></i> Comments</a>
+        <a class="nav-link {{ set_active('designs/' . $request->id . '/comments') }}" href="{{ url('designs/' . $request->id . '/comments') }}">
+<i class="text-{{ $request->has_comments ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2">
+</i> Comments</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ set_active('designs/' . $request->id . '/image') }}" href="{{ url('designs/' . $request->id . '/image') }}"><i class="text-{{ $request->has_image ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2"></i> Masterlist Image</a>
+        <a class="nav-link {{ set_active('designs/' . $request->id . '/image') }}" href="{{ url('designs/' . $request->id . '/image') }}">
+<i class="text-{{ $request->has_image ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2">
+</i> Masterlist Image</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ set_active('designs/' . $request->id . '/addons') }}" href="{{ url('designs/' . $request->id . '/addons') }}"><i class="text-{{ $request->has_addons ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2"></i> Add-ons</a>
+        <a class="nav-link {{ set_active('designs/' . $request->id . '/addons') }}" href="{{ url('designs/' . $request->id . '/addons') }}">
+<i class="text-{{ $request->has_addons ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2">
+</i> Add-ons</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ set_active('designs/' . $request->id . '/traits') }}" href="{{ url('designs/' . $request->id . '/traits') }}"><i class="text-{{ $request->has_features ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2"></i> Traits</a>
+        <a class="nav-link {{ set_active('designs/' . $request->id . '/traits') }}" href="{{ url('designs/' . $request->id . '/traits') }}">
+<i class="text-{{ $request->has_features ? 'success far fa-circle' : 'danger fas fa-times'  }} fa-fw mr-2">
+</i> Traits</a>
     </li>
 </ul>

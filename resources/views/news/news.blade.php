@@ -6,11 +6,12 @@
     {!! breadcrumbs(['Site News' => 'news', $news->title => $news->url]) !!}
     @include('news._news', ['news' => $news, 'page' => TRUE])
 <hr>
-<br><br>
+<br>
+<br>
 
 @comments(['model' => $news,
         'perPage' => 5
     ])
 
 @endsection
-    
+

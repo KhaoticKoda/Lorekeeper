@@ -3,9 +3,15 @@
 @else
     <div class="text-center">
         @if($item->has_image)
-            <div class="mb-1"><a href="{{ $item->url }}"><img src="{{ $item->imageUrl }}" alt="{{ $item->name }}"/></a></div>
+            <div class="mb-1">
+<a href="{{ $item->url }}">
+<img src="{{ $item->imageUrl }}" alt="{{ $item->name }}"/>
+</a>
+</div>
         @endif
-        <div @if(count($item->tags)) class="mb-1" @endif><a href="{{ $item->idUrl }}">{{ $item->name }}</a></div>
+        <div @if(count($item->tags)) class="mb-1" @endif>
+<a href="{{ $item->idUrl }}">{{ $item->name }}</a>
+</div>
         @if(count($item->tags))
             <div>
                 @foreach($item->tags as $tag)
@@ -28,14 +34,19 @@
             <thead class="thead">
                 <tr class="d-flex">
                     @if($user && !$readOnly && ($stack->first()->user_id == $user->id || $user->hasPower('edit_inventories')))
-                        <th class="col-1"><input id="toggle-checks" type="checkbox" onclick="toggleChecks(this)"></th>
+                        <th class="col-1">
+<input id="toggle-checks" type="checkbox" onclick="toggleChecks(this)">
+</th>
                         <th class="col-4">Source</th>
                     @else
                         <th class="col-5">Source</th>
                     @endif
                     <th class="col-3">Notes</th>
                     <th class="col-3">Quantity</th>
-                    <th class="col-1"><i class="fas fa-lock invisible"></i></th>
+                    <th class="col-1">
+<i class="fas fa-lock invisible">
+</i>
+</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +70,8 @@
                         @endif
                         <td class="col-1">
                             @if(!$itemRow->isTransferrable)
-                                <i class="fas fa-lock" data-toggle="tooltip" title="Account-bound items cannot be transferred but can be deleted."></i>
+                                <i class="fas fa-lock" data-toggle="tooltip" title="Account-bound items cannot be transferred but can be deleted.">
+</i>
                             @endif
                         </td>
                     </tr>

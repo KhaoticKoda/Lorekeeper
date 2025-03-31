@@ -15,6 +15,7 @@
             return false;
         }
         $(this).addClass('disabled');
-        $(this).html('<i class="fas fa-spinner fa-spin"></i>');
+        $(this).html('<i class="fas fa-spinner fa-spin">
+</i>');
     });
 </script>

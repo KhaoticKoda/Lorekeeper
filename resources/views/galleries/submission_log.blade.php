@@ -16,7 +16,8 @@
         @if(Settings::get('gallery_submissions_reward_currency') && $submission->gallery->currency_enabled)
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5>{!! $currency->displayName !!} Award Info <a class="small inventory-collapse-toggle collapse-toggle {{ $submission->status == 'Accepted' ? '' : 'collapsed' }}" href="#currencyForm" data-toggle="collapse">Show</a></h5>
+                    <h5>{!! $currency->displayName !!} Award Info <a class="small inventory-collapse-toggle collapse-toggle {{ $submission->status == 'Accepted' ? '' : 'collapsed' }}" href="#currencyForm" data-toggle="collapse">Show</a>
+</h5>
                 </div>
                 <div class="card-body collapse {{ $submission->status == 'Accepted' ? 'show' : '' }}" id="currencyForm">
                     @if($submission->status == 'Accepted')
@@ -58,7 +59,8 @@
                                 <p>This submission hasn't been evaluated yet. You'll receive a notification once it has!</p>
                             @endif
                         @else
-                            @if(isset($submission->data['staff']))<p><strong>Processed By:</strong> {!! App\Models\User\User::find($submission->data['staff'])->displayName !!}</p>@endif
+                            @if(isset($submission->data['staff']))<p>
+<strong>Processed By:</strong> {!! App\Models\User\User::find($submission->data['staff'])->displayName !!}</p>@endif
                             @if(isset($submission->data['ineligible']) && $submission->data['ineligible'] == 1)
                                 <p>This submission has been evaluated as ineligible for {{ $currency->name }} rewards.</p>
                             @else
@@ -98,7 +100,8 @@
                             @foreach($submission->data['currencyData'] as $key=>$data)
                                 <div class="col-md-3 text-center">
                                     @if(isset($data))
-                                        <strong>{{ Config::get('lorekeeper.group_currency_form')[$key]['name'] }}:</strong><br/>
+                                        <strong>{{ Config::get('lorekeeper.group_currency_form')[$key]['name'] }}:</strong>
+<br/>
                                         @if(Config::get('lorekeeper.group_currency_form')[$key]['type'] == 'choice')
                                             @if(isset(Config::get('lorekeeper.group_currency_form')[$key]['multiple']) && Config::get('lorekeeper.group_currency_form')[$key]['multiple'] == 'true')
                                                 @foreach($data as $answer)
@@ -122,7 +125,8 @@
                                     ・ <strong> Times {{ $submission->characters->count() }} Characters:</strong> {{ round($submission->data['total'] * $submission->characters->count()) }}
                                 @endif
                                 @if($submission->collaborators->count())
-                                    <br/><strong>Divided by {{ $submission->collaborators->count() }} Collaborators:</strong> {{ round($submission->data['total'] / $submission->collaborators->count()) }}
+                                    <br/>
+<strong>Divided by {{ $submission->collaborators->count() }} Collaborators:</strong> {{ round($submission->data['total'] / $submission->collaborators->count()) }}
                                     @if($submission->characters->count())
                                         ・ <strong> Times {{ $submission->characters->count() }} Characters:</strong> {{ round(round($submission->data['total'] * $submission->characters->count()) / $submission->collaborators->count()) }}
                                     @endif

@@ -55,7 +55,8 @@
             @include('widgets._loot_select', ['loots' => null, 'showLootTables' => false, 'showRaffles' => false])
         @endif
         @if(!$isClaim)
-            <div id="rewards" class="mb-3"></div>
+            <div id="rewards" class="mb-3">
+</div>
         @endif
 
         <h2>Characters</h2>

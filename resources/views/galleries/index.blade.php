@@ -14,7 +14,10 @@
             <div class="card-header">
                 <h4>
                     {!! $gallery->displayName !!}
-                    @if(Auth::check() && $gallery->canSubmit(Auth::user())) <a href="{{ url('gallery/submit/'.$gallery->id) }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i></a> @endif
+                    @if(Auth::check() && $gallery->canSubmit(Auth::user())) <a href="{{ url('gallery/submit/'.$gallery->id) }}" class="btn btn-primary float-right">
+<i class="fas fa-plus">
+</i>
+</a> @endif
                 </h4>
                 @if($gallery->children->count() || (isset($gallery->start_at) || isset($gallery->end_at)))
                     <p>
@@ -47,7 +50,9 @@
                         @endforeach
                     </div>
                     @if($gallery->submissions->where('status', 'Accepted')->count() > 4)
-                        <div class="text-right"><a href="{{ url('gallery/'.$gallery->id) }}">See More...</a></div>
+                        <div class="text-right">
+<a href="{{ url('gallery/'.$gallery->id) }}">See More...</a>
+</div>
                     @endif
                 @elseif($gallery->children->count() && App\Models\Gallery\GallerySubmission::whereIn('gallery_id', $gallery->children->pluck('id')->toArray())->where('is_visible', 1)->where('status', 'Accepted')->count())
                     <div class="row">

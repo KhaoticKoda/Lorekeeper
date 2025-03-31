@@ -1,9 +1,15 @@
 <div class="transfer-row mb-2">
-    <div class="transfer-thumbnail"><a href="{{ $transfer->character->url }}"><img src="{{ $transfer->character->image->thumbnailUrl }}" class="img-thumbnail" alt="Thumbnail for {{ $transfer->character->fullName }}" /></a></div>
+    <div class="transfer-thumbnail">
+<a href="{{ $transfer->character->url }}">
+<img src="{{ $transfer->character->image->thumbnailUrl }}" class="img-thumbnail" alt="Thumbnail for {{ $transfer->character->fullName }}" />
+</a>
+</div>
     <div class="transfer-info card ml-2">
         <div class="card-body">
             <div class="transfer-info-content">
-                <h3 class="mb-0 transfer-info-header"><a href="{{ $transfer->character->url }}">{{ $transfer->character->fullName }}</a></h3>
+                <h3 class="mb-0 transfer-info-header">
+<a href="{{ $transfer->character->url }}">{{ $transfer->character->fullName }}</a>
+</h3>
                 <div class="transfer-info-body mb-3">
                     @if(Auth::user()->id == $transfer->recipient_id)
                         <p>Transfer sent by {!! $transfer->sender->displayName !!}, {!! format_date($transfer->created_at) !!}</p>
@@ -13,9 +19,13 @@
 
                     @if($transfer->isActive && $transfersQueue)
                         @if($transfer->is_approved)
-                            <h5 class="mb-0"><i class="text-success far fa-circle fa-fw mr-2"></i> Transfer approved {!! add_help('This transfer has been approved by a mod and will be processed once accepted.') !!}</h5>
+                            <h5 class="mb-0">
+<i class="text-success far fa-circle fa-fw mr-2">
+</i> Transfer approved {!! add_help('This transfer has been approved by a mod and will be processed once accepted.') !!}</h5>
                         @else
-                            <h5 class="mb-0"><i class="text-danger fas fa-times fa-fw mr-2"></i> Transfer awaiting approval {!! add_help('This transfer has not been approved by a mod yet. Once approved and accepted by the recipient, it will be processed.') !!}</h5>
+                            <h5 class="mb-0">
+<i class="text-danger fas fa-times fa-fw mr-2">
+</i> Transfer awaiting approval {!! add_help('This transfer has not been approved by a mod yet. Once approved and accepted by the recipient, it will be processed.') !!}</h5>
                         @endif
                     @elseif(!$transfer->isActive)
                         @if($transfer->reason)

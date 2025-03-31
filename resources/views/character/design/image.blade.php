@@ -16,13 +16,17 @@
                 <div class="col-md-6">
                     <h3 class="text-center">Main Image</h3>
                     <div class="text-center">
-                        <a href="{{ $request->imageUrl }}"><img src="{{ $request->imageUrl }}" class="mw-100" alt="Request {{ $request->id }}" /></a>
+                        <a href="{{ $request->imageUrl }}">
+<img src="{{ $request->imageUrl }}" class="mw-100" alt="Request {{ $request->id }}" />
+</a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <h3 class="text-center">Thumbnail Image</h3>
                     <div class="text-center">
-                        <a href="{{ $request->thumbnailUrl }}"><img src="{{ $request->thumbnailUrl }}" class="mw-100" alt="Thumbnail for request {{ $request->id }}" /></a>
+                        <a href="{{ $request->thumbnailUrl }}">
+<img src="{{ $request->thumbnailUrl }}" class="mw-100" alt="Thumbnail for request {{ $request->id }}" />
+</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +36,9 @@
             <div class="card-body">
                 <h4 class="mb-3">Credits</h4>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Design</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Design</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">
                         @foreach($request->designers as $designer)
                             <div>{!! $designer->displayLink() !!}</div>
@@ -40,7 +46,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Art</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Art</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">
                         @foreach($request->artists as $artist)
                             <div>{!! $artist->displayLink() !!}</div>

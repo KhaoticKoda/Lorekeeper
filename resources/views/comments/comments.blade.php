@@ -64,7 +64,9 @@
     {{ $grouped_comments->links() }}
 @endisset
 
-<br><br><br>
+<br>
+<br>
+<br>
 @auth
     @include('comments._form')
 @else

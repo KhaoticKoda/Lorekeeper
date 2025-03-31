@@ -28,10 +28,14 @@
       <div class="col-12 col-md-2">{!! $log->user->displayName !!}</div>
       <div class="col-6 col-md-2">{!! $log->prompt_id ? $log->prompt->displayName : '---' !!}</div>
       <div class="col-6 col-md-4">
-        <span class="ubt-texthide"><a href="{{ $log->url }}">{{ $log->url }}</a></span>
+        <span class="ubt-texthide">
+<a href="{{ $log->url }}">{{ $log->url }}</a>
+</span>
       </div>
       <div class="col-6 col-md-3">{!! pretty_date($log->created_at) !!}</div>
-      <div class="col-6 col-md-1"><a href="{{ $log->viewUrl }}" class="btn btn-primary btn-sm py-0 px-1">Details</a></div>
+      <div class="col-6 col-md-1">
+<a href="{{ $log->viewUrl }}" class="btn btn-primary btn-sm py-0 px-1">Details</a>
+</div>
     </div>
   @endforeach
 </div>

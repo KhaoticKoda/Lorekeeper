@@ -5,41 +5,57 @@
 
 <div class="mb-1">
     <div class="row">
-        <div class="col-md-2 col-4"><h5>User</h5></div>
+        <div class="col-md-2 col-4">
+<h5>User</h5>
+</div>
         <div class="col-md-10 col-8">{!! $submission->user->displayName !!}</div>
     </div>
     @if($submission->prompt_id)
         <div class="row">
-            <div class="col-md-2 col-4"><h5>Prompt</h5></div>
+            <div class="col-md-2 col-4">
+<h5>Prompt</h5>
+</div>
             <div class="col-md-10 col-8">{!! $submission->prompt->displayName !!}</div>
         </div>
     @endif
     <div class="row">
-        <div class="col-md-2 col-4"><h5>URL</h5></div>
-        <div class="col-md-10 col-8"><a href="{{ $submission->url }}">{{ $submission->url }}</a></div>
+        <div class="col-md-2 col-4">
+<h5>URL</h5>
+</div>
+        <div class="col-md-10 col-8">
+<a href="{{ $submission->url }}">{{ $submission->url }}</a>
+</div>
     </div>
     <div class="row">
-        <div class="col-md-2 col-4"><h5>Submitted</h5></div>
+        <div class="col-md-2 col-4">
+<h5>Submitted</h5>
+</div>
         <div class="col-md-10 col-8">{!! format_date($submission->created_at) !!} ({{ $submission->created_at->diffForHumans() }})</div>
     </div>
     @if($submission->status != 'Pending')
         <div class="row">
-            <div class="col-md-2 col-4"><h5>Processed</h5></div>
+            <div class="col-md-2 col-4">
+<h5>Processed</h5>
+</div>
             <div class="col-md-10 col-8">{!! format_date($submission->updated_at) !!} ({{ $submission->updated_at->diffForHumans() }}) by {!! $submission->staff->displayName !!}</div>
         </div>
     @endif
 </div>
 <h2>Comments</h2>
-<div class="card mb-3"><div class="card-body">{!! nl2br(htmlentities($submission->comments)) !!}</div></div>
+<div class="card mb-3">
+<div class="card-body">{!! nl2br(htmlentities($submission->comments)) !!}</div>
+</div>
 @if(Auth::check() && $submission->staff_comments && ($submission->user_id == Auth::user()->id || Auth::user()->hasPower('manage_submissions')))
     <h2>Staff Comments</h2>
-    <div class="card mb-3"><div class="card-body">
+    <div class="card mb-3">
+<div class="card-body">
 	    @if(isset($submission->parsed_staff_comments))
             {!! $submission->parsed_staff_comments !!}
         @else
             {!! $submission->staff_comments !!}
         @endif
-		</div></div>
+		</div>
+</div>
 @endif
 
 <h2>Rewards</h2>
@@ -65,11 +81,17 @@
 <h2>Characters</h2>
 @foreach($submission->characters as $character)
     <div class="submission-character-row mb-2">
-        <div class="submission-character-thumbnail"><a href="{{ $character->character->url }}"><img src="{{ $character->character->image->thumbnailUrl }}" class="img-thumbnail" alt="Thumbnail for {{ $character->character->fullName }}" /></a></div>
+        <div class="submission-character-thumbnail">
+<a href="{{ $character->character->url }}">
+<img src="{{ $character->character->image->thumbnailUrl }}" class="img-thumbnail" alt="Thumbnail for {{ $character->character->fullName }}" />
+</a>
+</div>
         <div class="submission-character-info card ml-2">
             <div class="card-body">
                 <div class="submission-character-info-content">
-                    <h3 class="mb-2 submission-character-info-header"><a href="{{ $character->character->url }}">{{ $character->character->fullName }}</a></h3>
+                    <h3 class="mb-2 submission-character-info-header">
+<a href="{{ $character->character->url }}">{{ $character->character->fullName }}</a>
+</h3>
                     <div class="submission-character-info-body">
                     <table class="table table-sm mb-0">
                         <thead>
@@ -95,7 +117,11 @@
 
                             @foreach(parseAssetData($character->data) as $key => $type)
                                 @if(count($type))
-                                <tr><td colspan="2"><strong>{!! strtoupper($key) !!}</strong></td></tr>
+                                <tr>
+<td colspan="2">
+<strong>{!! strtoupper($key) !!}</strong>
+</td>
+</tr>
                                     @foreach($type as $asset)
                                         <tr>
                                             <td>{!! $asset['asset']->displayName !!}</td>

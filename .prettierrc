@@ -1,20 +1,22 @@
 {
-    "printWidth": 120,
-    "trailingComma": "es5",
-    "bracketSameLine": true,
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true,
-    "quoteProps": "preserve",
-    "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade"],
-    "braceStyle":"1tbs",
-    "overrides": [
-      {
-        "files": ["*.blade.php"],
-        "options": {
-          "parser": "blade",
-          "tabWidth": 2
-        }
+  "printWidth": 120,
+  "trailingComma": "es5",
+  "bracketSameLine": false,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "preserve",
+  "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade"],
+  "braceStyle": "1tbs",
+  "wrapAttributes": "aligned-multiple",
+  "wrapAttributesMinAttrs": 3,
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "parser": "blade",
+        "tabWidth": 2
       }
-    ]
-  }
+    }
+  ]
+}

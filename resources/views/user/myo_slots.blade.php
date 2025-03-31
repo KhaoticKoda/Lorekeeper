@@ -14,10 +14,13 @@
         @foreach($myos as $myo)
             <div class="col-md-3 col-6 text-center mb-2">
                 <div>
-                    <a href="{{ $myo->url }}"><img src="{{ $myo->image->thumbnailUrl }}" class="img-thumbnail" alt="{{ $myo->fullName }}" /></a>
+                    <a href="{{ $myo->url }}">
+<img src="{{ $myo->image->thumbnailUrl }}" class="img-thumbnail" alt="{{ $myo->fullName }}" />
+</a>
                 </div>
                 <div class="mt-1 h5">
-                    @if(!$myo->is_visible) <i class="fas fa-eye-slash"></i> @endif {!! $myo->displayName !!}
+                    @if(!$myo->is_visible) <i class="fas fa-eye-slash">
+</i> @endif {!! $myo->displayName !!}
                 </div>
             </div>
         @endforeach

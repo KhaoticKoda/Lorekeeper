@@ -1,6 +1,11 @@
 <div class="submission-character mb-3 card">
     <div class="card-body">
-        <div class="text-right"><a href="#" class="remove-character text-muted"><i class="fas fa-times"></i></a></div>
+        <div class="text-right">
+<a href="#" class="remove-character text-muted">
+<i class="fas fa-times">
+</i>
+</a>
+</div>
         <div class="row">
             <div class="col-md-2 align-items-stretch d-flex">
                 <div class="d-flex text-center align-items-center">
@@ -11,7 +16,8 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <a href="#" class="float-right fas fa-close"></a>
+                <a href="#" class="float-right fas fa-close">
+</a>
                 <div class="form-group">
                     {!! Form::label('slug[]', 'Character Code') !!}
                     {!! Form::text('slug[]', $character->character->slug, ['class' => 'form-control character-code']) !!}
@@ -50,7 +56,10 @@
                                     @endif
                                     <td class="d-flex align-items-center">
                                         {!! Form::text('character_rewardable_quantity['.$character->character_id.'][]', $reward->quantity, ['class' => 'form-control mr-2 character-rewardable-quantity']) !!}
-                                        <a href="#" class="remove-reward d-block"><i class="fas fa-times text-muted"></i></a>
+                                        <a href="#" class="remove-reward d-block">
+<i class="fas fa-times text-muted">
+</i>
+</a>
                                     </td>
                                 </tr>
                             @endforeach

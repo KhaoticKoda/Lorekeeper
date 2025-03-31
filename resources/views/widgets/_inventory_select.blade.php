@@ -1,7 +1,8 @@
 @php
     if(old('stack_id')) $old_selection = array_combine(old('stack_id'), old('stack_quantity'));
 @endphp
-<h3>Your Inventory <a class="small inventory-collapse-toggle collapse-toggle collapsed" href="#userInventory" data-toggle="collapse">Show</a></h3>
+<h3>Your Inventory <a class="small inventory-collapse-toggle collapse-toggle collapsed" href="#userInventory" data-toggle="collapse">Show</a>
+</h3>
 <hr>
 <div class="collapse" id="userInventory">
     <div class="card mb-3">
@@ -36,7 +37,9 @@
                 <table class="table table-sm">
                     <thead class="thead-light">
                         <tr class="d-flex">
-                            <th class="col-1"><input id="toggle-checks" type="checkbox"></th>
+                            <th class="col-1">
+<input id="toggle-checks" type="checkbox">
+</th>
                             <th class="col-2">Item</th>
                             <th class="col-4">Source</th>
                             <th class="col-3">Notes</th>

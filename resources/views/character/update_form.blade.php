@@ -30,8 +30,9 @@
     </div>
     {!! Form::close() !!}
 @else
-    <p>You have a {{ $character->is_myo_slot ? 'MYO approval' : 'design update' }} request {{ $request->status == 'Draft' ? 'that has not been submitted' : 'awaiting approval' }}. <a href="{{ $request->url }}">Click here to view {{ $request->status == 'Draft' ? 'and edit ' : '' }}it.</a></p>
-@endif 
+    <p>You have a {{ $character->is_myo_slot ? 'MYO approval' : 'design update' }} request {{ $request->status == 'Draft' ? 'that has not been submitted' : 'awaiting approval' }}. <a href="{{ $request->url }}">Click here to view {{ $request->status == 'Draft' ? 'and edit ' : '' }}it.</a>
+</p>
+@endif
 @endsection
 
 @section('scripts')

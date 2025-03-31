@@ -7,7 +7,8 @@
             <th width="35%">Reward Type</th>
             <th width="35%">Reward</th>
             <th width="20%">Quantity</th>
-            <th width="10%"></th>
+            <th width="10%">
+</th>
         </tr>
     </thead>
     <tbody id="lootTableBody">
@@ -27,7 +28,9 @@
                         @endif
                     </td>
                     <td>{!! Form::text('quantity[]', $loot->quantity, ['class' => 'form-control']) !!}</td>
-                    <td class="text-right"><a href="#" class="btn btn-danger remove-loot-button">Remove</a></td>
+                    <td class="text-right">
+<a href="#" class="btn btn-danger remove-loot-button">Remove</a>
+</td>
                 </tr>
             @endforeach
         @endif

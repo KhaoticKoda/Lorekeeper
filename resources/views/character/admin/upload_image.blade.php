@@ -101,7 +101,9 @@
 </div>
 
 <h3>
-    {{-- <div class="float-right"><a href="#" class="btn btn-info btn-sm" data-toggle="tooltip" title="This will fill the below fields with the same data as the character's current image. Note that this will overwrite any changes made below.">Fill Data</a></div> --}}
+    {{-- <div class="float-right">
+<a href="#" class="btn btn-info btn-sm" data-toggle="tooltip" title="This will fill the below fields with the same data as the character's current image. Note that this will overwrite any changes made below.">Fill Data</a>
+</div> --}}
 Traits
 </h3>
 
@@ -124,7 +126,9 @@ Traits
     {!! Form::label('Traits') !!}
     <div id="featureList">
     </div>
-    <div><a href="#" class="btn btn-primary" id="add-feature">Add Trait</a></div>
+    <div>
+<a href="#" class="btn btn-primary" id="add-feature">Add Trait</a>
+</div>
     <div class="feature-row hide mb-2">
         {!! Form::select('feature_id[]', $features, null, ['class' => 'form-control mr-2 feature-select', 'placeholder' => 'Select Trait']) !!}
         {!! Form::text('feature_data[]', null, ['class' => 'form-control mr-2', 'placeholder' => 'Extra Info (Optional)']) !!}

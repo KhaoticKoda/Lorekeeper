@@ -13,24 +13,32 @@
 
 <div class="mb-1">
     <div class="row">
-        <div class="col-md-2 col-4"><h5>Sender</h5></div>
+        <div class="col-md-2 col-4">
+<h5>Sender</h5>
+</div>
         <div class="col-md-10 col-8">{!! $trade->sender->displayName !!}</div>
     </div>
     <div class="row">
-        <div class="col-md-2 col-4"><h5>Created</h5></div>
+        <div class="col-md-2 col-4">
+<h5>Created</h5>
+</div>
         <div class="col-md-10 col-8">{!! format_date($trade->created_at) !!} ({{ $trade->created_at->diffForHumans() }})</div>
     </div>
     <div class="row">
-        <div class="col-md-2 col-4"><h5>{{ $trade->status == 'Rejected' || ($trade->status == 'Completed' && $trade->staff_id) ? 'Processed' : 'Last Updated' }}</h5></div>
+        <div class="col-md-2 col-4">
+<h5>{{ $trade->status == 'Rejected' || ($trade->status == 'Completed' && $trade->staff_id) ? 'Processed' : 'Last Updated' }}</h5>
+</div>
         <div class="col-md-10 col-8">{!! format_date($trade->updated_at) !!} ({{ $trade->updated_at->diffForHumans() }})</div>
     </div>
     <div>
-        <div><h5>Sender's Comments</h5></div>
+        <div>
+<h5>Sender's Comments</h5>
+</div>
         <div class="card mb-3">
             <div class="card-body">
                 @if($trade->comments)
                     {!! nl2br(htmlentities($trade->comments)) !!}
-                @else 
+                @else
                     No comment given.
                 @endif
             </div>
@@ -40,11 +48,11 @@
 @if($trade->status == 'Open')
     <div class="alert alert-info">
         <p>
-            Please note that to complete a trade, both parties will need to confirm <strong>twice</strong> each. 
+            Please note that to complete a trade, both parties will need to confirm <strong>twice</strong> each.
         </p>
         <p>
             First, after you are done editing your offer, confirm your offer to indicate to your partner that you have finished. Next, after both parties have confirmed, you will receive the option to confirm the entire trade. <i>Please make sure that your partner has attached everything that you are expecting to receive!</i>
-        </p> 
+        </p>
         <p>
             After both parties have confirmed the entire trade, @if(Settings::get('open_transfers_queue')) if the trade contains a character, it will enter the transfer approval queue. Otherwise, @endif the transfers will be processed immediately.
         </p>
@@ -54,7 +62,9 @@
 @elseif($trade->status == 'Rejected' && $trade->reason)
 
     <h5 class="text-danger">Staff Comments ({!! $trade->staff->displayName !!})</h5>
-    <div class="card border-danger mb-3"><div class="card-body">{!! nl2br(htmlentities($trade->reason)) !!}</div></div>
+    <div class="card border-danger mb-3">
+<div class="card-body">{!! nl2br(htmlentities($trade->reason)) !!}</div>
+</div>
 
 @endif
 
@@ -66,7 +76,7 @@
         @if(!$trade->isConfirmable)
                 {!! add_help('Both parties must confirm their offers before you can confirm this trade.') !!}
                 <a href="#" class="btn btn-outline-primary disabled">Confirm Trade</a>
-        @else 
+        @else
             @if(Auth::user()->id == $trade->sender_id)
                 @if(!$trade->is_sender_trade_confirmed)
                     <a href="#" class="btn btn-outline-primary" id="confirmTradeButton">Confirm Trade</a>

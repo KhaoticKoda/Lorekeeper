@@ -1,5 +1,5 @@
 @inject('markdown', 'Parsedown')
-@php 
+@php
     $markdown->setSafeMode(true);
 @endphp
 @if(isset($reply) && $reply === true)
@@ -16,35 +16,57 @@
             <h5 class="mt-0 mb-1 col mx-0 px-0">
                 {!! $comment->commenter->commentDisplayName !!} @if($comment->commenter->isStaff == true)<small class="text-muted">Staff Member</small>@endif
             </h5>
-            @if($comment->is_featured)<div class="ml-1 text-muted text-right col-6 mx-0 pr-1"><small class="text-success">Featured by Owner</small></div> @endif
+            @if($comment->is_featured)<div class="ml-1 text-muted text-right col-6 mx-0 pr-1">
+<small class="text-success">Featured by Owner</small>
+</div> @endif
         </div>
-        <div class="border p-3 rounded {{ $limit == 0 ? 'shadow-sm border-info' : '' }} {{ ($comment->is_featured && ($limit != 0)) ? 'border-success' : '' }} "><p>{!! nl2br($markdown->line($comment->comment)) !!} </p>
+        <div class="border p-3 rounded {{ $limit == 0 ? 'shadow-sm border-info' : '' }} {{ ($comment->is_featured && ($limit != 0)) ? 'border-success' : '' }} ">
+<p>{!! nl2br($markdown->line($comment->comment)) !!} </p>
         <p class="border-top pt-1 text-right mb-0">
             <small class="text-muted">{!! $comment->created_at !!}
-            @if($comment->created_at != $comment->updated_at) 
+            @if($comment->created_at != $comment->updated_at)
                 <span class="text-muted border-left mx-1 px-1">(Edited {!! ($comment->updated_at) !!})</span>
             @endif
             </small>
-            <a href="{{ url('comment/').'/'.$comment->id }}"><i class="fas fa-link ml-1" style="opacity: 50%;"></i></a>
+            <a href="{{ url('comment/').'/'.$comment->id }}">
+<i class="fas fa-link ml-1" style="opacity: 50%;">
+</i>
+</a>
         </p>
     </div>
     @if(Auth::check())
         <div class="my-1">
             @can('reply-to-comment', $comment)
-                <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-uppercase"><i class="fas fa-comment"></i><span class="ml-2 d-none d-sm-inline-block">Reply</span></button>
+                <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-uppercase">
+<i class="fas fa-comment">
+</i>
+<span class="ml-2 d-none d-sm-inline-block">Reply</span>
+</button>
             @endcan
             @can('edit-comment', $comment)
-                <button data-toggle="modal" data-target="#comment-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-uppercase"><i class="fas fa-edit"></i><span class="ml-2 d-none d-sm-inline-block">Edit</span></button>
+                <button data-toggle="modal" data-target="#comment-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-uppercase">
+<i class="fas fa-edit">
+</i>
+<span class="ml-2 d-none d-sm-inline-block">Edit</span>
+</button>
             @endcan
             @if((Auth::user()->id == $comment->commentable_id) || Auth::user()->isStaff)
-                <button data-toggle="modal" data-target="#feature-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-success text-uppercase"><i class="fas fa-star"></i><span class="ml-2 d-none d-sm-inline-block">{{$comment->is_featured ? 'Unf' : 'F' }}eature Comment</span></button>
+                <button data-toggle="modal" data-target="#feature-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1  btn-faded text-success text-uppercase">
+<i class="fas fa-star">
+</i>
+<span class="ml-2 d-none d-sm-inline-block">{{$comment->is_featured ? 'Unf' : 'F' }}eature Comment</span>
+</button>
             @endif
             @can('delete-comment', $comment)
-                <button data-toggle="modal" data-target="#delete-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1 btn-outline-danger text-uppercase"><i class="fas fa-minus-circle"></i><span class="ml-2 d-none d-sm-inline-block">Delete</span></button>
+                <button data-toggle="modal" data-target="#delete-modal-{{ $comment->getKey() }}" class="btn btn-sm px-3 py-2 px-sm-2 py-sm-1 btn-outline-danger text-uppercase">
+<i class="fas fa-minus-circle">
+</i>
+<span class="ml-2 d-none d-sm-inline-block">Delete</span>
+</button>
             @endcan
         </div>
     @endif
-    
+
         @can('edit-comment', $comment)
             <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -62,7 +84,9 @@
                                 <div class="form-group">
                                     <label for="message">Update your message here:</label>
                                     <textarea required class="form-control" name="message" rows="3">{{ $comment->comment }}</textarea>
-                                    <small class="form-text text-muted"><a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown cheatsheet.</a></small>
+                                    <small class="form-text text-muted">
+<a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown cheatsheet.</a>
+</small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -90,8 +114,11 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="message">Enter your message here:</label>
-                                    <textarea required class="form-control" name="message" rows="3"></textarea>
-                                    <small class="form-text text-muted"><a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown cheatsheet.</a></small>
+                                    <textarea required class="form-control" name="message" rows="3">
+</textarea>
+                                    <small class="form-text text-muted">
+<a target="_blank" href="https://help.github.com/articles/basic-writing-and-formatting-syntax">Markdown cheatsheet.</a>
+</small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -102,7 +129,7 @@
                     </div>
                 </div>
             </div>
-        @endcan 
+        @endcan
 
         @can('delete-comment', $comment)
             <div class="modal fade" id="delete-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
@@ -115,8 +142,10 @@
                                 </button>
                                     </div>
                             <div class="modal-body">
-                                <div class="form-group">Are you sure you want to delete this comment?</div></div>
-                                <div class="alert alert-warning"><strong>Comments can be restored in the database.</strong> <br> Deleting a comment does not delete the comment record.</div>
+                                <div class="form-group">Are you sure you want to delete this comment?</div>
+</div>
+                                <div class="alert alert-warning">
+<strong>Comments can be restored in the database.</strong> <br> Deleting a comment does not delete the comment record.</div>
                                 <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="btn btn-danger text-uppercase">Delete</a>
                         <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
                             @method('DELETE')
@@ -125,7 +154,7 @@
                     </div>
                 </div>
             </div>
-        @endcan 
+        @endcan
 
         <div class="modal fade" id="feature-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -150,7 +179,7 @@
     </div>
 </div>
 
-        
+
 {{-- add a limit check so if limit is reached but replies are still presnt to display a button with current amount of replies
 use child function
 url should be equal to the last replies permalink (e.g reply 5)--}}
@@ -162,8 +191,10 @@ url should be equal to the last replies permalink (e.g reply 5)--}}
             @foreach($children as $reply)
                 @php $limit++; @endphp
 
-                @if($limit >= 5 && $depth >= 1) 
-                    <a href="{{ url('comment/').'/'.$comment->id }}"><span class="btn btn-secondary w-100">See More Replies</span></a>
+                @if($limit >= 5 && $depth >= 1)
+                    <a href="{{ url('comment/').'/'.$comment->id }}">
+<span class="btn btn-secondary w-100">See More Replies</span>
+</a>
                     @break
                 @endif
 

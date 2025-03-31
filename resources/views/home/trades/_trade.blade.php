@@ -1,10 +1,14 @@
 <div class="card mb-3">
     <div class="card-header">
-        <h2 class="mb-0"><span class="float-right badge badge-{{ ($trade->status == 'Pending' || $trade->status == 'Open' || $trade->status == 'Canceled') ? 'secondary' : ($trade->status == 'Completed' ? 'success' : 'danger') }}">{{ $trade->status }}</span><a href="{{$trade->url}} ">Trade (#{{ $trade->id }})</a></h2>
+        <h2 class="mb-0">
+<span class="float-right badge badge-{{ ($trade->status == 'Pending' || $trade->status == 'Open' || $trade->status == 'Canceled') ? 'secondary' : ($trade->status == 'Completed' ? 'success' : 'danger') }}">{{ $trade->status }}</span>
+<a href="{{$trade->url}} ">Trade (#{{ $trade->id }})</a>
+</h2>
     </div>
     <div class="card-body">
         @if($trade->comments)
-            <div>{!! nl2br(htmlentities($trade->comments)) !!}</div><hr />
+            <div>{!! nl2br(htmlentities($trade->comments)) !!}</div>
+<hr />
         @endif
         <div class="row">
             <div class="col-md-6">
@@ -49,7 +53,7 @@
                 @if(!$trade->is_approved)
                     <a href="#" class="btn btn-outline-success trade-action-button" data-id="{{ $trade->id }}" data-action="approve">Approve</a>
                     <a href="#" class="btn btn-outline-danger trade-action-button" data-id="{{ $trade->id }}" data-action="reject">Reject</a>
-                @else 
+                @else
                     Currently awaiting mod approval
                 @endif
             @endif

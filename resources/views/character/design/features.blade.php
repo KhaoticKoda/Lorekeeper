@@ -68,7 +68,9 @@
                     @endforeach
                 @endif
             </div>
-            <div><a href="#" class="btn btn-primary" id="add-feature">Add Trait</a></div>
+            <div>
+<a href="#" class="btn btn-primary" id="add-feature">Add Trait</a>
+</div>
             <div class="feature-row hide mb-2">
                 {!! Form::select('feature_id[]', $features, null, ['class' => 'form-control mr-2 feature-select', 'placeholder' => 'Select Trait']) !!}
                 {!! Form::text('feature_data[]', null, ['class' => 'form-control mr-2', 'placeholder' => 'Extra Info (Optional)']) !!}
@@ -82,12 +84,16 @@
 @else
     <div class="mb-1">
         <div class="row">
-            <div class="col-md-2 col-4"><h5>Species</h5></div>
+            <div class="col-md-2 col-4">
+<h5>Species</h5>
+</div>
             <div class="col-md-10 col-8">{!! $request->species ? $request->species->displayName : 'None Selected' !!}</div>
         </div>
         @if($request->subtype_id)
         <div class="row">
-            <div class="col-md-2 col-4"><h5>Subtype</h5></div>
+            <div class="col-md-2 col-4">
+<h5>Subtype</h5>
+</div>
             <div class="col-md-10 col-8">
             @if($request->character->is_myo_slot && $request->character->image->subtype_id)
                 {!! $request->character->image->subtype->displayName !!}
@@ -98,7 +104,9 @@
         </div>
         @endif
         <div class="row">
-            <div class="col-md-2 col-4"><h5>Rarity</h5></div>
+            <div class="col-md-2 col-4">
+<h5>Rarity</h5>
+</div>
             <div class="col-md-10 col-8">{!! $request->rarity ? $request->rarity->displayName : 'None Selected' !!}</div>
         </div>
     </div>
@@ -106,7 +114,8 @@
     <div>
         @if($request->character && $request->character->is_myo_slot && $request->character->image->features)
             @foreach($request->character->image->features as $feature)
-                <div>@if($feature->feature->feature_category_id) <strong>{!! $feature->feature->category->displayName !!}:</strong> @endif {!! $feature->feature->displayName !!} @if($feature->data) ({{ $feature->data }}) @endif <span class="text-danger">*Required</span></div>
+                <div>@if($feature->feature->feature_category_id) <strong>{!! $feature->feature->category->displayName !!}:</strong> @endif {!! $feature->feature->displayName !!} @if($feature->data) ({{ $feature->data }}) @endif <span class="text-danger">*Required</span>
+</div>
             @endforeach
         @endif
         @foreach($request->features as $feature)

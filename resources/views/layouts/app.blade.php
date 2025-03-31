@@ -51,17 +51,28 @@
         content="noimageai">
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('js/site.js') }}"></script>
-  <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
-  <script src="{{ asset('js/tinymce.min.js') }}"></script>
-  <script src="{{ asset('js/jquery.tinymce.min.js') }}"></script>
-  <script src="{{ asset('js/lightbox.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
-  <script src="{{ asset('js/selectize.min.js') }}"></script>
-  <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
-  <script src="{{ asset('js/croppie.min.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}">
+</script>
+  <script src="{{ asset('js/site.js') }}">
+</script>
+  <script src="{{ asset('js/jquery-ui.min.js') }}">
+</script>
+  <script src="{{ asset('js/bootstrap4-toggle.min.js') }}">
+</script>
+  <script src="{{ asset('js/tinymce.min.js') }}">
+</script>
+  <script src="{{ asset('js/jquery.tinymce.min.js') }}">
+</script>
+  <script src="{{ asset('js/lightbox.min.js') }}">
+</script>
+  <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}">
+</script>
+  <script src="{{ asset('js/selectize.min.js') }}">
+</script>
+  <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}">
+</script>
+  <script src="{{ asset('js/croppie.min.js') }}">
+</script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch"
@@ -114,9 +125,13 @@
     </div>
     @include('layouts._nav')
     @if (View::hasSection('sidebar'))
-      <div class="site-mobile-header bg-secondary"><a href="#"
+      <div class="site-mobile-header bg-secondary">
+<a href="#"
            class="btn btn-sm btn-outline-light"
-           id="mobileMenuButton">Menu <i class="fas fa-caret-right ml-1"></i></a></div>
+           id="mobileMenuButton">Menu <i class="fas fa-caret-right ml-1">
+</i>
+</a>
+</div>
     @endif
 
     <main class="container-fluid">
@@ -130,10 +145,14 @@
           <div>
             @if (Auth::check() && !Config::get('lorekeeper.extensions.navbar_news_notif'))
               @if (Auth::user()->is_news_unread)
-                <div class="alert alert-info"><a href="{{ url('news') }}">There is a new news post!</a></div>
+                <div class="alert alert-info">
+<a href="{{ url('news') }}">There is a new news post!</a>
+</div>
               @endif
               @if (Auth::user()->is_sales_unread)
-                <div class="alert alert-info"><a href="{{ url('sales') }}">There is a new sales post!</a></div>
+                <div class="alert alert-info">
+<a href="{{ url('sales') }}">There is a new sales post!</a>
+</div>
               @endif
             @endif
             @include('flash::message')
@@ -157,7 +176,8 @@
            role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="modal-title h5 mb-0"></span>
+            <span class="modal-title h5 mb-0">
+</span>
             <button type="button"
                     class="close"
                     data-dismiss="modal">&times;</button>

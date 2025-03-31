@@ -13,7 +13,9 @@
 
 <h3>
     @if(Auth::check() && Auth::user()->hasPower('edit_inventories'))
-        <a href="#" class="float-right btn btn-outline-info btn-sm" id="grantButton" data-toggle="modal" data-target="#grantModal"><i class="fas fa-cog"></i> Admin</a>
+        <a href="#" class="float-right btn btn-outline-info btn-sm" id="grantButton" data-toggle="modal" data-target="#grantModal">
+<i class="fas fa-cog">
+</i> Admin</a>
     @endif
     Items
 </h3>
@@ -34,7 +36,9 @@
                         ?>
                         <div class="col-sm-3 col-6 text-center inventory-item" data-id="{{ $stack->first()->pivot->id }}" data-name="{!! $canName && $stackName ? htmlentities($stackNameClean).' [' : null !!}{{ $character->name ? $character->name : $character->slug }}'s {{ $stack->first()->name }}{!! $canName && $stackName ? ']' : null !!}">
                             <div class="mb-1">
-                                <a href="#" class="inventory-stack"><img src="{{ $stack->first()->imageUrl }}" alt="{{ $stack->first()->name }}"/></a>
+                                <a href="#" class="inventory-stack">
+<img src="{{ $stack->first()->imageUrl }}" alt="{{ $stack->first()->name }}"/>
+</a>
                             </div>
                             <div class="{{ $canName ? 'text-muted' : '' }}">
                                 <a href="#" class="inventory-stack inventory-stack-name">{{ $stack->first()->name }} x{{ $stack->sum('pivot.count') }}</a>
@@ -90,7 +94,9 @@
                             <a href="#" class="remove-item btn btn-danger mb-2 disabled">×</a>
                         </div>
                     </div>
-                    <div><a href="#" class="btn btn-primary" id="add-item">Add Item</a></div>
+                    <div>
+<a href="#" class="btn btn-primary" id="add-item">Add Item</a>
+</div>
                     <div class="item-row hide mb-2">
                         {!! Form::select('item_ids[]', $itemOptions, null, ['class' => 'form-control mr-2 item-select', 'placeholder' => 'Select Item']) !!}
                         {!! Form::text('quantities[]', 1, ['class' => 'form-control mr-2', 'placeholder' => 'Quantity']) !!}

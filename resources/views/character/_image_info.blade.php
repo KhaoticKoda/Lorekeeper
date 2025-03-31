@@ -14,7 +14,10 @@
                 </li>
                 @if(Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <li class="nav-item">
-                        <a class="nav-link" id="settingsTab-{{ $image->id }}" data-toggle="tab" href="#settings-{{ $image->id }}" role="tab"><i class="fas fa-cog"></i></a>
+                        <a class="nav-link" id="settingsTab-{{ $image->id }}" data-toggle="tab" href="#settings-{{ $image->id }}" role="tab">
+<i class="fas fa-cog">
+</i>
+</a>
                     </li>
                 @endif
             </ul>
@@ -32,22 +35,30 @@
             {{-- Basic info  --}}
             <div class="tab-pane fade show active" id="info-{{ $image->id }}">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Species</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Species</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">{!! $image->species_id ? $image->species->displayName : 'None' !!}</div>
                 </div>
                 @if($image->subtype_id)
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-4"><h5>Subtype</h5></div>
+                        <div class="col-lg-4 col-md-6 col-4">
+<h5>Subtype</h5>
+</div>
                         <div class="col-lg-8 col-md-6 col-8">{!! $image->subtype_id ? $image->subtype->displayName : 'None' !!}</div>
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Rarity</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Rarity</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">{!! $image->rarity_id ? $image->rarity->displayName : 'None' !!}</div>
                 </div>
 
                 <div class="mb-3">
-                    <div><h5>Traits</h5></div>
+                    <div>
+<h5>Traits</h5>
+</div>
                     @if(Config::get('lorekeeper.extensions.traits_by_category'))
                         <div>
                             @php $traitgroup = $image->features()->get()->groupBy('feature_category_id') @endphp
@@ -90,7 +101,9 @@
 
                 @if(Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <div class="mt-3">
-                        <a href="#" class="btn btn-outline-info btn-sm edit-features" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
+                        <a href="#" class="btn btn-outline-info btn-sm edit-features" data-id="{{ $image->id }}">
+<i class="fas fa-cog">
+</i> Edit</a>
                     </div>
                 @endif
             </div>
@@ -104,7 +117,9 @@
                 @endif
 				@if(Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <div class="mt-3">
-                        <a href="#" class="btn btn-outline-info btn-sm edit-notes" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
+                        <a href="#" class="btn btn-outline-info btn-sm edit-notes" data-id="{{ $image->id }}">
+<i class="fas fa-cog">
+</i> Edit</a>
                     </div>
 				@endif
             </div>
@@ -113,7 +128,9 @@
             <div class="tab-pane fade" id="credits-{{ $image->id }}">
 
                 <div class="row mb-2">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Design</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Design</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">
                         @foreach($image->designers as $designer)
                             <div>{!! $designer->displayLink() !!}</div>
@@ -121,7 +138,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-4"><h5>Art</h5></div>
+                    <div class="col-lg-4 col-md-6 col-4">
+<h5>Art</h5>
+</div>
                     <div class="col-lg-8 col-md-6 col-8">
                         @foreach($image->artists as $artist)
                             <div>{!! $artist->displayLink() !!}</div>
@@ -131,7 +150,9 @@
 
                 @if(Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <div class="mt-3">
-                        <a href="#" class="btn btn-outline-info btn-sm edit-credits" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
+                        <a href="#" class="btn btn-outline-info btn-sm edit-credits" data-id="{{ $image->id }}">
+<i class="fas fa-cog">
+</i> Edit</a>
                     </div>
                 @endif
             </div>

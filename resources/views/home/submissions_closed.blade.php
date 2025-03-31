@@ -25,11 +25,11 @@
         </div>
     @endif
     <div class="form-group">
-        {!! Form::label('url', $isClaim ? 'URL' : 'Submission URL') !!} 
-        @if($isClaim) 
-            {!! add_help('Enter a URL relevant to your claim (for example, a comment proving you may make this claim). This field cannot be left blank.') !!} 
-        @else 
-            {!! add_help('Enter the URL of your submission (whether uploaded to dA or some other hosting service). This field cannot be left blank.') !!} 
+        {!! Form::label('url', $isClaim ? 'URL' : 'Submission URL') !!}
+        @if($isClaim)
+            {!! add_help('Enter a URL relevant to your claim (for example, a comment proving you may make this claim). This field cannot be left blank.') !!}
+        @else
+            {!! add_help('Enter the URL of your submission (whether uploaded to dA or some other hosting service). This field cannot be left blank.') !!}
         @endif
         {!! Form::text('url', null, ['class' => 'form-control', 'required']) !!}
     </div>
@@ -41,12 +41,13 @@
     <h2>Rewards</h2>
     @if($isClaim)
         <p>Select the rewards you would like to claim.</p>
-    @else 
+    @else
         <p>Note that any rewards added here are <u>in addition</u> to the default prompt rewards. If you do not require any additional rewards, you can leave this blank.</p>
     @endif
     @include('widgets._loot_select', ['loots' => null, 'showLootTables' => false])
     @if(!$isClaim)
-        <div id="rewards" class="mb-3"></div>
+        <div id="rewards" class="mb-3">
+</div>
     @endif
 
     <h2>Characters</h2>

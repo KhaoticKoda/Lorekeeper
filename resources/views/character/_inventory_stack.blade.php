@@ -2,8 +2,14 @@
     <div class="text-center">Invalid stack selected.</div>
 @else
     <div class="text-center">
-        <div class="mb-1"><a href="{{ $item->url }}"><img src="{{ $item->imageUrl }}" alt="{{ $item->name }}"/></a></div>
-        <div @if(count($item->tags)) class="mb-1" @endif><a href="{{ $item->url }}">{{ $item->name }}</a></div>
+        <div class="mb-1">
+<a href="{{ $item->url }}">
+<img src="{{ $item->imageUrl }}" alt="{{ $item->name }}"/>
+</a>
+</div>
+        <div @if(count($item->tags)) class="mb-1" @endif>
+<a href="{{ $item->url }}">{{ $item->name }}</a>
+</div>
     </div>
 
     <h5>Item Variations</h5>
@@ -18,7 +24,9 @@
                 <tr class="d-flex">
                     @if($user && !$readOnly &&
                     ($owner_id == $user->id || $has_power == TRUE))
-                        <th class="col-1"><input id="toggle-checks" type="checkbox" onclick="toggleChecks(this)"></th>
+                        <th class="col-1">
+<input id="toggle-checks" type="checkbox" onclick="toggleChecks(this)">
+</th>
                     @endif
                     @if($item->category->can_name)
                         <th class="col-2">Name</th>
@@ -26,7 +34,10 @@
                     <th class="col">Source</th>
                     <th class="col">Notes</th>
                     <th class="col-2">Quantity</th>
-                    <th class="col-1"><i class="fas fa-lock invisible"></i></th>
+                    <th class="col-1">
+<i class="fas fa-lock invisible">
+</i>
+</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +62,8 @@
                         @endif
                         <td class="col-1">
                             @if(!$itemRow->isTransferrable)
-                                <i class="fas fa-lock" data-toggle="tooltip" title="Character-bound items cannot be transferred but can be deleted."></i>
+                                <i class="fas fa-lock" data-toggle="tooltip" title="Character-bound items cannot be transferred but can be deleted.">
+</i>
                             @endif
                         </td>
                     </tr>
