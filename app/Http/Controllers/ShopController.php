@@ -23,14 +23,11 @@ class ShopController extends Controller
     |--------------------------------------------------------------------------
     | Shop Controller
     |--------------------------------------------------------------------------
-    |
     | Handles viewing the shop index, shops and purchasing from shops.
-    |
     */
 
     /**
      * Shows the shop index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -42,7 +39,6 @@ class ShopController extends Controller
 
     /**
      * Shows a shop.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -63,7 +59,6 @@ class ShopController extends Controller
 
     /**
      * Gets the shop stock modal.
-     *
      * @param  App\Services\ShopManager  $service
      * @param  int                       $id
      * @param  int                       $stockId
@@ -96,7 +91,6 @@ class ShopController extends Controller
 
     /**
      * Buys an item from a shop.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ShopManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -115,7 +109,6 @@ class ShopController extends Controller
 
     /**
      * Shows the user's purchase history.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getPurchaseHistory()

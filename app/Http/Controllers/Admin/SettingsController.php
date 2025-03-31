@@ -11,7 +11,6 @@ class SettingsController extends Controller
 {
     /**
      * Shows the settings index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -23,7 +22,6 @@ class SettingsController extends Controller
 
     /**
      * Edits a setting.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  string                         $key
      * @return \Illuminate\Http\RedirectResponse

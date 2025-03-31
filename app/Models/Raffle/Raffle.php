@@ -7,7 +7,6 @@ class Raffle extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -16,38 +15,34 @@ class Raffle extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'raffles';
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['rolled_at'];
 
     /**
      * Accessors to append to the model.
-     *
      * @var array
      */
     public $appends = ['name_with_group'];
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
-    public $timestamps = false; 
+    public $timestamps = false;
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the raffle tickets attached to this raffle.
      */
@@ -55,7 +50,7 @@ class Raffle extends Model
     {
         return $this->hasMany('App\Models\Raffle\RaffleTicket');
     }
-    
+
     /**
      * Get the group that this raffle belongs to.
      */
@@ -65,14 +60,13 @@ class Raffle extends Model
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Displays the raffle's name, linked to the raffle page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -82,7 +76,6 @@ class Raffle extends Model
 
     /**
      * Get the name of the raffle, including group name if there is one.
-     *
      * @return string
      */
     public function getNameWithGroupAttribute()
@@ -91,8 +84,7 @@ class Raffle extends Model
     }
 
     /**
-     * Gets the raffle's asset type for asset management. 
-     *
+     * Gets the raffle's asset type for asset management.
      * @return string
      */
     public function getAssetTypeAttribute()
@@ -101,8 +93,7 @@ class Raffle extends Model
     }
 
     /**
-     * Gets the raffle's url. 
-     *
+     * Gets the raffle's url.
      * @return string
      */
     public function getUrlAttribute()
@@ -111,14 +102,13 @@ class Raffle extends Model
     }
 
     /**********************************************************************************************
-    
+
         OTHER FUNCTIONS
 
     **********************************************************************************************/
 
     /**
      * Displays the raffle's name, linked to the raffle page.
-     *
      * @return string
      */
     public function displayName($asReward = true)

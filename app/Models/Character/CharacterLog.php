@@ -9,7 +9,6 @@ class CharacterLog extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -19,20 +18,18 @@ class CharacterLog extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_log';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
@@ -40,7 +37,7 @@ class CharacterLog extends Model
     /**
      * Get the user who initiated the logged action.
      */
-    public function sender() 
+    public function sender()
     {
         return $this->belongsTo('App\Models\User\User', 'sender_id');
     }
@@ -48,7 +45,7 @@ class CharacterLog extends Model
     /**
      * Get the user who received the logged action.
      */
-    public function recipient() 
+    public function recipient()
     {
         return $this->belongsTo('App\Models\User\User', 'recipient_id');
     }
@@ -56,20 +53,19 @@ class CharacterLog extends Model
     /**
      * Get the character that is the target of the action.
      */
-    public function character() 
+    public function character()
     {
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Displays the recipient's alias if applicable.
-     *
      * @return string
      */
     public function getDisplayRecipientAliasAttribute()
@@ -81,7 +77,6 @@ class CharacterLog extends Model
 
     /**
      * Retrieves the changed data as an associative array.
-     *
      * @return array
      */
     public function getChangedDataAttribute()

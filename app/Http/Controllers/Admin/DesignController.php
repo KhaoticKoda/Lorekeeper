@@ -17,7 +17,6 @@ class DesignController extends Controller
 {
     /**
      * Show the design index page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  string                    $type
      * @param  string                    $id
@@ -28,7 +27,7 @@ class DesignController extends Controller
         $requests = CharacterDesignUpdate::where('status', ucfirst($status));
         if($type == 'myo-approvals') $requests = $requests->myos();
         else $requests = $requests->characters();
-        
+
         return view('admin.designs.index', [
             'requests' => $requests->paginate(30)->appends($request->query()),
             'isMyo' => ($type == 'myo-approvals')
@@ -37,7 +36,6 @@ class DesignController extends Controller
 
     /**
      * Show the design action confirmation modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getDesignConfirmation($id, $action)
@@ -60,7 +58,7 @@ class DesignController extends Controller
         }
         elseif($action == 'approve' && $service->approveRequest($request->only([
                 'character_category_id', 'number', 'slug', 'description',
-                'is_giftable', 'is_tradeable', 'is_sellable', 'sale_value', 
+                'is_giftable', 'is_tradeable', 'is_sellable', 'sale_value',
                 'transferrable_at', 'set_active', 'invalidate_old',
             ]), $r, Auth::user())) {
             flash('Request approved successfully.')->success();
@@ -76,7 +74,6 @@ class DesignController extends Controller
 
     /**
      * Casts a vote for a design's approval or denial.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function postVote($id, $action, Request $request, CharacterManager $service)

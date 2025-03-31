@@ -12,14 +12,11 @@ class BookmarkManager extends Service
     |--------------------------------------------------------------------------
     | Bookmark Manager
     |--------------------------------------------------------------------------
-    |
     | Handles creation, modification and usage of character bookmarks.
-    |
     */
-    
+
     /**
      * Create a bookmark.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return \App\Models\Character\CharacterBookmark|bool
@@ -35,29 +32,28 @@ class BookmarkManager extends Service
             if(!$character) throw new \Exception("Invalid character selected.");
 
             if($user->hasBookmarked($character)) throw new \Exception("You have already bookmarked this character.");
-            
+
             $bookmark = CharacterBookmark::create([
                 'character_id' => $character->id,
                 'user_id' => $user->id,
                 'sort' => 0,
-                'notify_on_trade_status' => isset($data['notify_on_trade_status']) ? $data['notify_on_trade_status'] : 0, 
+                'notify_on_trade_status' => isset($data['notify_on_trade_status']) ? $data['notify_on_trade_status'] : 0,
                 'notify_on_gift_art_status' => isset($data['notify_on_gift_art_status']) ? $data['notify_on_gift_art_status'] : 0,
-                'notify_on_gift_writing_status' => isset($data['notify_on_gift_writing_status']) ? $data['notify_on_gift_writing_status'] : 0, 
-                'notify_on_transfer' => isset($data['notify_on_transfer']) ? $data['notify_on_transfer'] : 0, 
-                'notify_on_image' => isset($data['notify_on_image']) ? $data['notify_on_image'] : 0, 
+                'notify_on_gift_writing_status' => isset($data['notify_on_gift_writing_status']) ? $data['notify_on_gift_writing_status'] : 0,
+                'notify_on_transfer' => isset($data['notify_on_transfer']) ? $data['notify_on_transfer'] : 0,
+                'notify_on_image' => isset($data['notify_on_image']) ? $data['notify_on_image'] : 0,
                 'comment' => $data['comment']
             ]);
 
             return $this->commitReturn($bookmark);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
     }
-    
+
     /**
      * Update a bookmark.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return \App\Models\Character\CharacterBookmark|bool
@@ -72,24 +68,23 @@ class BookmarkManager extends Service
             if(!$bookmark || !$bookmark->character->is_visible) throw new \Exception("Invalid bookmark selected.");
 
             $bookmark->update([
-                'notify_on_trade_status' => isset($data['notify_on_trade_status']) ? $data['notify_on_trade_status'] : 0, 
+                'notify_on_trade_status' => isset($data['notify_on_trade_status']) ? $data['notify_on_trade_status'] : 0,
                 'notify_on_gift_art_status' => isset($data['notify_on_gift_art_status']) ? $data['notify_on_gift_art_status'] : 0,
-                'notify_on_gift_writing_status' => isset($data['notify_on_gift_writing_status']) ? $data['notify_on_gift_writing_status'] : 0, 
+                'notify_on_gift_writing_status' => isset($data['notify_on_gift_writing_status']) ? $data['notify_on_gift_writing_status'] : 0,
                 'notify_on_transfer' => isset($data['notify_on_transfer']) ? $data['notify_on_transfer'] : 0,
-                'notify_on_image' => isset($data['notify_on_image']) ? $data['notify_on_image'] : 0,  
+                'notify_on_image' => isset($data['notify_on_image']) ? $data['notify_on_image'] : 0,
                 'comment' => $data['comment']
             ]);
 
             return $this->commitReturn($bookmark);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
     }
-    
+
     /**
      * Delete a bookmark.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return bool
@@ -106,7 +101,7 @@ class BookmarkManager extends Service
             $bookmark->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -115,7 +110,6 @@ class BookmarkManager extends Service
     /**
      * Deletes bookmarks associated with a character.
      * For use when a character is deleted.
-     *
      * @param  \App\Models\Character\Character $character
      * @return bool
      */
@@ -127,7 +121,7 @@ class BookmarkManager extends Service
             CharacterBookmark::where('character_id', $character->id)->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

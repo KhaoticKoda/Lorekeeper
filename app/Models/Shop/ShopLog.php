@@ -9,7 +9,6 @@ class ShopLog extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -18,21 +17,18 @@ class ShopLog extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'shop_log';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
-    
+
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -42,30 +38,30 @@ class ShopLog extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the user who purchased the item.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User');
     }
-    
+
     /**
      * Get the character who purchased the item.
      */
-    public function character() 
+    public function character()
     {
         return $this->belongsTo('App\Models\Character\Character');
     }
     /**
      * Get the purchased item.
      */
-    public function item() 
+    public function item()
     {
         return $this->belongsTo('App\Models\Item\Item');
     }
@@ -73,7 +69,7 @@ class ShopLog extends Model
     /**
      * Get the shop the item was purchased from.
      */
-    public function shop() 
+    public function shop()
     {
         return $this->belongsTo('App\Models\Shop\Shop');
     }
@@ -81,20 +77,19 @@ class ShopLog extends Model
     /**
      * Get the currency used to purchase the item.
      */
-    public function currency() 
+    public function currency()
     {
         return $this->belongsTo('App\Models\Currency\Currency');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Get the item data that will be added to the stack as a record of its source.
-     *
      * @return string
      */
     public function getItemDataAttribute()

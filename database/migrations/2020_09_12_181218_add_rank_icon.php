@@ -8,7 +8,6 @@ class AddRankIcon extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -20,7 +19,6 @@ class AddRankIcon extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

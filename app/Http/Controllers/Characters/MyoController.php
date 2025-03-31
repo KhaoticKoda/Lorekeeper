@@ -27,14 +27,11 @@ class MyoController extends Controller
     |--------------------------------------------------------------------------
     | MYO Slot Controller
     |--------------------------------------------------------------------------
-    |
     | Handles displaying and acting on an MYO slot.
-    |
     */
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -60,7 +57,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's masterlist entry.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -73,7 +69,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's profile.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -86,7 +81,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's edit profile page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -105,7 +99,6 @@ class MyoController extends Controller
 
     /**
      * Edits an MYO slot's profile.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -130,7 +123,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's ownership logs.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -144,7 +136,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's ownership logs.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -158,7 +149,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's submissions.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -172,7 +162,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's transfer page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -195,7 +184,6 @@ class MyoController extends Controller
 
     /**
      * Opens a transfer request for an MYO slot.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -216,7 +204,6 @@ class MyoController extends Controller
 
     /**
      * Cancels a transfer request for an MYO slot.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -238,7 +225,6 @@ class MyoController extends Controller
 
     /**
      * Shows an MYO slot's approval page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -255,7 +241,6 @@ class MyoController extends Controller
 
     /**
      * Opens a new design approval request for an MYO slot.
-     *
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
      * @return \Illuminate\Http\RedirectResponse

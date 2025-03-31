@@ -13,9 +13,7 @@ class ToyhouseProvider extends AbstractProvider implements ProviderInterface
 
     /**
      * Get the authentication URL for the provider.
-     *
      * @param string $state
-     *
      * @return string
      */
     protected function getAuthUrl($state)
@@ -25,7 +23,6 @@ class ToyhouseProvider extends AbstractProvider implements ProviderInterface
 
     /**
      * Get the token URL for the provider.
-     *
      * @return string
      */
     protected function getTokenUrl()
@@ -35,9 +32,7 @@ class ToyhouseProvider extends AbstractProvider implements ProviderInterface
 
     /**
      * Get the raw user for the given access token.
-     *
      * @param string $token
-     *
      * @return array
      */
     protected function getUserByToken($token)
@@ -56,7 +51,6 @@ class ToyhouseProvider extends AbstractProvider implements ProviderInterface
 
     /**
      * Map the raw user array to a Socialite User instance.
-     *
      * @return \Laravel\Socialite\Two\User
      */
     protected function mapUserToObject(array $user)

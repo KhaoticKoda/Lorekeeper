@@ -27,14 +27,11 @@ class InventoryController extends Controller
     |--------------------------------------------------------------------------
     | Inventory Controller
     |--------------------------------------------------------------------------
-    |
     | Handles inventory management for the user.
-    |
     */
 
     /**
      * Shows the user's inventory page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -64,7 +61,6 @@ class InventoryController extends Controller
 
     /**
      * Shows the inventory stack modal.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int                       $id
      * @return \Illuminate\Contracts\Support\Renderable
@@ -88,7 +84,6 @@ class InventoryController extends Controller
 
     /**
      * Shows the inventory stack modal, for characters.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int                       $id
      * @return \Illuminate\Contracts\Support\Renderable
@@ -119,7 +114,6 @@ class InventoryController extends Controller
 
     /**
      * Edits the inventory of involved users.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -156,7 +150,6 @@ class InventoryController extends Controller
 
     /**
      * Transfers inventory items to another user.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -174,7 +167,6 @@ class InventoryController extends Controller
 
     /**
      * Transfers inventory items to another user.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -192,7 +184,6 @@ class InventoryController extends Controller
 
     /**
      * Deletes an inventory stack.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -210,7 +201,6 @@ class InventoryController extends Controller
 
     /**
      * Sells an inventory stack.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -228,7 +218,6 @@ class InventoryController extends Controller
 
     /**
      * Shows the inventory selection widget.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -241,7 +230,6 @@ class InventoryController extends Controller
 
     /**
      * Acts on an item based on the item's tag.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -262,7 +250,6 @@ class InventoryController extends Controller
 
     /**
      * Show the account search page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getAccountSearch(Request $request)

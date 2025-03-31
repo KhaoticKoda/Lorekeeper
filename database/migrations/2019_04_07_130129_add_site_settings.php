@@ -8,19 +8,18 @@ class AddSiteSettings extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        // 
+        //
         Schema::create('site_settings', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->string('key', 50)->unique()->primary();
             $table->string('value');
             $table->string('description', 1024);
         });
-        
+
         Schema::create('site_pages', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -35,7 +34,6 @@ class AddSiteSettings extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

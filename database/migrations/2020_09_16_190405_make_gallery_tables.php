@@ -8,7 +8,6 @@ class MakeGalleryTables extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -17,7 +16,7 @@ class MakeGalleryTables extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            
+
             // Parent gallery ID
             $table->integer('parent_id')->unsigned()->nullable();
 
@@ -81,7 +80,6 @@ class MakeGalleryTables extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

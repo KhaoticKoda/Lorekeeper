@@ -7,7 +7,6 @@ class RaffleGroup extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -16,21 +15,19 @@ class RaffleGroup extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'raffle_groups';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
-    public $timestamps = false; 
+    public $timestamps = false;
 
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/

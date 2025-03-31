@@ -16,15 +16,12 @@ class PromptsController extends Controller
     |--------------------------------------------------------------------------
     | Prompts Controller
     |--------------------------------------------------------------------------
-    |
     | Displays information about prompts as entered in the admin panel.
     | Pages displayed by this controller form the Prompts section of the site.
-    |
     */
 
     /**
      * Shows the index page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -34,7 +31,6 @@ class PromptsController extends Controller
 
     /**
      * Shows the prompt categories page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -43,14 +39,13 @@ class PromptsController extends Controller
         $query = PromptCategory::query();
         $name = $request->get('name');
         if($name) $query->where('name', 'LIKE', '%'.$name.'%');
-        return view('prompts.prompt_categories', [  
+        return view('prompts.prompt_categories', [
             'categories' => $query->orderBy('sort', 'DESC')->paginate(20)->appends($request->query()),
         ]);
     }
 
     /**
      * Shows the prompts page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -58,12 +53,12 @@ class PromptsController extends Controller
     {
         $query = Prompt::active()->with('category');
         $data = $request->only(['prompt_category_id', 'name', 'sort']);
-        if(isset($data['prompt_category_id']) && $data['prompt_category_id'] != 'none') 
+        if(isset($data['prompt_category_id']) && $data['prompt_category_id'] != 'none')
             $query->where('prompt_category_id', $data['prompt_category_id']);
-        if(isset($data['name'])) 
+        if(isset($data['name']))
             $query->where('name', 'LIKE', '%'.$data['name'].'%');
 
-        if(isset($data['sort'])) 
+        if(isset($data['sort']))
         {
             switch($data['sort']) {
                 case 'alpha':
@@ -94,7 +89,7 @@ class PromptsController extends Controller
                     $query->sortEnd(true);
                     break;
             }
-        } 
+        }
         else $query->sortCategory();
 
         return view('prompts.prompts', [

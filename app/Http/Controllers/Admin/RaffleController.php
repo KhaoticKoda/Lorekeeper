@@ -20,7 +20,6 @@ class RaffleController extends Controller
 {
     /**
      * Shows the raffle index.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -39,7 +38,6 @@ class RaffleController extends Controller
 
     /**
      * Shows the create/edit raffle modal.
-     *
      * @param  int|null  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -59,7 +57,6 @@ class RaffleController extends Controller
 
     /**
      * Creates or edits a raffle.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RaffleService  $service
      * @param  int|null                    $id
@@ -77,13 +74,12 @@ class RaffleController extends Controller
         }
         else {
             flash('Couldn\'t create raffle.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
-    
+
     /**
      * Shows the create/edit raffle group modal.
-     *
      * @param  int|null  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -102,7 +98,6 @@ class RaffleController extends Controller
 
     /**
      * Creates or edits a raffle group.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RaffleService  $service
      * @param  int|null                    $id
@@ -120,13 +115,12 @@ class RaffleController extends Controller
         }
         else {
             flash('Couldn\'t create raffle group.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
 
     /**
      * Shows the ticket index of a raffle.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int|\\                    $id
      * @return \Illuminate\Contracts\Support\Renderable
@@ -145,7 +139,6 @@ class RaffleController extends Controller
 
     /**
      * Creates raffle tickets for a raffle.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RaffleManager  $service
      * @param  int                         $id
@@ -160,13 +153,12 @@ class RaffleController extends Controller
         }
         else {
             flash('Couldn\'t add tickets.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
 
     /**
      * Deletes a raffle ticket.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RaffleManager  $service
      * @param  int                         $id
@@ -180,13 +172,12 @@ class RaffleController extends Controller
         }
         else {
             flash('Couldn\'t remove ticket.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
 
     /**
      * Shows the confirmation modal for rolling a raffle.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -202,7 +193,6 @@ class RaffleController extends Controller
 
     /**
      * Rolls a raffle.
-     *
      * @param  App\Services\RaffleManager  $service
      * @param  int                         $id
      * @return \Illuminate\Http\RedirectResponse
@@ -215,13 +205,12 @@ class RaffleController extends Controller
         }
         else {
             flash('Error in rolling winners.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
 
     /**
      * Shows the confirmation modal for rolling a raffle group.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -237,7 +226,6 @@ class RaffleController extends Controller
 
     /**
      * Rolls a raffle group.
-     *
      * @param  App\Services\RaffleManager  $service
      * @param  int                         $id
      * @return \Illuminate\Http\RedirectResponse
@@ -250,7 +238,7 @@ class RaffleController extends Controller
         }
         else {
             flash('Error in rolling winners.')->error();
-            return redirect()->back()->withInput();  
+            return redirect()->back()->withInput();
         }
     }
 }

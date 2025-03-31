@@ -8,7 +8,6 @@ class AddRejectedStatusToGallerySubmissions extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -18,7 +17,6 @@ class AddRejectedStatusToGallerySubmissions extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

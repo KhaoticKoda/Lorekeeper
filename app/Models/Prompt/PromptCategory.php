@@ -9,7 +9,6 @@ class PromptCategory extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -18,14 +17,12 @@ class PromptCategory extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'prompt_categories';
-    
+
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -33,10 +30,9 @@ class PromptCategory extends Model
         'description' => 'nullable',
         'image' => 'mimes:png',
     ];
-    
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -46,14 +42,13 @@ class PromptCategory extends Model
     ];
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
-    
+
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -63,7 +58,6 @@ class PromptCategory extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -73,7 +67,6 @@ class PromptCategory extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getCategoryImageFileNameAttribute()
@@ -83,17 +76,15 @@ class PromptCategory extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getCategoryImagePathAttribute()
     {
         return public_path($this->imageDirectory);
     }
-    
+
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getCategoryImageUrlAttribute()
@@ -104,7 +95,6 @@ class PromptCategory extends Model
 
     /**
      * Gets the URL of the model's encyclopedia page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -114,7 +104,6 @@ class PromptCategory extends Model
 
     /**
      * Gets the URL for an encyclopedia search for prompts in this category.
-     *
      * @return string
      */
     public function getSearchUrlAttribute()

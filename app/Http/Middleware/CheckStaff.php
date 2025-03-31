@@ -8,7 +8,6 @@ class CheckStaff
 {
     /**
      * Check if the user is a staff member.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

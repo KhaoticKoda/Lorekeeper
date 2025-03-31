@@ -9,7 +9,6 @@ class Currency extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -21,14 +20,12 @@ class Currency extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'currencies';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -41,7 +38,6 @@ class Currency extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -60,7 +56,6 @@ class Currency extends Model
 
     /**
      * Displays the currency as an icon with tooltip.
-     *
      * @return string
      */
     public function getDisplayIconAttribute()
@@ -70,7 +65,6 @@ class Currency extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -80,7 +74,6 @@ class Currency extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getCurrencyImageFileNameAttribute()
@@ -90,7 +83,6 @@ class Currency extends Model
 
     /**
      * Gets the file name of the model's icon image.
-     *
      * @return string
      */
     public function getCurrencyIconFileNameAttribute()
@@ -100,7 +92,6 @@ class Currency extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getCurrencyImagePathAttribute()
@@ -110,7 +101,6 @@ class Currency extends Model
 
     /**
      * Gets the path to the file directory containing the model's icon image.
-     *
      * @return string
      */
     public function getCurrencyIconPathAttribute()
@@ -120,7 +110,6 @@ class Currency extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getCurrencyImageUrlAttribute()
@@ -131,7 +120,6 @@ class Currency extends Model
 
     /**
      * Gets the URL of the model's icon image.
-     *
      * @return string
      */
     public function getCurrencyIconUrlAttribute()
@@ -148,7 +136,6 @@ class Currency extends Model
 
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -158,7 +145,6 @@ class Currency extends Model
 
     /**
      * Gets the URL of the model's encyclopedia page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -168,7 +154,6 @@ class Currency extends Model
 
     /**
      * Gets the currency's asset type for asset management.
-     *
      * @return string
      */
     public function getAssetTypeAttribute()
@@ -184,7 +169,6 @@ class Currency extends Model
 
     /**
      * Displays a given value of the currency with icon, abbreviation or name.
-     *
      * @return string
      */
     public function display($value)

@@ -18,14 +18,11 @@ class CurrencyController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Currency Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of currencies.
-    |
     */
 
     /**
      * Shows the currency index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -34,10 +31,9 @@ class CurrencyController extends Controller
             'currencies' => Currency::paginate(30)
         ]);
     }
-    
+
     /**
      * Shows the create currency page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateCurrency()
@@ -46,10 +42,9 @@ class CurrencyController extends Controller
             'currency' => new Currency
         ]);
     }
-    
+
     /**
      * Shows the edit currency page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -64,7 +59,6 @@ class CurrencyController extends Controller
 
     /**
      * Creates or edits a currency.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @param  int|null                               $id
@@ -74,7 +68,7 @@ class CurrencyController extends Controller
     {
         $id ? $request->validate(Currency::$updateRules) : $request->validate(Currency::$createRules);
         $data = $request->only([
-            'is_user_owned', 'is_character_owned', 
+            'is_user_owned', 'is_character_owned',
             'name', 'abbreviation', 'description',
             'is_displayed', 'allow_user_to_user', 'allow_user_to_character', 'allow_character_to_user',
             'icon', 'image', 'remove_icon', 'remove_image'
@@ -91,10 +85,9 @@ class CurrencyController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the currency deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -108,7 +101,6 @@ class CurrencyController extends Controller
 
     /**
      * Deletes a currency.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @param  int                                    $id
@@ -127,7 +119,6 @@ class CurrencyController extends Controller
 
     /**
      * Shows the sort currency page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSort()
@@ -140,7 +131,6 @@ class CurrencyController extends Controller
 
     /**
      * Sorts currencies.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @param  string                                 $type

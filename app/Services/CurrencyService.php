@@ -16,14 +16,11 @@ class CurrencyService extends Service
     |--------------------------------------------------------------------------
     | Currency Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of currency.
-    |
     */
 
     /**
      * Creates a new currency.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Currency\Currency
@@ -67,7 +64,6 @@ class CurrencyService extends Service
 
     /**
      * Updates a currency.
-     *
      * @param  \App\Models\Currency\Currency  $currency
      * @param  array                          $data
      * @param  \App\Models\User\User          $user
@@ -112,7 +108,6 @@ class CurrencyService extends Service
 
     /**
      * Processes user input for creating/updating a currency.
-     *
      * @param  array                          $data
      * @param  \App\Models\Currency\Currency  $currency
      * @return array
@@ -166,7 +161,6 @@ class CurrencyService extends Service
 
     /**
      * Deletes a currency.
-     *
      * @param  \App\Models\Currency\Currency  $currency
      * @return bool
      */
@@ -202,7 +196,6 @@ class CurrencyService extends Service
 
     /**
      * Sorts currency order.
-     *
      * @param  array   $data
      * @param  string  $type
      * @return bool

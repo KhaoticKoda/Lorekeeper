@@ -13,7 +13,6 @@ class SalesCharacter extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,14 +21,12 @@ class SalesCharacter extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'sales_characters';
 
     /**
      * Validation rules.
-     *
      * @var array
      */
     public static $rules = [
@@ -75,7 +72,6 @@ class SalesCharacter extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -85,7 +81,6 @@ class SalesCharacter extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return string
      */
     public function getDisplayTypeAttribute()
@@ -117,7 +112,6 @@ class SalesCharacter extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return string
      */
     public function getTypeLinkAttribute()
@@ -149,7 +143,6 @@ class SalesCharacter extends Model
 
     /**
      * Get formatted pricing information.
-     *
      * @return string
      */
     public function getPriceAttribute()
@@ -186,7 +179,6 @@ class SalesCharacter extends Model
 
     /**
      * Get the first image for the associated character.
-     *
      * @return App\Models\Character\CharacterImage
      */
     public function getImageAttribute()

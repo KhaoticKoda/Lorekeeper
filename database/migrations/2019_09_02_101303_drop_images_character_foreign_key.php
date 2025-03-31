@@ -8,7 +8,6 @@ class DropImagesCharacterForeignKey extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -23,7 +22,6 @@ class DropImagesCharacterForeignKey extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

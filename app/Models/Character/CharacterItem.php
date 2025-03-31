@@ -11,7 +11,6 @@ class CharacterItem extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,20 +19,18 @@ class CharacterItem extends Model
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_items';
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
@@ -41,7 +38,7 @@ class CharacterItem extends Model
     /**
      * Get the character who owns the stack.
      */
-    public function character() 
+    public function character()
     {
         return $this->belongsTo('App\Models\Character\Character');
     }
@@ -49,30 +46,28 @@ class CharacterItem extends Model
     /**
      * Get the item associated with this item stack.
      */
-    public function item() 
+    public function item()
     {
         return $this->belongsTo('App\Models\Item\Item');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
-    public function getDataAttribute() 
+    public function getDataAttribute()
     {
         return json_decode($this->attributes['data'], true);
     }
-    
+
     /**
      * Checks if the stack is transferrable.
-     *
      * @return array
      */
     public function getIsTransferrableAttribute()
@@ -83,7 +78,6 @@ class CharacterItem extends Model
 
     /**
      * Gets the available quantity of the stack.
-     *
      * @return int
      */
     public function getAvailableQuantityAttribute()
@@ -93,7 +87,6 @@ class CharacterItem extends Model
 
     /**
      * Gets the stack's asset type for asset management.
-     *
      * @return string
      */
     public function getAssetTypeAttribute()

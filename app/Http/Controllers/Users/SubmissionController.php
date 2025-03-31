@@ -29,9 +29,7 @@ class SubmissionController extends Controller
     |--------------------------------------------------------------------------
     | Submission Controller
     |--------------------------------------------------------------------------
-    |
     | Handles prompt submissions and claims for the user.
-    |
     */
 
     /**********************************************************************************************
@@ -42,7 +40,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the user's submission log.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -62,7 +59,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the submission page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -82,7 +78,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the submit page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -110,7 +105,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows character information.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -125,7 +119,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows prompt information.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -142,7 +135,6 @@ class SubmissionController extends Controller
 
     /**
      * Creates a new submission.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\SubmissionManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -168,7 +160,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the user's claim log.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -188,7 +179,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the claim page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -208,7 +198,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the submit claim page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -235,7 +224,6 @@ class SubmissionController extends Controller
 
     /**
      * Creates a new claim.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\SubmissionManager  $service
      * @return \Illuminate\Http\RedirectResponse

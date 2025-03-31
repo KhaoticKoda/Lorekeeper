@@ -9,21 +9,18 @@ class UpdateCommentTypes extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'update-comment-types';
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Updates comment types.';
 
     /**
      * Create a new command instance.
-     *
      * @return void
      */
     public function __construct()
@@ -33,7 +30,6 @@ class UpdateCommentTypes extends Command
 
     /**
      * Execute the console command.
-     *
      * @return int
      */
     public function handle()

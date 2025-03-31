@@ -14,14 +14,11 @@ class NewsService extends Service
     |--------------------------------------------------------------------------
     | News Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of news posts.
-    |
     */
 
     /**
      * Creates a news post.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\News
@@ -40,7 +37,7 @@ class NewsService extends Service
             if($news->is_visible) $this->alertUsers();
 
             return $this->commitReturn($news);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -48,9 +45,8 @@ class NewsService extends Service
 
     /**
      * Updates a news post.
-     *
      * @param  \App\Models\News       $news
-     * @param  array                  $data 
+     * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\News
      */
@@ -67,7 +63,7 @@ class NewsService extends Service
             $news->update($data);
 
             return $this->commitReturn($news);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -75,7 +71,6 @@ class NewsService extends Service
 
     /**
      * Deletes a news post.
-     *
      * @param  \App\Models\News  $news
      * @return bool
      */
@@ -87,7 +82,7 @@ class NewsService extends Service
             $news->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -96,7 +91,6 @@ class NewsService extends Service
     /**
      * Updates queued news posts to be visible and alert users when
      * they should be posted.
-     *
      * @return bool
      */
     public function updateQueue()
@@ -110,7 +104,7 @@ class NewsService extends Service
                 $this->alertUsers();
 
                 return $this->commitReturn(true);
-            } catch(\Exception $e) { 
+            } catch(\Exception $e) {
                 $this->setError('error', $e->getMessage());
             }
             return $this->rollbackReturn(false);
@@ -120,7 +114,6 @@ class NewsService extends Service
     /**
      * Updates the unread news flag for all users so that
      * the new news notification is displayed.
-     *
      * @return bool
      */
     private function alertUsers()

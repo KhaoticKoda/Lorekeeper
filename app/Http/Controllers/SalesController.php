@@ -15,14 +15,11 @@ class SalesController extends Controller
     |--------------------------------------------------------------------------
     | sales Controller
     |--------------------------------------------------------------------------
-    |
     | Displays sales posts and updates the user's sales read status.
-    |
     */
 
     /**
      * Shows the sales index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -33,7 +30,6 @@ class SalesController extends Controller
 
     /**
      * Shows a sales post.
-     *
      * @param  int          $id
      * @param  string|null  $slug
      * @return \Illuminate\Contracts\Support\Renderable

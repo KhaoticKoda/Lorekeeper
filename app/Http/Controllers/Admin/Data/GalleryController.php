@@ -17,14 +17,11 @@ class GalleryController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Gallery Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of galleries.
-    |
     */
 
     /**
      * Shows the gallery index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -36,7 +33,6 @@ class GalleryController extends Controller
 
     /**
      * Shows the create gallery page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateGallery()
@@ -49,7 +45,6 @@ class GalleryController extends Controller
 
     /**
      * Shows the edit gallery page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -65,7 +60,6 @@ class GalleryController extends Controller
 
     /**
      * Creates or edits a gallery.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\GalleryService $service
      * @param  int|null                    $id
@@ -92,7 +86,6 @@ class GalleryController extends Controller
 
     /**
      * Gets the gallery deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -106,7 +99,6 @@ class GalleryController extends Controller
 
     /**
      * Deletes a gallery.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\GalleryService  $service
      * @param  int                         $id

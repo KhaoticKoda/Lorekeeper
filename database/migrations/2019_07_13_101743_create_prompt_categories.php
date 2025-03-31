@@ -8,7 +8,6 @@ class CreatePromptCategories extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -17,12 +16,12 @@ class CreatePromptCategories extends Migration
         Schema::create('prompt_categories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            
+
             $table->string('name');
             $table->text('description')->nullable()->default(null);
             $table->text('parsed_description')->nullable()->default(null);
             $table->integer('sort')->unsigned()->default(0);
-            
+
             $table->boolean('has_image')->default(0);
         });
         Schema::table('prompts', function (Blueprint $table) {
@@ -33,7 +32,6 @@ class CreatePromptCategories extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

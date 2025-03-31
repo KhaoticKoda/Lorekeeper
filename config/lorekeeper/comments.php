@@ -26,10 +26,9 @@ return [
      * You can use the \Laravelista\Comments\CommentControllerInterface.
      */
     'controller' => 'App\Http\Controllers\Comments\CommentController',
-    
+
 	/**
      * Set this option to `true` to enable soft deleting of comments.
-     *
      * Comments will be soft deleted using laravels "softDeletes" trait.
      */
     'soft_deletes' => true

@@ -38,14 +38,11 @@ class CharacterManager extends Service
     |--------------------------------------------------------------------------
     | Character Manager
     |--------------------------------------------------------------------------
-    |
     | Handles creation and modification of character data.
-    |
     */
 
     /**
      * Retrieves the next number to be used for a character's masterlist code.
-     *
      * @param  int  $categoryId
      * @return string
      */
@@ -77,7 +74,6 @@ class CharacterManager extends Service
 
     /**
      * Creates a new character or MYO slot.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @param  bool                   $isMyo
@@ -167,7 +163,6 @@ class CharacterManager extends Service
 
     /**
      * Handles character data.
-     *
      * @param  array                  $data
      * @param  bool                   $isMyo
      * @return \App\Models\Character\Character|bool
@@ -218,7 +213,6 @@ class CharacterManager extends Service
 
     /**
      * Handles character image data.
-     *
      * @param  array                            $data
      * @return \App\Models\Character\Character  $character
      * @param  bool                             $isMyo
@@ -339,7 +333,6 @@ class CharacterManager extends Service
     /**
      * Trims and optionally resizes and watermarks an image.
      *
-     *
      * @param  \App\Models\Character\CharacterImage  $characterImage
      */
     private function processImage($characterImage)
@@ -438,7 +431,6 @@ class CharacterManager extends Service
 
     /**
      * Crops a thumbnail for the given image.
-     *
      * @param  array                                 $points
      * @param  \App\Models\Character\CharacterImage  $characterImage
      */
@@ -561,7 +553,6 @@ class CharacterManager extends Service
 
     /**
      * Creates a character log.
-     *
      * @param  int     $senderId
      * @param  string  $senderUrl
      * @param  int     $recipientId
@@ -601,7 +592,6 @@ class CharacterManager extends Service
 
     /**
      * Creates a character image.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
@@ -662,7 +652,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character image.
-     *
      * @param  array                                 $data
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
@@ -727,7 +716,6 @@ class CharacterManager extends Service
 
     /**
      * Generates a list of features for displaying.
-     *
      * @param  \App\Models\Character\CharacterImage  $image
      * @return  string
      */
@@ -741,7 +729,6 @@ class CharacterManager extends Service
 
     /**
      * Updates image data.
-     *
      * @param  array                                 $data
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
@@ -772,7 +759,6 @@ class CharacterManager extends Service
 
     /**
      * Updates image credits.
-     *
      * @param  array                                 $data
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
@@ -851,7 +837,6 @@ class CharacterManager extends Service
 
     /**
      * Generates a list of image credits for displaying.
-     *
      * @param  \App\Models\Character\CharacterImage  $image
      * @return  string
      */
@@ -867,7 +852,6 @@ class CharacterManager extends Service
 
     /**
      * Reuploads an image.
-     *
      * @param  array                                 $data
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
@@ -918,7 +902,6 @@ class CharacterManager extends Service
 
     /**
      * Deletes an image.
-     *
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
      * @return  bool
@@ -952,7 +935,6 @@ class CharacterManager extends Service
 
     /**
      * Updates image settings.
-     *
      * @param  array                                 $data
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
@@ -982,7 +964,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character's active image.
-     *
      * @param  \App\Models\Character\CharacterImage  $image
      * @param  \App\Models\User\User                 $user
      * @return  bool
@@ -1011,7 +992,6 @@ class CharacterManager extends Service
 
     /**
      * Sorts a character's images
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $image
      * @param  \App\Models\User\User            $user
@@ -1055,7 +1035,6 @@ class CharacterManager extends Service
 
     /**
      * Sorts a user's characters.
-     *
      * @param  array                                 $data
      * @param  \App\Models\User\User                 $user
      * @return  bool
@@ -1087,7 +1066,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character's stats.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $image
      * @param  \App\Models\User\User            $user
@@ -1183,7 +1161,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character's description.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
@@ -1214,7 +1191,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character's settings.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $image
      * @param  \App\Models\User\User            $user
@@ -1243,7 +1219,6 @@ class CharacterManager extends Service
 
     /**
      * Updates a character's profile.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
@@ -1309,7 +1284,6 @@ class CharacterManager extends Service
 
     /**
      * Deletes a character.
-     *
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
      * @return  bool
@@ -1353,7 +1327,6 @@ class CharacterManager extends Service
 
     /**
      * Creates a character transfer.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
@@ -1413,7 +1386,6 @@ class CharacterManager extends Service
 
     /**
      * Forces an admin transfer of a character.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
@@ -1484,7 +1456,6 @@ class CharacterManager extends Service
 
     /**
      * Processes a character transfer.
-     *
      * @param  array                            $data
      * @param  \App\Models\User\User            $user
      * @return  bool
@@ -1547,7 +1518,6 @@ class CharacterManager extends Service
 
     /**
      * Cancels a character transfer.
-     *
      * @param  array                            $data
      * @param  \App\Models\User\User            $user
      * @return  bool
@@ -1580,7 +1550,6 @@ class CharacterManager extends Service
 
     /**
      * Processes a character transfer in the approvals queue.
-     *
      * @param  array                            $data
      * @param  \App\Models\User\User            $user
      * @return  bool
@@ -1663,7 +1632,6 @@ class CharacterManager extends Service
 
     /**
      * Moves a character from one user to another.
-     *
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $recipient
      * @param  string                           $data
@@ -1740,7 +1708,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Creates a character design update request (or a MYO design approval request).
-     *
      * @param  \App\Models\Character\Character  $character
      * @param  \App\Models\User\User            $user
      * @return  \App\Models\Character\CharacterDesignUpdate|bool
@@ -1796,7 +1763,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Saves the comment section of a character design update request.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @return  bool
@@ -1820,7 +1786,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Saves the image upload section of a character design update request.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @param  bool                                         $isAdmin
@@ -1918,7 +1883,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Saves the addons section of a character design update request.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @return  bool
@@ -2012,7 +1976,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Saves the character features (traits) section of a character design update request.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @return  bool
@@ -2071,7 +2034,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Submit a character design update request to the approval queue.
-     *
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @return  bool
      */
@@ -2100,7 +2062,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Approves a character design update request and processes it.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @param  \App\Models\User\User                        $user
@@ -2294,7 +2255,6 @@ is_object($sender) ? $sender->id : null,
      * Rejects a character design update request and processes it.
      * Rejection can be a soft rejection (reopens the request so the user can edit it and resubmit)
      * or a hard rejection (takes the request out of the queue completely).
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @param  \App\Models\User\User                        $user
@@ -2367,7 +2327,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Cancels a character design update request.
-     *
      * @param  array                                        $data
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @param  \App\Models\User\User                        $user
@@ -2408,7 +2367,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Deletes a character design update request.
-     *
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @return  bool
      */
@@ -2466,7 +2424,6 @@ is_object($sender) ? $sender->id : null,
 
     /**
      * Votes on a a character design update request.
-     *
      * @param  string                                       $action
      * @param  \App\Models\Character\CharacterDesignUpdate  $request
      * @param  \App\Models\User\User                        $user

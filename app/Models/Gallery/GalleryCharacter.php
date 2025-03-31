@@ -11,7 +11,6 @@ class GalleryCharacter extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,23 +19,22 @@ class GalleryCharacter extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'gallery_submission_characters';
-    
+
     /**
      * Get the submission this is attached to.
      */
-    public function submission() 
+    public function submission()
     {
         return $this->belongsTo('App\Models\Gallery\GallerySubmission', 'gallery_submission_id');
     }
-    
+
     /**
      * Get the character being attached to the submission.
      */
-    public function character() 
+    public function character()
     {
         return $this->belongsTo('App\Models\Character\Character', 'character_id');
     }

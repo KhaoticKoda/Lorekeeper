@@ -14,14 +14,11 @@ class CharacterCategoryService extends Service
     |--------------------------------------------------------------------------
     | Character Category Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of character categories.
-    |
     */
 
     /**
      * Create a category.
-     *
      * @param  array  $data
      * @return \App\Models\Character\CharacterCategory|bool
      */
@@ -45,7 +42,7 @@ class CharacterCategoryService extends Service
             if ($image) $this->handleImage($image, $category->categoryImagePath, $category->categoryImageFileName);
 
             return $this->commitReturn($category);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -53,7 +50,6 @@ class CharacterCategoryService extends Service
 
     /**
      * Update a category.
-     *
      * @param  \App\Models\Character\CharacterCategory  $category
      * @param  array                                    $data
      * @return \App\Models\Character\CharacterCategory|bool
@@ -68,7 +64,7 @@ class CharacterCategoryService extends Service
 
             $data = $this->populateCategoryData($data, $category);
 
-            $image = null;            
+            $image = null;
             if(isset($data['image']) && $data['image']) {
                 $data['has_image'] = 1;
                 $image = $data['image'];
@@ -80,7 +76,7 @@ class CharacterCategoryService extends Service
             if ($category) $this->handleImage($image, $category->categoryImagePath, $category->categoryImageFileName);
 
             return $this->commitReturn($category);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -88,7 +84,6 @@ class CharacterCategoryService extends Service
 
     /**
      * Handle category data.
-     *
      * @param  array                                         $data
      * @param  \App\Models\Character\CharacterCategory|null  $category
      * @return array
@@ -96,13 +91,13 @@ class CharacterCategoryService extends Service
     private function populateCategoryData($data, $category = null)
     {
         if(isset($data['description']) && $data['description']) $data['parsed_description'] = parse($data['description']);
-        
+
         if(isset($data['remove_image']))
         {
-            if($category && $category->has_image && $data['remove_image']) 
-            { 
-                $data['has_image'] = 0; 
-                $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName); 
+            if($category && $category->has_image && $data['remove_image'])
+            {
+                $data['has_image'] = 0;
+                $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName);
             }
             unset($data['remove_image']);
         }
@@ -112,7 +107,6 @@ class CharacterCategoryService extends Service
 
     /**
      * Delete a category.
-     *
      * @param  \App\Models\Character\CharacterCategory  $category
      * @return bool
      */
@@ -123,12 +117,12 @@ class CharacterCategoryService extends Service
         try {
             // Check first if the category is currently in use
             if(Character::where('character_category_id', $category->id)->exists()) throw new \Exception("An character with this category exists. Please change its category first.");
-            
-            if($category->has_image) $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName); 
+
+            if($category->has_image) $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName);
             $category->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -136,7 +130,6 @@ class CharacterCategoryService extends Service
 
     /**
      * Sorts category order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -153,7 +146,7 @@ class CharacterCategoryService extends Service
             }
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

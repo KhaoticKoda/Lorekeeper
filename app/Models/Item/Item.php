@@ -16,7 +16,6 @@ class Item extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -28,14 +27,12 @@ class Item extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'items';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -52,7 +49,6 @@ class Item extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -104,7 +100,6 @@ class Item extends Model
 
     /**
      * Scope a query to sort items in alphabetical order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $reverse
      * @return \Illuminate\Database\Eloquent\Builder
@@ -116,7 +111,6 @@ class Item extends Model
 
     /**
      * Scope a query to sort items in category order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -128,7 +122,6 @@ class Item extends Model
 
     /**
      * Scope a query to sort items by newest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -139,7 +132,6 @@ class Item extends Model
 
     /**
      * Scope a query to sort features oldest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -150,7 +142,6 @@ class Item extends Model
 
     /**
      * Scope a query to show only released or "released" (at least one user-owned stack has ever existed) items.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -167,7 +158,6 @@ class Item extends Model
 
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -177,7 +167,6 @@ class Item extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -187,7 +176,6 @@ class Item extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getImageFileNameAttribute()
@@ -197,7 +185,6 @@ class Item extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImagePathAttribute()
@@ -207,7 +194,6 @@ class Item extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getImageUrlAttribute()
@@ -218,7 +204,6 @@ class Item extends Model
 
     /**
      * Gets the URL of the model's encyclopedia page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -228,7 +213,6 @@ class Item extends Model
 
     /**
      * Gets the URL of the individual item's page, by ID.
-     *
      * @return string
      */
     public function getIdUrlAttribute()
@@ -238,7 +222,6 @@ class Item extends Model
 
     /**
      * Gets the currency's asset type for asset management.
-     *
      * @return string
      */
     public function getAssetTypeAttribute()
@@ -248,7 +231,6 @@ class Item extends Model
 
     /**
      * Get the artist of the item's image.
-     *
      * @return string
      */
     public function getItemArtistAttribute()
@@ -275,7 +257,6 @@ class Item extends Model
 
     /**
      * Get the reference url attribute.
-     *
      * @return string
      */
     public function getReferenceAttribute()
@@ -286,7 +267,6 @@ class Item extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -297,7 +277,6 @@ class Item extends Model
 
     /**
      * Get the rarity attribute.
-     *
      * @return string
      */
     public function getRarityAttribute()
@@ -308,7 +287,6 @@ class Item extends Model
 
     /**
      * Get the uses attribute.
-     *
      * @return string
      */
     public function getUsesAttribute()
@@ -319,7 +297,6 @@ class Item extends Model
 
     /**
      * Get the source attribute.
-     *
      * @return string
      */
     public function getSourceAttribute()
@@ -330,7 +307,6 @@ class Item extends Model
 
     /**
      * Get the resale attribute.
-     *
      * @return string
      */
     public function getResellAttribute()
@@ -341,7 +317,6 @@ class Item extends Model
 
     /**
      * Get the shops attribute as an associative array.
-     *
      * @return array
      */
     public function getShopsAttribute()
@@ -353,7 +328,6 @@ class Item extends Model
 
     /**
      * Get the prompts attribute as an associative array.
-     *
      * @return array
      */
     public function getPromptsAttribute()
@@ -371,7 +345,6 @@ class Item extends Model
 
     /**
      * Checks if the item has a particular tag.
-     *
      * @return bool
      */
     public function hasTag($tag)
@@ -381,7 +354,6 @@ class Item extends Model
 
     /**
      * Gets a particular tag attached to the item.
-     *
      * @return \App\Models\Item\ItemTag
      */
     public function tag($tag)

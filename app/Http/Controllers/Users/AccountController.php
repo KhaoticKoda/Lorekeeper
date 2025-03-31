@@ -24,37 +24,32 @@ class AccountController extends Controller
     |--------------------------------------------------------------------------
     | Account Controller
     |--------------------------------------------------------------------------
-    |
     | Handles the user's account management.
-    |
     */
 
     /**
      * Shows the banned page, or redirects the user to the home page if they aren't banned.
-     *
      * @return \Illuminate\Contracts\Support\Renderable|\Illuminate\Http\RedirectResponse
      */
     public function getBanned()
     {
         if(Auth::user()->is_banned)
             return view('account.banned');
-        else 
+        else
             return redirect()->to('/');
     }
 
     /**
      * Shows the user settings page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSettings()
     {
         return view('account.settings');
     }
-    
+
     /**
      * Edits the user's profile.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -70,7 +65,6 @@ class AccountController extends Controller
 
     /**
      * Edits the user's avatar.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -84,10 +78,9 @@ class AccountController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Changes the user's password.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\UserService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -106,10 +99,9 @@ class AccountController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Changes the user's email address and sends a verification email.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\UserService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -130,7 +122,6 @@ class AccountController extends Controller
 
     /**
      * Changes user birthday setting
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\UserService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -148,7 +139,6 @@ class AccountController extends Controller
 
     /**
      * Shows the notifications page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getNotifications()
@@ -162,10 +152,9 @@ class AccountController extends Controller
             'notifications' => $notifications
         ]);
     }
-    
+
     /**
      * Deletes a notification and returns a response.
-     *
      * @return \Illuminate\Http\Response
      */
     public function getDeleteNotification($id)
@@ -177,7 +166,6 @@ class AccountController extends Controller
 
     /**
      * Deletes all of the user's notifications.
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postClearNotifications($type = null)
@@ -190,7 +178,6 @@ class AccountController extends Controller
 
     /**
      * Shows the account links page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getAliases()
@@ -200,7 +187,6 @@ class AccountController extends Controller
 
     /**
      * Shows the make primary alias modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getMakePrimary($id)
@@ -210,7 +196,6 @@ class AccountController extends Controller
 
     /**
      * Makes an alias the user's primary alias.
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postMakePrimary(LinkService $service, $id)
@@ -226,7 +211,6 @@ class AccountController extends Controller
 
     /**
      * Shows the hide alias modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getHideAlias($id)
@@ -236,7 +220,6 @@ class AccountController extends Controller
 
     /**
      * Hides or unhides the selected alias from public view.
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postHideAlias(LinkService $service, $id)
@@ -252,7 +235,6 @@ class AccountController extends Controller
 
     /**
      * Shows the remove alias modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getRemoveAlias($id)
@@ -262,7 +244,6 @@ class AccountController extends Controller
 
     /**
      * Removes the selected alias from the user's account.
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postRemoveAlias(LinkService $service, $id)

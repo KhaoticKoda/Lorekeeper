@@ -9,7 +9,6 @@ class SettingsProvider extends ServiceProvider
 {
     /**
      * Register services.
-     *
      * @return void
      */
     public function register()
@@ -19,7 +18,6 @@ class SettingsProvider extends ServiceProvider
 
     /**
      * Bootstrap services.
-     *
      * @return void
      */
     public function boot()

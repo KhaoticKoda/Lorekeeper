@@ -8,7 +8,6 @@ class CreateGameTables extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -24,7 +23,7 @@ class CreateGameTables extends Migration
         Schema::create('rarities', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            
+
             $table->string('name');
             $table->string('description', 512);
             $table->integer('sort')->unsigned()->default(0);
@@ -38,7 +37,7 @@ class CreateGameTables extends Migration
         Schema::create('item_categories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            
+
             $table->string('name');
             $table->string('description', 512);
             $table->integer('sort')->unsigned()->default(0);
@@ -49,7 +48,7 @@ class CreateGameTables extends Migration
             $table->increments('id');
             $table->integer('item_category_id')->unsigned()->nullable()->default(null);
             // For the sake of saving some headaches, item category can be left empty (which will put them in a generic "miscellaneous" category)
-            
+
             $table->string('name');
             $table->string('description', 512);
             $table->text('specifications')->nullable()->default(null);
@@ -99,7 +98,7 @@ class CreateGameTables extends Migration
 
         // Create species tables //////////////////////////////////////////////////////////////////
 
-        // These are named "species", but can also be used for making subspecies 
+        // These are named "species", but can also be used for making subspecies
         // (just change the wording on the views)
         // I'll add a recipe to add a category above species so that multiple species
         // with subspecies can be done, it just appears to be uncommon in ARPGs to
@@ -133,9 +132,9 @@ class CreateGameTables extends Migration
             // Species ID can be left as null for a trait that can be used by
             // any species in the database.
             $table->integer('species_id')->unsigned()->nullable()->default(null);
-            
+
             $table->integer('rarity_id')->unsigned();
-            
+
             $table->string('name');
             $table->string('description', 512);
             $table->text('specifications')->nullable()->default(null);
@@ -153,7 +152,7 @@ class CreateGameTables extends Migration
             $table->increments('id');
 
             $table->string('code'); // A short code used to identify the category, e.g. MYO, GEN2, etc.
-            
+
             $table->string('name');
             $table->string('description', 512);
             $table->boolean('has_image')->default(0);
@@ -225,8 +224,8 @@ class CreateGameTables extends Migration
         Schema::create('character_features', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             // Images can have different features, so features are attached to images rather than characters
-            $table->integer('character_image_id')->unsigned(); 
-            $table->integer('feature_id')->unsigned(); 
+            $table->integer('character_image_id')->unsigned();
+            $table->integer('feature_id')->unsigned();
             $table->string('data'); // Any special notes about the usage of this feature
 
             $table->unique(['character_image_id', 'feature_id']);
@@ -263,10 +262,10 @@ class CreateGameTables extends Migration
 
             $table->timestamps();
         });
-        
+
 
         // Tracks characters/MYO slots that enter or leave a user's possession.
-        // Main things to track: 
+        // Main things to track:
         // - Bought/traded for/was gifted a character/MYO slot
         // - Sold/traded away/gifted away a character/MYO slot
         // - Used a MYO slot (was approved)
@@ -289,20 +288,19 @@ class CreateGameTables extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
     {
         Schema::dropIfExists('user_character_log');
-        
+
         Schema::dropIfExists('character_submissions');
         Schema::dropIfExists('character_log');
         Schema::dropIfExists('character_features');
         Schema::dropIfExists('characters');
         Schema::dropIfExists('character_images');
         Schema::dropIfExists('character_categories');
-        
+
         Schema::dropIfExists('features');
         Schema::dropIfExists('feature_categories');
         Schema::dropIfExists('specieses');
@@ -311,7 +309,7 @@ class CreateGameTables extends Migration
         Schema::dropIfExists('inventory');
         Schema::dropIfExists('items');
         Schema::dropIfExists('item_categories');
-        
+
         Schema::dropIfExists('rarities');
     }
 }

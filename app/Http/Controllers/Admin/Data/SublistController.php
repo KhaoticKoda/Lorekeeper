@@ -16,14 +16,11 @@ class SublistController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Masterlist Sub Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of sub masterlists.
-    |
     */
 
     /**
      * Shows the sub masterlist index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -32,10 +29,9 @@ class SublistController extends Controller
             'sublists' => Sublist::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create sublist page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateSublist()
@@ -48,10 +44,9 @@ class SublistController extends Controller
             'species' => Species::orderBy('sort')->pluck('name', 'id')
         ]);
     }
-    
+
     /**
      * Shows the edit sublist page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -70,7 +65,6 @@ class SublistController extends Controller
 
     /**
      * Creates or edits a sublist.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\SublistService             $service
      * @param  int|null                               $id
@@ -97,10 +91,9 @@ class SublistController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the sublist deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -114,7 +107,6 @@ class SublistController extends Controller
 
     /**
      * Deletes a sublist.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\SublistService             $service
      * @param  int                                    $id
@@ -130,10 +122,9 @@ class SublistController extends Controller
         }
         return redirect()->to('admin/data/sublists');
     }
-    
+
     /**
      * Sorts sublist order.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\SublistService              $service
      * @return \Illuminate\Http\RedirectResponse

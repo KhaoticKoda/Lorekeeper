@@ -17,14 +17,11 @@ class CharacterCategoryController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Character Category Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of character categories.
-    |
     */
 
     /**
      * Shows the character category index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -33,10 +30,9 @@ class CharacterCategoryController extends Controller
             'categories' => CharacterCategory::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create character category page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateCharacterCategory()
@@ -46,10 +42,9 @@ class CharacterCategoryController extends Controller
             'sublists' => [0 => 'No Sublist'] + Sublist::orderBy('name', 'DESC')->pluck('name', 'id')->toArray()
         ]);
     }
-    
+
     /**
      * Shows the edit character category page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -65,7 +60,6 @@ class CharacterCategoryController extends Controller
 
     /**
      * Creates or edits a character category.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @param  int|null                               $id
@@ -89,10 +83,9 @@ class CharacterCategoryController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the character category deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -106,7 +99,6 @@ class CharacterCategoryController extends Controller
 
     /**
      * Deletes a character category.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @param  int                                    $id
@@ -125,7 +117,6 @@ class CharacterCategoryController extends Controller
 
     /**
      * Sorts character categories.
-     *
      * @param  \Illuminate\Http\Request               $request
      * @param  App\Services\CharacterCategoryService  $service
      * @return \Illuminate\Http\RedirectResponse

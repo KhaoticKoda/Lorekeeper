@@ -8,7 +8,6 @@ class FixCharacterItemLogTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -22,7 +21,6 @@ class FixCharacterItemLogTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
@@ -32,6 +30,6 @@ class FixCharacterItemLogTable extends Migration
         Schema::table('character_items_log', function (Blueprint $table) {
             $table->integer('stack_id')->unsigned()->change();
         });
-        
+
     }
 }

@@ -8,7 +8,6 @@ class AddSpeciesIdToImages extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -22,7 +21,7 @@ class AddSpeciesIdToImages extends Migration
             $table->string('owner_alias')->nullable()->default('null');
         });
         Schema::table('character_images', function (Blueprint $table) {
-            
+
 
             $table->integer('species_id')->unsigned();
             $table->integer('rarity_id')->unsigned();
@@ -34,7 +33,6 @@ class AddSpeciesIdToImages extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
@@ -45,8 +43,8 @@ class AddSpeciesIdToImages extends Migration
             $table->dropForeign('character_images_rarity_id_foreign');
             $table->dropColumn('species_id');
             $table->dropColumn('rarity_id');
-            
-            
+
+
         });
         Schema::table('characters', function (Blueprint $table) {
             $table->dropForeign('characters_rarity_id_foreign');

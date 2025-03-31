@@ -23,14 +23,11 @@ class TradeController extends Controller
     |--------------------------------------------------------------------------
     | Trade Controller
     |--------------------------------------------------------------------------
-    |
     | Handles viewing the user's trade index, creating and acting on trades.
-    |
     */
 
     /**
      * Shows the user's trades.
-     *
      * @param  string  $type
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -66,14 +63,13 @@ class TradeController extends Controller
 
     /**
      * Shows a trade.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getTrade($id)
     {
         $trade = Trade::find($id);
-        
+
         if($trade->status != 'Completed' && !Auth::user()->hasPower('manage_characters') && !($trade->sender_id == Auth::user()->id || $trade->recipient_id == Auth::user()->id))   $trade = null;
 
         if(!$trade) abort(404);
@@ -88,7 +84,6 @@ class TradeController extends Controller
 
     /**
      * Shows the trade creation page.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -113,7 +108,6 @@ class TradeController extends Controller
 
     /**
      * Shows the trade edit page.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -143,10 +137,9 @@ class TradeController extends Controller
             'page' => 'trade'
         ]);
     }
-    
+
     /**
      * Creates a new trade.
-     *
      * @param  \Illuminate\Http\Request   $request
      * @param  App\Services\TradeManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -162,10 +155,9 @@ class TradeController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Edits a trade.
-     *
      * @param  \Illuminate\Http\Request   $request
      * @param  App\Services\TradeManager  $service
      * @param  integer  $id
@@ -184,7 +176,6 @@ class TradeController extends Controller
 
     /**
      * Shows the offer confirmation modal.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -193,15 +184,14 @@ class TradeController extends Controller
         $trade = Trade::where('id', $id)->where(function($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
         })->where('status', 'Open')->first();
-        
+
         return view('home.trades._confirm_offer_modal', [
             'trade' => $trade
         ]);
     }
-    
+
     /**
      * Confirms or unconfirms an offer.
-     *
      * @param  \Illuminate\Http\Request   $request
      * @param  App\Services\TradeManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -220,7 +210,6 @@ class TradeController extends Controller
 
     /**
      * Shows the trade confirmation modal.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -229,15 +218,14 @@ class TradeController extends Controller
         $trade = Trade::where('id', $id)->where(function($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
         })->where('status', 'Open')->first();
-        
+
         return view('home.trades._confirm_trade_modal', [
             'trade' => $trade
         ]);
     }
-    
+
     /**
      * Confirms or unconfirms a trade.
-     *
      * @param  \Illuminate\Http\Request   $request
      * @param  App\Services\TradeManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -256,7 +244,6 @@ class TradeController extends Controller
 
     /**
      * Shows the trade cancellation modal.
-     *
      * @param  integer  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -265,15 +252,14 @@ class TradeController extends Controller
         $trade = Trade::where('id', $id)->where(function($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
         })->where('status', 'Open')->first();
-        
+
         return view('home.trades._cancel_trade_modal', [
             'trade' => $trade
         ]);
     }
-    
+
     /**
      * Cancels a trade.
-     *
      * @param  \Illuminate\Http\Request   $request
      * @param  App\Services\TradeManager  $service
      * @return \Illuminate\Http\RedirectResponse

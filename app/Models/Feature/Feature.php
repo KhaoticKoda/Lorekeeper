@@ -13,7 +13,6 @@ class Feature extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,14 +21,12 @@ class Feature extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'features';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -44,7 +41,6 @@ class Feature extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -103,7 +99,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features in alphabetical order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $reverse
      * @return \Illuminate\Database\Eloquent\Builder
@@ -115,7 +110,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features in category order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $reverse
      * @return \Illuminate\Database\Eloquent\Builder
@@ -128,7 +122,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features in species order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $reverse
      * @return \Illuminate\Database\Eloquent\Builder
@@ -141,7 +134,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features in rarity order.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $reverse
      * @return \Illuminate\Database\Eloquent\Builder
@@ -154,7 +146,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features by newest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -165,7 +156,6 @@ class Feature extends Model
 
     /**
      * Scope a query to sort features oldest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -182,7 +172,6 @@ class Feature extends Model
 
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -192,7 +181,6 @@ class Feature extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -202,7 +190,6 @@ class Feature extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getImageFileNameAttribute()
@@ -212,7 +199,6 @@ class Feature extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImagePathAttribute()
@@ -222,7 +208,6 @@ class Feature extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getImageUrlAttribute()
@@ -233,7 +218,6 @@ class Feature extends Model
 
     /**
      * Gets the URL of the model's encyclopedia page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -243,7 +227,6 @@ class Feature extends Model
 
     /**
      * Gets the URL for a masterlist search of characters in this category.
-     *
      * @return string
      */
     public function getSearchUrlAttribute()

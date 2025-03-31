@@ -13,7 +13,6 @@ class SitePage extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,21 +21,18 @@ class SitePage extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'site_pages';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
-    
+
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -44,10 +40,9 @@ class SitePage extends Model
         'title' => 'required|between:3,100',
         'text' => 'nullable',
     ];
-    
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -58,7 +53,6 @@ class SitePage extends Model
 
     /**
      * Gets the URL of the public-facing page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -68,7 +62,6 @@ class SitePage extends Model
 
     /**
      * Displays the news post title, linked to the news post itself.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()

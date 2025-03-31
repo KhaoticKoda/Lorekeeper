@@ -16,20 +16,17 @@ class FeatureService extends Service
     |--------------------------------------------------------------------------
     | Feature Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of feature categories and features.
-    |
     */
 
     /**********************************************************************************************
-     
+
         FEATURE CATEGORIES
 
     **********************************************************************************************/
 
     /**
      * Create a category.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return \App\Models\Feature\FeatureCategory|bool
@@ -54,7 +51,7 @@ class FeatureService extends Service
             if ($image) $this->handleImage($image, $category->categoryImagePath, $category->categoryImageFileName);
 
             return $this->commitReturn($category);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -62,7 +59,6 @@ class FeatureService extends Service
 
     /**
      * Update a category.
-     *
      * @param  \App\Models\Feature\FeatureCategory  $category
      * @param  array                                $data
      * @param  \App\Models\User\User                $user
@@ -78,7 +74,7 @@ class FeatureService extends Service
 
             $data = $this->populateCategoryData($data, $category);
 
-            $image = null;            
+            $image = null;
             if(isset($data['image']) && $data['image']) {
                 $data['has_image'] = 1;
                 $image = $data['image'];
@@ -90,7 +86,7 @@ class FeatureService extends Service
             if ($category) $this->handleImage($image, $category->categoryImagePath, $category->categoryImageFileName);
 
             return $this->commitReturn($category);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -98,7 +94,6 @@ class FeatureService extends Service
 
     /**
      * Handle category data.
-     *
      * @param  array                                     $data
      * @param  \App\Models\Feature\FeatureCategory|null  $category
      * @return array
@@ -106,13 +101,13 @@ class FeatureService extends Service
     private function populateCategoryData($data, $category = null)
     {
         if(isset($data['description']) && $data['description']) $data['parsed_description'] = parse($data['description']);
-        
+
         if(isset($data['remove_image']))
         {
-            if($category && $category->has_image && $data['remove_image']) 
-            { 
-                $data['has_image'] = 0; 
-                $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName); 
+            if($category && $category->has_image && $data['remove_image'])
+            {
+                $data['has_image'] = 0;
+                $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName);
             }
             unset($data['remove_image']);
         }
@@ -122,7 +117,6 @@ class FeatureService extends Service
 
     /**
      * Delete a category.
-     *
      * @param  \App\Models\Feature\FeatureCategory  $category
      * @return bool
      */
@@ -133,12 +127,12 @@ class FeatureService extends Service
         try {
             // Check first if the category is currently in use
             if(Feature::where('feature_category_id', $category->id)->exists()) throw new \Exception("A trait with this category exists. Please change its category first.");
-            
-            if($category->has_image) $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName); 
+
+            if($category->has_image) $this->deleteImage($category->categoryImagePath, $category->categoryImageFileName);
             $category->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -146,7 +140,6 @@ class FeatureService extends Service
 
     /**
      * Sorts category order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -163,23 +156,22 @@ class FeatureService extends Service
             }
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
     }
 
-    
+
     /**********************************************************************************************
-     
+
         FEATURES
 
     **********************************************************************************************/
 
     /**
      * Creates a new feature.
-     *
-     * @param  array                  $data 
+     * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Feature\Feature
      */
@@ -216,7 +208,7 @@ class FeatureService extends Service
             if ($image) $this->handleImage($image, $feature->imagePath, $feature->imageFileName);
 
             return $this->commitReturn($feature);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -224,9 +216,8 @@ class FeatureService extends Service
 
     /**
      * Updates a feature.
-     *
      * @param  \App\Models\Feature\Feature  $feature
-     * @param  array                        $data 
+     * @param  array                        $data
      * @param  \App\Models\User\User        $user
      * @return bool|\App\Models\Feature\Feature
      */
@@ -252,7 +243,7 @@ class FeatureService extends Service
 
             $data = $this->populateData($data);
 
-            $image = null;            
+            $image = null;
             if(isset($data['image']) && $data['image']) {
                 $data['has_image'] = 1;
                 $image = $data['image'];
@@ -264,7 +255,7 @@ class FeatureService extends Service
             if ($feature) $this->handleImage($image, $feature->imagePath, $feature->imageFileName);
 
             return $this->commitReturn($feature);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -272,8 +263,7 @@ class FeatureService extends Service
 
     /**
      * Processes user input for creating/updating a feature.
-     *
-     * @param  array                        $data 
+     * @param  array                        $data
      * @param  \App\Models\Feature\Feature  $feature
      * @return array
      */
@@ -284,20 +274,19 @@ class FeatureService extends Service
         if(isset($data['feature_category_id']) && $data['feature_category_id'] == 'none') $data['feature_category_id'] = null;
         if(isset($data['remove_image']))
         {
-            if($feature && $feature->has_image && $data['remove_image']) 
-            { 
-                $data['has_image'] = 0; 
-                $this->deleteImage($feature->imagePath, $feature->imageFileName); 
+            if($feature && $feature->has_image && $data['remove_image'])
+            {
+                $data['has_image'] = 0;
+                $this->deleteImage($feature->imagePath, $feature->imageFileName);
             }
             unset($data['remove_image']);
         }
 
         return $data;
     }
-    
+
     /**
      * Deletes a feature.
-     *
      * @param  \App\Models\Feature\Feature  $feature
      * @return bool
      */
@@ -308,12 +297,12 @@ class FeatureService extends Service
         try {
             // Check first if the feature is currently in use
             if(DB::table('character_features')->where('feature_id', $feature->id)->exists()) throw new \Exception("A character with this trait exists. Please remove the trait first.");
-            
-            if($feature->has_image) $this->deleteImage($feature->imagePath, $feature->imageFileName); 
+
+            if($feature->has_image) $this->deleteImage($feature->imagePath, $feature->imageFileName);
             $feature->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

@@ -8,7 +8,6 @@ class AddInvitationKeys extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -22,7 +21,7 @@ class AddInvitationKeys extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('recipient_id')->unsigned()->nullable()->default(null);
             $table->timestamps();
-            
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('recipient_id')->references('id')->on('users');
         });
@@ -30,7 +29,6 @@ class AddInvitationKeys extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

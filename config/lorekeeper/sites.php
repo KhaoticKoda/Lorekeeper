@@ -6,13 +6,11 @@ return [
     |--------------------------------------------------------------------------
     | Sites
     |--------------------------------------------------------------------------
-    |
     | This is a list of sites and appropriate regex for use in url matching,
     | for formatting links or for performing auth operations.
     | Feel free to add more sites to the "General" section, it is used solely
     | for link formatting, but be careful about making changes to any sites in the
     | "Auth" section as they are used for site functions.
-    |
     */
 
     /**********************************************************************************************

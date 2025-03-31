@@ -8,7 +8,6 @@ class AddPromptRewards extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -20,14 +19,13 @@ class AddPromptRewards extends Migration
             $table->string('rewardable_type');
             $table->integer('rewardable_id')->unsigned();
             $table->integer('quantity')->unsigned();
-            
+
             $table->foreign('prompt_id')->references('id')->on('prompts');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

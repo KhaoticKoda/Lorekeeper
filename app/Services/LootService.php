@@ -16,14 +16,11 @@ class LootService extends Service
     |--------------------------------------------------------------------------
     | Loot Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of loot tables.
-    |
     */
 
     /**
      * Creates a loot table.
-     *
      * @param  array  $data
      * @return bool|\App\Models\Loot\LootTable
      */
@@ -59,7 +56,6 @@ class LootService extends Service
 
     /**
      * Updates a loot table.
-     *
      * @param  \App\Models\Loot\LootTable  $table
      * @param  array                       $data
      * @return bool|\App\Models\Loot\LootTable
@@ -96,7 +92,6 @@ class LootService extends Service
 
     /**
      * Handles the creation of loot for a loot table.
-     *
      * @param  \App\Models\Loot\LootTable  $table
      * @param  array                       $data
      */
@@ -126,7 +121,6 @@ class LootService extends Service
 
     /**
      * Deletes a loot table.
-     *
      * @param  \App\Models\Loot\LootTable  $table
      * @return bool
      */

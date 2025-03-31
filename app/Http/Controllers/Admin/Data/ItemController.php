@@ -25,9 +25,7 @@ class ItemController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Item Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of item categories and items.
-    |
     */
 
     /**********************************************************************************************
@@ -38,7 +36,6 @@ class ItemController extends Controller
 
     /**
      * Shows the item category index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -50,7 +47,6 @@ class ItemController extends Controller
 
     /**
      * Shows the create item category page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateItemCategory()
@@ -62,7 +58,6 @@ class ItemController extends Controller
 
     /**
      * Shows the edit item category page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -77,7 +72,6 @@ class ItemController extends Controller
 
     /**
      * Creates or edits an item category.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int|null                  $id
@@ -104,7 +98,6 @@ class ItemController extends Controller
 
     /**
      * Gets the item category deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -118,7 +111,6 @@ class ItemController extends Controller
 
     /**
      * Deletes an item category.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int                       $id
@@ -137,7 +129,6 @@ class ItemController extends Controller
 
     /**
      * Sorts item categories.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -161,7 +152,6 @@ class ItemController extends Controller
 
     /**
      * Shows the item index.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -181,7 +171,6 @@ class ItemController extends Controller
 
     /**
      * Shows the create item page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateItem()
@@ -197,7 +186,6 @@ class ItemController extends Controller
 
     /**
      * Shows the edit item page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -217,7 +205,6 @@ class ItemController extends Controller
 
     /**
      * Creates or edits an item.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int|null                  $id
@@ -246,7 +233,6 @@ class ItemController extends Controller
 
     /**
      * Gets the item deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -260,7 +246,6 @@ class ItemController extends Controller
 
     /**
      * Creates or edits an item.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int                       $id
@@ -285,7 +270,6 @@ class ItemController extends Controller
 
     /**
      * Gets the tag addition page.
-     *
      * @param  App\Services\ItemService  $service
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
@@ -301,7 +285,6 @@ class ItemController extends Controller
 
     /**
      * Adds a tag to an item.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int                       $id
@@ -323,7 +306,6 @@ class ItemController extends Controller
 
     /**
      * Gets the tag editing page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -340,7 +322,6 @@ class ItemController extends Controller
 
     /**
      * Edits tag data for an item.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int                       $id
@@ -361,7 +342,6 @@ class ItemController extends Controller
 
     /**
      * Gets the item tag deletion modal.
-     *
      * @param  int  $id
      * @param  string                    $tag
      * @return \Illuminate\Contracts\Support\Renderable
@@ -378,7 +358,6 @@ class ItemController extends Controller
 
     /**
      * Deletes a tag from an item.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ItemService  $service
      * @param  int                       $id

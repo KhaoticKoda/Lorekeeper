@@ -28,7 +28,6 @@ class ReportController extends Controller
 
     /**
      * Shows the user's report log.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -47,7 +46,6 @@ class ReportController extends Controller
 
     /**
      * Shows the bug report log.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -67,7 +65,6 @@ class ReportController extends Controller
 
     /**
      * Shows the report page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -83,7 +80,6 @@ class ReportController extends Controller
 
     /**
      * Shows the submit report page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -97,7 +93,6 @@ class ReportController extends Controller
 
     /**
      * Creates a new report.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\ReportManager  $service
      * @return \Illuminate\Http\RedirectResponse

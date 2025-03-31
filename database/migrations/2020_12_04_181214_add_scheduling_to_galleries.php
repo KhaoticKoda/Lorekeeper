@@ -8,7 +8,6 @@ class AddSchedulingToGalleries extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -23,7 +22,6 @@ class AddSchedulingToGalleries extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

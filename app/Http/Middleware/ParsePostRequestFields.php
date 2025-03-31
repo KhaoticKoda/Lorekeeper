@@ -9,7 +9,6 @@ class ParsePostRequestFields
 {
     /**
      * Handle an incoming request.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
@@ -44,7 +43,6 @@ class ParsePostRequestFields
 
     /**
      * Recursively parse array values.
-     *
      * @param  array  $array
      * @param  array  $strippedFields
      * @return array

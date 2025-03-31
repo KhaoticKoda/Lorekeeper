@@ -18,14 +18,11 @@ class RarityController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Rarity Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of rarities.
-    |
     */
 
     /**
      * Shows the rarity index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -34,10 +31,9 @@ class RarityController extends Controller
             'rarities' => Rarity::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create rarity page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateRarity()
@@ -46,10 +42,9 @@ class RarityController extends Controller
             'rarity' => new Rarity
         ]);
     }
-    
+
     /**
      * Shows the edit rarity page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -64,7 +59,6 @@ class RarityController extends Controller
 
     /**
      * Creates or edits a rarity.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RarityService  $service
      * @param  int|null                    $id
@@ -88,10 +82,9 @@ class RarityController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the rarity deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -105,7 +98,6 @@ class RarityController extends Controller
 
     /**
      * Deletes a rarity.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RarityService  $service
      * @param  int                         $id
@@ -124,7 +116,6 @@ class RarityController extends Controller
 
     /**
      * Sorts rarities.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\RarityService  $service
      * @return \Illuminate\Http\RedirectResponse

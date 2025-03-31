@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Auth;
-use Request; 
+use Request;
 use App\Models\Raffle\RaffleGroup;
 use App\Models\Raffle\Raffle;
 use App\Models\Raffle\RaffleTicket;
@@ -12,14 +12,11 @@ class RaffleController extends Controller
     |--------------------------------------------------------------------------
     | Raffle Controller
     |--------------------------------------------------------------------------
-    |
     | Displays raffles and raffle tickets.
-    |
     */
 
     /**
      * Shows the raffle index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getRaffleIndex()
@@ -37,7 +34,6 @@ class RaffleController extends Controller
 
     /**
      * Shows tickets for a given raffle.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -52,7 +48,7 @@ class RaffleController extends Controller
             'raffle' => $raffle,
             'tickets' => $raffle->tickets()->with('user')->orderBy('id')->paginate(100),
             'count' => $count,
-            'userCount' => $userCount, 
+            'userCount' => $userCount,
             "page" => Request::get('page') ? Request::get('page') - 1 : 0
         ]);
     }

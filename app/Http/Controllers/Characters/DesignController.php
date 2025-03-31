@@ -25,7 +25,6 @@ class DesignController extends Controller
 {
     /**
      * Shows the index of character design update submissions.
-     *
      * @param  string  $type
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -43,7 +42,6 @@ class DesignController extends Controller
 
     /**
      * Shows a design update request.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -58,7 +56,6 @@ class DesignController extends Controller
 
     /**
      * Shows a design update request's comments section.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -73,7 +70,6 @@ class DesignController extends Controller
 
     /**
      * Edits a design update request's comments section.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -96,7 +92,6 @@ class DesignController extends Controller
 
     /**
      * Shows a design update request's image section.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -112,7 +107,6 @@ class DesignController extends Controller
 
     /**
      * Edits a design update request's image upload section.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -137,7 +131,6 @@ class DesignController extends Controller
 
     /**
      * Shows a design update request's addons section.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -145,9 +138,9 @@ class DesignController extends Controller
     {
         $r = CharacterDesignUpdate::find($id);
         if(!$r || ($r->user_id != Auth::user()->id && !Auth::user()->hasPower('manage_characters'))) abort(404);
-        if($r->status == 'Draft' && $r->user_id == Auth::user()->id) 
+        if($r->status == 'Draft' && $r->user_id == Auth::user()->id)
             $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $r->user_id)->get();
-        else 
+        else
             $inventory = isset($r->data['user']) ? parseAssetData($r->data['user']) : null;
         return view('character.design.addons', [
             'request' => $r,
@@ -161,7 +154,6 @@ class DesignController extends Controller
 
     /**
      * Edits a design update request's addons section.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -184,7 +176,6 @@ class DesignController extends Controller
 
     /**
      * Shows a design update request's features section.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -204,7 +195,6 @@ class DesignController extends Controller
 
     /**
      * Shows the edit image subtype portion of the modal
-     *
      * @param  Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -220,7 +210,6 @@ class DesignController extends Controller
 
     /**
      * Edits a design update request's features section.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -243,7 +232,6 @@ class DesignController extends Controller
 
     /**
      * Shows the design update request submission confirmation modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -258,7 +246,6 @@ class DesignController extends Controller
 
     /**
      * Submits a design update request for approval.
-     *
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
      * @return \Illuminate\Http\RedirectResponse
@@ -280,7 +267,6 @@ class DesignController extends Controller
 
     /**
      * Shows the design update request deletion confirmation modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -295,7 +281,6 @@ class DesignController extends Controller
 
     /**
      * Deletes a design update request.
-     *
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
      * @return \Illuminate\Http\RedirectResponse

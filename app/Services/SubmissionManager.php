@@ -28,14 +28,11 @@ class SubmissionManager extends Service
     |--------------------------------------------------------------------------
     | Submission Manager
     |--------------------------------------------------------------------------
-    |
     | Handles creation and modification of submission data.
-    |
     */
 
     /**
      * Creates a new submission.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @param  bool                   $isClaim
@@ -186,7 +183,6 @@ class SubmissionManager extends Service
 
     /**
      * Processes reward data into a format that can be used for distribution.
-     *
      * @param  array $data
      * @param  bool  $isCharacter
      * @param  bool  $isStaff
@@ -259,7 +255,6 @@ class SubmissionManager extends Service
 
     /**
      * Rejects a submission.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return mixed
@@ -328,7 +323,6 @@ class SubmissionManager extends Service
 
     /**
      * Approves a submission.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return mixed

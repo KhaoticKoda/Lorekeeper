@@ -9,7 +9,6 @@ class Notification extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -18,42 +17,39 @@ class Notification extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'notifications';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the user who owns notification.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -63,7 +59,6 @@ class Notification extends Model
 
     /**
      * Get the notification message using the stored data.
-     *
      * @return array
      */
     public function getMessageAttribute()
@@ -72,10 +67,10 @@ class Notification extends Model
 
         $message = $notification['message'];
 
-        // Replace the URL... 
+        // Replace the URL...
         $message = str_replace('{url}', url($notification['url']), $message);
 
-        // Replace any variables in data... 
+        // Replace any variables in data...
         $data = $this->data;
         if($data && count($data)) {
             foreach($data as $key => $value) {
@@ -88,7 +83,6 @@ class Notification extends Model
 
     /**
      * Get the notification ID from type.
-     *
      * @return array
      */
     public static function getNotificationId($type)
@@ -97,7 +91,7 @@ class Notification extends Model
     }
 
     /**********************************************************************************************
-    
+
         CONSTANTS
 
     **********************************************************************************************/

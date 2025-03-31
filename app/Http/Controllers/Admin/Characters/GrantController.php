@@ -19,7 +19,6 @@ class GrantController extends Controller
 {
     /**
      * Grants or removes currency from a character.
-     *
      * @param  string                        $slug
      * @param  \Illuminate\Http\Request      $request
      * @param  App\Services\CurrencyManager  $service
@@ -39,7 +38,6 @@ class GrantController extends Controller
 
     /**
      * Grants items to characters.
-     *
      * @param  string                          $slug
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\InventoryManager   $service

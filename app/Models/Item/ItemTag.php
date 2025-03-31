@@ -10,7 +10,6 @@ class ItemTag extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -19,13 +18,12 @@ class ItemTag extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'item_tags';
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
@@ -33,20 +31,19 @@ class ItemTag extends Model
     /**
      * Get the item that this tag is attached to.
      */
-    public function item() 
+    public function item()
     {
         return $this->belongsTo('App\Models\Item\Item');
     }
 
     /**********************************************************************************************
-    
+
         SCOPES
 
     **********************************************************************************************/
 
     /**
      * Scope a query to retrieve only active tags.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -57,7 +54,6 @@ class ItemTag extends Model
 
     /**
      * Scope a query to retrieve only a certain tag.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  string                                 $tag
      * @return \Illuminate\Database\Eloquent\Builder
@@ -68,14 +64,13 @@ class ItemTag extends Model
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
-    
+
     /**
      * Displays the tag name formatted according to its colours as defined in the config file.
-     *
      * @return string
      */
     public function getDisplayTagAttribute()
@@ -87,7 +82,6 @@ class ItemTag extends Model
 
     /**
      * Get the tag's display name.
-     *
      * @return mixed
      */
     public function getName()
@@ -97,7 +91,6 @@ class ItemTag extends Model
 
     /**
      * Gets the URL of the tag's editing page.
-     *
      * @return string
      */
     public function getAdminUrlAttribute()
@@ -107,7 +100,6 @@ class ItemTag extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -117,7 +109,6 @@ class ItemTag extends Model
 
     /**
      * Get the service associated with this tag.
-     *
      * @return mixed
      */
     public function getServiceAttribute()
@@ -127,14 +118,13 @@ class ItemTag extends Model
     }
 
     /**********************************************************************************************
-    
+
         OTHER FUNCTIONS
 
     **********************************************************************************************/
 
     /**
      * Get the data used for editing the tag.
-     *
      * @return mixed
      */
     public function getEditData()
@@ -144,7 +134,6 @@ class ItemTag extends Model
 
     /**
      * Get the data associated with the tag.
-     *
      * @return mixed
      */
     public function getData()

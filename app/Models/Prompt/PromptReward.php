@@ -9,7 +9,6 @@ class PromptReward extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -18,14 +17,12 @@ class PromptReward extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'prompt_rewards';
-    
+
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -33,10 +30,9 @@ class PromptReward extends Model
         'rewardable_id' => 'required',
         'quantity' => 'required|integer|min:1',
     ];
-    
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -46,15 +42,15 @@ class PromptReward extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the reward attached to the prompt reward.
      */
-    public function reward() 
+    public function reward()
     {
         switch ($this->rewardable_type)
         {

@@ -18,14 +18,11 @@ class HomeController extends Controller
     |--------------------------------------------------------------------------
     | Home Controller
     |--------------------------------------------------------------------------
-    |
     | Displays the homepage and handles redirection for linking a user's social media account.
-    |
     */
 
     /**
      * Shows the homepage.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -37,7 +34,6 @@ class HomeController extends Controller
 
     /**
      * Shows the account linking page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getLink(Request $request)
@@ -53,7 +49,6 @@ class HomeController extends Controller
 
     /**
      * Redirects to the appropriate provider.
-     *
      * @param string $provider
      */
     public function getAuthRedirect(LinkService $service, $provider)
@@ -70,7 +65,6 @@ class HomeController extends Controller
 
     /**
      * Redirects to the appropriate provider.
-     *
      * @param string $provider
      */
     public function getAuthCallback(LinkService $service, $provider)
@@ -103,7 +97,6 @@ class HomeController extends Controller
 
     /**
      * Shows the birthdaying page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getBirthday(Request $request)
@@ -119,7 +112,6 @@ class HomeController extends Controller
 
     /**
      * Posts the birthdaying page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function postBirthday(Request $request)
@@ -145,7 +137,6 @@ class HomeController extends Controller
 
     /**
      * Shows the birthdaying page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getBirthdayBlocked(Request $request)

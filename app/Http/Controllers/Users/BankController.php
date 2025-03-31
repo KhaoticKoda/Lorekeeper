@@ -20,14 +20,11 @@ class BankController extends Controller
     |--------------------------------------------------------------------------
     | Bank Controller
     |--------------------------------------------------------------------------
-    |
     | Handles displaying of the user's bank.
-    |
     */
 
     /**
      * Shows the user's bank page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -38,10 +35,9 @@ class BankController extends Controller
 
         ]);
     }
-    
+
     /**
      * Transfers currency from the user to another.
-     *
      * @param  \Illuminate\Http\Request      $request
      * @param  App\Services\CurrencyManager  $service
      * @return \Illuminate\Http\RedirectResponse

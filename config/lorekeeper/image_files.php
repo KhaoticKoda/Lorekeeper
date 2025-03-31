@@ -6,10 +6,8 @@ return [
     |--------------------------------------------------------------------------
     | Image Files
     |--------------------------------------------------------------------------
-    |
     | This is a list of files that will appear in the image uploader
     | section of the admin panel, to be used in the site layout.
-    |
     */
 
     'header' => [

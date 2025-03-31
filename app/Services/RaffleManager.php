@@ -8,22 +8,19 @@ use App\Models\Raffle\Raffle;
 use App\Models\Raffle\RaffleTicket;
 use App\Models\User\User;
 
-class RaffleManager extends Service 
+class RaffleManager extends Service
 {
     /*
     |--------------------------------------------------------------------------
     | Raffle Manager
     |--------------------------------------------------------------------------
-    |
     | Handles creation and modification of raffle ticket data.
-    |
     */
 
     /**
-     * Adds tickets to a raffle. 
+     * Adds tickets to a raffle.
      * One ticket is added per name in $names, which is a
      * string containing comma-separated names.
-     *
      * @param  \App\Models\Raffle\Raffle $raffle
      * @param  string                    $names
      * @return int
@@ -46,7 +43,6 @@ class RaffleManager extends Service
 
     /**
      * Adds one or more tickets to a single user for a raffle.
-     *
      * @param  \App\Models\User\User     $user
      * @param  \App\Models\Raffle\Raffle $raffle
      * @param  int                       $count
@@ -70,7 +66,6 @@ class RaffleManager extends Service
 
     /**
      * Removes a single ticket.
-     *
      * @param  \App\Models\Raffle\RaffleTicket $ticket
      * @return bool
      */
@@ -88,7 +83,6 @@ class RaffleManager extends Service
      * Rolls a raffle group consecutively.
      * If the $updateGroup flag is true, winners will be removed
      * from other raffles in the group.
-     *
      * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
      * @param  bool                           $updateGroup
      * @return bool
@@ -99,7 +93,7 @@ class RaffleManager extends Service
         DB::beginTransaction();
         foreach($raffleGroup->raffles()->orderBy('order')->get() as $raffle)
         {
-            if (!$this->rollRaffle($raffle, $updateGroup)) 
+            if (!$this->rollRaffle($raffle, $updateGroup))
             {
                 DB::rollback();
                 return false;
@@ -115,12 +109,11 @@ class RaffleManager extends Service
      * Rolls a single raffle and marks it as completed.
      * If the $updateGroup flag is true, winners will be removed
      * from other raffles in the group.
-     *
      * @param  \App\Models\Raffle\Raffle $raffle
      * @param  bool                      $updateGroup
      * @return bool
      */
-    public function rollRaffle($raffle, $updateGroup = false) 
+    public function rollRaffle($raffle, $updateGroup = false)
     {
         if(!$raffle) return null;
         DB::beginTransaction();
@@ -147,7 +140,6 @@ class RaffleManager extends Service
 
     /**
      * Rolls the winners of a raffle.
-     *
      * @param  \App\Models\Raffle\Raffle $raffle
      * @return array
      */
@@ -179,7 +171,7 @@ class RaffleManager extends Service
             // remove tickets for the same user...I'm unsure how this is going to hold up with 3000 tickets,
             foreach($ticketPool as $key=>$ticket)
             {
-                if(($ticket->user_id != null && $ticket->user_id == $winner->user_id) || ($ticket->user_id == null && $ticket->alias == $winner->alias)) 
+                if(($ticket->user_id != null && $ticket->user_id == $winner->user_id) || ($ticket->user_id == null && $ticket->alias == $winner->alias))
                 {
                     $ticketPool->forget($key);
                 }
@@ -193,7 +185,6 @@ class RaffleManager extends Service
 
     /**
      * Rolls the winners of a raffle.
-     *
      * @param  array                          $winners
      * @param  \App\Models\Raffle\RaffleGroup $raffleGroup
      * @param  \App\Models\Raffle\Raffle      $raffle
@@ -205,8 +196,8 @@ class RaffleManager extends Service
         $raffles = $raffleGroup->raffles()->where('is_active', '!=', 2)->where('id', '!=', $raffle->id)->get();
         foreach($raffles as $r)
         {
-            $r->tickets()->where(function($query) use ($winners) { 
-                $query->whereIn('user_id', $winners['ids'])->orWhereIn('alias', $winners['aliases']); 
+            $r->tickets()->where(function($query) use ($winners) {
+                $query->whereIn('user_id', $winners['ids'])->orWhereIn('alias', $winners['aliases']);
             })->delete();
         }
         return true;

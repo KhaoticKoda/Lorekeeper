@@ -10,7 +10,6 @@ class CharacterTransfer extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,14 +19,12 @@ class CharacterTransfer extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_transfers';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
@@ -70,7 +67,6 @@ class CharacterTransfer extends Model
 
     /**
      * Scope a query to only include pending trades, as well as trades pending staff approval.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -89,7 +85,6 @@ class CharacterTransfer extends Model
 
     /**
      * Scope a query to only include completed trades.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -109,7 +104,6 @@ class CharacterTransfer extends Model
 
     /**
      * Check if the transfer is active.
-     *
      * @return bool
      */
     public function getIsActiveAttribute()
@@ -122,7 +116,6 @@ class CharacterTransfer extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()

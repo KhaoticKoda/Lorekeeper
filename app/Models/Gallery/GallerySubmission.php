@@ -19,7 +19,6 @@ class GallerySubmission extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -33,21 +32,18 @@ class GallerySubmission extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'gallery_submissions';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Validation rules for character creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -59,7 +55,6 @@ class GallerySubmission extends Model
 
     /**
      * Validation rules for character updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -146,7 +141,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include pending submissions.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -157,7 +151,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include submissions where all collaborators have approved.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -168,7 +161,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include accepted submissions.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -179,7 +171,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include rejected submissions.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -190,7 +181,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include submissions that require currency awards.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -202,7 +192,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include submissions the user has either submitted or collaborated on.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param                                         $user
      * @return \Illuminate\Database\Eloquent\Builder
@@ -214,7 +203,6 @@ class GallerySubmission extends Model
 
     /**
      * Scope a query to only include submissions visible within the gallery.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -232,7 +220,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -242,7 +229,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getImageFileNameAttribute()
@@ -252,7 +238,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImagePathAttribute()
@@ -262,7 +247,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getImageUrlAttribute()
@@ -273,7 +257,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the file name of the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailFileNameAttribute()
@@ -283,7 +266,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the path to the file directory containing the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailPathAttribute()
@@ -293,7 +275,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getThumbnailUrlAttribute()
@@ -304,7 +285,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -314,7 +294,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the voting data of the gallery submission.
-     *
      * @return string
      */
     public function getVoteDataAttribute()
@@ -324,7 +303,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the title of the submission, with prefix.
-     *
      * @return string
      */
     public function getDisplayTitleAttribute()
@@ -334,7 +312,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the display name of the submission.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -344,7 +321,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the viewing URL of the submission.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -354,7 +330,6 @@ class GallerySubmission extends Model
 
     /**
      * Checks if all of a submission's collaborators have approved or no.
-     *
      * @return string
      */
     public function getPrefixAttribute()
@@ -389,7 +364,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the internal processing URL of the submission.
-     *
      * @return string
      */
     public function getQueueUrlAttribute()
@@ -399,7 +373,6 @@ class GallerySubmission extends Model
 
     /**
      * Get whether or not the submission is generally viewable.
-     *
      * @return bool
      */
     public function getIsVisibleAttribute()
@@ -409,7 +382,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the users responsible for the submission (submitting user or collaborators).
-     *
      * @return string
      */
     public function getCreditsAttribute()
@@ -425,7 +397,6 @@ class GallerySubmission extends Model
 
     /**
      * Get the users responsible for the submission (submitting user or collaborators).
-     *
      * @return string
      */
     public function getCreditsPlainAttribute()
@@ -441,7 +412,6 @@ class GallerySubmission extends Model
 
     /**
      * Checks if all of a submission's collaborators have approved or no.
-     *
      * @return string
      */
     public function getCollaboratorApprovedAttribute()
@@ -452,7 +422,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets prompt submissions associated with this gallery submission.
-     *
      * @return array
      */
     public function getPromptSubmissionsAttribute()
@@ -464,7 +433,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets prompts associated with this gallery submission.
-     *
      * @return array
      */
     public function getPromptsAttribute()
@@ -476,7 +444,6 @@ class GallerySubmission extends Model
 
     /**
      * Gets the excerpt of text for a literature submission.
-     *
      * @return string
      */
     public function getExcerptAttribute()

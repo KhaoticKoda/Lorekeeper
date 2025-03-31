@@ -23,14 +23,11 @@ class PromptController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Prompt Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of prompt categories and prompts.
-    |
     */
 
     /**
      * Shows the prompt category index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -42,7 +39,6 @@ class PromptController extends Controller
 
     /**
      * Shows the create prompt category page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreatePromptCategory()
@@ -54,7 +50,6 @@ class PromptController extends Controller
 
     /**
      * Shows the edit prompt category page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -69,7 +64,6 @@ class PromptController extends Controller
 
     /**
      * Creates or edits a prompt category.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\PromptService  $service
      * @param  int|null                    $id
@@ -96,7 +90,6 @@ class PromptController extends Controller
 
     /**
      * Gets the prompt category deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -110,7 +103,6 @@ class PromptController extends Controller
 
     /**
      * Deletes a prompt category.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\PromptService  $service
      * @param  int                         $id
@@ -129,7 +121,6 @@ class PromptController extends Controller
 
     /**
      * Sorts prompt categories.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\PromptService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -154,7 +145,6 @@ class PromptController extends Controller
 
     /**
      * Shows the prompt category index.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -174,7 +164,6 @@ class PromptController extends Controller
 
     /**
      * Shows the create prompt page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreatePrompt()
@@ -191,7 +180,6 @@ class PromptController extends Controller
 
     /**
      * Shows the edit prompt page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -211,7 +199,6 @@ class PromptController extends Controller
 
     /**
      * Creates or edits a prompt.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\PromptService  $service
      * @param  int|null                    $id
@@ -238,7 +225,6 @@ class PromptController extends Controller
 
     /**
      * Gets the prompt deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -252,7 +238,6 @@ class PromptController extends Controller
 
     /**
      * Deletes a prompt.
-     *
      * @param  \Illuminate\Http\Request    $request
      * @param  App\Services\PromptService  $service
      * @param  int                         $id

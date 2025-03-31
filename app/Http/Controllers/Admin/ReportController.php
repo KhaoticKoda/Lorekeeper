@@ -20,23 +20,21 @@ class ReportController extends Controller
 {
     /**
      * Shows the report index page.
-     *
      * @param  string  $status
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getReportIndex(Request $request, $status = null)
     {
-        if($status == 'assigned-to-me') $reports = Report::assignedToMe(Auth::user()); 
+        if($status == 'assigned-to-me') $reports = Report::assignedToMe(Auth::user());
         else $reports = Report::where('status', $status ? ucfirst($status) : 'Pending');
 
         return view('admin.reports.index', [
             'reports' => $reports->orderBy('id', 'DESC')->paginate(30)->appends($request->query()),
         ]);
     }
-    
+
     /**
      * Shows the report detail page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -47,11 +45,10 @@ class ReportController extends Controller
         return view('admin.reports.report', [
             'report' => $report,
         ]);
-    }    
+    }
 
     /**
      * Creates a new report.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\ReportManager  $service
      * @param  int                             $id

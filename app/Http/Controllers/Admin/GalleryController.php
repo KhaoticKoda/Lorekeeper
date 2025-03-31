@@ -19,14 +19,13 @@ class GalleryController extends Controller
 {
     /**
      * Shows the submission index page.
-     *
      * @param  string  $status
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSubmissionIndex(Request $request, $status = null)
     {
         $submissions = GallerySubmission::collaboratorApproved()->where('status', $status ? ucfirst($status) : 'Pending');
-        if($request->get('gallery_id')) 
+        if($request->get('gallery_id'))
             $submissions->where(function($query) use ($request) {
                 $query->where('gallery_id', $request->get('gallery_id'));
             });
@@ -40,14 +39,13 @@ class GalleryController extends Controller
 
     /**
      * Shows the index of submissions in the context of currency rewards.
-     *
      * @param  string  $status
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCurrencyIndex(Request $request, $status = null)
     {
         $submissions = GallerySubmission::requiresAward()->where('is_valued', !$status || $status == 'pending' ? 0 : 1);
-        if($request->get('gallery_id')) 
+        if($request->get('gallery_id'))
             $submissions->where(function($query) use ($request) {
                 $query->where('gallery_id', $request->get('gallery_id'));
             });
@@ -62,7 +60,6 @@ class GalleryController extends Controller
 
     /**
      * Edits gallery submissions.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\GalleryManager    $service
      * @param  int                            $id
@@ -72,7 +69,7 @@ class GalleryController extends Controller
     public function postEditSubmission(Request $request, GalleryManager $service, $id, $action)
     {
         if(!$id) { flash('Invalid submission selected.')->error(); }
-        
+
         if($id && $action) {
             switch($action) {
                 default:
@@ -97,7 +94,6 @@ class GalleryController extends Controller
 
     /**
      * Casts a vote for a submission's approval or denial.
-     *
      * @param  int                            $id
      * @param  string                         $action
      * @param  \Illuminate\Http\Request       $request
@@ -123,7 +119,6 @@ class GalleryController extends Controller
 
     /**
      * Posts staff comments for a gallery submission.
-     *
      * @param  int                             $id
      * @param  string                          $data
      * @param  App\Services\GalleryManager     $service
@@ -142,7 +137,6 @@ class GalleryController extends Controller
 
     /**
      * Posts group currency evaluation for a gallery submission.
-     *
      * @param  int                             $id
      * @param  string                          $data
      * @param  App\Services\GalleryManager     $service

@@ -21,14 +21,11 @@ class LootTableController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Loot Table Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of loot tables.
-    |
     */
 
     /**
      * Shows the loot table index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -40,7 +37,6 @@ class LootTableController extends Controller
 
     /**
      * Shows the create loot table page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateLootTable()
@@ -60,7 +56,6 @@ class LootTableController extends Controller
 
     /**
      * Shows the edit loot table page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -84,7 +79,6 @@ class LootTableController extends Controller
 
     /**
      * Creates or edits a loot table.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\LootService  $service
      * @param  int|null                  $id
@@ -112,7 +106,6 @@ class LootTableController extends Controller
 
     /**
      * Gets the loot table deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -126,7 +119,6 @@ class LootTableController extends Controller
 
     /**
      * Deletes an item category.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\LootService  $service
      * @param  int                       $id
@@ -145,7 +137,6 @@ class LootTableController extends Controller
 
     /**
      * Gets the loot table test roll modal.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\LootService  $service
      * @param  int                       $id

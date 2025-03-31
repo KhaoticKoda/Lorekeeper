@@ -20,21 +20,18 @@ class MigrateAliases extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'migrate-aliases {--drop-columns : Whether the alias columns should be dropped after moving data from them}';
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Migrates alias information associated with users, characters, and character image creators to the new storage system.';
 
     /**
      * Create a new command instance.
-     *
      * @return void
      */
     public function __construct()
@@ -44,7 +41,6 @@ class MigrateAliases extends Command
 
     /**
      * Execute the console command.
-     *
      * @return mixed
      */
     public function handle()

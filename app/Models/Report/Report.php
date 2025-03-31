@@ -14,7 +14,6 @@ class Report extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -25,30 +24,26 @@ class Report extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'reports';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
-    
+
     /**
      * Validation rules for report creation.
-     *
      * @var array
      */
     public static $createRules = [
         'url' => 'required',
     ];
-    
+
     /**
      * Validation rules for report updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -56,35 +51,34 @@ class Report extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
     /**
      * Get the user who made the report.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User', 'user_id');
     }
-    
+
     /**
      * Get the staff who processed the report.
      */
-    public function staff() 
+    public function staff()
     {
         return $this->belongsTo('App\Models\User\User', 'staff_id');
     }
 
     /**********************************************************************************************
-    
+
         SCOPES
 
     **********************************************************************************************/
 
     /**
      * Scope a query to only include pending reports.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -95,7 +89,6 @@ class Report extends Model
 
     /**
      * Scope a query to only include reports assigned to a given user.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -106,7 +99,6 @@ class Report extends Model
 
     /**
      * Scope a query to only include viewable reports.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -121,7 +113,6 @@ class Report extends Model
 
     /**
      * Scope a query to sort reports oldest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -131,14 +122,13 @@ class Report extends Model
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -148,7 +138,6 @@ class Report extends Model
 
     /**
      * Get the viewing URL of the report/claim.
-     *
      * @return string
      */
     public function getViewUrlAttribute()
@@ -158,7 +147,6 @@ class Report extends Model
 
     /**
      * Get the admin URL (for processing purposes) of the submission/claim.
-     *
      * @return string
      */
     public function getAdminUrlAttribute()
@@ -168,7 +156,6 @@ class Report extends Model
 
     /**
      * Displays the news post title, linked to the news post itself.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()

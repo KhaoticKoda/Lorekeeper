@@ -13,7 +13,6 @@ class Trade extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -24,20 +23,18 @@ class Trade extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'trades';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
@@ -45,7 +42,7 @@ class Trade extends Model
     /**
      * Get the user who initiated the trade.
      */
-    public function sender() 
+    public function sender()
     {
         return $this->belongsTo('App\Models\User\User', 'sender_id');
     }
@@ -53,7 +50,7 @@ class Trade extends Model
     /**
      * Get the user who received the trade.
      */
-    public function recipient() 
+    public function recipient()
     {
         return $this->belongsTo('App\Models\User\User', 'recipient_id');
     }
@@ -61,13 +58,13 @@ class Trade extends Model
     /**
      * Get the staff member who approved the character transfer.
      */
-    public function staff() 
+    public function staff()
     {
         return $this->belongsTo('App\Models\User\User', 'staff_id');
     }
 
     /**********************************************************************************************
-    
+
         SCOPES
 
     **********************************************************************************************/
@@ -78,14 +75,13 @@ class Trade extends Model
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Check if the trade is active.
-     *
      * @return bool
      */
     public function getIsActiveAttribute()
@@ -101,7 +97,6 @@ class Trade extends Model
 
     /**
      * Check if the trade can be confirmed.
-     *
      * @return bool
      */
     public function getIsConfirmableAttribute()
@@ -112,7 +107,6 @@ class Trade extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -122,7 +116,6 @@ class Trade extends Model
 
     /**
      * Gets the URL of the trade.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -131,14 +124,13 @@ class Trade extends Model
     }
 
     /**********************************************************************************************
-    
+
         OTHER FUNCTIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Gets all characters involved in the trade.
-     *
      * @return \Illuminate\Support\Collection
      */
     public function getCharacterData()
@@ -148,7 +140,6 @@ class Trade extends Model
 
     /**
      * Gets the inventory of the given user for selection.
-     *
      * @param  \App\Models\User\User $user
      * @return array
      */
@@ -161,7 +152,6 @@ class Trade extends Model
 
     /**
      * Gets the characters of the given user for selection.
-     *
      * @param  \App\Models\User\User $user
      * @return array
      */
@@ -175,7 +165,6 @@ class Trade extends Model
 
     /**
      * Gets the currencies of the given user for selection.
-     *
      * @param  \App\Models\User\User $user
      * @return array
      */

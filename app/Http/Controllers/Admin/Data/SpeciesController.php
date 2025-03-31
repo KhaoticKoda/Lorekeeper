@@ -20,14 +20,11 @@ class SpeciesController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Species Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of character species.
-    |
     */
 
     /**
      * Shows the species index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -36,10 +33,9 @@ class SpeciesController extends Controller
             'specieses' => Species::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create species page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateSpecies()
@@ -49,10 +45,9 @@ class SpeciesController extends Controller
             'sublists' => [0 => 'No Sublist'] + Sublist::orderBy('name', 'DESC')->pluck('name', 'id')->toArray()
         ]);
     }
-    
+
     /**
      * Shows the edit species page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -68,7 +63,6 @@ class SpeciesController extends Controller
 
     /**
      * Creates or edits a species.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @param  int|null                     $id
@@ -92,10 +86,9 @@ class SpeciesController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the species deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -109,7 +102,6 @@ class SpeciesController extends Controller
 
     /**
      * Deletes a species.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @param  int                          $id
@@ -128,7 +120,6 @@ class SpeciesController extends Controller
 
     /**
      * Sorts species.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -146,7 +137,6 @@ class SpeciesController extends Controller
 
     /**
      * Shows the subtype index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSubtypeIndex()
@@ -155,10 +145,9 @@ class SpeciesController extends Controller
             'subtypes' => Subtype::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create subtype page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateSubtype()
@@ -168,10 +157,9 @@ class SpeciesController extends Controller
             'specieses' => Species::orderBy('sort', 'DESC')->pluck('name', 'id')->toArray()
         ]);
     }
-    
+
     /**
      * Shows the edit subtype page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -187,7 +175,6 @@ class SpeciesController extends Controller
 
     /**
      * Creates or edits a subtype.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @param  int|null                     $id
@@ -211,10 +198,9 @@ class SpeciesController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the subtype deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -228,7 +214,6 @@ class SpeciesController extends Controller
 
     /**
      * Deletes a subtype.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @param  int                          $id
@@ -247,7 +232,6 @@ class SpeciesController extends Controller
 
     /**
      * Sorts subtypes.
-     *
      * @param  \Illuminate\Http\Request     $request
      * @param  App\Services\SpeciesService  $service
      * @return \Illuminate\Http\RedirectResponse

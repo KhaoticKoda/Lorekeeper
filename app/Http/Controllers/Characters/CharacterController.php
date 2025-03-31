@@ -41,14 +41,11 @@ class CharacterController extends Controller
     |--------------------------------------------------------------------------
     | Character Controller
     |--------------------------------------------------------------------------
-    |
     | Handles displaying and acting on a character.
-    |
     */
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -67,7 +64,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's masterlist entry.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -80,7 +76,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's profile.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -93,7 +88,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's edit profile page.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -112,7 +106,6 @@ class CharacterController extends Controller
 
     /**
      * Edits a character's profile.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -139,7 +132,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's gallery.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -153,7 +145,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's images.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -167,7 +158,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's inventory.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -204,7 +194,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's bank.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -226,7 +215,6 @@ class CharacterController extends Controller
 
     /**
      * Transfers currency between the user and character.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -251,7 +239,6 @@ class CharacterController extends Controller
 
     /**
      * Handles inventory item processing, including transferring items between the user and character.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -291,7 +278,6 @@ class CharacterController extends Controller
 
     /**
      * Transfers inventory items back to a user.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -309,7 +295,6 @@ class CharacterController extends Controller
 
     /**
      * Names an inventory stack.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -327,7 +312,6 @@ class CharacterController extends Controller
 
     /**
      * Deletes an inventory stack.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -345,7 +329,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's currency logs.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -359,7 +342,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's item logs.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -373,7 +355,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's ownership logs.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -387,7 +368,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's ownership logs.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -401,7 +381,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's submissions.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCharacterSubmissions($slug)
@@ -414,7 +393,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's transfer page.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -437,7 +415,6 @@ class CharacterController extends Controller
 
     /**
      * Opens a transfer request for a character.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -458,7 +435,6 @@ class CharacterController extends Controller
 
     /**
      * Cancels a transfer request for a character.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -480,7 +456,6 @@ class CharacterController extends Controller
 
     /**
      * Shows a character's design update approval page.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -497,7 +472,6 @@ class CharacterController extends Controller
 
     /**
      * Opens a new design update approval request for a character.
-     *
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
      * @return \Illuminate\Http\RedirectResponse

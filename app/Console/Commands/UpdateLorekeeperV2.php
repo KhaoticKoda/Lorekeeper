@@ -9,21 +9,18 @@ class UpdateLorekeeperV2 extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'update-lorekeeper-v2';
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Runs commands to update Lorekeeper to version 2.0 from version 1.';
 
     /**
      * Create a new command instance.
-     *
      * @return void
      */
     public function __construct()
@@ -33,7 +30,6 @@ class UpdateLorekeeperV2 extends Command
 
     /**
      * Execute the console command.
-     *
      * @return int
      */
     public function handle()

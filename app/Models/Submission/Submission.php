@@ -11,7 +11,6 @@ class Submission extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,21 +21,18 @@ class Submission extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'submissions';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Validation rules for submission creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -45,7 +41,6 @@ class Submission extends Model
 
     /**
      * Validation rules for submission updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -98,7 +93,6 @@ class Submission extends Model
 
     /**
      * Scope a query to only include pending submissions.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -109,7 +103,6 @@ class Submission extends Model
 
     /**
      * Scope a query to only include viewable submissions.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -133,7 +126,6 @@ class Submission extends Model
 
     /**
      * Scope a query to sort submissions oldest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -144,7 +136,6 @@ class Submission extends Model
 
     /**
      * Scope a query to sort submissions by newest first.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -161,7 +152,6 @@ class Submission extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -171,7 +161,6 @@ class Submission extends Model
 
     /**
      * Gets the inventory of the user for selection.
-     *
      * @return array
      */
     public function getInventory($user)
@@ -182,7 +171,6 @@ class Submission extends Model
 
     /**
      * Gets the currencies of the given user for selection.
-     *
      * @param  \App\Models\User\User $user
      * @return array
      */
@@ -193,7 +181,6 @@ class Submission extends Model
 
     /**
      * Get the viewing URL of the submission/claim.
-     *
      * @return string
      */
     public function getViewUrlAttribute()
@@ -203,7 +190,6 @@ class Submission extends Model
 
     /**
      * Get the admin URL (for processing purposes) of the submission/claim.
-     *
      * @return string
      */
     public function getAdminUrlAttribute()
@@ -213,7 +199,6 @@ class Submission extends Model
 
     /**
      * Get the rewards for the submission/claim.
-     *
      * @return array
      */
     public function getRewardsAttribute()

@@ -8,7 +8,6 @@ class AddPromptsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -21,7 +20,7 @@ class AddPromptsTable extends Migration
             $table->increments('id');
             $table->string('name', 64);
 
-            // The summary will be displayed on the world page, 
+            // The summary will be displayed on the world page,
             // with a link to a page that contains the full text of the prompt.
             $table->string('summary', 256)->nullable()->default(null);
             $table->text('description')->nullable()->default(null);
@@ -36,11 +35,11 @@ class AddPromptsTable extends Migration
             // When submitting a prompt, the selectable list will only contain prompts between
             // the start/end times and active prompts.
 
-            // This hides the prompt from the world prompt list before 
+            // This hides the prompt from the world prompt list before
             // the prompt start_at time has been reached.
             $table->boolean('hide_before_start')->default(0);
 
-            // This hides the prompt from the world prompt list after 
+            // This hides the prompt from the world prompt list after
             // the prompt end_at time has been reached.
             $table->boolean('hide_after_end')->default(0);
         });
@@ -48,7 +47,6 @@ class AddPromptsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

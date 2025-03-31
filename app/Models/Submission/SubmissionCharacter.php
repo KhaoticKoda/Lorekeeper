@@ -11,7 +11,6 @@ class SubmissionCharacter extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,7 +19,6 @@ class SubmissionCharacter extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'submission_characters';
@@ -55,7 +53,6 @@ class SubmissionCharacter extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -65,7 +62,6 @@ class SubmissionCharacter extends Model
 
     /**
      * Get the rewards for the character.
-     *
      * @return array
      */
     public function getRewardsAttribute()

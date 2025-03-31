@@ -25,14 +25,11 @@ class CharacterImageController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Character Image Controller
     |--------------------------------------------------------------------------
-    |
     | Handles admin creation/editing of character images.
-    |
     */
 
     /**
      * Shows the add image page. Existing characters only, not MYO slots.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -54,7 +51,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the edit image subtype portion of the modal
-     *
      * @param  Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -69,7 +65,6 @@ class CharacterImageController extends Controller
 
     /**
      * Creates a new image for a character.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug
@@ -93,7 +88,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the edit image features modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -112,7 +106,6 @@ class CharacterImageController extends Controller
 
     /**
      * Edits the features of an image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -134,7 +127,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the edit image subtype portion of the modal
-     *
      * @param  Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -149,7 +141,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the edit image notes modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -162,7 +153,6 @@ class CharacterImageController extends Controller
 
     /**
      * Edits the features of an image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -184,7 +174,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the edit image credits modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -198,7 +187,6 @@ class CharacterImageController extends Controller
 
     /**
      * Edits the credits of an image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -220,7 +208,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the reupload image modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -233,7 +220,6 @@ class CharacterImageController extends Controller
 
     /**
      * Reuploads an image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -255,7 +241,6 @@ class CharacterImageController extends Controller
 
     /**
      * Edits an image's settings.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -277,7 +262,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the set active image modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -291,7 +275,6 @@ class CharacterImageController extends Controller
 
     /**
      * Sets an image to be the character's active image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -312,7 +295,6 @@ class CharacterImageController extends Controller
 
     /**
      * Shows the delete image modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -325,7 +307,6 @@ class CharacterImageController extends Controller
 
     /**
      * Deletes an image.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
@@ -346,7 +327,6 @@ class CharacterImageController extends Controller
 
     /**
      * Sorts a character's images.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  string                         $slug

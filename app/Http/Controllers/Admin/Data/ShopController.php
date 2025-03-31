@@ -21,14 +21,11 @@ class ShopController extends Controller
     |--------------------------------------------------------------------------
     | Admin / Shop Controller
     |--------------------------------------------------------------------------
-    |
     | Handles creation/editing of shops and shop stock.
-    |
     */
 
     /**
      * Shows the shop index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -37,10 +34,9 @@ class ShopController extends Controller
             'shops' => Shop::orderBy('sort', 'DESC')->get()
         ]);
     }
-    
+
     /**
      * Shows the create shop page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateShop()
@@ -49,10 +45,9 @@ class ShopController extends Controller
             'shop' => new Shop
         ]);
     }
-    
+
     /**
      * Shows the edit shop page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -69,7 +64,6 @@ class ShopController extends Controller
 
     /**
      * Creates or edits a shop.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ShopService  $service
      * @param  int|null                  $id
@@ -96,7 +90,6 @@ class ShopController extends Controller
 
     /**
      * Edits a shop's stock.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ShopService  $service
      * @param  int                       $id
@@ -116,10 +109,9 @@ class ShopController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the shop deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -133,7 +125,6 @@ class ShopController extends Controller
 
     /**
      * Deletes a shop.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ShopService  $service
      * @param  int                       $id
@@ -152,7 +143,6 @@ class ShopController extends Controller
 
     /**
      * Sorts shops.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\ShopService  $service
      * @return \Illuminate\Http\RedirectResponse

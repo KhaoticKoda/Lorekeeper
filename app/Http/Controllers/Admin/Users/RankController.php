@@ -14,7 +14,6 @@ class RankController extends Controller
 {
     /**
      * Show the rank index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -26,7 +25,6 @@ class RankController extends Controller
 
     /**
      * Get the rank creation modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateRank()
@@ -41,7 +39,6 @@ class RankController extends Controller
 
     /**
      * Get the rank editing modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getEditRank($id)
@@ -72,10 +69,9 @@ class RankController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Get the rank deletion modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getDeleteRank($id)
@@ -99,7 +95,7 @@ class RankController extends Controller
         }
         return redirect()->back();
     }
-    
+
     public function postSortRanks(Request $request, RankService $service)
     {
         if($service->sortRanks($request->get('sort'), Auth::user())) {

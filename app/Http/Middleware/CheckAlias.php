@@ -9,7 +9,6 @@ class CheckAlias
     /**
      * Redirects users without an alias to the dA account linking page,
      * and banned users to the ban page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

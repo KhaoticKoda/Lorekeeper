@@ -15,7 +15,6 @@ class CharacterImage extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -28,21 +27,18 @@ class CharacterImage extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_images';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Validation rules for image creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -54,7 +50,6 @@ class CharacterImage extends Model
 
     /**
      * Validation rules for image updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -155,7 +150,6 @@ class CharacterImage extends Model
 
     /**
      * Scope a query to only include images visible to guests and regular logged-in users.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -173,7 +167,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -183,7 +176,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getImageFileNameAttribute()
@@ -193,7 +185,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImagePathAttribute()
@@ -203,7 +194,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getImageUrlAttribute()
@@ -213,7 +203,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file name of the model's fullsize image.
-     *
      * @return string
      */
     public function getFullsizeFileNameAttribute()
@@ -223,7 +212,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file name of the model's fullsize image.
-     *
      * @return string
      */
     public function getFullsizeUrlAttribute()
@@ -233,7 +221,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file name of the model's fullsize image.
-     *
      * @param  user
      * @return string
      */
@@ -246,7 +233,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the file name of the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailFileNameAttribute()
@@ -256,7 +242,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the path to the file directory containing the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailPathAttribute()
@@ -266,7 +251,6 @@ class CharacterImage extends Model
 
     /**
      * Gets the URL of the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailUrlAttribute()

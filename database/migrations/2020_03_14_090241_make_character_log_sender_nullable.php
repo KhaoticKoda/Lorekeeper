@@ -8,7 +8,6 @@ class MakeCharacterLogSenderNullable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -26,7 +25,6 @@ class MakeCharacterLogSenderNullable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

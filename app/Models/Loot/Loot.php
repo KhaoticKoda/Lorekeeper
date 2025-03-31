@@ -9,7 +9,6 @@ class Loot extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -19,14 +18,12 @@ class Loot extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'loots';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -38,7 +35,6 @@ class Loot extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -88,7 +84,6 @@ class Loot extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()

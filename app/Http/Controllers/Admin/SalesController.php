@@ -17,7 +17,6 @@ class SalesController extends Controller
 {
     /**
      * Shows the Sales index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -29,7 +28,6 @@ class SalesController extends Controller
 
     /**
      * Shows the create Sales page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateSales()
@@ -41,7 +39,6 @@ class SalesController extends Controller
 
     /**
      * Shows the edit Sales page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -56,7 +53,6 @@ class SalesController extends Controller
 
     /**
      * Shows character information.
-     *
      * @param  string  $slug
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -71,7 +67,6 @@ class SalesController extends Controller
 
     /**
      * Creates or edits a Sales page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\SalesService  $service
      * @param  int|null                  $id
@@ -100,7 +95,6 @@ class SalesController extends Controller
 
     /**
      * Gets the Sales deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -114,7 +108,6 @@ class SalesController extends Controller
 
     /**
      * Deletes a Sales page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\SalesService  $service
      * @param  int                       $id

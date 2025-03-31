@@ -9,21 +9,18 @@ class FixCharItemNotifs extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'fix-char-item-notifs';
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Adjusts character item notification type IDs in the database.';
 
     /**
      * Create a new command instance.
-     *
      * @return void
      */
     public function __construct()
@@ -33,7 +30,6 @@ class FixCharItemNotifs extends Command
 
     /**
      * Execute the console command.
-     *
      * @return mixed
      */
     public function handle()

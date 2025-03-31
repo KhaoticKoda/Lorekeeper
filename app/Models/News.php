@@ -14,7 +14,6 @@ class News extends Model
     use Commentable;
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -23,38 +22,33 @@ class News extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'news';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['post_at'];
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
         'title' => 'required|between:3,100',
         'text' => 'required',
     ];
-    
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -63,28 +57,27 @@ class News extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the user who created the news post.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User');
     }
 
     /**********************************************************************************************
-    
+
         SCOPES
 
     **********************************************************************************************/
 
     /**
      * Scope a query to only include visible posts.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -95,7 +88,6 @@ class News extends Model
 
     /**
      * Scope a query to only include posts that are scheduled to be posted and are ready to post.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -105,14 +97,13 @@ class News extends Model
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Get the news slug.
-     *
      * @return bool
      */
     public function getSlugAttribute()
@@ -122,7 +113,6 @@ class News extends Model
 
     /**
      * Displays the news post title, linked to the news post itself.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -132,7 +122,6 @@ class News extends Model
 
     /**
      * Gets the news post URL.
-     *
      * @return string
      */
     public function getUrlAttribute()

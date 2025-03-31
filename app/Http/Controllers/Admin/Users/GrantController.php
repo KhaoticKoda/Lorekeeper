@@ -26,7 +26,6 @@ class GrantController extends Controller
 {
     /**
      * Show the currency grant page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUserCurrency()
@@ -39,7 +38,6 @@ class GrantController extends Controller
 
     /**
      * Grants or removes currency from multiple users.
-     *
      * @param  \Illuminate\Http\Request      $request
      * @param  App\Services\CurrencyManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -58,7 +56,6 @@ class GrantController extends Controller
 
     /**
      * Show the item grant page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getItems()
@@ -71,7 +68,6 @@ class GrantController extends Controller
 
     /**
      * Grants or removes items from multiple users.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\InventoryManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -90,7 +86,6 @@ class GrantController extends Controller
 
     /**
      * Show the item search page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getItemSearch(Request $request)

@@ -15,7 +15,6 @@ class FileController extends Controller
 {
     /**
      * Shows the files index.
-     *
      * @param  string  $folder
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -35,7 +34,7 @@ class FileController extends Controller
         }
         if($folder && !file_exists($filesDirectory.'/'.$folder)) abort(404);
         $dir = $filesDirectory.($folder ? '/'.$folder : '');
-        $files = scandir($dir); 
+        $files = scandir($dir);
         $fileList = [];
         foreach($files as $file)
         {
@@ -50,7 +49,6 @@ class FileController extends Controller
 
     /**
      * Creates a new directory in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -70,7 +68,6 @@ class FileController extends Controller
 
     /**
      * Moves a file in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -94,7 +91,6 @@ class FileController extends Controller
 
     /**
      * Renames a file in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -117,7 +113,6 @@ class FileController extends Controller
 
     /**
      * Deletes a file in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -139,7 +134,6 @@ class FileController extends Controller
 
     /**
      * Uploads a file to the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -161,7 +155,6 @@ class FileController extends Controller
 
     /**
      * Renames a directory in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -185,7 +178,6 @@ class FileController extends Controller
 
     /**
      * Deletes a directory in the files directory.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -207,7 +199,6 @@ class FileController extends Controller
 
     /**
      * Shows the site images index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSiteImages()
@@ -219,7 +210,6 @@ class FileController extends Controller
 
     /**
      * Uploads a site image file.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -242,7 +232,6 @@ class FileController extends Controller
 
     /**
      * Uploads a custom site CSS file.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\FileManager  $service
      * @return \Illuminate\Http\RedirectResponse

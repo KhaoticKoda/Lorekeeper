@@ -5,12 +5,20 @@
   "tabWidth": 2,
   "semi": true,
   "singleQuote": true,
-  "objectWrap": "collapse",
-  "quoteProps": "preserve",
-  "singleAttributePerLine": false,
+  "bracketSpacing": true,
   "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade"],
-  "braceStyle": "1tbs",
-  "wrapAttributes": "aligned-multiple",
-  "wrapAttributesMinAttrs": 3,
-  "overrides": [{ "files": ["*.blade.php"], "options": { "parser": "blade", "tabWidth": 2 } }]
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "parser": "blade",
+        "tabWidth": 2,
+        "wrapAttributes": "aligned-multiple",
+        "wrapAttributesMinAttrs": 3,
+        "singleAttributePerLine": false
+      }
+    },
+    { "files": ["*.php"], "options": { "parser": "php", "tabWidth": 2, "braceStyle": "1tbs" } }
+  ],
+  "removedTemp": { "objectWrap": "collapse" }
 }

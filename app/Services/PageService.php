@@ -13,14 +13,11 @@ class PageService extends Service
     |--------------------------------------------------------------------------
     | Page Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of site pages.
-    |
     */
 
     /**
      * Creates a site page.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\SitePage
@@ -38,7 +35,7 @@ class PageService extends Service
             $page = SitePage::create($data);
 
             return $this->commitReturn($page);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -46,9 +43,8 @@ class PageService extends Service
 
     /**
      * Updates a site page.
-     *
      * @param  \App\Models\SitePage   $news
-     * @param  array                  $data 
+     * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\SitePage
      */
@@ -68,7 +64,7 @@ class PageService extends Service
             $page->update($data);
 
             return $this->commitReturn($page);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -76,7 +72,6 @@ class PageService extends Service
 
     /**
      * Deletes a site page.
-     *
      * @param  \App\Models\SitePage  $news
      * @return bool
      */
@@ -91,7 +86,7 @@ class PageService extends Service
             $page->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

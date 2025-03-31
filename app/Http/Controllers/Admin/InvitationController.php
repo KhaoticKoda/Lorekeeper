@@ -14,7 +14,6 @@ class InvitationController extends Controller
 {
     /**
      * Shows the invitation key index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -26,7 +25,6 @@ class InvitationController extends Controller
 
     /**
      * Generates a new invitation key.
-     *
      * @param  App\Services\InvitationService  $service
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -43,7 +41,6 @@ class InvitationController extends Controller
 
     /**
      * Generates a new invitation key.
-     *
      * @param  App\Services\InvitationService  $service
      * @param  int                             $id
      * @return \Illuminate\Http\RedirectResponse

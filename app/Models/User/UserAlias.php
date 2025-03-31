@@ -10,7 +10,6 @@ class UserAlias extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -19,7 +18,6 @@ class UserAlias extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'user_aliases';
@@ -46,7 +44,6 @@ class UserAlias extends Model
 
     /**
      * Scope a query to only include visible aliases.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -63,7 +60,6 @@ class UserAlias extends Model
 
     /**
      * Gets the URL for the user's account on a given site.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -74,7 +70,6 @@ class UserAlias extends Model
 
     /**
      * Displays the user's alias, linked to the appropriate site.
-     *
      * @return string
      */
     public function getDisplayAliasAttribute()
@@ -84,7 +79,6 @@ class UserAlias extends Model
 
     /**
      * Retrieves the config data for the site.
-     *
      * @return string
      */
     public function getConfigAttribute()
@@ -94,7 +88,6 @@ class UserAlias extends Model
 
     /**
      * Retrieves the display name of the alias's site.
-     *
      * @return string
      */
     public function getSiteDisplayNameAttribute()
@@ -104,7 +97,6 @@ class UserAlias extends Model
 
     /**
      * Checks if this alias can be made a primary alias.
-     *
      * @return string
      */
     public function getCanMakePrimaryAttribute()

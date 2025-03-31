@@ -15,7 +15,6 @@ class Comment extends Model
 
     /**
      * The relations to eager load on every query.
-     *
      * @var array
      */
     protected $with = [
@@ -24,7 +23,6 @@ class Comment extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -33,7 +31,6 @@ class Comment extends Model
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
@@ -41,7 +38,6 @@ class Comment extends Model
 
     /**
      * The attributes that should be cast to native types.
-     *
      * @var array
      */
     protected $casts = [
@@ -50,7 +46,6 @@ class Comment extends Model
 
     /**
      * The event map for the model.
-     *
      * @var array
      */
     protected $dispatchesEvents = [
@@ -93,7 +88,6 @@ class Comment extends Model
 
     /**
      * Gets / Creates permalink for comments - allows user to go directly to comment
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -103,7 +97,6 @@ class Comment extends Model
 
     /**
      * Gets top comment
-     *
      * @return string
      */
     public function getTopCommentAttribute()

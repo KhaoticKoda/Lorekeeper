@@ -8,7 +8,6 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -41,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->integer('rank_id')->unsigned()->default(1);
 
             $table->integer('notifications_unread')->unsigned()->default(0);
-            
+
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -78,13 +77,12 @@ class CreateUsersTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
     {
         Schema::dropIfExists('notifications');
-        
+
         Schema::dropIfExists('user_settings');
         Schema::dropIfExists('users');
 

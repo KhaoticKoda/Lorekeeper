@@ -9,7 +9,6 @@ class Species extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -18,15 +17,13 @@ class Species extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'specieses';
-    
-    
+
+
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -34,11 +31,10 @@ class Species extends Model
         'description' => 'nullable',
         'image' => 'mimes:png',
     ];
-    
-    
+
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -48,7 +44,7 @@ class Species extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
@@ -56,7 +52,7 @@ class Species extends Model
     /**
      * Get the subtypes for this species.
      */
-    public function subtypes() 
+    public function subtypes()
     {
         return $this->hasMany('App\Models\Species\Subtype');
     }
@@ -64,28 +60,27 @@ class Species extends Model
     /**
      * Get the sub masterlist for this species.
      */
-    public function sublist() 
+    public function sublist()
     {
         return $this->belongsTo('App\Models\Character\Sublist', 'masterlist_sub_id');
     }
-    
+
     /**
      * Get the features associated with this species.
      */
-    public function features() 
+    public function features()
     {
         return $this->hasMany('App\Models\Feature\Feature');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
-    
+
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -95,7 +90,6 @@ class Species extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -105,7 +99,6 @@ class Species extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getSpeciesImageFileNameAttribute()
@@ -115,17 +108,15 @@ class Species extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getSpeciesImagePathAttribute()
     {
         return public_path($this->imageDirectory);
     }
-    
+
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getSpeciesImageUrlAttribute()
@@ -136,7 +127,6 @@ class Species extends Model
 
     /**
      * Gets the URL of the model's encyclopedia page.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -146,7 +136,6 @@ class Species extends Model
 
     /**
      * Gets the URL for a masterlist search of characters of this species.
-     *
      * @return string
      */
     public function getSearchUrlAttribute()
@@ -159,7 +148,6 @@ class Species extends Model
 
     /**
      * Gets the URL the visual index of this species' traits.
-     *
      * @return string
      */
     public function getVisualTraitsUrlAttribute()

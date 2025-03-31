@@ -18,14 +18,11 @@ class CurrencyManager extends Service
     |--------------------------------------------------------------------------
     | Currency Service
     |--------------------------------------------------------------------------
-    |
     | Handles the modification of currencies owned by users and characters.
-    |
     */
 
     /**
      * Admin function for granting currency to multiple users.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $staff
      * @return  bool
@@ -77,7 +74,6 @@ class CurrencyManager extends Service
     /**
      * Admin function for granting currency to a character.
      * Removes currency if the quantity given is less than 0.
-     *
      * @param  array                            $data
      * @param  \App\Models\Character\Character  $staff
      * @param  \App\Models\User\User            $staff
@@ -132,7 +128,6 @@ class CurrencyManager extends Service
 
     /**
      * Transfers currency between users.
-     *
      * @param  \App\Models\User\User          $sender
      * @param  \App\Models\User\User          $recipient
      * @param  \App\Models\Currency\Currency  $currency
@@ -172,7 +167,6 @@ class CurrencyManager extends Service
 
     /**
      * Transfers currency between a user and character.
-     *
      * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
      * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
      * @param  \App\Models\Currency\Currency                          $currency
@@ -206,7 +200,6 @@ class CurrencyManager extends Service
 
     /**
      * Credits currency to a user or character.
-     *
      * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
      * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
      * @param  string                                                 $type
@@ -254,7 +247,6 @@ class CurrencyManager extends Service
 
     /**
      * Debits currency from a user or character.
-     *
      * @param  \App\Models\User\User|\App\Models\Character\Character  $sender
      * @param  \App\Models\User\User|\App\Models\Character\Character  $recipient
      * @param  string                                                 $type
@@ -296,7 +288,6 @@ class CurrencyManager extends Service
 
     /**
      * Creates a currency log.
-     *
      * @param  int     $senderId
      * @param  string  $senderType
      * @param  int     $recipientId

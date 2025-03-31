@@ -9,7 +9,6 @@ class CommentPolicy
 {
     /**
      * Can user create the comment
-     *
      * @param $user
      * @return bool
      */
@@ -20,7 +19,6 @@ class CommentPolicy
 
     /**
      * Can user delete the comment
-     *
      * @param $user
      * @param Comment $comment
      * @return bool
@@ -37,7 +35,6 @@ class CommentPolicy
 
     /**
      * Can user update the comment
-     *
      * @param $user
      * @param Comment $comment
      * @return bool
@@ -49,7 +46,6 @@ class CommentPolicy
 
     /**
      * Can user reply to the comment
-     *
      * @param $user
      * @param Comment $comment
      * @return bool

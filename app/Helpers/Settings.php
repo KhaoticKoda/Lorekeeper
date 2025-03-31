@@ -10,14 +10,11 @@ class Settings {
     |--------------------------------------------------------------------------
     | Settings
     |--------------------------------------------------------------------------
-    |
     | Retrieves site settings as defined in the database.
-    |
     */
 
     /**
      * Gets a site setting.
-     *
      * @param  string  $key
      * @return mixed|null
      */

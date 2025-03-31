@@ -11,7 +11,6 @@ class LootTable extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,14 +19,12 @@ class LootTable extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'loot_tables';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -37,7 +34,6 @@ class LootTable extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -67,7 +63,6 @@ class LootTable extends Model
 
     /**
      * Displays the model's name, linked to its encyclopedia page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -77,7 +72,6 @@ class LootTable extends Model
 
     /**
      * Gets the loot table's asset type for asset management.
-     *
      * @return string
      */
     public function getAssetTypeAttribute()
@@ -93,7 +87,6 @@ class LootTable extends Model
 
     /**
      * Rolls on the loot table and consolidates the rewards.
-     *
      * @param  int  $quantity
      * @return \Illuminate\Support\Collection
      */
@@ -137,7 +130,6 @@ class LootTable extends Model
 
     /**
      * Rolls on an item category.
-     *
      * @param  int    $id
      * @param  int    $quantity
      * @param  string $condition
@@ -172,7 +164,6 @@ class LootTable extends Model
 
     /**
      * Rolls on an item rarity.
-     *
      * @param  int    $quantity
      * @param  string $condition
      * @param  string $rarity

@@ -24,14 +24,11 @@ class ReportManager extends Service
     |--------------------------------------------------------------------------
     | Report Manager
     |--------------------------------------------------------------------------
-    |
     | Handles creation and modification of report data.
-    |
     */
 
     /**
      * Creates a new report.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @param  bool                   $isClaim
@@ -57,9 +54,9 @@ class ReportManager extends Service
                 'error_type' => $data['error'],
                 'is_br' => $data['is_br'],
                 ]);
-            
+
             return $this->commitReturn($report);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -67,7 +64,6 @@ class ReportManager extends Service
 
     /**
      * Approves a report.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return mixed
@@ -93,7 +89,7 @@ class ReportManager extends Service
             ]);
 
             return $this->commitReturn($report);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -101,7 +97,6 @@ class ReportManager extends Service
 
     /**
      * Closes a report.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return mixed
@@ -115,7 +110,7 @@ class ReportManager extends Service
             elseif($data['report']->status == 'Assigned') $report = $data['report'];
             else $report = null;
             if(!$report) throw new \Exception("Invalid report.");
-			
+
 			if(isset($data['staff_comments']) && $data['staff_comments']) $data['parsed_staff_comments'] = parse($data['staff_comments']);
 			else $data['parsed_staff_comments'] = null;
 
@@ -133,10 +128,10 @@ class ReportManager extends Service
             ]);
 
             return $this->commitReturn($report);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
     }
-    
+
 }

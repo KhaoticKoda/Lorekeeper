@@ -12,7 +12,6 @@ class CharacterProfile extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -21,21 +20,18 @@ class CharacterProfile extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_profiles';
 
     /**
      * The primary key of the model.
-     *
      * @var string
      */
     public $primaryKey = 'character_id';
 
     /**
      * Validation rules for character profile updating.
-     *
      * @var array
      */
     public static $rules = [

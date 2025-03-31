@@ -22,7 +22,6 @@ class UserController extends Controller
 {
     /**
      * Show the user index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex(Request $request)
@@ -71,7 +70,6 @@ class UserController extends Controller
 
     /**
      * Show a user's admin page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUser($name)
@@ -200,7 +198,6 @@ class UserController extends Controller
 
     /**
      * Show a user's account update log.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUserUpdates($name)
@@ -217,7 +214,6 @@ class UserController extends Controller
 
     /**
      * Show a user's ban page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getBan($name)
@@ -233,7 +229,6 @@ class UserController extends Controller
 
     /**
      * Show a user's ban confirmation page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getBanConfirmation($name)
@@ -268,7 +263,6 @@ class UserController extends Controller
 
     /**
      * Show a user's unban confirmation page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getUnbanConfirmation($name)

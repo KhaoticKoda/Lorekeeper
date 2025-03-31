@@ -17,14 +17,11 @@ class BookmarkController extends Controller
     |--------------------------------------------------------------------------
     | Bookmark Controller
     |--------------------------------------------------------------------------
-    |
     | Handles the user's character bookmarks.
-    |
     */
 
     /**
      * Shows the bookmarks page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -89,7 +86,6 @@ class BookmarkController extends Controller
 
     /**
      * Gets the bookmark creation modal.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateBookmark()
@@ -101,7 +97,6 @@ class BookmarkController extends Controller
 
     /**
      * Gets the bookmark editing modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -116,7 +111,6 @@ class BookmarkController extends Controller
 
     /**
      * Creates or edits a bookmark.
-     *
      * @param  \Illuminate\Http\Request      $request
      * @param  App\Services\BookmarkManager  $service
      * @param  int|null                      $id
@@ -143,7 +137,6 @@ class BookmarkController extends Controller
 
     /**
      * Gets the bookmark deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -158,7 +151,6 @@ class BookmarkController extends Controller
 
     /**
      * Deletes a bookmark.
-     *
      * @param  \Illuminate\Http\Request      $request
      * @param  App\Services\BookmarkManager  $service
      * @param  int                           $id

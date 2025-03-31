@@ -8,7 +8,6 @@ class AddSubtypes extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -16,7 +15,7 @@ class AddSubtypes extends Migration
         // These are basically, subspecies - I've decided to name them "subtypes"
         // as "subspecies" implies a biological taxonomic relation,
         // when "subspecies" in closed species tend to be less strictly scientific
-        // and could be magical, could be dynamically changed... 
+        // and could be magical, could be dynamically changed...
         // so something looser like "subtype" would probably be better as a blanket term
         // for these.
         Schema::create('subtypes', function(Blueprint $table) {
@@ -45,7 +44,6 @@ class AddSubtypes extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

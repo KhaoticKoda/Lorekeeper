@@ -6,9 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | Group Currency Form Fields
     |--------------------------------------------------------------------------
-    |
     | The list of fields in the group currency form and their names for display.
-    |
     */
 
     // This is the configuration for the group currency form presented to users when submitting pieces to the gallery.
@@ -46,19 +44,19 @@ return [
         'multiple' => true,
         // For checkboxes/toggles, this is what the toggle outputs when "on".
         'value' => null,
-    ], 
+    ],
     'art_finish' => [
         'name' => 'Level of Finish',
         'label' => 'Level of Finish (For Digital/Traditional Artwork)',
         'type' => 'choice',
         'choices' => ['0.5' => 'Sketch', '1' => 'Clean Lines/Lineless', '3' => 'Painted'],
-    ], 
+    ],
     'art_type' => [
         'name' => 'Art Type',
         'label' => 'Art Type (For Digital/Traditional Artwork)',
         'type' => 'choice',
         'choices' => ['0' => 'Headshot', '1' => 'Bust', '2' => 'Full Body Chibi', '3' => 'Full Body'],
-    ], 
+    ],
     'art_bonus' => [
         'name' => 'Art Bonuses',
         'type' => 'choice',
@@ -67,20 +65,20 @@ return [
         // which can easily be rounded out, but allows for the computer to distinguish between them.
         'choices' => ['1' => 'Colored', '1.1' => 'Shading', '1.2' => 'Background'],
         'multiple' => true,
-    ], 
+    ],
     'base' => [
         'name' => 'On Base/YCH',
         'label' => 'Base (P2U/F2U) or YCH',
         // This makes the option a toggle!
         'type' => 'checkbox',
         'value' => 1,
-    ], 
+    ],
     'frame_count' => [
         'name' => 'Frame Count',
         'label' => 'Frame Count (For Animations)',
         // This makes a field the user can enter a number in!
         'type' => 'number',
-    ], 
+    ],
     'word_count' => [
         'name' => 'Word Count',
         'label' => 'Word Count (For Writing or Poetry)',

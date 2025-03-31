@@ -13,7 +13,6 @@ class Sublist extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,24 +21,21 @@ class Sublist extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'masterlist_sub';
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
         'name' => 'required|unique:masterlist_sub|between:3,25',
         'key' => 'required|unique:masterlist_sub|between:3,25|alpha_dash'
     ];
-    
+
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -48,15 +44,15 @@ class Sublist extends Model
     ];
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get all character categories associated with the sub list.
      */
-    public function categories() 
+    public function categories()
     {
         return $this->hasMany('App\Models\Character\CharacterCategory', 'masterlist_sub_id');
     }
@@ -64,20 +60,19 @@ class Sublist extends Model
     /**
      * Get all character categories associated with the sub list.
      */
-    public function species() 
+    public function species()
     {
         return $this->hasMany('App\Models\Species\Species', 'masterlist_sub_id');
     }
 
     /**********************************************************************************************
-    
+
         ACCESSORS
 
     **********************************************************************************************/
 
     /**
      * Gets the sub masterlist's page's URL.
-     *
      * @return string
      */
     public function getUrlAttribute()

@@ -15,7 +15,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -24,34 +23,30 @@ class CharacterDesignUpdate extends Model
         'use_cropper', 'x0', 'x1', 'y0', 'y1',
         'hash', 'species_id', 'subtype_id', 'rarity_id',
         'has_comments', 'has_image', 'has_addons', 'has_features',
-        'submitted_at', 'update_type', 'fullsize_hash', 
+        'submitted_at', 'update_type', 'fullsize_hash',
         'approval_votes', 'rejection_votes'
     ];
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'design_updates';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['submitted_at'];
 
     /**
      * Validation rules for uploaded images.
-     *
      * @var array
      */
     public static $imageRules = [
@@ -159,7 +154,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Scope a query to only include active (Open or Pending) update requests.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -170,7 +164,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Scope a query to only include MYO slot approval requests.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -181,7 +174,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Scope a query to only include character design update requests.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -198,7 +190,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Get the data attribute as an associative array.
-     *
      * @return array
      */
     public function getDataAttribute()
@@ -208,7 +199,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Get the items (UserItem IDs) attached to this update request.
-     *
      * @return array
      */
     public function getInventoryAttribute()
@@ -221,7 +211,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Get the user-owned currencies attached to this update request.
-     *
      * @return array
      */
     public function getUserBankAttribute()
@@ -231,7 +220,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Get the character-owned currencies attached to this update request.
-     *
      * @return array
      */
     public function getCharacterBankAttribute()
@@ -241,7 +229,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Check if all sections of the form have been touched.
-     *
      * @return bool
      */
     public function getIsCompleteAttribute()
@@ -251,7 +238,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImageDirectoryAttribute()
@@ -261,7 +247,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the file name of the model's image.
-     *
      * @return string
      */
     public function getImageFileNameAttribute()
@@ -271,7 +256,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the path to the file directory containing the model's image.
-     *
      * @return string
      */
     public function getImagePathAttribute()
@@ -281,7 +265,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the URL of the model's image.
-     *
      * @return string
      */
     public function getImageUrlAttribute()
@@ -291,7 +274,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the file name of the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailFileNameAttribute()
@@ -301,7 +283,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the path to the file directory containing the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailPathAttribute()
@@ -311,7 +292,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the URL of the model's thumbnail image.
-     *
      * @return string
      */
     public function getThumbnailUrlAttribute()
@@ -321,7 +301,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the URL of the design update request.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -331,7 +310,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Gets the voting data of the design update request.
-     *
      * @return string
      */
     public function getVoteDataAttribute()
@@ -347,7 +325,6 @@ class CharacterDesignUpdate extends Model
 
     /**
      * Get the available currencies that the user can attach to this update request.
-     *
      * @param  string  $type
      * @return array
      */

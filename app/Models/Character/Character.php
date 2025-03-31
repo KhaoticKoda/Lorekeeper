@@ -34,7 +34,6 @@ class Character extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -48,35 +47,30 @@ class Character extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'characters';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['transferrable_at'];
 
     /**
      * Accessors to append to the model.
-     *
      * @var array
      */
     public $appends = ['is_available'];
 
     /**
      * Validation rules for character creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -94,7 +88,6 @@ class Character extends Model
 
     /**
      * Validation rules for character updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -107,7 +100,6 @@ class Character extends Model
 
     /**
      * Validation rules for MYO slots.
-     *
      * @var array
      */
     public static $myoRules = [
@@ -216,7 +208,6 @@ class Character extends Model
 
     /**
      * Scope a query to only include either characters of MYO slots.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  bool                                   $isMyo
      * @return \Illuminate\Database\Eloquent\Builder
@@ -228,7 +219,6 @@ class Character extends Model
 
     /**
      * Scope a query to only include visible characters.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -239,7 +229,6 @@ class Character extends Model
 
     /**
      * Scope a query to only include characters that the owners are interested in trading.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -250,7 +239,6 @@ class Character extends Model
 
     /**
      * Scope a query to only include characters that can be traded.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -271,7 +259,6 @@ class Character extends Model
 
     /**
      * Get the character's availability for activities/transfer.
-     *
      * @return bool
      */
     public function getIsAvailableAttribute()
@@ -285,7 +272,6 @@ class Character extends Model
     /**
      * Display the owner's name.
      * If the owner is not a registered user on the site, this displays the owner's dA name.
-     *
      * @return string
      */
     public function getDisplayOwnerAttribute()
@@ -297,7 +283,6 @@ class Character extends Model
     /**
      * Gets the character's code.
      * If this is a MYO slot, it will return the MYO slot's name.
-     *
      * @return string
      */
     public function getSlugAttribute()
@@ -308,7 +293,6 @@ class Character extends Model
 
     /**
      * Displays the character's name, linked to their character page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -319,7 +303,6 @@ class Character extends Model
     /**
      * Gets the character's name, including their code and user-assigned name.
      * If this is a MYO slot, simply returns the slot's name.
-     *
      * @return string
      */
     public function getFullNameAttribute()
@@ -330,7 +313,6 @@ class Character extends Model
 
     /**
      * Gets the character's page's URL.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -341,7 +323,6 @@ class Character extends Model
 
     /**
      * Gets the character's asset type for asset management.
-     *
      * @return string
      */
     public function getAssetTypeAttribute()
@@ -351,7 +332,6 @@ class Character extends Model
 
     /**
      * Gets the character's log type for log creation.
-     *
      * @return string
      */
     public function getLogTypeAttribute()
@@ -387,7 +367,6 @@ class Character extends Model
 
     /**
      * Get the character's held currencies.
-     *
      * @param  bool  $displayedOnly
      * @return \Illuminate\Support\Collection
      */
@@ -416,7 +395,6 @@ class Character extends Model
 
     /**
      * Get the character's held currencies as an array for select inputs.
-     *
      * @return array
      */
     public function getCurrencySelect()
@@ -426,7 +404,6 @@ class Character extends Model
 
     /**
      * Get the character's currency logs.
-     *
      * @param  int  $limit
      * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -444,7 +421,6 @@ class Character extends Model
 
     /**
      * Get the character's item logs.
-     *
      * @param  int  $limit
      * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -464,7 +440,6 @@ class Character extends Model
 
     /**
      * Get the character's ownership logs.
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getOwnershipLogs()
@@ -475,7 +450,6 @@ class Character extends Model
 
     /**
      * Get the character's update logs.
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getCharacterLogs()
@@ -486,7 +460,6 @@ class Character extends Model
 
     /**
      * Get submissions that the character has been included in.
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getSubmissions()

@@ -8,11 +8,10 @@ class AddUserReports extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::create('reports', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -28,14 +27,13 @@ class AddUserReports extends Migration
             $table->string('data', 512)->nullable()->default(null);
 
             $table->enum('status', ['Pending', 'Assigned', 'Closed'])->default('Pending');
-            
+
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

@@ -16,14 +16,11 @@ class PageController extends Controller
     |--------------------------------------------------------------------------
     | Page Controller
     |--------------------------------------------------------------------------
-    |
     | Displays site pages, editable from the admin panel.
-    |
     */
 
     /**
      * Shows the page with the given key.
-     *
      * @param  string  $key
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -33,11 +30,10 @@ class PageController extends Controller
         if(!$page) abort(404);
         return view('pages.page', ['page' => $page]);
     }
-    
+
 
     /**
      * Shows the credits page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreditsPage()
@@ -47,5 +43,5 @@ class PageController extends Controller
             'extensions' => DB::table('site_extensions')->get()
         ]);
     }
-    
+
 }

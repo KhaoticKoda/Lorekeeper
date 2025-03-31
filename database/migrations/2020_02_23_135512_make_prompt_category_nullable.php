@@ -8,7 +8,6 @@ class MakePromptCategoryNullable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -17,12 +16,11 @@ class MakePromptCategoryNullable extends Migration
         Schema::table('prompts', function (Blueprint $table) {
             $table->integer('prompt_category_id')->unsigned()->nullable()->change();
         });
-        
+
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

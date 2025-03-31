@@ -13,7 +13,6 @@ class Sales extends Model
     use Commentable;
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -23,28 +22,24 @@ class Sales extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'sales';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['post_at', 'comments_open_at'];
 
     /**
      * Validation rules for creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -54,7 +49,6 @@ class Sales extends Model
 
     /**
      * Validation rules for updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -92,7 +86,6 @@ class Sales extends Model
 
     /**
      * Scope a query to only include visible posts.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -103,7 +96,6 @@ class Sales extends Model
 
     /**
      * Scope a query to only include posts that are scheduled to be posted and are ready to post.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -120,7 +112,6 @@ class Sales extends Model
 
     /**
      * Get the Sales slug.
-     *
      * @return bool
      */
     public function getSlugAttribute()
@@ -130,7 +121,6 @@ class Sales extends Model
 
     /**
      * Displays the Sales post title, linked to the Sales post itself.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -140,7 +130,6 @@ class Sales extends Model
 
     /**
      * Gets the Sales post URL.
-     *
      * @return string
      */
     public function getUrlAttribute()

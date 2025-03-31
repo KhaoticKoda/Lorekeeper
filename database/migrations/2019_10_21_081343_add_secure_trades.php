@@ -8,7 +8,6 @@ class AddSecureTrades extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -27,7 +26,7 @@ class AddSecureTrades extends Migration
             $table->boolean('is_recipient_confirmed')->default(0);
             $table->boolean('is_confirmed')->default(0);
             $table->boolean('is_approved')->default(0);
-            
+
             // Reason for the transfer being rejected by a mod
             $table->text('reason')->nullable()->default(null);
 
@@ -41,11 +40,10 @@ class AddSecureTrades extends Migration
             $table->integer('trade_id')->unsigned()->nullable()->default(null);
         });
 
-    } 
+    }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

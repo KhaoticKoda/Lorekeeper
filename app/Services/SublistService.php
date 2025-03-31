@@ -15,20 +15,17 @@ class SublistService extends Service
     |--------------------------------------------------------------------------
     | Sub Masterlist Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of sub masterlists.
-    |
     */
 
     /**********************************************************************************************
-     
+
         SUB MASTERLISTS
 
     **********************************************************************************************/
 
     /**
      * Create a sublist.
-     *
      * @param  array                 $data
      * @param  array                 $contents
      * @return \App\Models\Character\Sublist|bool
@@ -51,7 +48,7 @@ class SublistService extends Service
             }
 
             return $this->commitReturn($sublist);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -59,7 +56,6 @@ class SublistService extends Service
 
     /**
      * Update a sublist.
-     *
      * @param  \App\Models\Character\Sublist        $sublist
      * @param  array                                $data
      * @param  array                                $contents
@@ -86,7 +82,7 @@ class SublistService extends Service
                 Species::whereIn('id', $contents['species'])->update(array('masterlist_sub_id' => $sublist->id));
 
             return $this->commitReturn($sublist);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -94,7 +90,6 @@ class SublistService extends Service
 
     /**
      * Delete a sublist.
-     *
      * @param  \App\Models\Character\Sublist  $sublist
      * @return bool
      */
@@ -106,11 +101,11 @@ class SublistService extends Service
             // Check first if the sublist is currently in use
             CharacterCategory::where('masterlist_sub_id', $sublist->id)->update(array('masterlist_sub_id' => 0));
             Species::where('masterlist_sub_id', $sublist->id)->update(array('masterlist_sub_id' => 0));
-            
+
             $sublist->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -118,7 +113,6 @@ class SublistService extends Service
 
     /**
      * Sorts sublist  order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -135,7 +129,7 @@ class SublistService extends Service
             }
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

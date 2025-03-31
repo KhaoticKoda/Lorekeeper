@@ -15,7 +15,6 @@ class NewsController extends Controller
 {
     /**
      * Shows the news index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -24,10 +23,9 @@ class NewsController extends Controller
             'newses' => News::orderBy('updated_at', 'DESC')->paginate(20)
         ]);
     }
-    
+
     /**
-     * Shows the create news page. 
-     *
+     * Shows the create news page.
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreateNews()
@@ -36,10 +34,9 @@ class NewsController extends Controller
             'news' => new News
         ]);
     }
-    
+
     /**
      * Shows the edit news page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -54,7 +51,6 @@ class NewsController extends Controller
 
     /**
      * Creates or edits a news page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\NewsService  $service
      * @param  int|null                  $id
@@ -78,10 +74,9 @@ class NewsController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the news deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -95,7 +90,6 @@ class NewsController extends Controller
 
     /**
      * Deletes a news page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\NewsService  $service
      * @param  int                       $id

@@ -15,9 +15,7 @@ class ItemService extends Service
     |--------------------------------------------------------------------------
     | Item Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of item categories and items.
-    |
     */
 
     /**********************************************************************************************
@@ -28,7 +26,6 @@ class ItemService extends Service
 
     /**
      * Create a category.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return \App\Models\Item\ItemCategory|bool
@@ -62,7 +59,6 @@ class ItemService extends Service
 
     /**
      * Update a category.
-     *
      * @param  \App\Models\Item\ItemCategory  $category
      * @param  array                          $data
      * @param  \App\Models\User\User          $user
@@ -98,7 +94,6 @@ class ItemService extends Service
 
     /**
      * Handle category data.
-     *
      * @param  array                               $data
      * @param  \App\Models\Item\ItemCategory|null  $category
      * @return array
@@ -126,7 +121,6 @@ class ItemService extends Service
 
     /**
      * Delete a category.
-     *
      * @param  \App\Models\Item\ItemCategory  $category
      * @return bool
      */
@@ -150,7 +144,6 @@ class ItemService extends Service
 
     /**
      * Sorts category order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -181,7 +174,6 @@ class ItemService extends Service
 
     /**
      * Creates a new item.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Item\Item
@@ -228,7 +220,6 @@ class ItemService extends Service
 
     /**
      * Updates an item.
-     *
      * @param  \App\Models\Item\Item  $item
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
@@ -277,7 +268,6 @@ class ItemService extends Service
 
     /**
      * Processes user input for creating/updating an item.
-     *
      * @param  array                  $data
      * @param  \App\Models\Item\Item  $item
      * @return array
@@ -306,7 +296,6 @@ class ItemService extends Service
 
     /**
      * Deletes an item.
-     *
      * @param  \App\Models\Item\Item  $item
      * @return bool
      */
@@ -344,7 +333,6 @@ class ItemService extends Service
 
     /**
      * Gets a list of item tags for selection.
-     *
      * @return array
      */
     public function getItemTags()
@@ -359,7 +347,6 @@ class ItemService extends Service
 
     /**
      * Adds an item tag to an item.
-     *
      * @param  \App\Models\Item\Item  $item
      * @param  string                 $tag
      * @return string|bool
@@ -387,7 +374,6 @@ class ItemService extends Service
 
     /**
      * Edits the data associated with an item tag on an item.
-     *
      * @param  \App\Models\Item\Item  $item
      * @param  string                 $tag
      * @param  array                  $data
@@ -422,7 +408,6 @@ class ItemService extends Service
 
     /**
      * Removes an item tag from an item.
-     *
      * @param  \App\Models\Item\Item  $item
      * @param  string                 $tag
      * @return string|bool

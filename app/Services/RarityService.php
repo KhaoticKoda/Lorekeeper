@@ -15,15 +15,12 @@ class RarityService extends Service
     |--------------------------------------------------------------------------
     | Rarity Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of rarities.
-    |
     */
 
     /**
      * Creates a new rarity.
-     *
-     * @param  array                  $data 
+     * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Rarity
      */
@@ -47,7 +44,7 @@ class RarityService extends Service
             if ($image) $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
 
             return $this->commitReturn($rarity);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -55,9 +52,8 @@ class RarityService extends Service
 
     /**
      * Updates a rarity.
-     *
      * @param  \App\Models\Rarity     $rarity
-     * @param  array                  $data 
+     * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Rarity
      */
@@ -71,7 +67,7 @@ class RarityService extends Service
 
             $data = $this->populateData($data, $rarity);
 
-            $image = null;            
+            $image = null;
             if(isset($data['image']) && $data['image']) {
                 $data['has_image'] = 1;
                 $image = $data['image'];
@@ -83,7 +79,7 @@ class RarityService extends Service
             if ($rarity) $this->handleImage($image, $rarity->rarityImagePath, $rarity->rarityImageFileName);
 
             return $this->commitReturn($rarity);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -91,8 +87,7 @@ class RarityService extends Service
 
     /**
      * Processes user input for creating/updating a rarity.
-     *
-     * @param  array               $data 
+     * @param  array               $data
      * @param  \App\Models\Rarity  $rarity
      * @return array
      */
@@ -101,23 +96,22 @@ class RarityService extends Service
         if(isset($data['description']) && $data['description']) $data['parsed_description'] = parse($data['description']);
 
         if(isset($data['color'])) $data['color'] = str_replace('#', '', $data['color']);
-        
+
         if(isset($data['remove_image']))
         {
-            if($rarity && $rarity->has_image && $data['remove_image']) 
-            { 
-                $data['has_image'] = 0; 
-                $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName); 
+            if($rarity && $rarity->has_image && $data['remove_image'])
+            {
+                $data['has_image'] = 0;
+                $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
             }
             unset($data['remove_image']);
         }
 
         return $data;
     }
-    
+
     /**
      * Deletes a rarity.
-     *
      * @param  \App\Models\Rarity  $rarity
      * @return bool
      */
@@ -125,15 +119,15 @@ class RarityService extends Service
     {
         DB::beginTransaction();
 
-        try {         
+        try {
             // Check first if characters with this rarity exist
             if(CharacterImage::where('rarity_id', $rarity->id)->exists() || Character::where('rarity_id', $rarity->id)->exists()) throw new \Exception("A character or character image with this rarity exists. Please change its rarity first.");
 
-            if($rarity->has_image) $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName); 
+            if($rarity->has_image) $this->deleteImage($rarity->rarityImagePath, $rarity->rarityImageFileName);
             $rarity->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -141,7 +135,6 @@ class RarityService extends Service
 
     /**
      * Sorts rarity order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -158,7 +151,7 @@ class RarityService extends Service
             }
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

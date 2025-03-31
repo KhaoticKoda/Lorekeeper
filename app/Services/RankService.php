@@ -15,14 +15,11 @@ class RankService extends Service
     |--------------------------------------------------------------------------
     | Rank Service
     |--------------------------------------------------------------------------
-    |
     | Handles creation and modification of user ranks.
-    |
     */
 
     /**
      * Creates a user rank.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool
@@ -60,7 +57,7 @@ class RankService extends Service
             if($powers) foreach($powers as $power) DB::table('rank_powers')->insert(['rank_id' => $rank->id, 'power' => $power]);
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -68,7 +65,6 @@ class RankService extends Service
 
     /**
      * Updates a user rank.
-     *
      * @param  \App\Models\Rank\Rank  $rank
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
@@ -104,7 +100,7 @@ class RankService extends Service
             }
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -112,7 +108,6 @@ class RankService extends Service
 
     /**
      * Deletes a user rank.
-     *
      * @param  \App\Models\Rank\Rank  $rank
      * @param  \App\Models\User\User  $user
      * @return bool
@@ -129,7 +124,7 @@ class RankService extends Service
             $rank->delete();
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);
@@ -137,7 +132,6 @@ class RankService extends Service
 
     /**
      * Sorts user ranks.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool
@@ -163,7 +157,7 @@ class RankService extends Service
             $adminRank->update(['sort'=> $count]);
 
             return $this->commitReturn(true);
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         return $this->rollbackReturn(false);

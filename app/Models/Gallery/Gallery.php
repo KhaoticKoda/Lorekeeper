@@ -12,7 +12,6 @@ class Gallery extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -23,21 +22,18 @@ class Gallery extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'galleries';
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     public $dates = ['start_at', 'end_at'];
 
     /**
      * Validation rules for character creation.
-     *
      * @var array
      */
     public static $createRules = [
@@ -47,7 +43,6 @@ class Gallery extends Model
 
     /**
      * Validation rules for character updating.
-     *
      * @var array
      */
     public static $updateRules = [
@@ -93,7 +88,6 @@ class Gallery extends Model
 
     /**
      * Scope a query to return galleries sorted first by sort number and then name.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -104,7 +98,6 @@ class Gallery extends Model
 
     /**
      * Scope a query to only include active galleries.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -125,7 +118,6 @@ class Gallery extends Model
 
     /**
      * Scope a query to only include visible galleries.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -148,7 +140,6 @@ class Gallery extends Model
 
     /**
      * Displays the gallery's display name.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -158,7 +149,6 @@ class Gallery extends Model
 
     /**
      * Gets the gallery's URL.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -168,7 +158,6 @@ class Gallery extends Model
 
     /**
      * Gets whether or not the user can submit to the gallery.
-     *
      * @return string
      */
     public function canSubmit($user = null)

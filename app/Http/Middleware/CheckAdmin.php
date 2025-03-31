@@ -8,7 +8,6 @@ class CheckAdmin
 {
     /**
      * Redirect non-admins to the home page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

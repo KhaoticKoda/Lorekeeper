@@ -11,7 +11,6 @@ class GalleryFavorite extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -20,7 +19,6 @@ class GalleryFavorite extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'gallery_favorites';
@@ -28,15 +26,15 @@ class GalleryFavorite extends Model
     /**
      * Get the character being attached to the submission.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User', 'user_id');
     }
-    
+
     /**
      * Get the submission this is attached to.
      */
-    public function submission() 
+    public function submission()
     {
         return $this->belongsTo('App\Models\Gallery\GallerySubmission', 'gallery_submission_id');
     }

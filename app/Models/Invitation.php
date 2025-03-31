@@ -8,7 +8,6 @@ class Invitation extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -17,29 +16,27 @@ class Invitation extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'invitations';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
 
 
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the user who generated the invitation code.
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\Models\User\User');
     }
@@ -47,7 +44,7 @@ class Invitation extends Model
     /**
      * Get the user who created their account using the invitation code.
      */
-    public function recipient() 
+    public function recipient()
     {
         return $this->belongsTo('App\Models\User\User', 'recipient_id');
     }

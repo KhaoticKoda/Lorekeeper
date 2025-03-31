@@ -18,7 +18,6 @@ class PermalinkController extends Controller
 {
      /**
      * returns replies recursively
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
      public function getComment($id) {

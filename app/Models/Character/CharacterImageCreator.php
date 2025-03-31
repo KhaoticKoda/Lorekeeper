@@ -13,7 +13,6 @@ class CharacterImageCreator extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,28 +21,26 @@ class CharacterImageCreator extends Model
 
     /**
      * The table associated with the model.
-     *
      * @var string
      */
     protected $table = 'character_image_creators';
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = false;
-    
+
     /**********************************************************************************************
-    
+
         RELATIONS
 
     **********************************************************************************************/
-    
+
     /**
      * Get the image associated with this record.
      */
-    public function image() 
+    public function image()
     {
         return $this->belongsTo('App\Models\Character\CharacterImage', 'character_image_id');
     }
@@ -57,14 +54,14 @@ class CharacterImageCreator extends Model
     }
 
     /**********************************************************************************************
-    
+
         OTHER FUNCTIONS
 
     **********************************************************************************************/
 
     /**
      * Displays a link using the creator's URL.
-     * 
+     *
      * @return string
      */
     public function displayLink()

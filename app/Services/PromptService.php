@@ -17,9 +17,7 @@ class PromptService extends Service
     |--------------------------------------------------------------------------
     | Prompt Service
     |--------------------------------------------------------------------------
-    |
     | Handles the creation and editing of prompt categories and prompts.
-    |
     */
 
     /**********************************************************************************************
@@ -30,7 +28,6 @@ class PromptService extends Service
 
     /**
      * Create a category.
-     *
      * @param  array                 $data
      * @param  \App\Models\User\User $user
      * @return \App\Models\Prompt\PromptCategory|bool
@@ -64,7 +61,6 @@ class PromptService extends Service
 
     /**
      * Update a category.
-     *
      * @param  \App\Models\Prompt\PromptCategory  $category
      * @param  array                              $data
      * @param  \App\Models\User\User              $user
@@ -100,7 +96,6 @@ class PromptService extends Service
 
     /**
      * Handle category data.
-     *
      * @param  array                                   $data
      * @param  \App\Models\Prompt\PromptCategory|null  $category
      * @return array
@@ -125,7 +120,6 @@ class PromptService extends Service
 
     /**
      * Delete a category.
-     *
      * @param  \App\Models\Prompt\PromptCategory  $category
      * @return bool
      */
@@ -149,7 +143,6 @@ class PromptService extends Service
 
     /**
      * Sorts category order.
-     *
      * @param  array  $data
      * @return bool
      */
@@ -180,7 +173,6 @@ class PromptService extends Service
 
     /**
      * Creates a new prompt.
-     *
      * @param  array                  $data
      * @param  \App\Models\User\User  $user
      * @return bool|\App\Models\Prompt\Prompt
@@ -221,7 +213,6 @@ class PromptService extends Service
 
     /**
      * Updates a prompt.
-     *
      * @param  \App\Models\Prompt\Prompt  $prompt
      * @param  array                      $data
      * @param  \App\Models\User\User      $user
@@ -265,7 +256,6 @@ class PromptService extends Service
 
     /**
      * Processes user input for creating/updating a prompt.
-     *
      * @param  array                      $data
      * @param  \App\Models\Prompt\Prompt  $prompt
      * @return array
@@ -293,7 +283,6 @@ class PromptService extends Service
 
     /**
      * Processes user input for creating/updating prompt rewards.
-     *
      * @param  array                      $data
      * @param  \App\Models\Prompt\Prompt  $prompt
      */
@@ -317,7 +306,6 @@ class PromptService extends Service
 
     /**
      * Deletes a prompt.
-     *
      * @param  \App\Models\Prompt\Prompt  $prompt
      * @return bool
      */

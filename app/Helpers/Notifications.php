@@ -11,14 +11,11 @@ class Notifications {
     |--------------------------------------------------------------------------
     | Notifications
     |--------------------------------------------------------------------------
-    |
     | Creates user notifications.
-    |
     */
 
     /**
      * Creates a new notification.
-     *
      * @param  string                 $type
      * @param  \App\Models\User\User  $user
      * @param  array                  $data
@@ -38,10 +35,10 @@ class Notifications {
 
             $user->notifications_unread++;
             $user->save();
-            
+
             DB::commit();
             return true;
-        } catch(\Exception $e) { 
+        } catch(\Exception $e) {
             $this->setError('error', $e->getMessage());
         }
         DB::rollback();

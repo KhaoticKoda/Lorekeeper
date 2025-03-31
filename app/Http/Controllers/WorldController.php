@@ -26,15 +26,12 @@ class WorldController extends Controller
     |--------------------------------------------------------------------------
     | World Controller
     |--------------------------------------------------------------------------
-    |
     | Displays information about the world, as entered in the admin panel.
     | Pages displayed by this controller form the site's encyclopedia.
-    |
     */
 
     /**
      * Shows the index page.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -44,7 +41,6 @@ class WorldController extends Controller
 
     /**
      * Shows the currency page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -60,7 +56,6 @@ class WorldController extends Controller
 
     /**
      * Shows the rarity page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -76,7 +71,6 @@ class WorldController extends Controller
 
     /**
      * Shows the species page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -94,7 +88,6 @@ class WorldController extends Controller
 
     /**
      * Shows the subtypes page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -110,7 +103,6 @@ class WorldController extends Controller
 
     /**
      * Shows the item categories page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -126,7 +118,6 @@ class WorldController extends Controller
 
     /**
      * Shows the trait categories page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -142,7 +133,6 @@ class WorldController extends Controller
 
     /**
      * Shows the traits page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -200,7 +190,6 @@ class WorldController extends Controller
 
     /**
      * Shows a species' visual trait list.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -237,7 +226,6 @@ class WorldController extends Controller
 
     /**
      * Shows the items page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -284,7 +272,6 @@ class WorldController extends Controller
 
     /**
      * Shows an individual item's page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -306,7 +293,6 @@ class WorldController extends Controller
 
     /**
      * Shows the character categories page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -322,7 +308,6 @@ class WorldController extends Controller
 
     /**
      * Shows the prompt categories page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -338,7 +323,6 @@ class WorldController extends Controller
 
     /**
      * Shows the prompts page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */

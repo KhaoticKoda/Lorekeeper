@@ -15,7 +15,6 @@ class PageController extends Controller
 {
     /**
      * Shows the page index.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -24,10 +23,9 @@ class PageController extends Controller
             'pages' => SitePage::orderBy('title')->paginate(20)
         ]);
     }
-    
+
     /**
-     * Shows the create page page. 
-     *
+     * Shows the create page page.
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getCreatePage()
@@ -36,10 +34,9 @@ class PageController extends Controller
             'page' => new SitePage
         ]);
     }
-    
+
     /**
      * Shows the edit page page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -54,7 +51,6 @@ class PageController extends Controller
 
     /**
      * Creates or edits a page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\PageService  $service
      * @param  int|null                  $id
@@ -78,10 +74,9 @@ class PageController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Gets the page deletion modal.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -95,7 +90,6 @@ class PageController extends Controller
 
     /**
      * Deletes a page.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  App\Services\PageService  $service
      * @param  int                       $id

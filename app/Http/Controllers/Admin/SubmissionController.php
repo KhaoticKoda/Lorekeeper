@@ -22,7 +22,6 @@ class SubmissionController extends Controller
 {
     /**
      * Shows the submission index page.
-     *
      * @param  string  $status
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -55,7 +54,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the submission detail page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -83,7 +81,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the claim index page.
-     *
      * @param  string  $status
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -111,7 +108,6 @@ class SubmissionController extends Controller
 
     /**
      * Shows the claim detail page.
-     *
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -138,7 +134,6 @@ class SubmissionController extends Controller
 
     /**
      * Creates a new submission.
-     *
      * @param  \Illuminate\Http\Request        $request
      * @param  App\Services\SubmissionManager  $service
      * @param  int                             $id

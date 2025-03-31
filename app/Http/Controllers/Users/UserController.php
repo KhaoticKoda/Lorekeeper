@@ -35,14 +35,11 @@ class UserController extends Controller
     |--------------------------------------------------------------------------
     | User Controller
     |--------------------------------------------------------------------------
-    |
     | Displays user profile pages.
-    |
     */
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -57,7 +54,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's profile.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -76,7 +72,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's aliases.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -93,7 +88,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's characters.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -127,7 +121,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's sublist characters.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -158,7 +151,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's MYO slots.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -176,7 +168,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's inventory.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -210,7 +201,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's profile.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -229,7 +219,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's currency logs.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -245,7 +234,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's item logs.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -261,7 +249,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's character ownership logs.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -276,7 +263,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's submissions.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -291,7 +277,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's gallery submissions.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -306,7 +291,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's gallery submission favorites.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -322,7 +306,6 @@ class UserController extends Controller
 
     /**
      * Shows a user's gallery submission favorites that contain characters they own.
-     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Support\Renderable
      */

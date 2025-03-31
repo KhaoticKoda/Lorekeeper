@@ -25,14 +25,11 @@ class BrowseController extends Controller
     |--------------------------------------------------------------------------
     | Browse Controller
     |--------------------------------------------------------------------------
-    |
     | Displays lists of users and characters.
-    |
     */
 
     /**
      * Shows the user list.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -76,7 +73,6 @@ class BrowseController extends Controller
 
     /**
      * Shows the user blacklist.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -108,7 +104,6 @@ class BrowseController extends Controller
 
     /**
      * Shows the character masterlist.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -262,7 +257,6 @@ class BrowseController extends Controller
 
     /**
      * Shows the MYO slot masterlist.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -370,7 +364,6 @@ class BrowseController extends Controller
 
     /**
      * Shows the Sub masterlists.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */

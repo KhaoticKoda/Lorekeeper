@@ -31,7 +31,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -40,7 +39,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
@@ -49,7 +47,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that should be cast to native types.
-     *
      * @var array
      */
     protected $casts = [
@@ -58,14 +55,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Dates on the model to convert to Carbon instances.
-     *
      * @var array
      */
     protected $dates = ['birthday'];
 
     /**
      * Accessors to append to the model.
-     *
      * @var array
      */
     protected $appends = [
@@ -74,7 +69,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Whether the model contains timestamps to be saved and updated.
-     *
      * @var string
      */
     public $timestamps = true;
@@ -197,7 +191,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Scope a query to only include visible (non-banned) users.
-     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -214,7 +207,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's alias.
-     *
      * @return string
      */
     public function getVerifiedNameAttribute()
@@ -224,7 +216,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Checks if the user has an alias (has an associated dA account).
-     *
      * @return bool
      */
     public function getHasAliasAttribute()
@@ -234,7 +225,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Checks if the user has an admin rank.
-     *
      * @return bool
      */
     public function getIsAdminAttribute()
@@ -244,7 +234,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Checks if the user is a staff member with powers.
-     *
      * @return bool
      */
     public function getIsStaffAttribute()
@@ -254,7 +243,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Checks if the user has the given power.
-     *
      * @return bool
      */
     public function hasPower($power)
@@ -264,7 +252,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Gets the powers associated with the user's rank.
-     *
      * @return array
      */
     public function getPowers()
@@ -274,7 +261,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Gets the user's profile URL.
-     *
      * @return string
      */
     public function getUrlAttribute()
@@ -284,7 +270,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Gets the URL for editing the user in the admin panel.
-     *
      * @return string
      */
     public function getAdminUrlAttribute()
@@ -294,7 +279,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Displays the user's name, linked to their profile page.
-     *
      * @return string
      */
     public function getDisplayNameAttribute()
@@ -304,7 +288,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
         /**
      * Displays the user's name, linked to their profile page.
-     *
      * @return string
      */
     public function getCommentDisplayNameAttribute()
@@ -314,7 +297,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Displays the user's primary alias.
-     *
      * @return string
      */
     public function getDisplayAliasAttribute()
@@ -325,7 +307,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Displays the user's avatar
-     *
      * @return string
      */
     public function getAvatar()
@@ -335,7 +316,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Gets the user's log type for log creation.
-     *
      * @return string
      */
     public function getLogTypeAttribute()
@@ -388,7 +368,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Checks if the user can edit the given rank.
-     *
      * @return bool
      */
     public function canEditRank($rank)
@@ -398,7 +377,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's held currencies.
-     *
      * @param  bool  $showAll
      * @return \Illuminate\Support\Collection
      */
@@ -427,7 +405,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's held currencies as an array for select inputs.
-     *
      * @return array
      */
     public function getCurrencySelect($isTransferrable = false)
@@ -439,7 +416,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's currency logs.
-     *
      * @param  int  $limit
      * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -457,7 +433,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's item logs.
-     *
      * @param  int  $limit
      * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -475,7 +450,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's shop purchase logs.
-     *
      * @param  int  $limit
      * @return \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -489,7 +463,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's character ownership logs.
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getOwnershipLogs()
@@ -547,7 +520,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user's submissions.
-     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getSubmissions($user = null)
@@ -558,7 +530,6 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Checks if the user has bookmarked a character.
      * Returns the bookmark if one exists.
-     *
      * @return \App\Models\Character\CharacterBookmark
      */
     public function hasBookmarked($character)

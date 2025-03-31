@@ -8,7 +8,6 @@ class FixInventoryTables extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -20,7 +19,7 @@ class FixInventoryTables extends Migration
         Schema::rename('banks_log', 'currencies_log');
         Schema::rename('inventory', 'user_items');
         Schema::rename('inventory_log', 'user_items_log');
-        
+
         Schema::table('currencies_log', function (Blueprint $table) {
             $table->dropColumn('data');
             $table->dropColumn('type');
@@ -28,14 +27,13 @@ class FixInventoryTables extends Migration
         Schema::table('currencies_log', function (Blueprint $table) {
             // Standardise with the item logs
             $table->string('log')->nullable();
-            $table->string('log_type'); 
+            $table->string('log_type');
             $table->string('data', 1024)->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
@@ -66,7 +64,7 @@ class FixInventoryTables extends Migration
             $table->integer('currency_id')->unsigned();
 
             $table->integer('quantity')->default(0);
-            
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('character_id')->references('id')->on('characters');
             $table->foreign('currency_id')->references('id')->on('currencies');

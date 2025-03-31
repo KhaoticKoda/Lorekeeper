@@ -27,14 +27,11 @@ class CharacterController extends Controller
     |--------------------------------------------------------------------------
     | Character Controller
     |--------------------------------------------------------------------------
-    |
     | Handles displaying of the user's characters and transfers.
-    |
     */
 
     /**
      * Shows the user's characters.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
@@ -48,7 +45,6 @@ class CharacterController extends Controller
 
     /**
      * Shows the user's MYO slots.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getMyos()
@@ -62,7 +58,6 @@ class CharacterController extends Controller
 
     /**
      * Sorts the user's characters.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @return \Illuminate\Http\RedirectResponse
@@ -81,7 +76,6 @@ class CharacterController extends Controller
 
     /**
      * Shows the user's transfers.
-     *
      * @param  string  $type
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -112,7 +106,6 @@ class CharacterController extends Controller
 
     /**
      * Transfers one of the user's own characters.
-     *
      * @param  \Illuminate\Http\Request       $request
      * @param  App\Services\CharacterManager  $service
      * @param  int                            $id
