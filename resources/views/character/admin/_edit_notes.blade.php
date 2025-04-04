@@ -9,5 +9,4 @@
 </div>
 {!! Form::close() !!}
 
-
-@include('js._modal_wysiwyg')
+@include('js._tinymce_wysiwyg', ['tinymceSelector' => '.imagenoteseditingparse .wysiwyg'])

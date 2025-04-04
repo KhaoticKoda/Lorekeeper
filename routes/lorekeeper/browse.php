@@ -140,6 +140,7 @@ Route::group(['prefix' => 'shops'], function () {
 **************************************************************************************************/
 Route::get('credits', 'PageController@getCreditsPage');
 Route::get('info/{key}', 'PageController@getPage');
+Route::get('feeds', 'PageController@getFeedsPage');
 
 /**************************************************************************************************
     Raffles

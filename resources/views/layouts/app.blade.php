@@ -80,6 +80,8 @@
     @endif
 
     @include('feed::links')
+
+    @yield('head')
 </head>
 
 <body>
@@ -143,11 +145,18 @@
         @yield('scripts')
         @include('layouts._pagination_js')
         <script>
-            $(function() {
+            $(document).on('focusin', function(e) {
+                if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            $(document).ready(function() {
                 $('[data-toggle="tooltip"]').tooltip({
                     html: true
                 });
                 $('.cp').colorpicker();
+<<<<<<< HEAD
                 tinymce.init({
                     selector: '.wysiwyg',
                     height: 500,
@@ -276,6 +285,9 @@
                         },
                     },
                 });
+=======
+
+>>>>>>> 84ef1f15fd172cdfceca45fdca80e0b158f320d4
                 bsCustomFileInput.init();
                 var $mobileMenuButton = $('#mobileMenuButton');
                 var $sidebar = $('#sidebar');

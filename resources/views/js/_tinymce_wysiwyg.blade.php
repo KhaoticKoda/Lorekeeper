@@ -1,21 +1,25 @@
+@if (!isset($tinymceScript) || $tinymceScript)
 <script>
     $(document).ready(function() {
+@endif
         tinymce.init({
-            selector: '#modal .wysiwyg',
-            height: 500,
+            selector: '{{ $tinymceSelector ?? ".wysiwyg" }}',
+            height: {{ $tinymceHeight ?? 500 }},
             menubar: false,
+            convert_urls: false,
             plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount toc mention',
+                'searchreplace visualblocks code fullscreen spoiler',
+                'insertdatetime media table paste {{ config('lorekeeper.extensions.tinymce_code_editor') ? 'codeeditor' : 'code' }} help wordcount toc',
                 'textpattern',
             ],
-            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | toc bullist numlist outdent indent | removeformat | code',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | toc bullist numlist outdent indent | link image | spoiler-add spoiler-remove | removeformat | {{ config('lorekeeper.extensions.tinymce_code_editor') ? 'codeeditor' : 'code' }}',
             content_css: [
-                '//www.tiny.cloud/css/codepen.min.css',
                 '{{ asset('css/app.css') }}',
                 '{{ asset('css/lorekeeper.css') }}'
             ],
+            spoiler_caption: 'Toggle Spoiler',
+            target_list: false,
             toc_class: 'container',
             textpattern_patterns: [{
                     start: '# ',
@@ -125,5 +129,7 @@
                 },
             },
         });
+@if (!isset($tinymceScript) || $tinymceScript)
     });
 </script>
+@endif
