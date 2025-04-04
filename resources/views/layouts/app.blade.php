@@ -155,8 +155,8 @@
                 $('[data-toggle="tooltip"]').tooltip({
                     html: true
                 });
-                $('.cp').colorpicker();
-<<<<<<< HEAD
+                $('.cp').colorpicker(); <<
+                << << < HEAD
                 tinymce.init({
                     selector: '.wysiwyg',
                     height: 500,
@@ -284,10 +284,11 @@
                                 '</li>';
                         },
                     },
-                });
-=======
+                }); ===
+                === =
 
->>>>>>> 84ef1f15fd172cdfceca45fdca80e0b158f320d4
+                >>>
+                >>> > 84 ef1f15fd172cdfceca45fdca80e0b158f320d4
                 bsCustomFileInput.init();
                 var $mobileMenuButton = $('#mobileMenuButton');
                 var $sidebar = $('#sidebar');
