@@ -2,12 +2,17 @@
     if (old('stack_id') && old('stack_quantity')) {
         $old_selection = array_combine(old('stack_id'), old('stack_quantity'));
     }
-
+    if (!isset($categories)) {
+        $categories = \App\Models\Item\ItemCategory::visible(Auth::user() ?? null)->get();
+    }
+    if (!isset($item_filter)) {
+        $item_filter = \App\Models\Item\Item::orderBy('name')->released()->get()->keyBy('id');
+    }
     if (!isset($fieldPrefix)) {
         $fieldPrefix = '';
     }
 @endphp
-<h3>
+<h3 class="{{ isset($customHeaderClass) ? $customHeaderClass : '' }}">
     {!! isset($user) && Auth::user()->id != $user->id ? $user->displayName . "'s" : 'Your' !!} Inventory <a class="small inventory-collapse-toggle collapse-toggle collapsed" href="#{{ $fieldPrefix }}userInventory" data-toggle="collapse">Show</a>
 </h3>
 <hr>
