@@ -7,6 +7,18 @@
   box-sizing: border-box;
 }
 
+@keyframes glare {
+  0% {
+    mask-position: 0% 50%;
+  }
+  40% {
+    mask-position: 0% 50%;
+  }
+  100% {
+    mask-position: -150% 50%;
+  }
+}
+
 /* General Styling */
 #app {
   font-family: "Baloo 2", sans-serif;
@@ -22,7 +34,7 @@
     --sb-width: min(20vw, 200px);
     --app-width: 70vw;
     display: grid;
-    grid-template: "logo" auto "nav" max-content "main" auto / auto;
+    grid-template: "logo" 20vh "nav" max-content "main" auto / auto;
     gap: 10px 0;
     position: relative;
     width: var(--app-width);
@@ -34,7 +46,7 @@
       left: calc(var(--sb-width) * -0.3); /* sidebar offset */
       width: calc(var(--app-width) + var(--sb-width));
       grid-template:
-        "   .    logo" min-content
+        "   .    logo" 20vh
         "   .    nav" min-content
         "sidebar main" auto
         / var(--sb-width) calc(100% - var(--sb-width));
@@ -64,27 +76,55 @@
     #site-logo-header {
       grid-area: logo;
       display: grid;
-      justify-content: center;
-      align-content: center;
-      height: 15vh;
+      justify-items: center;
+      align-items: center;
       picture {
-        width: 70vw;
-        max-width: unset;
-        height: 15vh;
+        display: grid;
+        grid-template: "logo";
         justify-content: center;
+        justify-items: center;
+        align-content: center;
+        img,
+        source,
+        &::after {
+          max-width: 50vw;
+          grid-area: logo;
+          width: 100%;
+        }
         img,
         source {
-          height: 15vh;
-          max-height: 20vh;
-          width: 100%;
           object-fit: contain;
           object-position: center;
-          filter: drop-shadow(5px 10px 2px rgba(29, 1, 36, 0.3));
+          /* filter: drop-shadow(5px 10px 2px rgba(29, 1, 36, 0.3)); */
+          position: relative;
+        }
+        &::after {
+          content: "";
+          max-width: unset;
+          background-image: url("http://127.0.0.1:8000/images/somnivores/logo.webp");
+          background-size: contain;
+          background-position: center;
+          --glare-width: 5%;
+          mask-image: linear-gradient(
+            70deg,
+            black 0%,
+            black calc(50% - var(--glare-width)),
+            white 50%,
+            black calc(50% + var(--glare-width)),
+            black 100%
+          );
+          mask-size: 300%;
+          mask-position: 50% 50%;
+          mask-mode: luminance;
+          filter: brightness(2) drop-shadow(0 0 5px black);
+          mix-blend-mode: color-dodge;
+          animation: glare 20s ease-in-out forwards infinite;
+          z-index: 5;
         }
       }
     }
     #header-nav {
-      background-color: #4066c3;
+      background-color: #635bbe;
       grid-area: nav;
       border-radius: 20px;
       a {
@@ -157,7 +197,7 @@
       &.has-sidebar {
         --m-app-width: calc(100vw - (var(--m-app-padding) * 2));
         grid-template:
-          "logo" 10vh
+          "logo" 20vh
           "nav" auto
           "sb-toggle" auto
           "main" auto

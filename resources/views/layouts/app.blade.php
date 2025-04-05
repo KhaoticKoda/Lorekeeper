@@ -50,22 +50,22 @@
   <meta name="robots" content="noai">
   <meta name="robots" content="noimageai">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/site.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
-    <script src="{{ asset('js/tinymce.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.tinymce.min.js') }}"></script>
-    <script src="{{ asset('js/lightbox.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
-    <script src="{{ asset('js/selectize.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
-    <script src="{{ asset('js/croppie.min.js') }}"></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/site.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
+  <script src="{{ asset('js/tinymce.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.tinymce.min.js') }}"></script>
+  <script src="{{ asset('js/lightbox.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
+  <script src="{{ asset('js/selectize.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+  <script src="{{ asset('js/croppie.min.js') }}"></script>
 
-    <!-- Scripts for wheel of fortune dailies -->
-    <script src="{{ asset('js/winwheel.min.js') }}"></script>
-    <script src="{{ asset('js/tweenmax.min.js') }}"></script>
+  <!-- Scripts for wheel of fortune dailies -->
+  <script src="{{ asset('js/winwheel.min.js') }}"></script>
+  <script src="{{ asset('js/tweenmax.min.js') }}"></script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -111,9 +111,9 @@
       <a id="site-logo-header" href="{{ url('/') }}">
         <picture>
           <source srcset="{{ asset('images/somnivores/raw/logo_raw.webp') }}"
-            media="(min-width: 992px)"
+            media="(min-width: 1200px)"
           />
-          <source srcset="{{ asset('images/somnivores/logo.webp') }}" media="(min-width: 600px)" />
+          <source srcset="{{ asset('images/somnivores/logo.webp') }}" media="(min-width: 768px)" />
           <img src="{{ asset('images/somnivores/logo.webp') }}" alt="" />
         </picture>
       </a>
@@ -160,21 +160,29 @@
 
     </main>
 
+    @include('layouts._terms_modal')
 
-        @include('layouts._terms_modal')
-
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-title h5 mb-0"></span>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="modal-title h5 mb-0"></span>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+            >&times;</button>
+          </div>
+          <div class="modal-body">
+          </div>
         </div>
+      </div>
+    </div>
 
     @yield('scripts')
     <script>
