@@ -10,22 +10,34 @@
     <div class="alert alert-info">{!! $info !!}</div>
 @endif
 @if ($rewards->count())
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th width="70%">Reward</th>
-                <th width="30%">Amount</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="mb-4 logs-table">
+        <div class="logs-table-header">
+            <div class="row">
+                <div class="col-5 col-md-6">
+                    <div class="logs-table-cell">Reward</div>
+                </div>
+                <div class="col-5 col-md-5">
+                    <div class="logs-table-cell">Amount</div>
+                </div>
+            </div>
+        </div>
+        <div class="logs-table-body">
             @foreach ($rewards as $reward)
-                <tr>
-                    <td>{!! $reward->reward->displayName !!}</td>
-                    <td>{{ $reward->quantity }}</td>
-                </tr>
+                <div class="logs-table-row">
+                    <div class="row flex-wrap">
+                        <div class="col-5 col-md-6">
+                            <div class="logs-table-cell">
+                                {!! $reward->reward->displayName !!}
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-5">
+                            <div class="logs-table-cell">{{ $reward->quantity }}</div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
-        </tbody>
-    </table>
+        </div>
+    </div>
 @else
     <p>No rewards.</p>
 @endif
