@@ -217,8 +217,9 @@ class WorldController extends Controller {
         } else {
             $query->sortStandard();
         }
+
         return view('world.subtypes', [
-            'subtypes' => $query->visible(Auth::user() ?? null)->paginate(20)->appends($request->query()),
+            'subtypes'   => $query->visible(Auth::user() ?? null)->paginate(20)->appends($request->query()),
             'specieses'  => ['none' => 'Any Species'] + Species::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
         ]);
     }
