@@ -111,6 +111,7 @@ class CharacterTransfer extends Model {
      * Scope a query to sort transfers by newest first.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed                                 $reverse
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

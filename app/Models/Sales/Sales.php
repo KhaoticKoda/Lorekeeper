@@ -135,6 +135,7 @@ class Sales extends Model implements Feedable {
      * Scope a query to sort sales by newest first.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed                                 $reverse
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

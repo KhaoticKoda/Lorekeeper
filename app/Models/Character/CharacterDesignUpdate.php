@@ -184,6 +184,7 @@ class CharacterDesignUpdate extends Model {
      * Scope a query to sort updates by newest first.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed                                 $reverse
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

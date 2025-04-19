@@ -99,6 +99,7 @@ class Currency extends Model {
      * Scope a query to sort currencies by newest first.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed                                 $reverse
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

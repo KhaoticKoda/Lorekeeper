@@ -135,6 +135,7 @@ class Report extends Model {
      * Scope a query to sort reports by newest first.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed                                 $reverse
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
