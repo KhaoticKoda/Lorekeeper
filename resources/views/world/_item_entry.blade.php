@@ -69,7 +69,7 @@
             @endif
             {!! $description !!}
             @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
-                @if(!isset($is_page))
+                @if (!isset($is_page))
                     <div class="text-right">
                         <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
                             <strong>Show details...</strong>
