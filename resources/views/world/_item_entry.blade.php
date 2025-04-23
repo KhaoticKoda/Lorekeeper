@@ -46,7 +46,7 @@
                     <p><strong>Resale Value:</strong> {!! App\Models\Currency\Currency::find($item->resell->flip()->pop())->display($item->resell->pop()) !!}</p>
                 </div>
             @endif
-            <div class="col-md-6 col-md">
+            <div class="col-md-5 col-md">
                 <div class="row">
                     @foreach ($item->tags as $tag)
                         @if ($tag->is_active)
@@ -69,12 +69,14 @@
             @endif
             {!! $description !!}
             @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
-                <div class="text-right">
-                    <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
-                        <strong>Show details...</strong>
-                    </a>
-                </div>
-                <div class="collapse" id="item-{{ $item->id }}">
+                @if(!isset($is_page))
+                    <div class="text-right">
+                        <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
+                            <strong>Show details...</strong>
+                        </a>
+                    </div>
+                @endif
+                <div class="collapse {{ isset($is_page) && $is_page ? 'show' : '' }}" id="item-{{ $item->id }}">
                     @if (isset($item->uses) && $item->uses)
                         <p>
                             <strong>Uses:</strong> {{ $item->uses }}
@@ -100,11 +102,11 @@
                                     </p>
                                     <div class="row">
                                         @foreach ($item->shops(Auth::user() ?? null) as $shop)
-                                            <div class="col">
+                                            <span class="badge" style="font-size:95%; margin:5px;">
                                                 <a href="{{ $shop->url }}">
                                                     {{ $shop->name }}
                                                 </a>
-                                            </div>
+                                            </span>
                                         @endforeach
                                     </div>
                                 </div>
@@ -116,11 +118,11 @@
                                     </p>
                                     <div class="row">
                                         @foreach ($item->prompts as $prompt)
-                                            <div class="col">
+                                            <span class="badge" style="font-size:95%; background-color: #fefcf6; margin:5px;">
                                                 <a href="{{ $prompt->url }}">
                                                     {{ $prompt->name }}
                                                 </a>
-                                            </div>
+                                            </span>
                                         @endforeach
                                     </div>
                                 </div>
