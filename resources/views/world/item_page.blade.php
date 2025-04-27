@@ -41,7 +41,7 @@
                         ->orderBy('sort', 'DESC')
                         ->get();
                     ?>
-                    
+
                     @if (config('lorekeeper.extensions.unmerge_item_page_and_entry'))
                         <div class="row world-entry">
                             @if ($imageUrl)
