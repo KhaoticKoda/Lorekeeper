@@ -30,7 +30,23 @@
         <div class="col-lg-6 col-lg-10">
             <div class="card mb-3">
                 <div class="card-body">
-                    @include('world._item_entry', ['imageUrl' => $item->imageUrl, 'name' => $item->displayName, 'description' => $item->parsed_description, 'idUrl' => $item->idUrl, 'shops' => $shops, 'is_page' => true])
+                    <?php
+                        $shops = App\Models\Shop\Shop::where(function ($shops) {
+                            if (Auth::check() && Auth::user()->isStaff) {
+                                return $shops;
+                            }
+                            return $shops->where('is_staff', 0);
+                        })
+                        ->whereIn(
+                            'id',
+                            App\Models\Shop\ShopStock::where('item_id', $item->id)
+                                ->pluck('shop_id')
+                                ->toArray(),
+                        )
+                        ->orderBy('sort', 'DESC')
+                        ->get();
+                    ?>
+                    @include('world._item_entry', ['imageUrl' => $item->imageUrl, 'name' => $item->displayName, 'description' => $item->parsed_description, 'idUrl' => $item->idUrl, 'shops' => $shops, 'isPage' => true])
                 </div>
             </div>
         </div>
