@@ -4,17 +4,28 @@
     @endif
     <div class="{{ $imageUrl ? 'col-md-9' : 'col-12' }}">
         <x-admin-edit title="Item" :object="$item" />
-        <h3>
-            @if (!$item->is_released)
-                <i class="fas fa-eye-slash mr-1"></i>
-            @endif
-            {!! $name !!}
-            @if (isset($idUrl) && $idUrl)
-                <a href="{{ $idUrl }}" class="world-entry-search text-muted">
-                    <i class="fas fa-search"></i>
+        @if (isset($isPage))
+            <h1>
+                @if (!$item->is_released)
+                    <i class="fas fa-eye-slash mr-1"></i>
+                @endif
+                <a href="{{ $item->idUrl }}">
+                    {!! $name !!}
                 </a>
-            @endif
-        </h3>
+            </h1>
+        @else
+            <h3>
+                @if (!$item->is_released)
+                    <i class="fas fa-eye-slash mr-1"></i>
+                @endif
+                {!! $name !!}
+                @if (isset($idUrl) && $idUrl)
+                    <a href="{{ $idUrl }}" class="world-entry-search text-muted">
+                        <i class="fas fa-search"></i>
+                    </a>
+                @endif
+            </h3>
+        @endif
         <div class="row">
             @if (isset($item->category) && $item->category)
                 <div class="col-md">
@@ -69,14 +80,14 @@
             @endif
             {!! $description !!}
             @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
-                @if (!isset($is_page))
+                @if (!isset($isPage))
                     <div class="text-right">
                         <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
                             <strong>Show details...</strong>
                         </a>
                     </div>
                 @endif
-                <div class="collapse {{ isset($is_page) && $is_page ? 'show' : '' }}" id="item-{{ $item->id }}">
+                <div class="collapse {{ isset($isPage) && $isPage ? 'show' : '' }}" id="item-{{ $item->id }}">
                     @if (isset($item->uses) && $item->uses)
                         <p>
                             <strong>Uses:</strong> {{ $item->uses }}
