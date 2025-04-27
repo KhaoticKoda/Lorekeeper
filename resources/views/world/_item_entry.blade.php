@@ -102,11 +102,11 @@
                                     </p>
                                     <div class="row">
                                         @foreach ($item->shops(Auth::user() ?? null) as $shop)
-                                            <span class="badge" style="font-size:95%; margin:5px;">
+                                            <div class="col">
                                                 <a href="{{ $shop->url }}">
                                                     {{ $shop->name }}
                                                 </a>
-                                            </span>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -118,11 +118,11 @@
                                     </p>
                                     <div class="row">
                                         @foreach ($item->prompts as $prompt)
-                                            <span class="badge" style="font-size:95%; background-color: #fefcf6; margin:5px;">
+                                            <div class="col">
                                                 <a href="{{ $prompt->url }}">
                                                     {{ $prompt->name }}
                                                 </a>
-                                            </span>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
