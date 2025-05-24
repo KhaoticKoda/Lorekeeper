@@ -48,11 +48,13 @@ class SetupAdminUser extends Command {
             $adminRank = Rank::create([
                 'name'        => 'Admin',
                 'description' => 'The site admin. Has the ability to view/edit any data on the site.',
+                'parsed_description' => 'The site admin. Has the ability to view/edit any data on the site.',
                 'sort'        => 1,
             ]);
             Rank::create([
                 'name'        => 'Member',
                 'description' => 'A regular member of the site.',
+                'parsed_description' => 'A regular member of the site.',
                 'sort'        => 0,
             ]);
 
