@@ -105,6 +105,7 @@
                             window.history.pushState({}, '', url);
                         }
                         $('#{{ $commentType }}-comments').fadeIn();
+                        @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '250', 'tinymceScript' => false])
                     }
                 });
             }
