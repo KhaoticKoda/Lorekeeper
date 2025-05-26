@@ -175,7 +175,7 @@
                 <div class="my-2"><strong>For Avatars:</strong></div>
                 In the rich text editor:
                 <div class="alert alert-secondary">
-                    {{ '#' . $user->name }}
+                    {{ '%' . $user->name }}
                 </div>
             </div>
         </div>

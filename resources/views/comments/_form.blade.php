@@ -13,3 +13,7 @@
     </div>
 </div>
 <br />
+
+@section('scripts')
+    @include('js._tinymce_wysiwyg', ['tinymceSelector' => '.comment-wysiwyg', 'tinymceHeight' => '250'])
+@endsection

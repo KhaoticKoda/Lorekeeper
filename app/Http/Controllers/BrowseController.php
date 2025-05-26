@@ -331,10 +331,10 @@ class BrowseController extends Controller {
 
                 $result = collect($emotes)->merge(collect($items));
                 break;
-            case '#':
+            case '%':
                 $users = User::visible()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($user) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $user->name.' (User)',
                         'image'                => $user->avatarUrl,
                         'mention_display_name' => $user->mentionImage,
@@ -345,7 +345,7 @@ class BrowseController extends Controller {
                     $query->where('name', 'LIKE', "%{$queryString}%")->orWhere('slug', 'LIKE', "%{$queryString}%");
                 })->orderBy('name')->get()->map(function ($character) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $character->fullName.' (Character)',
                         'image'                => $character->image->thumbnailUrl,
                         'mention_display_name' => $character->mentionImage,
@@ -354,7 +354,7 @@ class BrowseController extends Controller {
 
                 $items = Item::released()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($item) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $item->name.' (Item)',
                         'image'                => $item->has_image ? $item->imageUrl : null,
                         'mention_display_name' => $item->has_image ? $item->mentionImage : $item->mentionDisplayName,
@@ -363,7 +363,7 @@ class BrowseController extends Controller {
 
                 $prompts = Prompt::active()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($prompt) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $prompt->name.' (Prompt)',
                         'image'                => $prompt->has_image ? $prompt->imageUrl : null,
                         'mention_display_name' => $prompt->has_image ? $prompt->mentionImage : $prompt->mentionDisplayName,
@@ -372,7 +372,7 @@ class BrowseController extends Controller {
 
                 $traits = Feature::visible()->where('name', 'LIKE', "%{$queryString}%")->orderBy('name')->get()->map(function ($trait) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $trait->name.' (Trait)',
                         'image'                => $trait->has_image ? $trait->mentionImage : $trait->mentionDisplayName,
                         'mention_display_name' => $trait->mentionDisplayName,
@@ -381,7 +381,7 @@ class BrowseController extends Controller {
 
                 $gallerySubmissions = GallerySubmission::visible()->where('title', 'LIKE', "%{$queryString}%")->orderBy('title')->get()->map(function ($submission) {
                     return [
-                        'type'                 => '#',
+                        'type'                 => '%',
                         'name'                 => $submission->title.' (Gallery Submission)',
                         'image'                => $submission->has_image ? $submission->imageUrl : null,
                         'mention_display_name' => $submission->has_image ? $submission->mentionImage : $submission->mentionDisplayName,
