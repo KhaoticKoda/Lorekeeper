@@ -319,13 +319,13 @@ class WorldController extends Controller {
         $rarities = Rarity::orderBy('sort', 'ASC')->get();
 
         $features = count($categories) ?
-        $query = Feature::orderByRaw('FIELD(feature_category_id,'.implode(',', $categories->pluck('id')->toArray()).')')
+        $query = Feature::visible()->orderByRaw('FIELD(feature_category_id,'.implode(',', $categories->pluck('id')->toArray()).')')
             ->orderByRaw('FIELD(rarity_id,'.implode(',', $rarities->pluck('id')->toArray()).')')
             ->orderBy('has_image', 'DESC')
             ->orderBy('name')
             ->get()
             ->groupBy(['feature_category_id', 'id']) :
-        $query = Feature::orderByRaw('FIELD(rarity_id,'.implode(',', $rarities->pluck('id')->toArray()).')')
+        $query = Feature::visible()->orderByRaw('FIELD(rarity_id,'.implode(',', $rarities->pluck('id')->toArray()).')')
             ->orderBy('has_image', 'DESC')
             ->orderBy('name')
             ->get()
