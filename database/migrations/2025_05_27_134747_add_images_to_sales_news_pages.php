@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class AddImagesToSalesNewsPages extends Migration {
-{
     /**
      * Run the migrations.
      */
