@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('Header Image (Optional)') !!} {!! add_help('This image will show up above the news and on the meta-image.') !!}
+        {!! Form::label('Header Image (Optional)') !!} {!! add_help('This image will show up above the news content and on the meta-image.') !!}
         <div class="custom-file">
             {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label']) !!}
             {!! Form::file('image', ['class' => 'custom-file-input']) !!}
