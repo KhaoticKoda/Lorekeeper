@@ -36,7 +36,6 @@
             {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label']) !!}
             {!! Form::file('image', ['class' => 'custom-file-input']) !!}
         </div>
-        <div class="text-muted">Recommended size: None (Choose a standard size for all sales headers)</div>
         @if ($sales->has_image)
             <div class="form-check">
                 {!! Form::checkbox('remove_image', 1, false, ['class' => 'form-check-input']) !!}
