@@ -290,14 +290,14 @@ class TradeController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postCreateEditTradeProposal(Request $request, TradeManager $service, $id = null) {
-        $trade = $id ? $trade = Trade::where('id', $id)->where(function ($query) {
+        $existingTrade = $id ? Trade::where('id', $id)->where(function ($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
         })->where('status', 'Proposal')->first() : null;
         if ($trade = $service->proposeTrade($request->only([
             'recipient_id', 'comments', 'stack_id', 'stack_quantity', 'currency_id', 'currency_quantity', 'character_id',
             'recipient_stack_id', 'recipient_stack_quantity', 'recipient_character_id',
-        ]), Auth::user(), $trade)) {
-            flash('Trade '.($trade ? 'proposal edited' : 'proposed').' successfully.')->success();
+        ]), Auth::user(), $existingTrade)) {
+            flash('Trade '.($existingTrade ? 'proposal edited' : 'proposed').' successfully.')->success();
 
             return redirect()->to($trade->url);
         } else {
