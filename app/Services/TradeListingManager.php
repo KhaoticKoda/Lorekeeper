@@ -182,6 +182,10 @@ class TradeListingManager extends Service {
                         }
                     }
 
+                    if ($data['quantity'][$key] < 1) {
+                        throw new \Exception('You must select a quantity of at least 1 for each asset.');
+                    }
+
                     addAsset($seekingAssets, $asset, $data['quantity'][$key]);
                     $assetCount += 1;
                 }
@@ -223,6 +227,10 @@ class TradeListingManager extends Service {
                     }
                     if (!$stack->item->allow_transfer || isset($stack->data['disallow_transfer'])) {
                         throw new \Exception('One or more of the selected items cannot be transferred.');
+                    }
+
+                    if ($data['stack_quantity'][$stackId] < 1) {
+                        throw new \Exception('You must select a quantity of at least 1 for each item.');
                     }
 
                     addAsset($userAssets, $stack, $data['stack_quantity'][$stackId]);
