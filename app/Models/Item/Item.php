@@ -205,10 +205,12 @@ class Item extends Model {
     }
 
     /**
-     * Displays the item's image, but with specific classes to identify mentions.
+     * Displays the item in the tinymce editor.
+     *
+     * @return string
      */
-    public function getMentionDisplayImageAttribute() {
-        return '<span data-mention-type="item" data-id="'.$this->id.'"><img src="'.$this->imageUrl.'" alt="'.$this->name.'"></span>';
+    public function getMentionImageAttribute() {
+        return '<span data-mention-type="item" data-id="'.$this->id.'"><a href="'.$this->idUrl.'"><img src="'.$this->imageUrl.'" alt="'.$this->alt_text.'" class="img-fluid rounded" data-toggle="tooltip" title="'.$this->name.' - '.$this->alt_text.'"></a></span>';
     }
 
     /**

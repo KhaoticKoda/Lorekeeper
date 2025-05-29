@@ -93,7 +93,6 @@
             ],
             toc_class: 'container',
             mentions: {
-                delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions')) !!}'),
                 delimiter: JSON.parse('{!! json_encode(config('lorekeeper.mentions.delimiters')) !!}'),
                 source: function(query, process, delimiter) {
                     $.get('{{ url('mentions') }}', {

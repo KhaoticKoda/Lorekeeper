@@ -367,7 +367,7 @@ class User extends Authenticatable implements MustVerifyEmail {
      * @return string
      */
     public function getMentionDisplayNameAttribute() {
-        return '<span  class="data-mention" data-mention-type="user" data-id="'.$this->id.'" >'
+        return '<span class="data-mention" data-mention-type="user" data-id="'.$this->id.'">'
             .($this->is_banned ? '<strike>' : '').'<a href="'.$this->url.'" class="display-user" style="'.($this->rank->color ? 'color: #'.$this->rank->color.';' : '').($this->is_deactivated ? 'opacity: 0.5;' : '').'"><i class="'.($this->rank->icon ? $this->rank->icon : 'fas fa-user').' mr-1" style="opacity: 50%;"></i>@'.$this->name.'</a>'.($this->is_banned ? '</strike>' : '')
             .'</span>';
     }
@@ -378,9 +378,9 @@ class User extends Authenticatable implements MustVerifyEmail {
      * @return string
      */
     public function getMentionImageAttribute() {
-        return '<span data-mention-type="user" data-id="'.$this->id.'" >'
+        return '<span data-mention-type="user" data-id="'.$this->id.'" ><a href="'.$this->url.'" class="display-user" style="'.($this->is_deactivated ? 'opacity: 0.5;' : '').'">'
             .'<img class="img-fluid rounded" src="'.$this->avatarUrl.'" class="img-fluid rounded" alt="'.$this->name.'">'
-            .'</span>';
+            .'</a></span>';
     }
 
     /**
@@ -420,7 +420,7 @@ class User extends Authenticatable implements MustVerifyEmail {
             return '(Unverified)';
         }
 
-        return $this->primaryAlias->displayAlias;
+        return $this->primaryAlias?->displayAlias ?? '(No Alias)';
     }
 
     /**

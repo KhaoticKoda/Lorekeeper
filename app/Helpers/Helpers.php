@@ -290,10 +290,10 @@ function parse($text, &$pings = null) {
         }
     }
 
+    $text = parseMentions($text, $pings);
+
     $purifier = new HTMLPurifier($config);
     $text = $purifier->purify($text);
-
-    $text = parseMentions($text, $pings);
 
     return $text;
 }
@@ -316,23 +316,21 @@ function parseMentions($text, &$pings) {
         PREG_SET_ORDER
     );
 
-    if ($count) {
-        foreach ($matches as $match) {
-            $parentElement = $match[0];
-            $type = $match[2];
-            $id = $match[3];
+    foreach ($matches as $match) {
+        $parentElement = $match[0];
+        $type = $match[2];
+        $id = $match[3];
 
-            $model = getAssetModelString($type);
-            $object = $model::find($id);
+        $model = getAssetModelString($type);
+        $object = $model::find($id);
 
-            if (!$object) {
-                continue;
-            }
-
-            $pings[$type][] = $object;
-            $hasImage = preg_match('/<img[^>]+>/i', $parentElement);
-            $text = str_replace($parentElement, $hasImage ? $object->mentionImage : $object->mentionDisplayName, $text);
+        if (!$object) {
+            continue;
         }
+
+        $pings[$type][] = $object;
+        $hasImage = preg_match('/<img[^>]+>/i', $parentElement);
+        $text = str_replace($parentElement, $hasImage ? $object->mentionImage : $object->mentionDisplayName, $text);
     }
 
     return $text;
