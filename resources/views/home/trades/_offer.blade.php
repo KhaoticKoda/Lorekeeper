@@ -25,12 +25,10 @@
     </div>
 </div>
 <div class="card mb-3 trade-offer
-        @if ($trade->{'is_' . $type . '_confirmed'})
-            @if ($trade->{'is_' . $type . '_trade_confirmed'})
+        @if ($trade->{'is_' . $type . '_confirmed'}) @if ($trade->{'is_' . $type . '_trade_confirmed'})
                 border-success
             @else
-                border-primary
-            @endif
+                border-primary @endif
         @endif
 ">
     @if ($data)

@@ -20,8 +20,7 @@
                     <div class="text-center inventory-item">
                         <div class="mb-1">
                             <a class="inventory-stack">
-                                <img src="{{ $character['asset']->image->thumbnailUrl }}" class="img-thumbnail" title="{{ $character['asset']->fullName }}" data-toggle="tooltip"
-                                    alt="Thumbnail for {{ $character['asset']->fullName }}" />
+                                <img src="{{ $character['asset']->image->thumbnailUrl }}" class="img-thumbnail" title="{{ $character['asset']->fullName }}" data-toggle="tooltip" alt="Thumbnail for {{ $character['asset']->fullName }}" />
                                 {!! $character['asset']->displayName !!}
                             </a>
                         </div>
