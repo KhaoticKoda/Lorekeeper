@@ -35,7 +35,30 @@ class NewsService extends Service {
                 $data['is_visible'] = 0;
             }
 
+            $image = null;
+            if (isset($data['image']) && $data['image']) {
+                $data['has_image'] = 1;
+                $data['hash'] = randomString(10);
+                $image = $data['image'];
+                unset($data['image']);
+            } else {
+                $data['has_image'] = 0;
+            }
+
             $news = News::create($data);
+
+            if (isset($data['remove_image'])) {
+                if ($news && $news->has_image && $data['remove_image']) {
+                    $data['has_image'] = 0;
+                    $image = null;
+                    $this->deleteImage($news->imagePath, $news->imageFileName);
+                }
+                unset($data['remove_image']);
+            }
+
+            if ($image) {
+                $this->handleImage($image, $news->imagePath, $news->imageFileName);
+            }
 
             if ($news->is_visible) {
                 $this->alertUsers();
@@ -75,7 +98,28 @@ class NewsService extends Service {
                 $this->alertUsers();
             }
 
+            $image = null;
+            if (isset($data['image']) && $data['image']) {
+                $data['has_image'] = 1;
+                $data['hash'] = randomString(10);
+                $image = $data['image'];
+                unset($data['image']);
+            }
+
             $news->update($data);
+
+            if (isset($data['remove_image'])) {
+                if ($news && $news->has_image && $data['remove_image']) {
+                    $data['has_image'] = 0;
+                    $image = null;
+                    $this->deleteImage($news->imagePath, $news->imageFileName);
+                }
+                unset($data['remove_image']);
+            }
+
+            if ($news) {
+                $this->handleImage($image, $news->imagePath, $news->imageFileName);
+            }
 
             return $this->commitReturn($news);
         } catch (\Exception $e) {
@@ -96,6 +140,10 @@ class NewsService extends Service {
         DB::beginTransaction();
 
         try {
+            if ($news->has_image) {
+                $this->deleteImage($news->imagePath, $news->imageFileName);
+            }
+
             $news->delete();
 
             return $this->commitReturn(true);
