@@ -25,10 +25,12 @@
     </div>
 </div>
 <div class="card mb-3 trade-offer
-        @if ($trade->{'is_' . $type . '_confirmed'}) @if ($trade->{'is_' . $type . '_trade_confirmed'})
+        @if ($trade->{'is_' . $type . '_confirmed'})
+            @if ($trade->{'is_' . $type . '_trade_confirmed'})
                 border-success
             @else
-                border-primary @endif
+                border-primary
+            @endif
         @endif
 ">
     @if ($data)
@@ -52,7 +54,8 @@
                                 <td class="col-2">
                                     @if (isset($items[$itemRow['asset']->item_id]->image_url))
                                         <img class="small-icon" src="{{ $items[$itemRow['asset']->item_id]->image_url }}" alt="{{ $items[$itemRow['asset']->item_id]->name }}">
-                                    @endif {!! $items[$itemRow['asset']->item_id]->name !!}
+                                    @endif
+                                    {!! $items[$itemRow['asset']->item_id]->name !!}
                                 <td class="col-4">{!! array_key_exists('data', $itemRow['asset']->data) ? ($itemRow['asset']->data['data'] ? $itemRow['asset']->data['data'] : 'N/A') : 'N/A' !!}</td>
                                 <td class="col-4">{!! array_key_exists('notes', $itemRow['asset']->data) ? ($itemRow['asset']->data['notes'] ? $itemRow['asset']->data['notes'] : 'N/A') : 'N/A' !!}</td>
                                 <td class="col-2">{!! $itemRow['quantity'] !!}

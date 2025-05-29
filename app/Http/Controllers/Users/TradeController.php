@@ -37,7 +37,7 @@ class TradeController extends Controller {
     public function getIndex($status = 'open') {
         $trades = Trade::with('recipient')->with('sender')->with('staff')->where(function ($query) {
             $query->where('recipient_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id);
-        })->where('status', ucfirst($status))->orderBy('id', 'DESC');
+        })->where('status', $status == 'proposals' ? 'Proposal' : ucfirst($status))->orderBy('id', 'DESC');
 
         return view('home.trades.index', [
             'trades' => $trades->paginate(20),

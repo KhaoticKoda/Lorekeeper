@@ -15,7 +15,14 @@
                 <div class="col-md-2 col-4">
                     <h5>Proof of Terms</h5>
                 </div>
-                <div class="col-md-10 col-8"><a href="{{ $trade->terms_link }}">{{ $trade->terms_link }}</a></div>
+                <div class="col-md-10 col-8">
+                    {{-- ceck if terms link is a url --}}
+                    @if (filter_var($trade->terms_link, FILTER_VALIDATE_URL))
+                        <a href="{{ $trade->terms_link }}" target="_blank">{{ $trade->terms_link }}</a>
+                    @else
+                        {{ $trade->terms_link }}
+                    @endif
+                </div>
             </div>
         @endif
         @if ($trade->comments)

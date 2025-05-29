@@ -1,6 +1,6 @@
 @if ($data)
     @if ($data['user_items'])
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-sm-2">
                 <strong>Items:</strong>
             </div>
@@ -8,6 +8,9 @@
                 <div class="row">
                     @foreach ($data['user_items'] as $itemRow)
                         <div class="col-sm-4">
+                            @if (isset($itemRow['asset']->item->imageUrl))
+                                <img class="small-icon" src="{{ $itemRow['asset']->item->imageUrl }}">
+                            @endif
                             <a href="{{ $itemRow['asset']->item->url }}">{!! $itemRow['asset']->item->displayName !!}</a> x{!! $itemRow['quantity'] !!}
                         </div>
                     @endforeach
@@ -16,7 +19,7 @@
         </div>
     @endif
     @if ($data['characters'])
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-sm-2">
                 <strong>Characters:</strong>
             </div>
@@ -24,6 +27,9 @@
                 <div class="row">
                     @foreach ($data['characters'] as $character)
                         <div class="col-sm-4">
+                            @if (isset($character['asset']->image->thumbnailUrl))
+                                <img class="small-icon" src="{{ $character['asset']->image->thumbnailUrl }}">
+                            @endif
                             <a href="{{ $character['asset']->url }}">{{ $character['asset']->fullName }}</a>
                         </div>
                     @endforeach

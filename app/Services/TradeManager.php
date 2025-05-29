@@ -971,6 +971,7 @@ class TradeManager extends Service {
                         throw new \Exception('Invalid currency selected.');
                     }
 
+                    $currencyManager = new CurrencyManager;
                     if (!$currencyManager->debitCurrency($user, null, null, null, $currency, intval($quantity))) {
                         throw new \Exception('Invalid currency/quantity selected.');
                     }

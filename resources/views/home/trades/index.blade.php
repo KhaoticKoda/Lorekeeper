@@ -21,6 +21,9 @@
 
     <ul class="nav nav-tabs mb-3">
         <li class="nav-item">
+            <a class="nav-link {{ set_active('trades/proposals*') }}" href="{{ url('trades/proposals') }}">Proposals</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ set_active('trades/open*') }}" href="{{ url('trades/open') }}">Open</a>
         </li>
         <li class="nav-item">
