@@ -538,11 +538,44 @@ class TradeManager extends Service {
     }
 
     /**
+     * Handles the accepted assets of a trade proposal.
+     * This function increments the trade count of items and characters, and debits currencies.
+     *
+     * @param Trade $trade
+     * @param array $senderData
+     * @param array $recipientData
+     *
+     * @return bool
+     */
+    public function handleAcceptedTradeAssets($trade, $senderData, $recipientData) {
+        DB::beginTransaction();
+
+        try {
+            if (!$senderAssets = $this->attachAssets($trade, $senderData, $trade->sender)) {
+                throw new \Exception('Failed to handle sender assets.');
+            }
+            if (!$recipientAssets = $this->attachAssets($trade, $recipientData, $trade->recipient)) {
+                throw new \Exception('Failed to handle recipient assets.');
+            }
+
+            return $this->commitReturn([
+                'sender'    => $senderAssets,
+                'recipient' => $recipientAssets,
+            ]);
+        } catch (\Exception $e) {
+            $this->setError('error', $e->getMessage());
+        }
+
+        return $this->rollbackReturn(false);
+    }
+
+    /**
      * Handles modification of assets on the user's side of a trade.
      *
      * @param Trade $trade
      * @param array $data
      * @param User  $user
+     * @param mixed $isProposal
      *
      * @return array|bool
      */
@@ -899,45 +932,11 @@ class TradeManager extends Service {
     }
 
     /**
-     * Handles the accepted assets of a trade proposal.
-     * This function increments the trade count of items and characters, and debits currencies.
-     * 
-     * @param Trade $trade
-     * @param array $senderData
-     * @param array $recipientData
-     * 
-     * @return bool
-     */
-    public function handleAcceptedTradeAssets($trade, $senderData, $recipientData) {
-        DB::beginTransaction();
-
-        try {
-
-            if (!$senderAssets = $this->attachAssets($trade, $senderData, $trade->sender)) {
-                throw new \Exception('Failed to handle sender assets.');
-            }
-            if (!$recipientAssets = $this->attachAssets($trade, $recipientData, $trade->recipient)) {
-                throw new \Exception('Failed to handle recipient assets.');
-            }
-            
-            return $this->commitReturn([
-                'sender'    => $senderAssets,
-                'recipient' => $recipientAssets,
-            ]);
-        } catch (\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-
-        return $this->rollbackReturn(false);
-    }
-
-    /**
      * Attaches assets from a proposal to a trade.
-     * 
+     *
      * @param Trade $trade
      * @param array $data
-     * 
-     * @return void
+     * @param mixed $user
      */
     private function attachAssets($trade, $data, $user) {
         DB::beginTransaction();
@@ -1009,6 +1008,7 @@ class TradeManager extends Service {
                     addAsset($userAssets, $character, 1);
                 }
             }
+
             return $this->commitReturn($userAssets);
         } catch (\Exception $e) {
             $this->setError('error', $e->getMessage());
