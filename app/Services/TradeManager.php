@@ -557,36 +557,36 @@ class TradeManager extends Service {
             }
 
             // If this is a proposal, no items are actually attached to the trade yet.
-            // we can still unattach items, currencies, and characters from the trade however.
-
-            // First return any item stacks attached to the trade
-            if (isset($tradeData[$type]['user_items'])) {
-                foreach ($tradeData[$type]['user_items'] as $userItemId=> $quantity) {
-                    $quantity = (int) $quantity;
-                    $userItemRow = UserItem::find($userItemId);
-                    if (!$userItemRow) {
-                        throw new \Exception('Cannot return an invalid item. ('.$userItemId.')');
+            if (!$isProposal) {
+                // First return any item stacks attached to the trade
+                if (isset($tradeData[$type]['user_items'])) {
+                    foreach ($tradeData[$type]['user_items'] as $userItemId=> $quantity) {
+                        $quantity = (int) $quantity;
+                        $userItemRow = UserItem::find($userItemId);
+                        if (!$userItemRow) {
+                            throw new \Exception('Cannot return an invalid item. ('.$userItemId.')');
+                        }
+                        if ($userItemRow->trade_count < $quantity) {
+                            throw new \Exception('Cannot return more items than was held. ('.$userItemId.')');
+                        }
+                        $userItemRow->trade_count -= $quantity;
+                        $userItemRow->save();
                     }
-                    if ($userItemRow->trade_count < $quantity) {
-                        throw new \Exception('Cannot return more items than was held. ('.$userItemId.')');
+                }
+
+                // Also return any currency attached to the trade
+                // This is stored in the data attribute
+                $currencyManager = new CurrencyManager;
+                if (isset($tradeData[$type]['currencies'])) {
+                    foreach ($tradeData[$type]['currencies'] as $currencyId=> $quantity) {
+                        $quantity = (int) $quantity;
+                        $currencyManager->creditCurrency(null, $user, null, null, $currencyId, $quantity);
                     }
-                    $userItemRow->trade_count -= $quantity;
-                    $userItemRow->save();
                 }
-            }
 
-            // Also return any currency attached to the trade
-            // This is stored in the data attribute
-            $currencyManager = new CurrencyManager;
-            if (isset($tradeData[$type]['currencies'])) {
-                foreach ($tradeData[$type]['currencies'] as $currencyId=> $quantity) {
-                    $quantity = (int) $quantity;
-                    $currencyManager->creditCurrency(null, $user, null, null, $currencyId, $quantity);
-                }
+                // Unattach characters too
+                Character::where('trade_id', $trade->id)->where('user_id', $user->id)->update(['trade_id' => null]);
             }
-
-            // Unattach characters too
-            Character::where('trade_id', $trade->id)->where('user_id', $user->id)->update(['trade_id' => null]);
 
             $userAssets = createAssetsArray();
             $assetCount = 0;
@@ -880,10 +880,10 @@ class TradeManager extends Service {
                 'character_id'      => $data['recipient_character_id'] ?? [],
             ];
 
-            if (!$senderAssets = $this->handleTradeAssets($trade, $data, $user, true)) {
+            if (!$senderAssets = $this->handleTradeAssets($trade, $data, $trade->sender, true)) {
                 throw new \Exception('Failed to handle sender assets.');
             }
-            if (!$recipientAssets = $this->handleTradeAssets($trade, $recipientData, $recipient, true)) {
+            if (!$recipientAssets = $this->handleTradeAssets($trade, $recipientData, $trade->recipient, true)) {
                 throw new \Exception('Failed to handle recipient assets.');
             }
 

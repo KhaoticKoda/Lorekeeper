@@ -157,7 +157,8 @@ class TradeController extends Controller {
      */
     public function getCreateEditTradeProposal(Request $request, $id = null) {
         $trade = Trade::where('id', $id)->where('status', 'Proposal')->first();
-        $recipient = $trade ? $trade->recipient : User::find($request->input('recipient_id'));
+        $recipient = $trade ? (Auth::user()->id == $trade->recipient->id ? $trade->sender : $trade->recipient)
+            : User::find($request->input('recipient_id'));
         $tradeListing = $request->input('trade_listing_id') ? TradeListing::find($request->input('trade_listing_id')) : null;
         if ($recipient) {
             $recipientInventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $recipient->id)
@@ -198,7 +199,7 @@ class TradeController extends Controller {
             'inventory'                   => $inventory,
             'userOptions'                 => User::visible()->where('id', '!=', Auth::user()->id)->orderBy('name')->pluck('name', 'id')->toArray(),
             'characterCategories'         => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'page'                        => 'trade',
+            'page'                        => 'proposal',
         ]);
     }
 
@@ -229,7 +230,7 @@ class TradeController extends Controller {
             'inventory'           => $inventory,
             'item_filter'         => $item_filter,
             'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'page'                => 'trade',
+            'page'                => 'proposal',
             'characters'          => $user->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
             'characterCategories' => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
             'fieldPrefix'         => 'recipient_',

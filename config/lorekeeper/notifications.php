@@ -350,28 +350,28 @@ return [
     // TRADE_PROPOSAL_RECEIVED
     280 => [
         'name'    => 'Trade Proposal Received',
-        'message' => 'You have received a new trade proposal from <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'message' => 'You have received a new trade proposal from <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade Proposal</a>)',
         'url'     => 'trades/{trade_id}',
     ],
 
     // TRADE_PROPOSAL_UPDATED
     281  => [
         'name'    => 'Trade Proposal Updated',
-        'message' => '<a href="{sender_url}">{sender_name}</a> has updated their trade proposal. (<a href="{url}">View Trade</a>)',
+        'message' => '<a href="{sender_url}">{sender_name}</a> has updated their trade proposal. (<a href="{url}">View Trade Proposal</a>)',
         'url'     => 'trades/{trade_id}',
     ],
 
     // TRADE_PROPOSAL_ACCEPTED
     282  => [
         'name'    => 'Trade Proposal Accepted',
-        'message' => 'Your trade proposal has been accepted by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'message' => 'Your trade proposal has been accepted by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade Proposal</a>)',
         'url'     => 'trades/{trade_id}',
     ],
 
     // TRADE_PROPOSAL_REJECTED
     283  => [
         'name'    => 'Trade Proposal Cancelled',
-        'message' => 'A trade proposal has been cancelled by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade</a>)',
+        'message' => 'A trade proposal has been cancelled by <a href="{sender_url}">{sender_name}</a>. (<a href="{url}">View Trade Proposal</a>)',
         'url'     => 'trades/{trade_id}',
     ],
 

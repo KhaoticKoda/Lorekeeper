@@ -103,7 +103,7 @@
                                                 {{ $itemRow->getOthers() }}
                                             @endif
                                         </td>
-                                    @elseif(in_array($itemRow->id, array_keys($selected)))
+                                    @elseif(in_array($itemRow->id, array_keys($selected)) && $page != 'proposal')
                                         <td class="col-2">
                                             {!! Form::selectRange('stack_quantity[' . $itemRow->id . ']', 1, $itemRow->getAvailableContextQuantity($selected[$itemRow->id]), $selected[$itemRow->id], [
                                                 'class' => 'quantity-select',
@@ -121,6 +121,18 @@
                                                     {{ $itemRow->getOthers(0, $selected[$itemRow->id]) }}
                                                 @endif
                                             @elseif($itemRow->getOthers())
+                                                {{ $itemRow->getOthers() }}
+                                            @endif
+                                        </td>
+                                    @elseif (in_array($itemRow->id, array_keys($selected)) && $page == 'proposal')
+                                        {{-- We have a special case for proposals because they do not hold any items, therefore their selected should not be included --}}
+                                        <td class="col-2">
+                                            {!! Form::selectRange('stack_quantity[' . $itemRow->id . ']', 1, $itemRow->getAvailableContextQuantity(0), $selected[$itemRow->id], [
+                                                'class' => 'quantity-select',
+                                                'type' => 'number',
+                                                'style' => 'min-width:40px;',
+                                            ]) !!}/{{ $itemRow->getAvailableContextQuantity(0) }}
+                                            @if ($itemRow->getOthers())
                                                 {{ $itemRow->getOthers() }}
                                             @endif
                                         </td>

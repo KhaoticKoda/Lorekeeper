@@ -36,6 +36,7 @@
                 'categories' => $categories,
                 'page' => $page,
                 'characters' => Auth::user()->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
+                'fieldPrefix' => $trade && Auth::user()->id == $trade->recipient_id ? 'recipient_' : null,
             ])
         </div>
         <div class="col-md-6 col-sm-12 col-12" id="recipient">
@@ -49,7 +50,7 @@
                     'categories' => $categories,
                     'page' => $page,
                     'characters' => $recipient->allCharacters()->visible()->tradable()->with('designUpdate')->get(),
-                    'fieldPrefix' => 'recipient_',
+                    'fieldPrefix' => $trade && $recipient->id == $trade->recipient_id ? 'recipient_' : null,
                 ])
             @else
                 <div class="alert alert-info">
