@@ -44,6 +44,8 @@
                     'trade' => $trade,
                     'user' => $recipient,
                     'inventory' => $recipientInventory,
+                    'selectedItems' => $recipientSelectedItems ?? [],
+                    'selectedCharacters' => $recipientSelectedCharacters ?? [],
                     'categories' => $categories,
                     'page' => $page,
                     'characters' => $recipient->allCharacters()->visible()->tradable()->with('designUpdate')->get(),

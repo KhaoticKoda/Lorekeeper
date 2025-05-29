@@ -58,7 +58,7 @@
         @endphp
         <div class="text-right">
             @if (Auth::check() && Auth::user()->id != $listing->user_id)
-                <a href="{{ url('trades/proposal?recipient_id=' . $listing->user_id) }}" class="btn btn-outline-secondary">
+                <a href="{{ url('trades/proposal?recipient_id=' . $listing->user_id . '&trade_listing_id=' . $listing->id) }}" class="btn btn-outline-secondary">
                     <i class="fas fa-handshake"></i>
                     Propose Trade
                 </a>

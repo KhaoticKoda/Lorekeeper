@@ -158,6 +158,7 @@ class TradeController extends Controller {
     public function getCreateEditTradeProposal(Request $request, $id = null) {
         $trade = Trade::where('id', $id)->where('status', 'Proposal')->first();
         $recipient = $trade ? $trade->recipient : User::find($request->input('recipient_id'));
+        $tradeListing = $request->input('trade_listing_id') ? TradeListing::find($request->input('trade_listing_id')) : null;
         if ($recipient) {
             $recipientInventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', $recipient->id)
                 ->get()
@@ -165,6 +166,10 @@ class TradeController extends Controller {
                     return $userItem->isTransferrable == true;
                 })
                 ->sortBy('item.name');
+            if ($tradeListing) {
+                $recipientSelectedItems = $tradeListing->data['offering']['user_items'] ?? [];
+                $recipientSelectedCharacters = array_keys($tradeListing->data['offering']['characters'] ?? []);
+            }
         }
 
         $inventory = UserItem::with('item')->whereNull('deleted_at')->where('count', '>', '0')->where('user_id', Auth::user()->id)
@@ -183,15 +188,17 @@ class TradeController extends Controller {
         });
 
         return view('home.trades.create_edit_trade_proposal', [
-            'trade'               => $id ? Trade::where('id', $id)->where('status', 'Proposal')->first() : null,
-            'recipient'           => $recipient ?? null,
-            'recipientInventory'  => $recipientInventory ?? null,
-            'categories'          => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'item_filter'         => $item_filter,
-            'inventory'           => $inventory,
-            'userOptions'         => User::visible()->where('id', '!=', Auth::user()->id)->orderBy('name')->pluck('name', 'id')->toArray(),
-            'characterCategories' => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
-            'page'                => 'trade',
+            'trade'                       => $id ? Trade::where('id', $id)->where('status', 'Proposal')->first() : null,
+            'recipient'                   => $recipient ?? null,
+            'recipientInventory'          => $recipientInventory ?? null,
+            'recipientSelectedItems'      => $recipientSelectedItems ?? [],
+            'recipientSelectedCharacters' => $recipientSelectedCharacters ?? [],
+            'categories'                  => ItemCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'item_filter'                 => $item_filter,
+            'inventory'                   => $inventory,
+            'userOptions'                 => User::visible()->where('id', '!=', Auth::user()->id)->orderBy('name')->pluck('name', 'id')->toArray(),
+            'characterCategories'         => CharacterCategory::visible(Auth::user() ?? null)->orderBy('sort', 'DESC')->get(),
+            'page'                        => 'trade',
         ]);
     }
 

@@ -7,7 +7,7 @@
 @include('widgets._inventory_select', [
     'user' => $user,
     'page' => $page,
-    'selected' => $trade ? $trade->getInventory($user) : [],
+    'selected' => $trade ? $trade->getInventory($user) : ($selectedItems ?? []),
     'inventory' => $inventory,
     'categories' => $categories,
     'fieldPrefix' => isset($fieldPrefix) ? $fieldPrefix : null,
@@ -16,7 +16,7 @@
 
 @include('widgets._user_character_select', [
     'readOnly' => true,
-    'selected' => $trade ? $trade->getCharacters($user) : [],
+    'selected' => $trade ? $trade->getCharacters($user) : ($selectedCharacters ?? []),
     'categories' => $characterCategories,
     'characters' => $characters,
     'fieldPrefix' => isset($fieldPrefix) ? $fieldPrefix : null,
