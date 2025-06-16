@@ -58,7 +58,7 @@
         </div>
         <div class="col-md form-group">
             {!! Form::checkbox('is_fto', 1, $shop->id ? $shop->is_fto : 0, ['class' => 'form-check-label', 'data-toggle' => 'toggle']) !!}
-            {!! Form::label('is_fto', 'FTO Only?', ['class' => 'form-check-label ml-3']) !!} {!! add_help('If turned on, only users who are currently FTO and staff can enter.') !!}
+            {!! Form::label('is_fto', 'FTO Only?', ['class' => 'form-check-label ml-3']) !!} {!! add_help('If turned on, only users who are currently FTO or staff can enter.') !!}
         </div>
     </div>
 
