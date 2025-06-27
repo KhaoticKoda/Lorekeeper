@@ -1,8 +1,8 @@
 <div class="row world-entry">
-    @if ($imageUrl)
-        <div class="col-md-3 world-entry-image"><a href="{{ $imageUrl }}" data-lightbox="entry" data-title="{{ $name }}"><img src="{{ $imageUrl }}" class="world-entry-image" alt="{{ $name }}" /></a></div>
+    @if ($item->imageUrl)
+        <div class="col-md-3 world-entry-image"><a href="{{ $item->imageUrl }}" data-lightbox="entry" data-title="{{ $item->displayName }}"><img src="{{ $item->imageUrl }}" class="world-entry-image" alt="{{ $item->displayName }}" /></a></div>
     @endif
-    <div class="{{ $imageUrl ? 'col-md-9' : 'col-12' }}">
+    <div class="{{ $item->imageUrl ? 'col-md-9' : 'col-12' }}">
         <x-admin-edit title="Item" :object="$item" />
         @if (isset($isPage))
             <h1>
@@ -10,7 +10,7 @@
                     <i class="fas fa-eye-slash mr-1"></i>
                 @endif
                 <a href="{{ $item->idUrl }}">
-                    {!! $name !!}
+                    {!! $item->displayName !!}
                 </a>
             </h1>
         @else
@@ -18,7 +18,7 @@
                 @if (!$item->is_released)
                     <i class="fas fa-eye-slash mr-1"></i>
                 @endif
-                {!! $name !!}
+                {!! $item->displayName !!}
                 @if (isset($idUrl) && $idUrl)
                     <a href="{{ $idUrl }}" class="world-entry-search text-muted">
                         <i class="fas fa-search"></i>
@@ -78,7 +78,7 @@
                     </a>
                 </p>
             @endif
-            {!! $description !!}
+            {!! $item->parsed_description !!}
             @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                 @if (!isset($isPage))
                     <div class="text-right">

@@ -5,7 +5,7 @@
 @endsection
 
 @section('meta-img')
-    {{ $imageUrl }}
+    {{ $item->imageUrl }}
 @endsection
 
 @section('meta-desc')
@@ -30,31 +30,19 @@
         <div class="col-lg-6 col-lg-10">
             <div class="card mb-3">
                 <div class="card-body">
-                    <?php
-                    $shops = App\Models\Shop\Shop::where(function ($shops) {
-                        if (Auth::check() && Auth::user()->isStaff) {
-                            return $shops;
-                        }
-                        return $shops->where('is_staff', 0);
-                    })
-                        ->whereIn('id', App\Models\Shop\ShopStock::where('item_id', $item->id)->pluck('shop_id')->toArray())
-                        ->orderBy('sort', 'DESC')
-                        ->get();
-                    ?>
-
                     @if (config('lorekeeper.extensions.unmerge_item_page_and_entry'))
                         <div class="row world-entry">
-                            @if ($imageUrl)
-                                <div class="col-md-3 world-entry-image"><a href="{{ $imageUrl }}" data-lightbox="entry" data-title="{{ $name }}"><img src="{{ $imageUrl }}" class="world-entry-image" alt="{{ $name }}" /></a></div>
+                            @if ($item->imageUrl)
+                                <div class="col-md-3 world-entry-image"><a href="{{ $item->imageUrl }}" data-lightbox="entry" data-title="{{ $item->displayName }}"><img src="{{ $item->imageUrl }}" class="world-entry-image" alt="{{ $item->displayName }}" /></a></div>
                             @endif
-                            <div class="{{ $imageUrl ? 'col-md-9' : 'col-12' }}">
+                            <div class="{{ $item->imageUrl ? 'col-md-9' : 'col-12' }}">
                                 <x-admin-edit title="Item" :object="$item" />
                                 <h1>
                                     @if (!$item->is_released)
                                         <i class="fas fa-eye-slash mr-1"></i>
                                     @endif
                                     <a href="{{ $item->idUrl }}">
-                                        {!! $name !!}
+                                        {!! $item->displayName !!}
                                     </a>
                                 </h1>
                                 <div class="row">
@@ -109,7 +97,7 @@
                                             </a>
                                         </p>
                                     @endif
-                                    {!! $description !!}
+                                    {!! $item->parsed_description !!}
                                     @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                                         <div id="item-{{ $item->id }}">
                                             @if (isset($item->uses) && $item->uses)
@@ -170,7 +158,7 @@
                             </div>
                         </div>
                     @else
-                        @include('world._item_entry', ['imageUrl' => $item->imageUrl, 'name' => $item->displayName, 'description' => $item->parsed_description, 'idUrl' => $item->idUrl, 'shops' => $shops, 'isPage' => true])
+                        @include('world._item_entry', ['item' => $item, 'isPage' => true])
                     @endif
                 </div>
             </div>

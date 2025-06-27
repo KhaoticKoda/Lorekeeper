@@ -572,9 +572,6 @@ class WorldController extends Controller {
 
         return view('world.item_page', [
             'item'        => $item,
-            'imageUrl'    => $item->imageUrl,
-            'name'        => $item->displayName,
-            'description' => $item->parsed_description,
         ]);
     }
 
