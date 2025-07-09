@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    {!! breadcrumbs(['World' => 'world', 'All Traits Index' => 'world/kitchensink']) !!}
+    {!! breadcrumbs(['World' => 'world', 'All Traits Index' => 'world/all-traits-index']) !!}
     <h1>All Traits Index</h1>
 
     <p>This is a visual index of all traits. Click a trait to view more info on it!</p>
@@ -47,7 +47,7 @@
         $(document).ready(function() {
             $('.modal-image').on('click', function(e) {
                 e.preventDefault();
-                loadModal("{{ url('world/kitchensink/trait') }}/" + $(this).data('id'), 'Trait Detail');
+                loadModal("{{ url('world/all-traits-index/trait') }}/" + $(this).data('id'), 'Trait Detail');
             });
         })
     </script>

@@ -7,7 +7,7 @@
         <div class="sidebar-item"><a href="{{ url('world/rarities') }}" class="{{ set_active('world/rarities*') }}">Rarities</a></div>
         <div class="sidebar-item"><a href="{{ url('world/trait-categories') }}" class="{{ set_active('world/trait-categories*') }}">Trait Categories</a></div>
         <div class="sidebar-item"><a href="{{ url('world/traits') }}" class="{{ set_active('world/traits*') }}">All Traits</a></div>
-		<div class="sidebar-item"><a href="{{ url('world/kitchensink') }}" class="{{ set_active('world/kitchensink*') }}">All Traits Index</a></div>
+		<div class="sidebar-item"><a href="{{ url('world/all-traits-index') }}" class="{{ set_active('world/all-traits-index*') }}">All Traits Index</a></div>
         <div class="sidebar-item"><a href="{{ url('world/character-categories') }}" class="{{ set_active('world/character-categories*') }}">Character Categories</a></div>
     </li>
     <li class="sidebar-section">
