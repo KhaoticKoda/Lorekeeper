@@ -2,6 +2,7 @@
 
 namespace App\Models\Feature;
 
+use App\Models\Feature\FeatureSubtype;
 use App\Models\Model;
 use App\Models\Rarity;
 use App\Models\Species\Species;
@@ -15,7 +16,7 @@ class Feature extends Model {
      * @var array
      */
     protected $fillable = [
-        'feature_category_id', 'species_id', 'subtype_id', 'rarity_id', 'name', 'has_image', 'description', 'parsed_description', 'is_visible', 'hash',
+        'feature_category_id', 'species_id', 'rarity_id', 'name', 'has_image', 'description', 'parsed_description', 'is_visible', 'hash',
     ];
 
     /**
@@ -32,7 +33,6 @@ class Feature extends Model {
     public static $createRules = [
         'feature_category_id' => 'nullable',
         'species_id'          => 'nullable',
-        'subtype_id'          => 'nullable',
         'rarity_id'           => 'required|exists:rarities,id',
         'name'                => 'required|unique:features|between:3,100',
         'description'         => 'nullable',
@@ -47,7 +47,6 @@ class Feature extends Model {
     public static $updateRules = [
         'feature_category_id' => 'nullable',
         'species_id'          => 'nullable',
-        'subtype_id'          => 'nullable',
         'rarity_id'           => 'required|exists:rarities,id',
         'name'                => 'required|between:3,100',
         'description'         => 'nullable',
@@ -75,17 +74,17 @@ class Feature extends Model {
     }
 
     /**
-     * Get the subtype the feature belongs to.
-     */
-    public function subtype() {
-        return $this->belongsTo(Subtype::class);
-    }
-
-    /**
      * Get the category the feature belongs to.
      */
     public function category() {
         return $this->belongsTo(FeatureCategory::class, 'feature_category_id');
+    }
+
+    /**
+     * Get the subtypes of this feature.
+     */
+    public function subtypes() {
+        return $this->hasMany(FeatureSubtype::class, 'feature_id');
     }
 
     /**********************************************************************************************
@@ -144,7 +143,7 @@ class Feature extends Model {
     public function scopeSortSubtype($query) {
         $ids = Subtype::orderBy('sort', 'DESC')->pluck('id')->toArray();
 
-        return count($ids) ? $query->orderBy(DB::raw('FIELD(subtype_id, '.implode(',', $ids).')')) : $query;
+        return count($ids) ? $query->with('feature_subtypes')->orderBy(DB::raw('FIELD(feature_subtypes.subtype_id, '.implode(',', $ids).')')) : $query;
     }
 
     /**
@@ -296,6 +295,21 @@ class Feature extends Model {
 
     **********************************************************************************************/
 
+     /**
+     * Displays the trait's subtypes as an imploded string.
+     */
+    public function displaySubtypes() {
+        if ($this->subtypes->isEmpty()) {
+            return 'None';
+        }
+        $subtypes = [];
+        foreach ($this->subtypes as $subtype) {
+            $subtypes[] = $subtype->subtype->displayName;
+        }
+
+        return implode(', ', $subtypes);
+    }
+    
     public static function getDropdownItems($withHidden = 0) {
         $visibleOnly = 1;
         if ($withHidden) {
