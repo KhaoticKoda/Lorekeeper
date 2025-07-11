@@ -34,8 +34,8 @@
                                             <i class="fas fa-eye-slash mr-1"></i>
                                         @endif
                                         {!! $feature->first()->displayName !!}
-                                        @if ($feature->first()->subtype)
-                                            <br />({!! $feature->first()->subtype->displayName !!} Subtype)
+                                        @if (count($feature->first()->subtypes))
+                                            <br />(Subtype{{ count($feature->first()->subtypes) > 1 ? 's' : "" }}: {!! $feature->first()->displaySubtypes() !!})
                                         @endif
                                     </p>
                                 </div>
