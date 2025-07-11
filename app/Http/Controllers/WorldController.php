@@ -259,8 +259,8 @@ class WorldController extends Controller {
                 ->orderBy('name')
                 ->get()
                 ->filter(function ($feature) {
-                    if ($feature->subtype) {
-                        return $feature->subtype->is_visible;
+                    if (!$feature->subtypes->isEmpty()) {
+                        return !$feature->subtypes->where('is_visible', true)->isEmpty();
                     }
 
                     return true;
@@ -274,8 +274,8 @@ class WorldController extends Controller {
                 ->orderBy('name')
                 ->get()
                 ->filter(function ($feature) {
-                    if ($feature->subtype) {
-                        return $feature->subtype->is_visible;
+                    if (!$feature->subtypes->isEmpty()) {
+                        return !$feature->subtypes->where('is_visible', true)->isEmpty();
                     }
 
                     return true;
@@ -299,7 +299,7 @@ class WorldController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getSpeciesFeatureDetail($speciesId, $id) {
-        $feature = Feature::where('id', $id)->with('species', 'subtype', 'rarity')->first();
+        $feature = Feature::where('id', $id)->with('species', 'subtypes', 'rarity')->first();
 
         if (!$feature) {
             abort(404);
