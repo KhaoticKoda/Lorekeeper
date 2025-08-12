@@ -774,6 +774,17 @@ tr.accountbound {
     filter: none;
 }
 
+/* MENTIONS *************************************************************************************/
+.data-mention {
+    padding: 0.1em 0.25em;
+    border-radius: 0.15em;
+    background-color: #e6e8fd;
+}
+
+.data-mention a {
+    color: #5d66c9;
+}
+
 /* CODE EDITOR *************************************************************************************/
 #ace-code-editor-wrapper .editor-btn {
     background: white;
