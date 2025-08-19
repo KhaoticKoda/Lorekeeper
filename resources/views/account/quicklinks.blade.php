@@ -21,19 +21,19 @@
                             <span class="fas fa-arrows-alt-v" style="opacity: 0; pointer-events: none;" aria-hidden="true"></span>
                         </div>
                         <div class="row no-gutters align-items-center col">
-                            <div class="col-6 col-md">
+                            <div class="col">
                                 <div class="logs-table-cell">Link Name</div>
                             </div>
-                            <div class="col-6 col-md">
+                            <div class="col">
                                 <div class="logs-table-cell">Link URL</div>
                             </div>
-                            <div class="col-6 col-md-auto">
+                            <div class="col-auto">
                                 <div class="logs-table-cell">
                                     <span class="btn btn-sm btn-primary" style="opacity: 0; pointer-events: none;" aria-hidden="true">Edit</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-auto">
+                        <div class="d-none d-md-block col-md-auto">
                             <div class="logs-table-cell">
                                 <span class="btn btn-sm btn-primary" style="opacity: 0; pointer-events: none;" aria-hidden="true">Delete</span>
                             </div>
@@ -47,27 +47,25 @@
                                 <div class="col-auto text-center px-1">
                                     <a class="fas fa-arrows-alt-v handle" href="#"></a>
                                 </div>
-                                {!! Form::open(['url' => 'account/quicklinks/edit/' . $link->id, 'class' => 'col']) !!}
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-6 col-md">
-                                        <div class="logs-table-cell">
-                                            {!! Form::text('link_name', $link->name, ['class' => 'form-control', 'placeholder' => 'Enter link name here...']) !!}
-                                        </div>
+                                {!! Form::open(['url' => 'account/quicklinks/edit/' . $link->id, 'class' => 'row no-gutters align-items-center col']) !!}
+                                <div class="col">
+                                    <div class="logs-table-cell">
+                                        {!! Form::text('link_name', $link->name, ['class' => 'form-control', 'placeholder' => 'Enter link name here...']) !!}
                                     </div>
-                                    <div class="col-6 col-md">
-                                        <div class="logs-table-cell">
-                                            {!! Form::text('link_url', $link->url, ['class' => 'form-control', 'placeholder' => 'Enter the link\'s URL here...']) !!}
-                                        </div>
+                                </div>
+                                <div class="col">
+                                    <div class="logs-table-cell">
+                                        {!! Form::text('link_url', $link->url, ['class' => 'form-control', 'placeholder' => 'Enter the link\'s URL here...']) !!}
                                     </div>
-                                    <div class="col-6 col-md-auto text-right">
-                                        <div class="logs-table-cell">
-                                            {!! Form::submit('Edit', ['class' => 'btn btn-sm btn-primary']) !!}
-                                        </div>
+                                </div>
+                                <div class="col-auto text-right">
+                                    <div class="logs-table-cell">
+                                        {!! Form::submit('Edit', ['class' => 'btn btn-sm btn-primary']) !!}
                                     </div>
                                 </div>
                                 {!! Form::close() !!}
-                                <div class="col-6 col-md-auto">
-                                    {!! Form::open(['url' => 'account/quicklinks/delete/' . $link->id]) !!}
+                                <div class="col-12 col-md-auto">
+                                    {!! Form::open(['url' => 'account/quicklinks/delete/' . $link->id, 'class' => 'text-right']) !!}
                                     <div class="logs-table-cell">
                                         {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
                                     </div>
@@ -91,11 +89,11 @@
         <h5>New Quicklink</h5>
         {!! Form::open(['url' => 'account/quicklinks/new']) !!}
         <div class="row no-gutters mb-1">
-            <div class="col-md-4 pr-md-1">
+            <div class="col-md-4 pr-md-1 pb-1">
                 {!! Form::label('name', 'Link Name') !!}
                 {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter link name here...']) !!}
             </div>
-            <div class="col-md-8 pl-md-1">
+            <div class="col-md-8 pl-md-1 pb-1">
                 {!! Form::label('url', 'Link URL') !!}
                 {!! Form::text('url', null, ['class' => 'form-control', 'placeholder' => 'Enter the link\'s URL here...']) !!}
             </div>
