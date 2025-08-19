@@ -48,23 +48,23 @@
                                     <a class="fas fa-arrows-alt-v handle" href="#"></a>
                                 </div>
                                 {!! Form::open(['url' => 'account/quicklinks/edit/' . $link->id, 'class' => 'col']) !!}
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-6 col-md">
-                                            <div class="logs-table-cell">
-                                                {!! Form::text('link_name', $link->name, ['class' => 'form-control', 'placeholder' => 'Enter link name here...']) !!}
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md">
-                                            <div class="logs-table-cell">
-                                                {!! Form::text('link_url', $link->url, ['class' => 'form-control', 'placeholder' => 'Enter the link\'s URL here...']) !!}
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-auto text-right">
-                                            <div class="logs-table-cell">
-                                                {!! Form::submit('Edit', ['class' => 'btn btn-sm btn-primary']) !!}
-                                            </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-6 col-md">
+                                        <div class="logs-table-cell">
+                                            {!! Form::text('link_name', $link->name, ['class' => 'form-control', 'placeholder' => 'Enter link name here...']) !!}
                                         </div>
                                     </div>
+                                    <div class="col-6 col-md">
+                                        <div class="logs-table-cell">
+                                            {!! Form::text('link_url', $link->url, ['class' => 'form-control', 'placeholder' => 'Enter the link\'s URL here...']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-auto text-right">
+                                        <div class="logs-table-cell">
+                                            {!! Form::submit('Edit', ['class' => 'btn btn-sm btn-primary']) !!}
+                                        </div>
+                                    </div>
+                                </div>
                                 {!! Form::close() !!}
                                 <div class="col-6 col-md-auto">
                                     {!! Form::open(['url' => 'account/quicklinks/delete/' . $link->id]) !!}
