@@ -159,7 +159,7 @@
                     plugins: [
                         'advlist autolink lists link image charmap print preview anchor',
                         'searchreplace visualblocks code fullscreen spoiler',
-                        'insertdatetime media table paste code help wordcount'
+                        'insertdatetime media table paste code help wordcount link image'
                     ],
                     toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | spoiler-add spoiler-remove | removeformat | code',
                     content_css: [
@@ -167,7 +167,25 @@
                         '{{ asset('css/lorekeeper.css') }}'
                     ],
                     spoiler_caption: 'Toggle Spoiler',
-                    target_list: false
+                    target_list: false,
+                    file_picker_callback (callback, value, meta) {
+                        console.log('CLICKED');
+                        let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
+                        let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight
+
+                        tinymce.activeEditor.windowManager.openUrl({
+                            url : '/filemanager',
+                            title : 'Laravel File Manager',
+                            width : x * 0.8,
+                            height : y * 0.8,
+                            onMessage: (api, message) => {
+                                callback(message.content, { text: message.text })
+                            }
+                        });
+                    },
+                    relative_urls: false,
+                    remove_script_host: false,
+                    convert_urls: true
                 });
                 bsCustomFileInput.init();
                 var $mobileMenuButton = $('#mobileMenuButton');

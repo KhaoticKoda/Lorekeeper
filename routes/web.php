@@ -11,6 +11,9 @@
 |
 */
 
+use App\Http\Controllers\FileManagerController;
+Route::get('filemanager', [FileManagerController::class, 'index']);
+
 Route::get('/', 'HomeController@getIndex')->name('home');
 Route::get('login', 'Auth\LoginController@getNewReply');
 
