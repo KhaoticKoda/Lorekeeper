@@ -50,14 +50,14 @@ return [
 
         'images' => [
             'driver' => 'local',
-            'root' => public_path('images'),
-            'url' => env('APP_URL').'/images',
+            'root'   => public_path('images'),
+            'url'    => env('APP_URL').'/images',
         ],
 
         'files' => [
             'driver' => 'local',
-            'root' => public_path('files'),
-            'url' => env('APP_URL').'/files',
+            'root'   => public_path('files'),
+            'url'    => env('APP_URL').'/files',
         ],
 
         'public' => [
