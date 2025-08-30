@@ -168,18 +168,20 @@
                     ],
                     spoiler_caption: 'Toggle Spoiler',
                     target_list: false,
-                    file_picker_callback (callback, value, meta) {
+                    file_picker_callback(callback, value, meta) {
                         console.log('CLICKED');
                         let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
-                        let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight
+                        let y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight
 
                         tinymce.activeEditor.windowManager.openUrl({
-                            url : '/filemanager',
-                            title : 'Laravel File Manager',
-                            width : x * 0.8,
-                            height : y * 0.8,
+                            url: '/filemanager',
+                            title: 'Laravel File Manager',
+                            width: x * 0.8,
+                            height: y * 0.8,
                             onMessage: (api, message) => {
-                                callback(message.content, { text: message.text })
+                                callback(message.content, {
+                                    text: message.text
+                                })
                             }
                         });
                     },

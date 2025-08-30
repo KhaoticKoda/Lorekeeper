@@ -16,6 +16,8 @@
 <script>
     new Vue({
         el: '#fm',
-        components: { FileManager },
+        components: {
+            FileManager
+        },
     });
 </script>
