@@ -91,7 +91,7 @@
             @endif
         @endif
     @else
-        <div class="alert alert-{{ ($limits->first()->is_unlocked && $limits->first()->isUnlocked(Auth::user() ?? null)) ? 'info' : 'danger' }} p-0 mt-2">
+        <div class="alert alert-{{ $limits->first()->is_unlocked && $limits->first()->isUnlocked(Auth::user() ?? null) ? 'info' : 'danger' }} p-0 mt-2">
             <small>
                 (Requires {!! implode(
                     ', ',
