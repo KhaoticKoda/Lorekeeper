@@ -12,7 +12,9 @@
             <h1>File Manager / {!! $folder ? $folder . ' <a href="' . url('admin/files/') . '" class="btn btn-success float-right">Back to Root</a>' : 'Root' !!}</h1>
         </div>
         <div class="col-md-2 text-right">
-            <a class="btn btn-outline-success" href="/filemanager"><i class="fas fa-folder mr-1"></i> File Manager</a>
+            @if ( Auth::check() && Auth::user()->isStaff && Auth::user()->hasPower('manage_files') )
+                <a class="btn btn-outline-success" href="/filemanager"><i class="fas fa-folder mr-1"></i> File Manager</a>
+            @endif
         </div>
     </div>
 
