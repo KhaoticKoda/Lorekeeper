@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2aefe33eba571b175b09ceae59028f35",
+    "content-hash": "c9a3daf278a4475c6ee7d0a91d45620e",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -7465,16 +7465,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "5.0.6",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "1dc83d7ae7eff27409a8ef9513c2fbb06f2103e1"
+                "reference": "71197b6a12405d7a6e2067f725c387595bd9b3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/1dc83d7ae7eff27409a8ef9513c2fbb06f2103e1",
-                "reference": "1dc83d7ae7eff27409a8ef9513c2fbb06f2103e1",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/71197b6a12405d7a6e2067f725c387595bd9b3f4",
+                "reference": "71197b6a12405d7a6e2067f725c387595bd9b3f4",
                 "shasum": ""
             },
             "type": "component",
@@ -7484,12 +7484,14 @@
                         "tinymce.min.js",
                         "plugins/*/plugin.min.js",
                         "themes/*/theme.min.js",
-                        "skins/**"
+                        "skins/**",
+                        "icons/*/icons.min.js"
                     ],
                     "scripts": [
                         "tinymce.js",
                         "plugins/*/plugin.js",
-                        "themes/*/theme.js"
+                        "themes/*/theme.js",
+                        "themes/*/icons.js"
                     ]
                 }
             },
@@ -7508,9 +7510,9 @@
                 "wysiwyg"
             ],
             "support": {
-                "source": "https://github.com/tinymce/tinymce-dist/tree/5.0.6"
+                "source": "https://github.com/tinymce/tinymce-dist/tree/5.4.2"
             },
-            "time": "2019-05-22T01:00:24+00:00"
+            "time": "2020-08-17T04:00:30+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
