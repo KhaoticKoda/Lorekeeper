@@ -2,6 +2,7 @@
 
 use Alexusmai\LaravelFileManager\Services\ACLService\ConfigACLRepository;
 use Alexusmai\LaravelFileManager\Services\ConfigService\DefaultConfigRepository;
+use App\Models\User;
 
 return [
 
@@ -95,7 +96,7 @@ return [
     /*
      * Show / Hide system files and folders
      */
-    'hiddenFiles'       => true,
+    'hiddenFiles'       => false,
 
     /***************************************************************************
      * Middleware
@@ -103,7 +104,7 @@ return [
      * Add your middleware name to array -> ['web', 'auth', 'admin']
      * !!!! RESTRICT ACCESS FOR NON ADMIN USERS !!!!
      */
-    'middleware'        => ['web', 'auth', 'admin'],
+    'middleware'        => ['web', 'auth', 'power:manage_files'],
 
     /***************************************************************************
      * ACL mechanism ON/OFF
