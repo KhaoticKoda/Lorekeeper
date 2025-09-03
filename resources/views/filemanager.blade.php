@@ -22,7 +22,7 @@
             },
             mySubmit: function(URL) {
                 // pass selected file path to TinyMCE
-                if(window.parent && window.parent.tinymce) {
+                if (window.parent && window.parent.tinymce) {
                     window.parent.postMessage({
                         mceAction: 'customAction',
                         content: URL,
