@@ -14,7 +14,7 @@ class UserProfile extends Model {
      * @var array
      */
     protected $fillable = [
-        'text', 'parsed_text',
+        'text', 'parsed_text', 'status_message', 'clear_status_on', 'status_set_on',
     ];
 
     /**
@@ -30,6 +30,17 @@ class UserProfile extends Model {
      * @var string
      */
     public $primaryKey = 'user_id';
+
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'clear_status_on' => 'datetime',
+        'status_set_on' => 'datetime',
+    ];
 
     /**********************************************************************************************
 
