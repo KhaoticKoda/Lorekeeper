@@ -62,7 +62,8 @@
     <div class="card p-3 mb-2">
         <h3>Status Message</h3>
         <p>
-            This message will be displayed on your profile if set. Should be kept short at a maximum of about 255 characters, does not support html. You can optionally indicate when you would like your status message to automatically clear. If you would like your status message to stay indefinitely, leave the 'Clear Status On' field blank.
+            This message will be displayed on your profile if set. Should be kept short at a maximum of about 255 characters, does not support html. You can optionally indicate when you would like your status message to automatically clear. If you would
+            like your status message to stay indefinitely, leave the 'Clear Status On' field blank.
         </p>
         <p>
             @if (isset(Auth::user()->profile->status_set_on))
