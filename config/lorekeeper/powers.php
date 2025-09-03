@@ -67,4 +67,8 @@ return [
         'name'        => 'Comment on Sales',
         'description' => 'Allow rank to comment on sales in preview mode.',
     ],
+    'manage_files' => [
+        'name'        => 'Manage Files',
+        'description' => 'Allow rank to access the file manager and upload files through the rich text editor.',
+    ],
 ];

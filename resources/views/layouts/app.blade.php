@@ -169,25 +169,25 @@
                     spoiler_caption: 'Toggle Spoiler',
                     target_list: false,
                     <?php
-                     if(Auth::user()->isStaff) {
+                     if( Auth::check() && Auth::user()->isStaff && Auth::user()->hasPower('manage_files') ) {
                         ?>
-                    file_picker_callback(callback, value, meta) {
-                        let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
-                        let y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight
+                        file_picker_callback(callback, value, meta) {
+                            let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
+                            let y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight
 
-                        tinymce.activeEditor.windowManager.openUrl({
-                            url: '/filemanager/',
-                            title: 'Laravel File Manager',
-                            width: x * 0.8,
-                            height: y * 0.95,
-                            onMessage: (api, message) => {
-                                console.log('MESSAGE: ' + message.content);
-                                callback(message.content, {
-                                    text: message.text
-                                })
-                            },
-                        });
-                    },
+                            tinymce.activeEditor.windowManager.openUrl({
+                                url: '/filemanager/',
+                                title: 'Laravel File Manager',
+                                width: x * 0.8,
+                                height: y * 0.95,
+                                onMessage: (api, message) => {
+                                    console.log('MESSAGE: ' + message.content);
+                                    callback(message.content, {
+                                        text: message.text
+                                    })
+                                },
+                            });
+                        },
                     <?php
                      }
                     ?>
