@@ -14,12 +14,12 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 use Laravel\Fortify\RecoveryCode;
-use Carbon\Carbon;
 
 class AccountController extends Controller {
     /*
@@ -196,8 +196,8 @@ class AccountController extends Controller {
         ]);
         Auth::user()->profile->update([
             'status_message'        => $request->get('status_message'),
-            'clear_status_on' => $request->get('clear_status_on'),
-            'status_set_on' => ($request->get('status_message') !== null ? Carbon::now() : null),
+            'clear_status_on'       => $request->get('clear_status_on'),
+            'status_set_on'         => ($request->get('status_message') !== null ? Carbon::now() : null),
         ]);
         flash('Status message updated successfully.')->success();
 

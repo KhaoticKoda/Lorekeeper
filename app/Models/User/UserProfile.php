@@ -25,22 +25,21 @@ class UserProfile extends Model {
     protected $table = 'user_profiles';
 
     /**
-     * The primary key of the model.
-     *
-     * @var string
-     */
-    public $primaryKey = 'user_id';
-
-
-    /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
         'clear_status_on' => 'datetime',
-        'status_set_on' => 'datetime',
+        'status_set_on'   => 'datetime',
     ];
+
+    /**
+     * The primary key of the model.
+     *
+     * @var string
+     */
+    public $primaryKey = 'user_id';
 
     /**********************************************************************************************
 
