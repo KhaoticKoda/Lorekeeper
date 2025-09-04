@@ -48,11 +48,11 @@ return [
             'root'   => storage_path('app'),
         ],
 
-        'images' => [
-            'driver' => 'local',
-            'root'   => public_path('images'),
-            'url'    => env('APP_URL').'/images',
-        ],
+        // 'images' => [
+        //     'driver' => 'local',
+        //     'root'   => public_path('images'),
+        //     'url'    => env('APP_URL').'/images',
+        // ],
 
         'files' => [
             'driver' => 'local',
@@ -60,12 +60,12 @@ return [
             'url'    => env('APP_URL').'/files',
         ],
 
-        'public' => [
-            'driver'     => 'local',
-            'root'       => storage_path('app/public'),
-            'url'        => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
+        // 'public' => [
+        //     'driver'     => 'local',
+        //     'root'       => storage_path('app/public'),
+        //     'url'        => env('APP_URL').'/storage',
+        //     'visibility' => 'public',
+        // ],
 
         's3'     => [
             'driver' => 's3',
