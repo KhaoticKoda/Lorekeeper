@@ -11,10 +11,6 @@
 |
 */
 
-use App\Http\Controllers\FileManagerController;
-
-Route::get('filemanager', [FileManagerController::class, 'index']);
-
 Route::get('/', 'HomeController@getIndex')->name('home');
 Route::get('login', 'Auth\LoginController@getNewReply');
 
@@ -54,6 +50,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('deactivated', 'Users\AccountController@getDeactivated');
     Route::get('reactivate', 'Users\AccountController@getReactivateConfirmation');
     Route::post('reactivate', 'Users\AccountController@postReactivate');
+
+    //FILE MANAGER
+    Route::get('filemanager', 'HomeController@getFileManager');
 
     /**********************************************************************************************
         Routes that require having a linked account (also includes blocked routes when banned)
