@@ -57,7 +57,7 @@ class HomeController extends Controller {
 
     /**
      * Shows the file manager page.
-     * 
+     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getFileManager() {
