@@ -6,8 +6,8 @@
                 <i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="Click here to report this trade listing." style="font-size: 75%; opacity: 50%;"></i>
             </a>
             @if (isset($showStatus) && $showStatus)
-                <div class="mr-2 badge badge-{{ $listing->expired ? 'danger' : 'success' }} float-right">
-                    {{ $listing->expired ? 'Expired' : 'Active' }}
+                <div class="mr-2 badge badge-{{ !$listing->isActive ? 'danger' : 'success' }} float-right">
+                    {{ !$listing->isActive ? 'Expired' : 'Active' }}
                 </div>
             @endif
         </h3>
