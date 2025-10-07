@@ -5,14 +5,15 @@
     $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)->orderBy('sort_character', 'DESC')->pluck('name', 'id');
     $items = \App\Models\Item\Item::orderBy('name')->pluck('name', 'id');
     $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)->orderBy('name')->pluck('name', 'id');
-    
+
     // Reward types, should reduce friction of merge conflicts
-    $rewardTypes = [
-        'Item' => 'Item',
-        'Currency' => 'Currency',
-    ]
-    + ($showLootTables ? ['LootTable' => 'Loot Table'] : [])
-    + ($showRaffles ? ['Raffle' => 'Raffle Ticket'] : []);
+    $rewardTypes =
+        [
+            'Item' => 'Item',
+            'Currency' => 'Currency',
+        ] +
+        ($showLootTables ? ['LootTable' => 'Loot Table'] : []) +
+        ($showRaffles ? ['Raffle' => 'Raffle Ticket'] : []);
 
     if ($showLootTables) {
         $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
@@ -39,7 +40,7 @@
             @endif
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : '35%' }}">Reward Type</th>
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : '35%' }}">Reward</th>
-            <th width="{{  $showRecipient ? (isset($extra_fields) ? '15%' : '20%') : '20%' }}">Quantity</th>
+            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '20%') : '20%' }}">Quantity</th>
             @if (isset($extra_fields))
                 @foreach ($extra_fields as $field => $data)
                     <th>{{ $data['label'] }}</th>

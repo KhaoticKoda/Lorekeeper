@@ -31,29 +31,29 @@
 
     @if ($useForm)
         {!! Form::open(['url' => 'admin/rewards']) !!}
-            {!! Form::hidden('object_model', get_class($object)) !!}
-            {!! Form::hidden('object_id', $object->id) !!}
-            
-            @include('widgets._loot_select', [
-                'loots'          => getRewards($object),
-                'showRecipient'  => $showRecipient,
-                'showRaffles'    => $showRaffles,
-                'showLootTables' => $showLootTables,
-            ])
+        {!! Form::hidden('object_model', get_class($object)) !!}
+        {!! Form::hidden('object_id', $object->id) !!}
 
-            <div>
-                @if ($rewards)
-                    <i class="fas fa-trash text-danger float-right mt-2 mx-2 fa-2x" data-toggle="tooltip" title="To delete rewards, simply remove all existing rewards and click 'Edit Rewards'"></i>
-                @endif
-                {!! Form::submit(($rewards ? 'Edit' : 'Create') . ' Rewards', ['class' => 'btn btn-primary float-right']) !!}
-            </div>
+        @include('widgets._loot_select', [
+            'loots' => getRewards($object),
+            'showRecipient' => $showRecipient,
+            'showRaffles' => $showRaffles,
+            'showLootTables' => $showLootTables,
+        ])
+
+        <div>
+            @if ($rewards)
+                <i class="fas fa-trash text-danger float-right mt-2 mx-2 fa-2x" data-toggle="tooltip" title="To delete rewards, simply remove all existing rewards and click 'Edit Rewards'"></i>
+            @endif
+            {!! Form::submit(($rewards ? 'Edit' : 'Create') . ' Rewards', ['class' => 'btn btn-primary float-right']) !!}
+        </div>
 
         {!! Form::close() !!}
     @else
         @include('widgets._loot_select', [
-            'loots'          => getRewards($object),
-            'showRecipient'  => $showRecipient,
-            'showRaffles'    => $showRaffles,
+            'loots' => getRewards($object),
+            'showRecipient' => $showRecipient,
+            'showRaffles' => $showRaffles,
             'showLootTables' => $showLootTables,
         ])
     @endif
@@ -61,12 +61,12 @@
 
 <fieldset disabled>
     @include('widgets._loot_select_row', [
-        'showRecipient'  => $showRecipient,
-        'showRaffles'    => $showRaffles,
+        'showRecipient' => $showRecipient,
+        'showRaffles' => $showRaffles,
         'showLootTables' => $showLootTables,
     ])
     @include('js._loot_js', [
-        'showRaffles'    => $showRaffles,
+        'showRaffles' => $showRaffles,
         'showLootTables' => $showLootTables,
     ])
 </fieldset>

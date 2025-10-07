@@ -7,12 +7,13 @@
     $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)->orderBy('name')->pluck('name', 'id');
 
     // Reward types, should reduce friction of merge conflicts
-    $rewardTypes = [
-        'Item' => 'Item',
-        'Currency' => 'Currency',
-    ]
-    + ($showLootTables ? ['LootTable' => 'Loot Table'] : [])
-    + ($showRaffles ? ['Raffle' => 'Raffle Ticket'] : []);
+    $rewardTypes =
+        [
+            'Item' => 'Item',
+            'Currency' => 'Currency',
+        ] +
+        ($showLootTables ? ['LootTable' => 'Loot Table'] : []) +
+        ($showRaffles ? ['Raffle' => 'Raffle Ticket'] : []);
 
     if ($showLootTables) {
         $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
