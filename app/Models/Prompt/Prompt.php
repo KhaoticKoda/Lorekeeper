@@ -2,12 +2,11 @@
 
 namespace App\Models\Prompt;
 
-use App\Models\Reward\Reward;
 use App\Models\Model;
+use App\Models\Reward\Reward;
 use Carbon\Carbon;
 
 class Prompt extends Model {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -81,7 +80,7 @@ class Prompt extends Model {
      * Get the rewards attached to this prompt.
      */
     public function rewards() {
-        return $this->hasMany(Reward::class, 'object_id')->where('object_model', Prompt::class);
+        return $this->hasMany(Reward::class, 'object_id')->where('object_model', self::class);
     }
 
     /**********************************************************************************************

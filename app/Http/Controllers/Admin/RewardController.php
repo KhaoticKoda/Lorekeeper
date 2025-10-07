@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reward\Reward;
 use App\Services\RewardService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RewardController extends Controller {
-
     /**
      * Creates or edits an objects rewards.
      *

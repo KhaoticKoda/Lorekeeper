@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RewardService extends Service {
-
     /*
     |--------------------------------------------------------------------------
     | Reward Service
@@ -26,11 +25,11 @@ class RewardService extends Service {
     /**
      * Processes user input for creating/updating prompt rewards.
      *
-     * @param mixed     $data
-     * @param mixed     $object_model
-     * @param mixed     $object_id
-     * @param mixed     $data
-     * @param bool      $log
+     * @param mixed $data
+     * @param mixed $object_model
+     * @param mixed $object_id
+     * @param mixed $data
+     * @param bool  $log
      */
     public function populateRewards($object_model, $object_id, $data, $log = true) {
         DB::beginTransaction();
@@ -58,7 +57,7 @@ class RewardService extends Service {
                         'rewardable_type'      => $data['rewardable_type'][$key],
                         'rewardable_id'        => $data['rewardable_id'][$key],
                         'quantity'             => $data['quantity'][$key],
-                        'data'                 => isset($data['data'][$key]) ? $data['data'][$key] : null,
+                        'data'                 => $data['data'][$key] ?? null,
                     ]);
 
                     if (!$reward->save()) {
