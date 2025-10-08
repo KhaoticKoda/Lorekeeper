@@ -721,9 +721,9 @@ class SubmissionManager extends Service {
         $promptRewards = mergeAssetsArrays($promptRewards, $this->processRewards($data, false));
 
         return [
-            'userAssets'    => $userAssets,
-            'promptRewards' => $promptRewards,
-            'characterRewards' => $characterRewards
+            'userAssets'       => $userAssets,
+            'promptRewards'    => $promptRewards,
+            'characterRewards' => $characterRewards,
         ];
     }
 
@@ -756,8 +756,7 @@ class SubmissionManager extends Service {
                 }
                 $c->update(['data' => getDataReadyAssets($cRewards)]);
             }
-
-        }     
+        }
 
         return $promptRewards;
     }
@@ -765,8 +764,9 @@ class SubmissionManager extends Service {
     /**
      * Creates character attachments for a submission.
      *
-     * @param mixed $submission the submission object
-     * @param mixed $data       the data for creating character attachments
+     * @param mixed      $submission     the submission object
+     * @param mixed      $data           the data for creating character attachments
+     * @param mixed|null $defaultRewards
      */
     private function createCharacterAttachments($submission, $data, $defaultRewards = null) {
         // The character identification comes in both the slug field and as character IDs
