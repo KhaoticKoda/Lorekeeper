@@ -42,7 +42,7 @@ class TradeController extends Controller {
             abort(404);
         }
 
-        $openTransfersQueue = Settings::get('open_trades_queue');
+        $openTransfersQueue = Settings::get('open_trades_queue') ?? Settings::get('open_transfers_queue');
 
         return view('admin.trades.trades', [
             'trades'             => $trades->orderBy('id', 'DESC')->paginate(20),
