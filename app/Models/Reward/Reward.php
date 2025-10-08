@@ -31,14 +31,7 @@ class Reward extends Model {
      * Get the object that this reward is attached to.
      */
     public function object() {
-        $model = getAssetModelString(strtolower($this->object_type));
-
-        if (!class_exists($model)) {
-            // Laravel requires a relationship instance to be returned (cannot return null), so returning one that doesn't exist here.
-            return $this->belongsTo(self::class, 'id', 'item_id')->whereNull('item_id');
-        }
-
-        return $this->belongsTo($model);
+        return $this->morphTo('object', 'object_model', 'object_id');
     }
 
     /**

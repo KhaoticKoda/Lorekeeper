@@ -494,6 +494,6 @@ Route::group(['prefix' => 'limits', 'middleware' => 'power:manage_data'], functi
 });
 
 // REWARDS
-Route::group(['prefix' => 'rewards', 'middleware' => 'power:manage_rewards'], function () {
+Route::group(['prefix' => 'rewards', 'middleware' => 'power:manage_data'], function () {
     Route::post('/', 'RewardController@postPopulateRewards');
 });

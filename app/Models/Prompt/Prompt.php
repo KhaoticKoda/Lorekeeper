@@ -81,7 +81,7 @@ class Prompt extends Model {
      * Get the rewards attached to this prompt.
      */
     public function rewards() {
-        return $this->hasMany(Reward::class, 'object_id')->where('object_model', Prompt::class);
+        return $this->morphMany(Reward::class, 'object', 'object_model', 'object_id');
     }
 
     /**********************************************************************************************
