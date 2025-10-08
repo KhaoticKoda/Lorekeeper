@@ -270,7 +270,7 @@ class CharacterController extends Controller {
             abort(404);
         }
 
-        return view('character.admin._edit_description_modal', [
+        return view('character.admin._edit_description', [
             'character' => $this->character,
             'isMyo'     => false,
         ]);
@@ -289,7 +289,7 @@ class CharacterController extends Controller {
             abort(404);
         }
 
-        return view('character.admin._edit_description_modal', [
+        return view('character.admin._edit_description', [
             'character' => $this->character,
             'isMyo'     => true,
         ]);
@@ -570,11 +570,11 @@ class CharacterController extends Controller {
                     $transfers->sortNewest();
                     break;
                 case 'oldest':
-                    $transfers->sortOldest();
+                    $transfers->sortNewest(true);
                     break;
             }
         } else {
-            $transfers->sortOldest();
+            $transfers->sortNewest(true);
         }
 
         if ($type == 'completed') {
