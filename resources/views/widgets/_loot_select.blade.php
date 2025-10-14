@@ -89,7 +89,7 @@
                             <td>
                                 @php
                                     $field_name = $prefix . $field . '[]';
-                                    $value = $loot->$field ?? ($data['default'] ?? null);
+                                    $value = $loot->data[$field] ?? ($data['default'] ?? null);
                                     $attributes = $data['attributes'] ?? [];
                                 @endphp
                                 {!! Form::{$data['type']}($field_name, $value, array_merge(['class' => 'form-control ' . ($data['class'] ?? ''), 'placeholder' => $data['label']], $attributes)) !!}

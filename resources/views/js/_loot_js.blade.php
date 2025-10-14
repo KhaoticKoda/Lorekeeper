@@ -78,6 +78,7 @@
         // check if there is a '.loot-weight' element
         if ($('#{{ $prefix }}lootTableBody .loot-weight').length) {
             refreshChances();
+            attachWeightListener($('#{{ $prefix }}lootTableBody .loot-weight'));
         }
 
         function attachWeightListener(node) {
