@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use DB;
+use App\Models\Reward\Reward;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,28 +26,35 @@ class ConvertRewards extends Command {
      * Execute the console command.
      */
     public function handle() {
-        if (!Schema::hasTable('prompt_rewards')) {
-            $this->info('Command has already been run.');
+        $this->info('************************');
+        $this->info('* CONVERT REWARDS     *');
+        $this->info('************************'."\n");
 
-            return;
+        $this->line("Converting prompt rewards...\n");
+        if (Schema::hasTable('prompt_rewards')) {
+            $promptRewards = DB::table('prompt_rewards')->get();
+            $bar = $this->output->createProgressBar(count($promptRewards));
+            $bar->start();
+            foreach ($promptRewards as $promptReward) {
+                Reward::create([
+                    'object_model'    => 'App\Models\Prompt\Prompt',
+                    'object_id'       => $promptReward->prompt_id,
+                    'rewardable_type' => $promptReward->rewardable_type,
+                    'rewardable_id'   => $promptReward->rewardable_id,
+                    'quantity'        => $promptReward->quantity,
+                ]);
+
+                $bar->advance();
+            }
+            $bar->finish();
+            $this->info("\nDone!");
+            Schema::dropIfExists('prompt_rewards');
+        } else {
+            $this->info("No prompt rewards to convert.");
         }
 
-        $promptRewards = DB::table('prompt_rewards')->get();
-        $bar = $this->output->createProgressBar(count($promptRewards));
-        $bar->start();
-        foreach ($promptRewards as $promptReward) {
-            Reward::create([
-                'object_model'    => 'App\Models\Prompt\Prompt',
-                'object_id'       => $promptReward->prompt_id,
-                'rewardable_type' => $promptReward->rewardable_type,
-                'rewardable_id'   => $promptReward->rewardable_id,
-                'quantity'        => $promptReward->quantity,
-            ]);
+        // Add other object types here as needed...
 
-            $bar->advance();
-        }
-        $bar->finish();
-        $this->info("\nDone!");
-        Schema::dropIfExists('prompt_rewards');
+        $this->info("\nAll done!");
     }
 }
