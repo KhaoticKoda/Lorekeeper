@@ -38,8 +38,8 @@
             @if ($showRecipient)
                 <th width="{{ isset($extra_fields) ? '10%' : '15%' }}">Reward Recipient</th>
             @endif
-            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : '35%' }}">Reward Type</th>
-            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : '35%' }}">Reward</th>
+            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">Reward Type</th>
+            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">Reward</th>
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '20%') : '20%' }}">Quantity</th>
             @if (isset($extra_fields))
                 @foreach ($extra_fields as $field => $data)
