@@ -74,6 +74,7 @@
             console.log('Attaching weight listeners');
             refreshChances();
         }
+
         function attachWeightListener(node) {
             node.on('change', function(e) {
                 refreshChances();
