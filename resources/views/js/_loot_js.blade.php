@@ -68,5 +68,33 @@
             });
         }
 
+        // Weight is a special field
+        // check if there is a '.loot-weight' element
+        if ($('#lootTableBody .loot-weight').length) {
+            console.log('Attaching weight listeners');
+            refreshChances();
+        }
+        function attachWeightListener(node) {
+            node.on('change', function(e) {
+                refreshChances();
+            });
+        }
+
+        function refreshChances() {
+            var total = 0;
+            var weights = [];
+            $('#lootTableBody .loot-weight').each(function(index) {
+                var current = parseInt($(this).val());
+                total += current;
+                weights.push(current);
+            });
+
+
+            $('#lootTableBody .loot-row-chance').each(function(index) {
+                var current = (weights[index] / total) * 100;
+                $(this).html(current.toString() + '%');
+            });
+        }
+
     });
 </script>

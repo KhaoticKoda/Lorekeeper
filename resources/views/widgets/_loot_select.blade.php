@@ -39,11 +39,16 @@
                 <th width="{{ isset($extra_fields) ? '10%' : '15%' }}">Reward Recipient</th>
             @endif
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">Reward Type</th>
-            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">Reward</th>
+            <th width="{{ ($showRecipient || isset($extra_fields)) ? '25%' : '35%' }}">Reward</th>
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '20%') : '20%' }}">Quantity</th>
             @if (isset($extra_fields))
                 @foreach ($extra_fields as $field => $data)
-                    <th>{{ $data['label'] }}</th>
+                    @if ($data['label'] == 'Weight')
+                        <th>{{ $data['label'] }} {!! add_help($data['tooltip'] ?? '') !!}</th>
+                        <th>Chance</th>
+                    @else
+                        <th>{{ $data['label'] }} {!! add_help($data['tooltip'] ?? '') !!}</th>
+                    @endif
                 @endforeach
             @endif
             <th width="10%"></th>
@@ -87,8 +92,11 @@
                                     $value = $loot->$field ?? ($data['default'] ?? null);
                                     $attributes = $data['attributes'] ?? [];
                                 @endphp
-                                {!! Form::{$data['type']}($field_name, $value, array_merge(['class' => 'form-control', 'placeholder' => $data['label']], $attributes)) !!}
+                                {!! Form::{$data['type']}($field_name, $value, array_merge(['class' => 'form-control ' . ($data['class'] ?? ''), 'placeholder' => $data['label']], $attributes)) !!}
                             </td>
+                            @if ($data['label'] == 'Weight')
+                                <td class="{{ $prefix }}loot-row-chance"></td>
+                            @endif
                         @endforeach
                     @endif
                     <td class="text-right"><a href="#" class="btn btn-danger {{ $prefix }}remove-loot-button">Remove</a></td>
