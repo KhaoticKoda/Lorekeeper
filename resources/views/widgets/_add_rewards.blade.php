@@ -35,6 +35,7 @@
         {!! Form::hidden('object_id', $object->id) !!}
 
         @include('widgets._loot_select', [
+            'prefix' => $prefix ?? '',
             'loots' => getRewards($object),
             'showRecipient' => $showRecipient,
             'showRaffles' => $showRaffles,
@@ -51,6 +52,7 @@
         {!! Form::close() !!}
     @else
         @include('widgets._loot_select', [
+            'prefix' => $prefix ?? '',
             'loots' => getRewards($object),
             'showRecipient' => $showRecipient,
             'showRaffles' => $showRaffles,
@@ -61,11 +63,13 @@
 
 <fieldset disabled>
     @include('widgets._loot_select_row', [
+        'prefix' => $prefix ?? '',
         'showRecipient' => $showRecipient,
         'showRaffles' => $showRaffles,
         'showLootTables' => $showLootTables,
     ])
     @include('js._loot_js', [
+        'prefix' => $prefix ?? '',
         'showRaffles' => $showRaffles,
         'showLootTables' => $showLootTables,
     ])

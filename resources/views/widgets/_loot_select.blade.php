@@ -57,30 +57,30 @@
     <tbody id="{{ $prefix }}lootTableBody">
         @if ($loots)
             @foreach ($loots as $loot)
-                <tr class="{{ $prefix }}loot-row">
+                <tr class="loot-row">
                     @if ($showRecipient)
                         <td>
                             {!! Form::select($prefix . 'rewardable_recipient[]', ['Character' => 'Character', 'User' => 'User'], $loot->rewardable_recipient, [
-                                'class' => 'form-control ' . $prefix . 'recipient-type',
+                                'class' => 'form-control recipient-type',
                                 'placeholder' => 'Select Recipient Type',
                             ]) !!}
                         </td>
                     @endif
                     <td>
                         {!! Form::select($prefix . 'rewardable_type[]', $rewardTypes, $loot->rewardable_type, [
-                            'class' => 'form-control ' . $prefix . 'reward-type',
+                            'class' => 'form-control reward-type',
                             'placeholder' => 'Select Reward Type',
                         ]) !!}
                     </td>
-                    <td class="{{ $prefix }}loot-row-select">
+                    <td class="loot-row-select">
                         @if ($loot->rewardable_type == 'Item')
-                            {!! Form::select($prefix . 'rewardable_id[]', $items, $loot->rewardable_id, ['class' => 'form-control ' . $prefix . 'item-select selectize', 'placeholder' => 'Select Item']) !!}
+                            {!! Form::select($prefix . 'rewardable_id[]', $items, $loot->rewardable_id, ['class' => 'form-control item-select selectize', 'placeholder' => 'Select Item']) !!}
                         @elseif($loot->rewardable_type == 'Currency')
-                            {!! Form::select($prefix . 'rewardable_id[]', $currencies, $loot->rewardable_id, ['class' => 'form-control ' . $prefix . 'currency-select selectize', 'placeholder' => 'Select Currency']) !!}
+                            {!! Form::select($prefix . 'rewardable_id[]', $currencies, $loot->rewardable_id, ['class' => 'form-control currency-select selectize', 'placeholder' => 'Select Currency']) !!}
                         @elseif($showLootTables && $loot->rewardable_type == 'LootTable')
-                            {!! Form::select($prefix . 'rewardable_id[]', $tables, $loot->rewardable_id, ['class' => 'form-control ' . $prefix . 'table-select selectize', 'placeholder' => 'Select Loot Table']) !!}
+                            {!! Form::select($prefix . 'rewardable_id[]', $tables, $loot->rewardable_id, ['class' => 'form-control table-select selectize', 'placeholder' => 'Select Loot Table']) !!}
                         @elseif($showRaffles && $loot->rewardable_type == 'Raffle')
-                            {!! Form::select($prefix . 'rewardable_id[]', $raffles, $loot->rewardable_id, ['class' => 'form-control ' . $prefix . 'raffle-select selectize', 'placeholder' => 'Select Raffle']) !!}
+                            {!! Form::select($prefix . 'rewardable_id[]', $raffles, $loot->rewardable_id, ['class' => 'form-control raffle-select selectize', 'placeholder' => 'Select Raffle']) !!}
                         @endif
                     </td>
                     <td>{!! Form::text($prefix . 'quantity[]', $loot->quantity, ['class' => 'form-control']) !!}</td>
@@ -95,11 +95,11 @@
                                 {!! Form::{$data['type']}($field_name, $value, array_merge(['class' => 'form-control ' . ($data['class'] ?? ''), 'placeholder' => $data['label']], $attributes)) !!}
                             </td>
                             @if ($data['label'] == 'Weight')
-                                <td class="{{ $prefix }}loot-row-chance"></td>
+                                <td class="loot-row-chance"></td>
                             @endif
                         @endforeach
                     @endif
-                    <td class="text-right"><a href="#" class="btn btn-danger {{ $prefix }}remove-loot-button">Remove</a></td>
+                    <td class="text-right"><a href="#" class="btn btn-danger remove-loot-button">Remove</a></td>
                 </tr>
             @endforeach
         @endif
