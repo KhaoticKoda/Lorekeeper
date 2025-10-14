@@ -87,7 +87,7 @@
                         </a>
                     </div>
                 @endif
-                <div class="collapse {{ (isset($isPage) && $isPage == true) ? 'show' : '' }}" id="item-{{ $item->id }}">
+                <div class="collapse {{ isset($isPage) && $isPage == true ? 'show' : '' }}" id="item-{{ $item->id }}">
                     @if (isset($item->uses) && $item->uses)
                         <p>
                             <strong>Uses:</strong> {{ $item->uses }}
