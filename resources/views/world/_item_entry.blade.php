@@ -4,7 +4,7 @@
     @endif
     <div class="{{ $item->imageUrl ? 'col-md-9' : 'col-12' }}">
         <x-admin-edit title="Item" :object="$item" />
-        @if (isset($isPage))
+        @if (isset($isPage) && $isPage == true)
             <h1>
                 @if (!$item->is_released)
                     <i class="fas fa-eye-slash mr-1"></i>
@@ -80,14 +80,14 @@
             @endif
             {!! $item->parsed_description !!}
             @if (((isset($item->uses) && $item->uses) || (isset($item->source) && $item->source) || $item->shop_stock_count || (isset($item->data['prompts']) && $item->data['prompts'])) && config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
-                @if (!isset($isPage))
+                @if (!isset($isPage) || $isPage == false)
                     <div class="text-right">
                         <a data-toggle="collapse" href="#item-{{ $item->id }}" class="text-primary">
                             <strong>Show details...</strong>
                         </a>
                     </div>
                 @endif
-                <div class="collapse {{ isset($isPage) && $isPage ? 'show' : '' }}" id="item-{{ $item->id }}">
+                <div class="collapse {{ (isset($isPage) && $isPage == true) ? 'show' : '' }}" id="item-{{ $item->id }}">
                     @if (isset($item->uses) && $item->uses)
                         <p>
                             <strong>Uses:</strong> {{ $item->uses }}
