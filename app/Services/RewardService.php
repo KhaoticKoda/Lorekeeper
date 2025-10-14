@@ -48,6 +48,20 @@ class RewardService extends Service {
                 });
             }
 
+            // build data object
+            $rewardableData = [];
+            if (isset($data['data'])) {
+                foreach($data['data'] as $name => $values) {
+                    if (is_array($values)) {
+                        foreach ($values as $k => $v) {
+                            $rewardableData[$k][$name] = $v;
+                        }
+                    } else {
+                        $rewardableData[$name] = $values;
+                    }
+                }
+            }
+
             if (isset($data['rewardable_type'])) {
                 foreach ($data['rewardable_type'] as $key => $type) {
                     $reward = new Reward([
@@ -57,7 +71,7 @@ class RewardService extends Service {
                         'rewardable_type'      => $data['rewardable_type'][$key],
                         'rewardable_id'        => $data['rewardable_id'][$key],
                         'quantity'             => $data['quantity'][$key],
-                        'data'                 => $data['data'][$key] ?? null,
+                        'data'                 => $rewardableData[$key] ?? (count($rewardableData) > 0 ? $rewardableData : null),
                     ]);
 
                     if (!$reward->save()) {

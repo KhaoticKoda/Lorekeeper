@@ -21,6 +21,15 @@ class Reward extends Model {
      */
     protected $table = 'rewards';
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     /**********************************************************************************************
 
         RELATIONS
