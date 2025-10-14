@@ -51,7 +51,7 @@ class RewardService extends Service {
             // build data object
             $rewardableData = [];
             if (isset($data['data'])) {
-                foreach($data['data'] as $name => $values) {
+                foreach ($data['data'] as $name => $values) {
                     if (is_array($values)) {
                         foreach ($values as $k => $v) {
                             $rewardableData[$k][$name] = $v;
