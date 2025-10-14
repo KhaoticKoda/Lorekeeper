@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use DB;
 use App\Models\Reward\Reward;
+use DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
 
@@ -50,7 +50,7 @@ class ConvertRewards extends Command {
             $this->info("\nDone!");
             Schema::dropIfExists('prompt_rewards');
         } else {
-            $this->info("No prompt rewards to convert.");
+            $this->info('No prompt rewards to convert.');
         }
 
         // Add other object types here as needed...
