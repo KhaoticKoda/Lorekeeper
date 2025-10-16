@@ -75,6 +75,17 @@
                 ];
             });
 
+        if ($showLootTables) {
+            $tables = \App\Models\Loot\LootTable::orderBy('name')
+                ->get()
+                ->mapWithKeys(function ($table) {
+                    return [
+                        $table->id => json_encode([
+                            'name' => $table->name,
+                        ]),
+                    ];
+                });
+        }
         if ($showRaffles) {
             $raffles = \App\Models\Raffle\Raffle::where('rolled_at', null)
                 ->where('is_active', 1)
@@ -84,17 +95,6 @@
                     return [
                         $raffle->id => json_encode([
                             'name' => $raffle->name,
-                        ]),
-                    ];
-                });
-        }
-        if ($showLootTables) {
-            $tables = \App\Models\Loot\LootTable::orderBy('name')
-                ->get()
-                ->mapWithKeys(function ($table) {
-                    return [
-                        $table->id => json_encode([
-                            'name' => $table->name,
                         ]),
                     ];
                 });
