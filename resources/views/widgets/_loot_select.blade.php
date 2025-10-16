@@ -1,10 +1,7 @@
 @php
-    // This file represents a common source and definition for assets used in loot_select
+    // This represents a common source and definition for assets used in loot_select
     // While it is not per se as tidy as defining these in the controller(s),
     // doing so this way enables better compatibility across disparate extensions
-    $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)->orderBy('sort_character', 'DESC')->pluck('name', 'id');
-    $items = \App\Models\Item\Item::orderBy('name')->pluck('name', 'id');
-    $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)->orderBy('name')->pluck('name', 'id');
 
     // Reward types, should reduce friction of merge conflicts
     $rewardTypes =
@@ -15,11 +12,11 @@
         ($showLootTables ? ['LootTable' => 'Loot Table'] : []) +
         ($showRaffles ? ['Raffle' => 'Raffle Ticket'] : []);
 
-    if ($showLootTables) {
-        $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
+    if (!isset($type)) {
+        $type = 'Reward';
     }
-    if ($showRaffles) {
-        $raffles = \App\Models\Raffle\Raffle::where('rolled_at', null)->where('is_active', 1)->orderBy('name')->pluck('name', 'id');
+    if (!isset($isTradeable)) {
+        $isTradeable = false;
     }
     if (!isset($prefix)) {
         $prefix = '';
@@ -27,10 +24,113 @@
     if (!isset($showRecipient)) {
         $showRecipient = false;
     }
-@endphp
 
+    // Custom Selectize
+    if (isset($useCustomSelectize) && $useCustomSelectize) {
+        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_user_to_user', 1);
+                }
+            })
+            ->orderBy('sort_character', 'DESC')
+            ->get()
+            ->mapWithKeys(function ($currency) {
+                return [
+                    $currency->id => json_encode([
+                        'name' => $currency->name,
+                        'image_url' => $currency->currencyIconUrl,
+                    ]),
+                ];
+            });
+        $items = \App\Models\Item\Item::orderBy('name')
+            ->where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_transfer', 1);
+                }
+            })
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [
+                    $item->id => json_encode([
+                        'name' => $item->name,
+                        'image_url' => $item->imageUrl,
+                    ]),
+                ];
+            });
+        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_user_to_user', 1);
+                }
+            })
+            ->orderBy('name')
+            ->get()
+            ->mapWithKeys(function ($currency) {
+                return [
+                    $currency->id => json_encode([
+                        'name' => $currency->name,
+                        'image_url' => $currency->currencyIconUrl,
+                    ]),
+                ];
+            });
+
+        if ($showRaffles) {
+            $raffles = \App\Models\Raffle\Raffle::where('rolled_at', null)
+                ->where('is_active', 1)
+                ->orderBy('name')
+                ->get()
+                ->mapWithKeys(function ($raffle) {
+                    return [
+                        $raffle->id => json_encode([
+                            'name' => $raffle->name,
+                        ]),
+                    ];
+                });
+        }
+        if ($showLootTables) {
+            $tables = \App\Models\Loot\LootTable::orderBy('name')
+                ->get()
+                ->mapWithKeys(function ($table) {
+                    return [
+                        $table->id => json_encode([
+                            'name' => $table->name,
+                        ]),
+                    ];
+                });
+        }
+    } else {
+        $characterCurrencies = \App\Models\Currency\Currency::where('is_character_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_user_to_user', 1);
+                }
+            })
+            ->orderBy('sort_character', 'DESC')
+            ->pluck('name', 'id');
+        $items = \App\Models\Item\Item::where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_transfer', 1);
+                }
+            })->orderBy('name')->pluck('name', 'id');
+        $currencies = \App\Models\Currency\Currency::where('is_user_owned', 1)
+            ->where(function ($query) use ($isTradeable) {
+                if ($isTradeable) {
+                    $query->where('allow_user_to_user', 1);
+                }
+            })
+            ->orderBy('name')
+            ->pluck('name', 'id');
+        if ($showLootTables) {
+            $tables = \App\Models\Loot\LootTable::orderBy('name')->pluck('name', 'id');
+        }
+        if ($showRaffles) {
+            $raffles = \App\Models\Raffle\Raffle::where('rolled_at', null)->where('is_active', 1)->orderBy('name')->pluck('name', 'id');
+        }
+    }
+@endphp
 <div class="text-right mb-3">
-    <a href="#" class="btn btn-outline-info" id="{{ $prefix }}addLoot">Add Reward</a>
+    <a href="#" class="btn btn-outline-info" id="{{ $prefix }}addLoot">Add {{ $type }}</a>
 </div>
 <table class="table table-sm" id="{{ $prefix }}lootTable">
     <thead>
@@ -38,8 +138,8 @@
             @if ($showRecipient)
                 <th width="{{ isset($extra_fields) ? '10%' : '15%' }}">Reward Recipient</th>
             @endif
-            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">Reward Type</th>
-            <th width="{{ $showRecipient || isset($extra_fields) ? '25%' : '35%' }}">Reward</th>
+            <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '25%') : (isset($extra_fields) ? '25%' : '35%') }}">{{ $type }} Type</th>
+            <th width="{{ $showRecipient || isset($extra_fields) ? '25%' : '35%' }}">{{ $type }}</th>
             <th width="{{ $showRecipient ? (isset($extra_fields) ? '15%' : '20%') : '20%' }}">Quantity</th>
             @if (isset($extra_fields))
                 @foreach ($extra_fields as $field => $data)
@@ -69,7 +169,7 @@
                     <td>
                         {!! Form::select($prefix . 'rewardable_type[]', $rewardTypes, $loot->rewardable_type, [
                             'class' => 'form-control reward-type',
-                            'placeholder' => 'Select Reward Type',
+                            'placeholder' => 'Select ' . $type . ' Type',
                         ]) !!}
                     </td>
                     <td class="loot-row-select">
