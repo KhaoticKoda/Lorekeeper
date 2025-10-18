@@ -19,7 +19,7 @@
                     <i class="fas fa-eye-slash mr-1"></i>
                 @endif
                 {!! $item->displayName !!}
-                 <a href="{{ $item->idUrl }}" class="world-entry-search text-muted">
+                <a href="{{ $item->idUrl }}" class="world-entry-search text-muted">
                     <i class="fas fa-search"></i>
                 </a>
             </h3>
