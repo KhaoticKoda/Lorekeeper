@@ -190,7 +190,7 @@ class Character extends Model {
      * Get the character's items.
      */
     public function items() {
-        return $this->belongsToMany(Item::class, 'character_items')->withPivot('count', 'data', 'updated_at', 'id')->whereNull('character_items.deleted_at');
+        return $this->belongsToMany(Item::class, 'character_items')->withPivot('count', 'data', 'updated_at', 'id', 'stack_name')->whereNull('character_items.deleted_at');
     }
 
     /**********************************************************************************************
