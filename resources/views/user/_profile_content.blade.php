@@ -115,14 +115,7 @@
     </div>
 </div>
 
-<h2>
-    <a href="{{ $user->url . '/characters' }}">Characters</a>
-    @if (isset($sublists) && $sublists->count() > 0)
-        @foreach ($sublists as $sublist)
-            / <a href="{{ $user->url . '/sublist/' . $sublist->key }}">{{ $sublist->name }}</a>
-        @endforeach
-    @endif
-</h2>
+
 
 @foreach ($characters->take(4)->get()->chunk(4) as $chunk)
     <div class="row mb-4">
