@@ -2,6 +2,7 @@
 
 namespace App\Models\Species;
 
+use App\Models\Feature\Feature;
 use App\Models\Model;
 
 class Subtype extends Model {
@@ -65,6 +66,13 @@ class Subtype extends Model {
      */
     public function species() {
         return $this->belongsTo(Species::class, 'species_id');
+    }
+
+    /**
+     * Get the features associated with this subtype.
+     */
+    public function features() {
+        return $this->belongsToMany(Feature::class, 'feature_subtypes');
     }
 
     /**********************************************************************************************
