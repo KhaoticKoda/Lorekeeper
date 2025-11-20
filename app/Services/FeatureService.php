@@ -185,10 +185,9 @@ class FeatureService extends Service {
     /**
      * Creates a new feature.
      *
-     * @param array                 $data
-     * @param \App\Models\User\User $user
-     *
-     * @return \App\Models\Feature\Feature|bool
+     * @param  array                  $data
+     * @param  \App\Models\User\User  $user
+     * @return bool|\App\Models\Feature\Feature
      */
     public function createFeature($data, $user) {
         DB::beginTransaction();

@@ -2,11 +2,17 @@
 
 namespace App\Services;
 
-use App\Facades\Notifications;
-use App\Facades\Settings;
+
+use Config;
+use Image;
+use Notifications;
+use Settings;
+
+use App\Models\User\UserAward;
 use App\Models\Character\Character;
 use App\Models\Currency\Currency;
 use App\Models\Item\Item;
+use App\Models\Award\Award;
 use App\Models\Loot\LootTable;
 use App\Models\Prompt\Prompt;
 use App\Models\Raffle\Raffle;
@@ -396,6 +402,7 @@ class SubmissionManager extends Service {
             // Get the updated set of rewards
             $rewards = $this->processRewards($data, false, true);
 
+
             // Logging data
             $promptLogType = $submission->prompt_id ? 'Prompt Rewards' : 'Claim Rewards';
             $promptData = [
@@ -428,6 +435,7 @@ class SubmissionManager extends Service {
                                 break;
                             case 'LootTable': $tableIds[] = $id;
                                 break;
+                                case 'Award':       $awardIds[]     = $id; break;
                         }
                     }
                 } // Expanded character rewards
@@ -435,9 +443,11 @@ class SubmissionManager extends Service {
             array_unique($currencyIds);
             array_unique($itemIds);
             array_unique($tableIds);
+            array_unique($awardIds);
             $currencies = Currency::whereIn('id', $currencyIds)->where('is_character_owned', 1)->get()->keyBy('id');
             $items = Item::whereIn('id', $itemIds)->get()->keyBy('id');
             $tables = LootTable::whereIn('id', $tableIds)->get()->keyBy('id');
+            $awards = Award::whereIn('id', $awardIds)->get()->keyBy('id');
 
             // We're going to remove all characters from the submission and reattach them with the updated data
             $submission->characters()->delete();
@@ -445,7 +455,7 @@ class SubmissionManager extends Service {
             // Distribute character rewards
             foreach ($characters as $c) {
                 // Users might not pass in clean arrays (may contain redundant data) so we need to clean that up
-                $assets = $this->processRewards($data + ['character_id' => $c->id, 'currencies' => $currencies, 'items' => $items, 'tables' => $tables], true);
+                $assets = $this->processRewards($data + ['character_id' => $c->id, 'currencies' => $currencies, 'items' => $items, 'tables' => $tables, 'awards' => $awards], true);
 
                 if (!$assets = fillCharacterAssets($assets, $user, $c, $promptLogType, $promptData, $submission->user)) {
                     throw new \Exception('Failed to distribute rewards to character.');
