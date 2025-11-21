@@ -42,6 +42,19 @@ return [
     ],
     'News' => [
         'power' => 'manage_news',
+    'Affiliates' => [
+        'power' => 'manage_affiliates',
+        'links' => [
+            [
+                'name' => 'Approved Affiliates',
+                'url' => 'admin/affiliates/current'
+            ],
+            [
+                'name' => 'Affiliate Requests',
+                'url' => 'admin/affiliates/pending'
+            ],
+        ]
+    ],
         'links' => [
             [
                 'name' => 'News',

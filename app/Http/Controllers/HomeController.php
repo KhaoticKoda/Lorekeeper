@@ -8,6 +8,7 @@ use App\Services\LinkService;
 use App\Services\UserService;
 use App\Services\DeviantArtService;
 use Config;
+use App\Models\Affiliate;
 use Carbon\Carbon;
 use App\Models\Character\Character;
 use Settings;
@@ -51,6 +52,7 @@ class HomeController extends Controller {
             'about'               => SitePage::where('key', 'about')->first(),
             'gallerySubmissions'  => $gallerySubmissions,
             'featured' => $character,
+            'featured_affiliates' => Affiliate::where('status','Accepted')->featured(1)->get(),
         ]);
     }
 

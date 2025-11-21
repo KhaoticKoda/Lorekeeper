@@ -71,3 +71,4 @@
 </div>
 
 @include('widgets._recent_gallery_submissions', ['gallerySubmissions' => $gallerySubmissions])
+@include('widgets._affiliates', ['affiliates' => $affiliates, 'featured' => $featured_affiliates, 'open' => $open])

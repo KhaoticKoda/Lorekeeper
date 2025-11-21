@@ -165,4 +165,7 @@ class Notification extends Model {
     public const CHARACTER_AWARD_GRANT             = 345;
     public const CHARACTER_AWARD_REMOVAL           = 346;
     const BIRTHDAY_REWARDED    = 1105;
+    const AFFILIATE_ACCEPTION               = 105; // URI - Affiliates
+    const AFFILIATE_REJECTION               = 106; // URI - Affiliates
+    const AFFILIATE_PENDING                 = 107; // URI - Affiliates
 }

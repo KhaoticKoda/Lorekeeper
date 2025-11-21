@@ -72,4 +72,14 @@ return [
         'description' => 'Image used for the donation shop. PNG format, should be the same size as other shop images.',
         'filename' => 'donation_shop.png'
     ],
+    'affiliate' => [
+        'name' => 'Default Affiliate Image',
+        'description' => 'If an affiliate doesn\'t have an affiliate image for whatever reason, use this!',
+        'filename' => 'affiliate.png'
+    ],
+    'our_affiliate' => [
+        'name' => 'Site Affiliate Image',
+        'description' => 'This is your site\'s affiliate icon!',
+        'filename' => 'our_affiliate.png'
+    ],
 ];
