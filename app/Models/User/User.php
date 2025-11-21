@@ -32,6 +32,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Config;
 
 class User extends Authenticatable implements MustVerifyEmail {
 
