@@ -19,6 +19,7 @@
         <div class="alert alert-danger">This user has been banned.</div>
     @endif
 
+
     @if ($user->is_deactivated)
         <div class="alert alert-info text-center">
             <h1>{!! $user->displayName !!}</h1>

@@ -37,25 +37,6 @@ $( document ).ready(function() {
             attachRemoveListener($clone.find('.remove-loot-button'));
         });
 
-        $('.reward-type').on('change', function(e) {
-            var val = $(this).val();
-            var $cell = $(this).parent().parent().find('.loot-row-select');
-
-            var $clone = null;
-            if (val == 'Item') $clone = $itemSelect.clone();
-            else if (val == 'Currency') $clone = $currencySelect.clone();
-            else if (val == 'Award') $clone = $awardSelect.clone();
-            @if($showLootTables)
-                else if (val == 'LootTable') $clone = $tableSelect.clone();
-            @endif
-            @if ($showRaffles)
-                else if (val == 'Raffle') $clone = $raffleSelect.clone();
-            @endif
-
-            $cell.html('');
-            $cell.append($clone);
-        });
-
         function attachRewardTypeListener(node) {
             node.on('change', function(e) {
                 var val = $(this).val();
