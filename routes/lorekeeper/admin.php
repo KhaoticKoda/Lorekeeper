@@ -287,8 +287,25 @@ Route::group(['prefix' => 'news', 'middleware' => 'power:manage_news'], function
     Route::post('delete/{id}', 'NewsController@postDeleteNews');
 });
 
-// SALES
-Route::group(['prefix' => 'sales', 'middleware' => 'power:manage_sales'], function () {
+
+# FORMS
+Route::group(['prefix' => 'forms', 'middleware' => 'power:edit_pages'], function() {
+
+    Route::get('/', 'SiteFormController@getIndex');
+    Route::get('create', 'SiteFormController@getCreateSiteForm');
+    Route::get('edit/{id}', 'SiteFormController@getEditSiteForm');
+    Route::get('delete/{id}', 'SiteFormController@getDeleteSiteForm');
+    Route::post('create', 'SiteFormController@postCreateEditSiteForm');
+    Route::post('edit/{id?}', 'SiteFormController@postCreateEditSiteForm');
+    Route::post('delete/{id}', 'SiteFormController@postDeleteSiteForm');
+    Route::get('results/{id}', 'SiteFormController@getSiteFormResults');
+
+});
+
+
+# SALES
+Route::group(['prefix' => 'sales', 'middleware' => 'power:edit_pages'], function() {
+
     Route::get('/', 'SalesController@getIndex');
     Route::get('create', 'SalesController@getCreateSales');
     Route::get('edit/{id}', 'SalesController@getEditSales');

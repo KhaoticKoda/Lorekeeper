@@ -63,9 +63,13 @@ return [
         'links' => [
             [
                 'name' => 'Pages',
-                'url'  => 'admin/pages',
+                'url' => 'admin/pages'
             ],
-        ],
+            [
+                'name' => 'Forms & Polls',
+                'url' => 'admin/forms'
+            ]
+        ]
     ],
     'Users'      => [
         'power' => 'edit_user_info',

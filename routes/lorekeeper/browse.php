@@ -181,3 +181,13 @@ Route::group(['prefix' => 'gallery'], function () {
 Route::group(['prefix' => 'reports', 'namespace' => 'Users'], function () {
     Route::get('/bug-reports', 'ReportController@getBugIndex');
 });
+
+
+/**************************************************************************************************
+    Forms & Polls
+**************************************************************************************************/
+Route::group(['prefix' => 'forms'], function() {
+    Route::get('/', 'SiteFormController@getIndex');
+    Route::get('{id}.{slug?}', 'SiteFormController@getSiteForm');
+    Route::get('{id}.', 'SiteFormController@getSiteForm');
+});
