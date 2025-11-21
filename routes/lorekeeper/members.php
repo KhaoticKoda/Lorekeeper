@@ -258,3 +258,6 @@ Route::group(['prefix' => 'forms'], function() {
     Route::post('/like/{id}', 'SiteFormController@postLikeAnswer');
     Route::post('/unlike/{id}', 'SiteFormController@postUnlikeAnswer');
 });
+
+Route::get('search', 'WorldController@getSiteSearch');
+Route::post('search/{query}', 'WorldController@postSiteSearch');
