@@ -18,6 +18,11 @@
             Report (#{{ $report->id }})
             <span class="float-right badge badge-{{ $report->status == 'Pending' ? 'secondary' : ($report->status == 'Closed' ? 'success' : 'danger') }}">{{ $report->status }}</span>
         </h1>
+    <div class="mb-1">
+        <div class="row">
+            <div class="col-md-2 col-4"><h5>User</h5></div>
+            <div class="col-md-10 col-8">{!! $report->user->displayNamePronouns !!}</div>
+        </div>
         <div class="mb-1">
             <div class="row">
                 <div class="col-md-2 col-4">

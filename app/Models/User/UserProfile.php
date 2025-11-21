@@ -14,7 +14,7 @@ class UserProfile extends Model {
      * @var array
      */
     protected $fillable = [
-        'text', 'parsed_text', 'status_message', 'clear_status_on', 'status_set_on',
+        'text', 'parsed_text', 'status_message', 'clear_status_on', 'status_set_on', 'pronouns',
     ];
 
     /**
