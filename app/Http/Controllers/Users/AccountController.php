@@ -6,6 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use App\Models\User\User;
 use App\Models\User\UserAlias;
+use App\Models\User\StaffProfile;
+
+
+use Illuminate\Support\Facades\Storage;
+use App\Models\Notification;
+
+
 use App\Services\LinkService;
 use App\Services\UserService;
 use BaconQrCode\Renderer\Color\Rgb;
@@ -61,8 +68,12 @@ class AccountController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getSettings() {
-        return view('account.settings');
+    public function getSettings()
+    {
+        $links = StaffProfile::where('user_id', Auth::user()->id)->first();
+        return view('account.settings', [
+            'links' => $links ? $links : null
+        ]);
     }
 
     /**
@@ -77,6 +88,42 @@ class AccountController extends Controller {
         ]);
         flash('Profile updated successfully.')->success();
 
+        return redirect()->back();
+    }
+    
+    /**
+     * Edits the user's staff profile.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postStaffProfile(Request $request, UserService $service)
+    {
+        $request->validate(staffProfile::$createRules);
+        if($service->updateStaffProfile($request->only(['text']), Auth::user())) {
+            flash('Staff profile updated successfully.')->success();
+        }
+        else {
+            foreach($service->errors()->getMessages()['error'] as $error) flash($error)->error();
+        }
+        return redirect()->back();
+    }
+    
+    /**
+     * Edits the user's staff contacts/links.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postStaffLinks(Request $request, UserService $service)
+    {
+        $request->validate(staffProfile::$createRules);
+        if($service->updateStaffLinks($request->only(['site', 'url']), Auth::user())) {
+            flash('Staff links updated successfully.')->success();
+        }
+        else {
+            foreach($service->errors()->getMessages()['error'] as $error) flash($error)->error();
+        }
         return redirect()->back();
     }
 
