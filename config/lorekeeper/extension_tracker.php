@@ -27,6 +27,14 @@ return [
             'Cylunny' => 'https://toyhou.se/cylunny',
         ]),
         'version' => '1.0.0', 
+        ],
+    'dailies' => [
+        'key' => 'dailies',
+        'wiki_key' => 'Dailies',
+        'creators' => json_encode([
+            'Cylunny' => 'https://toyhou.se/cylunny',
+        ]),
+        'version' => '2.0.1', 
     ],
 
     'awards' => [
