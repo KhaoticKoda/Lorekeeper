@@ -38,8 +38,16 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
+<<<<<<< HEAD
                     {!! Form::label('Owner URL (Optional)') !!}
                     {!! Form::text('owner_url', old('owner_url'), ['class' => 'form-control']) !!}
+=======
+                    {!! Form::label('Number') !!} {!! add_help('This number helps to identify the character and should preferably be unique either within the category, or among all characters. If creating multiple characters with this information, this will be the first number used.') !!}
+                    <div class="d-flex">
+                        {!! Form::text('number', old('number'), ['class' => 'form-control mr-2', 'id' => 'number']) !!}
+                        <a href="#" id="pull-number" class="btn btn-primary" data-toggle="tooltip" title="This will find the highest number assigned to a character currently and add 1 to it. It can be adjusted to pull the highest number in the category or the highest overall number - this setting is in the code.">Pull Next Number</a>
+                    </div>
+>>>>>>> aaf49b3151a41bf914816a0f2f6519b926fdbd14
                 </div>
             </div>
         </div>

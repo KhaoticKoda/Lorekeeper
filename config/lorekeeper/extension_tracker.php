@@ -30,6 +30,15 @@ return [
             'Ne-wt' => 'https://github.com/ne-wt/',
         ]),
         'version' => '2.0.0',
+        ],
+
+    'multiple_character_creation' => [
+        'key' => 'Multiple_Character_Creation',
+        'wiki_key' => 'Multiple_Character_Creation',
+        'creators' => json_encode([
+            'Mercury' => 'https://github.com/itinerare/',
+        ]),
+        'version' => '1.0.0',
     ],
 
 ];
