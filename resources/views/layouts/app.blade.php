@@ -58,6 +58,22 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+    <!-- ALTERNATE SITE FONTS  -->
+    <!--- Find more fonts on: https://fonts.google.com/ --->
+    <link href="https://fonts.googleapis.com/css2?family=Lora" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Wellfleet" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script" rel="stylesheet" type="text/css">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lorekeeper.css?v=' . filemtime(public_path('css/lorekeeper.css'))) }}" rel="stylesheet">
@@ -83,6 +99,18 @@
     @endif
 
     @include('feed::links')
+    @php
+    $design = App\Models\SiteDesign::all()->first();
+    @endphp
+
+    <!-- ALTERNATE SITE LAYOUTS -->
+    @isset($design)
+    <link href="{{ asset('css/'. $design->design .'.css') }}" rel="stylesheet">
+    @endisset
+
+    <!--Editable font css-->
+    @include('layouts.editable_fonts') 
+
 </head>
 
 <body>
