@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Forms\SiteForm;
 use App\Models\Forms\SiteFormAnswer;
 use App\Services\SiteFormManager;
+use App\Models\Comment\Comment;
 
 class SiteFormController extends Controller
 {

@@ -4,6 +4,7 @@ namespace App\Models\Forms;
 
 use Config;
 use App\Models\Model;
+use App\Models\Comment\Comment;
 
 class SiteFormReward extends Model
 {

@@ -12,6 +12,7 @@ use App\Models\Currency\Currency;
 use App\Models\Item\Item;
 use App\Models\Loot\LootTable;
 use App\Models\Raffle\Raffle;
+use App\Models\Comment\Comment;
 
 class SiteFormManager extends Service {
     /*

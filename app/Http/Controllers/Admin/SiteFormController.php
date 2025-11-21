@@ -13,6 +13,7 @@ use App\Models\Currency\Currency;
 use App\Models\Loot\LootTable;
 use App\Models\Raffle\Raffle;
 use App\Http\Controllers\Controller;
+use App\Models\Comment\Comment;
 
 class SiteFormController extends Controller {
     /**

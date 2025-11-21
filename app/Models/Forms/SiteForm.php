@@ -6,6 +6,7 @@ use App\Models\Model;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Traits\Commentable;
+use App\Models\Comment\Comment;
 
 class SiteForm extends Model
 {

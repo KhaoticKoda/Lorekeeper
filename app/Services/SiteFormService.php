@@ -12,6 +12,7 @@ use App\Models\Forms\SiteFormOption;
 use App\Models\Forms\SiteFormQuestion;
 use App\Models\Forms\SiteFormReward;
 use App\Models\User\User;
+use App\Models\Comment\Comment;
 
 class SiteFormService extends Service
 {

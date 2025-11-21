@@ -3,6 +3,7 @@
 namespace App\Models\Forms;
 
 use App\Models\Model;
+use App\Models\Comment\Comment;
 
 class SiteFormLike extends Model
 {

@@ -31,7 +31,7 @@
             @endif
         @endif
     </div>
-    <?php $commentCount = App\Models\Comment::where('commentable_type', 'App\Models\Forms\SiteForm')
+    <?php $commentCount = App\Models\Comment\Comment::where('commentable_type', 'App\Models\Forms\SiteForm')
         ->where('commentable_id', $form->id)
         ->count(); ?>
     @if (!$page)
