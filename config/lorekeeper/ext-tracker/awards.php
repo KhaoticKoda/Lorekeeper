@@ -13,7 +13,6 @@ return [
     // ],
     
    'awards' => [
-        'key' => 'awards',
         'wiki_key' => 'Awards',
         'creators' => json_encode([
             'Uri'  => 'https://github.com/preimpression/',
@@ -21,4 +20,5 @@ return [
             'Ne-wt' => 'https://github.com/ne-wt/',
         ]),
         'version' => '2.0.0',
+    ],
     ];

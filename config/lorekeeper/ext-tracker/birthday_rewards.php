@@ -13,7 +13,6 @@ return [
     // ],
     
    'Birthday_Rewards' => [
-        'key' => 'Birthday_Rewards',
             'wiki_key' => 'Birthday_Rewards',
             'creators' => json_encode([
                 'CH3RVB' => 'https://github.com/CH3RVB/',
