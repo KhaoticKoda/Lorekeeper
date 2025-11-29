@@ -40,16 +40,16 @@
             </div>
         @endif
     </div>
-@if(Config::get('lorekeeper.settings.donation_shop.item_donations') == 1 || Config::get('lorekeeper.settings.donation_shop.item_donations') == 3)
-    <div class="form-group">
-        {!! Form::checkbox('can_donate', 1, $category->can_donate, ['class' => 'form-check-input', 'data-toggle' => 'toggle', 'data-on' => 'Allow', 'data-off' => 'Disallow']) !!}
-        {!! Form::label('is_character_owned', 'Can Be Donated', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will allow users to donate items in this category to the Donation Shop.') !!}
-    </div>
-@endif
+    @if (Config::get('lorekeeper.settings.donation_shop.item_donations') == 1 || Config::get('lorekeeper.settings.donation_shop.item_donations') == 3)
+        <div class="form-group">
+            {!! Form::checkbox('can_donate', 1, $category->can_donate, ['class' => 'form-check-input', 'data-toggle' => 'toggle', 'data-on' => 'Allow', 'data-off' => 'Disallow']) !!}
+            {!! Form::label('is_character_owned', 'Can Be Donated', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will allow users to donate items in this category to the Donation Shop.') !!}
+        </div>
+    @endif
 
-<div class="text-right">
-    {!! Form::submit($category->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
-</div>
+    <div class="text-right">
+        {!! Form::submit($category->id ? 'Edit' : 'Create', ['class' => 'btn btn-primary']) !!}
+    </div>
 
     <div class="form-group">
         {!! Form::label('Description (Optional)') !!}

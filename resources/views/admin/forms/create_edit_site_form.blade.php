@@ -23,7 +23,10 @@
         </div>
         <div class="form-group col">
             {!! Form::label('timeframe', 'Form Timeframe') !!} {!! add_help('This is the timeframe during which users can submit this form. I.E. yearly will only allow one submission per year, while lifetime will allow one submission total.') !!}
-            {!! Form::select('timeframe', ['lifetime' => 'Lifetime', 'daily' => 'Daily', 'weekly' => 'Weekly', 'monthly' => 'Monthly', 'yearly' => 'Yearly'], $form ? $form->timeframe : 0, ['class' => 'form-control stock-field', 'data-name' => 'timeframe']) !!}
+            {!! Form::select('timeframe', ['lifetime' => 'Lifetime', 'daily' => 'Daily', 'weekly' => 'Weekly', 'monthly' => 'Monthly', 'yearly' => 'Yearly'], $form ? $form->timeframe : 0, [
+                'class' => 'form-control stock-field',
+                'data-name' => 'timeframe',
+            ]) !!}
         </div>
     </div>
 

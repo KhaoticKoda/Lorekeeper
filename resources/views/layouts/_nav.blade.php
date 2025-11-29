@@ -45,11 +45,11 @@
                             </a>
                             <a class="dropdown-item" href="{{ url('/trades/listings') }}">
                                 Trade Listings
-</a>
+                            </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('comments/liked') }}">
                                 Liked Comments
-</a>
+                            </a>
                             <a class="dropdown-item" href="{{ url('awardcase') }}">
                                 {{ ucfirst(__('awards.awards')) }}
                             </a>
@@ -127,13 +127,13 @@
                             Shops
                         </a>
                         <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
-                        {{__('dailies.dailies')}}
+                            {{ __('dailies.dailies') }}
                         </a>
-                        @if(Auth::check())
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('search') }}">
-                            Site Search
-                        </a>
+                        @if (Auth::check())
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('search') }}">
+                                Site Search
+                            </a>
                         @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('faq') }}">

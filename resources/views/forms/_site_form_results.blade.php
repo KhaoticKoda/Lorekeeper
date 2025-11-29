@@ -22,8 +22,8 @@
                         @php $optionAnswers = $option->answers->count(); @endphp
                         {{ $option->option }}
                         <div class="progress" style="height: 30px;">
-                            <div class="progress-bar @if ($totalAnswers > 0 && ($optionAnswers / $totalAnswers) * 100 == 0) ml-2 text-dark @endif" role="progressbar" style="width:{{ $totalAnswers > 0 ? ($optionAnswers / $totalAnswers) * 100 : 0 }}%;" aria-valuenow="{{ $optionAnswers }}" aria-valuemin="0"
-                                 aria-valuemax="{{ $totalAnswers }}">{{ $optionAnswers }}</div>
+                            <div class="progress-bar @if ($totalAnswers > 0 && ($optionAnswers / $totalAnswers) * 100 == 0) ml-2 text-dark @endif" role="progressbar" style="width:{{ $totalAnswers > 0 ? ($optionAnswers / $totalAnswers) * 100 : 0 }}%;" aria-valuenow="{{ $optionAnswers }}"
+                                aria-valuemin="0" aria-valuemax="{{ $totalAnswers }}">{{ $optionAnswers }}</div>
                         </div>
                     @endforeach
                 @else

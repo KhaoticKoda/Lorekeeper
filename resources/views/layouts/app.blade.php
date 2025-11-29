@@ -77,7 +77,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Tangerine" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Bad+Script" rel="stylesheet" type="text/css">
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lorekeeper.css?v=' . filemtime(public_path('css/lorekeeper.css'))) }}" rel="stylesheet">
@@ -104,16 +104,16 @@
 
     @include('feed::links')
     @php
-    $design = App\Models\SiteDesign::all()->first();
+        $design = App\Models\SiteDesign::all()->first();
     @endphp
 
     <!-- ALTERNATE SITE LAYOUTS -->
     @isset($design)
-    <link href="{{ asset('css/'. $design->design .'.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/' . $design->design . '.css') }}" rel="stylesheet">
     @endisset
 
     <!--Editable font css-->
-    @include('layouts.editable_fonts') 
+    @include('layouts.editable_fonts')
 
     @if ($theme?->prioritize_css)
         @include('layouts.editable_theme')
@@ -168,7 +168,7 @@
             <div class="site-mobile-header bg-secondary"><a href="#" class="btn btn-sm btn-outline-light" id="mobileMenuButton">Menu <i class="fas fa-caret-right ml-1"></i></a></div>
         @endif
 
-        
+
 
         <main class="container-fluid" id="main">
             <div class="row">
@@ -194,7 +194,7 @@
                                 <div class="alert alert-info"><a href="{{ url('sales') }}">There is a new sales post!</a></div>
                             @endif
                         @endif
-                        @if(Auth::check() && Auth::user()->is_polls_unread)
+                        @if (Auth::check() && Auth::user()->is_polls_unread)
                             <div class="alert alert-info"><a href="{{ url('forms') }}">There is a new site poll!</a></div>
                         @endif
                         @include('flash::message')
@@ -209,7 +209,7 @@
 
         </main>
 
-        
+
         @include('layouts._terms_modal')
 
         <div class="modal fade" id="modal" tabindex="-1" role="dialog">

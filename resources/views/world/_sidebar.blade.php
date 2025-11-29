@@ -1,12 +1,12 @@
 <ul>
     <li class="sidebar-header"><a href="{{ url('world') }}" class="card-link">Encyclopedia</a></li>
-    @if(isset($sections) && $sections->count() > 0)
-    <li class="sidebar-section">
-        <div class="sidebar-section-header">Info</div>
-        @foreach($sections as $section)
-            <div class="sidebar-item"><a href="{{ url($section->url) }}" class="{{ set_active('world/info/'.$section->key) }}">{{ $section->name }}</a></div>
-        @endforeach
-    </li>
+    @if (isset($sections) && $sections->count() > 0)
+        <li class="sidebar-section">
+            <div class="sidebar-section-header">Info</div>
+            @foreach ($sections as $section)
+                <div class="sidebar-item"><a href="{{ url($section->url) }}" class="{{ set_active('world/info/' . $section->key) }}">{{ $section->name }}</a></div>
+            @endforeach
+        </li>
     @endif
     <li class="sidebar-section">
         <div class="sidebar-section-header">Characters</div>
@@ -25,7 +25,7 @@
     </li>
     <li class="sidebar-section">
         <div class="sidebar-section-header">{{ ucfirst(__('awards.awards')) }}</div>
-        <div class="sidebar-item"><a href="{{ url('world/'. __('awards.award') .'-categories') }}" class="{{ set_active('world/'. __('awards.award') .'-categories*') }}">{{ ucfirst(__('awards.award')) }} Categories</a></div>
-        <div class="sidebar-item"><a href="{{ url('world/'. __('awards.awards')) }}" class="{{ set_active('world/'. __('awards.awards') .'*') }}">All {{ ucfirst(__('awards.awards')) }} </a></div>
+        <div class="sidebar-item"><a href="{{ url('world/' . __('awards.award') . '-categories') }}" class="{{ set_active('world/' . __('awards.award') . '-categories*') }}">{{ ucfirst(__('awards.award')) }} Categories</a></div>
+        <div class="sidebar-item"><a href="{{ url('world/' . __('awards.awards')) }}" class="{{ set_active('world/' . __('awards.awards') . '*') }}">All {{ ucfirst(__('awards.awards')) }} </a></div>
     </li>
 </ul>
