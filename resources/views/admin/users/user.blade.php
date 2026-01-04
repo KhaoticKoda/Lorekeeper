@@ -84,7 +84,7 @@
         </div>
         {!! Form::close() !!}
     </div>
-@include('widgets._staff_profile_form', ['user' => $user, 'adminView' => 1])
+    @include('widgets._staff_profile_form', ['user' => $user, 'adminView' => 1])
     <div class="card p-3 mb-2">
         <h3>Birthdate</h3>
         @if ($user->birthday)
@@ -135,8 +135,8 @@
 @endsection
 
 @section('scripts')
-@parent
-    @if(Auth::user()->isStaff)
+    @parent
+    @if (Auth::user()->isStaff)
         @include('js._website_links_js')
     @endif
 @endsection
