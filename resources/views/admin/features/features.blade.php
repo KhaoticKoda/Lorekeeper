@@ -13,7 +13,7 @@
 
     <div class="text-right mb-3">
         <a class="btn btn-primary" href="{{ url('admin/data/trait-categories') }}"><i class="fas fa-folder"></i> Trait Categories</a>
-            <a class="btn btn-primary" href="{{ url('admin/data/trait-subcategories') }}"><i class="fas fa-folder"></i> Trait Subcategories</a>
+        <a class="btn btn-primary" href="{{ url('admin/data/trait-subcategories') }}"><i class="fas fa-folder"></i> Trait Subcategories</a>
         <a class="btn btn-primary" href="{{ url('admin/data/traits/create') }}"><i class="fas fa-plus"></i> Create New Trait</a>
     </div>
 

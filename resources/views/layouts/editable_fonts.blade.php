@@ -1,8 +1,8 @@
 @isset($design)
     <style>
         /**
-        Sets the font for all your headers
-        */
+            Sets the font for all your headers
+            */
         h1,
         h2,
         h3,
@@ -20,8 +20,8 @@
         }
 
         /**
-        Sets the font for the navbar up top + nav tabs
-        */
+            Sets the font for the navbar up top + nav tabs
+            */
         .navbar .navbar-brand,
         .navbar .nav-item,
         .nav-tabs .nav-link {
@@ -32,8 +32,8 @@
         }
 
         /**
-        Sets the font for the sidebars
-        */
+            Sets the font for the sidebars
+            */
         .sidebar .sidebar-header,
         .sidebar .sidebar-section .sidebar-section-header,
         .sidebar a {
@@ -44,8 +44,8 @@
         }
 
         /**
-        Sets the font for all text on site/main text font
-        */
+            Sets the font for all text on site/main text font
+            */
         body {
             font-family: {{ $design->body_font_family }} !important;
             letter-spacing: {{ $design->body_letter_spacing }}px !important;
