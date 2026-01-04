@@ -29,6 +29,9 @@
                     ({!! $feature->displaySubtypes(Auth::User() ?? null) !!})
                 @endif
             </div>
+            @endif
+         @if($feature->feature_subcategory_id)
+            <div><strong>Subcategory:</strong> {!! $feature->subcategory->displayName !!}</div>
         @endif
         <div class="world-entry-text parsed-text">
             {!! $feature->parsed_description !!}
