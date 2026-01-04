@@ -55,11 +55,11 @@
             </div>
         </div>
         <div class="col-md-4">
-    <div class="form-group">
-     {!! Form::label('Trait Subcategory (Optional)') !!}
-     {!! Form::select('feature_subcategory_id', $subcategories, $feature->feature_subcategory_id, ['class' => 'form-control']) !!}
-    </div>
-   </div>
+            <div class="form-group">
+                {!! Form::label('Trait Subcategory (Optional)') !!}
+                {!! Form::select('feature_subcategory_id', $subcategories, $feature->feature_subcategory_id, ['class' => 'form-control']) !!}
+            </div>
+        </div>
         <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('Species Restriction (Optional)') !!}
