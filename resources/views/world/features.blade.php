@@ -41,7 +41,7 @@
                         'rarity-reverse' => 'Sort by Rarity (Common to Rare)',
                         'rarity' => 'Sort by Rarity (Rare to Common)',
                         'species' => 'Sort by Species',
-                        'subcategory'       => 'Sort by Subcategory',
+                        'subcategory' => 'Sort by Subcategory',
                         'subtypes' => 'Sort by Subtype',
                         'newest' => 'Newest First',
                         'oldest' => 'Oldest First',
