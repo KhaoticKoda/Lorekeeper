@@ -41,7 +41,7 @@ class PageController extends Controller {
     public function getCreditsPage() {
         return view('pages.credits', [
             'credits'    => SitePage::where('key', 'credits')->first(),
-            'extensions' => DB::table('site_extensions')->get(),]
+            'extensions' => DB::table('site_extensions')->get(),]);
 }
     /**********************************************************************************************
     
